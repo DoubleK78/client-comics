@@ -12,7 +12,7 @@ export default function RecentlyUploadedComic() {
                         <h2>Recently Uploaded</h2>
                     </div>
                     <div className="row">
-                        <div className="col-lg-3 col-sm-6 col-12">
+                        <div className="col-lg-3 col-sm-6 col-12 comic-element">
                             <div className="anime-blog">
                                 <a href="manga-detail.html">
                                     <img src="/assets/media/manga/manga-img-9.png" alt="" />
@@ -85,7 +85,7 @@ export default function RecentlyUploadedComic() {
                                 </a>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-sm-6 col-12">
+                        <div className="col-lg-3 col-sm-6 col-12 comic-element">
                             <div className="anime-blog">
                                 <a href="manga-detail.html">
                                     <img src="/assets/media/manga/manga-img-10.png" alt="" />
@@ -158,7 +158,7 @@ export default function RecentlyUploadedComic() {
                                 </a>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-sm-6 col-12">
+                        <div className="col-lg-3 col-sm-6 col-12 comic-element">
                             <div className="anime-blog">
                                 <a href="manga-detail.html">
                                     <img src="/assets/media/manga/manga-img-11.png" alt="" />
@@ -231,7 +231,7 @@ export default function RecentlyUploadedComic() {
                                 </a>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-sm-6 col-12">
+                        <div className="col-lg-3 col-sm-6 col-12 comic-element">
                             <div className="anime-blog">
                                 <a href="manga-detail.html">
                                     <img src="/assets/media/manga/manga-img-12.png" alt="" />
