@@ -1,6 +1,7 @@
-import Image from "next/image";
+import ContentResponse from "@/app/models/contents/ContentResponse";
+import dayjs from "@/app/utils/dayjs/dayjs-custom";
 
-export default function ChapterComic() {
+export default function ChapterComic({ contents }: { contents?: ContentResponse[] | null }) {
     return (
         <>
             {/*=====================================*/}
@@ -10,51 +11,16 @@ export default function ChapterComic() {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-8 col-md-12 col-sm-12">
-                            <h3 className="small-title">Manga Releases</h3>
-                            <h5>
-                                Chapter 179 <span>Sunday 01 Jan 2023</span>
-                            </h5>
-                            <hr />
-                            <h5>
-                                Chapter 178 <span>Sunday 02 Jan 2023</span>
-                            </h5>
-                            <hr />
-                            <h5>
-                                Chapter 177 <span>Monday 03 Jan 2023</span>
-                            </h5>
-                            <hr />
-                            <h5>
-                                Chapter 176 <span>Tuesday 04 Jan 2023</span>
-                            </h5>
-                            <hr />
-                            <h5>
-                                Chapter 175 <span>Wednesday 05 Jan 2023</span>
-                            </h5>
-                            <hr />
-                            <h5>
-                                Chapter 174 <span>Thursday 06 Jan 2023</span>
-                            </h5>
-                            <hr />
-                            <h5>
-                                Chapter 173 <span>Friday 07 Jan 2023</span>
-                            </h5>
-                            <hr />
-                            <h5>
-                                Chapter 172 <span>Saturday 08 Jan 2023</span>
-                            </h5>
-                            <hr />
-                            <h5>
-                                Chapter 171 <span>Sunday 09 Jan 2023</span>
-                            </h5>
-                            <hr />
-                            <h5>
-                                Chapter 170 <span>Monday 10 Jan 2023</span>
-                            </h5>
-                            <hr />
-                            <h5>
-                                Chapter 169 <span>Tuesday 11 Jan 2023</span>
-                            </h5>
-                            <hr />
+                            <h3 className="small-title">DANH SÁCH CHƯƠNG</h3>
+                            {contents?.map((content, index) => (
+                                <div key={index}>
+                                    <h5>
+                                        <a href={`/truyen-tranh/${content.albumFriendlyName}/${content.friendlyName}`}>{content.title}</a> 
+                                        <span>{dayjs.utc(content.createdDate).local().format('DD-MM-YYYY HH:mm')}</span>
+                                    </h5>
+                                    <hr />
+                                </div>
+                            ))}                       
                             <div className="text-center">
                                 <a href="manga-detail.html#" className="relese-btn">
                                     Show More

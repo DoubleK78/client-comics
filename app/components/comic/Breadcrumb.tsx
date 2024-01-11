@@ -1,4 +1,4 @@
-export default function Breadcrumb() {
+export default function Breadcrumb({ title, friendlyName }: { title?: string, friendlyName?: string }) {
     return (
         <>
             {/*=====================================*/}
@@ -17,7 +17,7 @@ export default function Breadcrumb() {
                                 <a href="/truyen-tranh">Truyện tranh</a>
                             </li>
                             <li>
-                                <a className="active">Solo Leveling</a>
+                                <a href={`/truyen-tranh/${friendlyName}`} className="active">{title}</a>
                             </li>
                         </ul>
                     </div>

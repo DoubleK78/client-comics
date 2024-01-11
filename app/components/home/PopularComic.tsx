@@ -15,7 +15,7 @@ export default function PopularComic() {
                         </h2>
                     </div>
                     <div className="row">
-                        <div className="col-lg-3 col-sm-6 col-12">
+                        <div className="col-lg-3 col-sm-6 col-12 comic-element">
                             <div className="anime-blog">
                                 <Link href={"/truyen-tranh"}>
                                     <img src="/assets/media/manga/manga-img-2.png" alt="" />
@@ -88,7 +88,7 @@ export default function PopularComic() {
                                 </a>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-sm-6 col-12">
+                        <div className="col-lg-3 col-sm-6 col-12 comic-element">
                             <div className="anime-blog">
                                 <a href="manga-detail.html">
                                     <img src="/assets/media/manga/manga-img-1.png" alt="" />
@@ -161,7 +161,7 @@ export default function PopularComic() {
                                 </a>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-sm-6 col-12">
+                        <div className="col-lg-3 col-sm-6 col-12 comic-element">
                             <div className="anime-blog">
                                 <a href="manga-detail.html">
                                     <img src="/assets/media/manga/manga-img-3.png" alt="" />
@@ -234,7 +234,7 @@ export default function PopularComic() {
                                 </a>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-sm-6 col-12">
+                        <div className="col-lg-3 col-sm-6 col-12 comic-element">
                             <div className="anime-blog">
                                 <a href="manga-detail.html">
                                     <img src="/assets/media/manga/manga-img-4.png" alt="" />
@@ -307,7 +307,7 @@ export default function PopularComic() {
                                 </a>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-sm-6 col-12">
+                        <div className="col-lg-3 col-sm-6 col-12 comic-element">
                             <div className="anime-blog">
                                 <a href="manga-detail.html">
                                     <img src="/assets/media/manga/manga-img-5.png" alt="" />
@@ -380,7 +380,7 @@ export default function PopularComic() {
                                 </a>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-sm-6 col-12">
+                        <div className="col-lg-3 col-sm-6 col-12 comic-element">
                             <div className="anime-blog">
                                 <a href="manga-detail.html">
                                     <img src="/assets/media/manga/manga-img-6.png" alt="" />
@@ -453,7 +453,7 @@ export default function PopularComic() {
                                 </a>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-sm-6 col-12">
+                        <div className="col-lg-3 col-sm-6 col-12 comic-element">
                             <div className="anime-blog">
                                 <a href="manga-detail.html">
                                     <img src="/assets/media/manga/manga-img-7.png" alt="" />
@@ -526,7 +526,7 @@ export default function PopularComic() {
                                 </a>
                             </div>
                         </div>
-                        <div className="col-lg-3 col-sm-6 col-12">
+                        <div className="col-lg-3 col-sm-6 col-12 comic-element">
                             <div className="anime-blog">
                                 <a href="manga-detail.html">
                                     <img src="/assets/media/manga/manga-img-8.png" alt="" />

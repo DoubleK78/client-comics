@@ -82,41 +82,6 @@ export default function BannerComic() {
                                 </div>
                             </div>
                         </div>
-                        <div className="banner-block bg-color-black mb-0">
-                            <div className="row">
-                                <div className="col-lg-5 col-sm-5 col-12 d-flex align-items-center">
-                                    <div className="banner-content">
-                                        <h2 className="title">SOLO LEVELING</h2>
-                                        <p className="text">VOLUME 104</p>
-                                        <p className="text">CHAPTER 1016</p>
-                                        <div className="tag-box">
-                                            <a href="manga-detail.html" className="text-box active">
-                                                pg-13
-                                            </a>
-                                            <a href="manga-detail.html" className="text-box">
-                                                dub
-                                            </a>
-                                            <a href="manga-detail.html" className="text-box">
-                                                sub
-                                            </a>
-                                        </div>
-                                        <p className="light-text">APRIL 07, 2023</p>
-                                    </div>
-                                </div>
-                                <div className="col-lg-7 col-sm-7 col-12">
-                                    <img
-                                        src="/assets/media/banner/banner-img-6.png"
-                                        className="dignole-img show-img"
-                                        alt=""
-                                    />
-                                    <img
-                                        src="/assets/media/banner/banner-img-9.png"
-                                        className="dignole-img hide-img"
-                                        alt=""
-                                    />
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>

@@ -1,6 +1,6 @@
-import Image from "next/image";
+import ComicDetail, { EAlbumStatus } from "@/app/models/comics/ComicDetail";
 
-export default function InfomationComic() {
+export default function InfomationComic({ comic }: { comic?: ComicDetail | null }) {
     return (
         <>
             {/*=====================================*/}
@@ -22,12 +22,12 @@ export default function InfomationComic() {
                                 </div>
                                 <div className="col-lg-6 col-md-5 col-12">
                                     <div className="trailer-content">
-                                        <h2>Solo Leveling</h2>
-                                        <p className="light-text">Chapter 179</p>
+                                        <h2>{comic?.title}</h2>
+                                        <p className="light-text">{comic?.contents[0]?.title}</p>
                                         <div className="dropdown">
                                             <button
                                                 type="button"
-                                                className="dropdown-toggle"
+                                                className="dropdown-toggle mx-2"
                                                 data-bs-toggle="dropdown"
                                             >
                                                 <svg
@@ -74,34 +74,30 @@ export default function InfomationComic() {
                                             <ul className="dropdown-menu bg-color-black pt-3 pb-3 ps-3 pe-3">
                                                 <li>
                                                     <a href="manga-detail.html" className="none">
-                                                        <i className="fa fa-check" /> Watch Later{" "}
+                                                        <i className="fa fa-check" /> Xem Sau{" "}
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="manga-detail.html">
-                                                        <i className="fas fa-plus" /> Add to Playlist{" "}
+                                                        <i className="fas fa-plus" /> Thêm vào yêu thích{" "}
                                                     </a>
                                                 </li>
                                             </ul>
                                         </div>
-                                        <h3>Plot Summary</h3>
+                                        <h3>NỘI DUNG</h3>
                                         <p>
-                                            At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                                            blanditiis praesentium voluptatum deleniti atque corrupti quos
-                                            dolores et quas molestias excepturi sint occaecati cupiditate
-                                            non provident, similique sunt in culpa qui officia deserunt
-                                            mollitia animi, id est laborum et dolorum fuga. Et harum
-                                            quidem rerum facilis est et expedita distinctio.
+                                            {comic?.description}
                                         </p>
                                         <div className="d-flex pt-4">
                                             <a
-                                                href="manga-content.html"
+                                                href={`/truyen-tranh/${comic?.friendlyName}/${comic?.contents[comic?.contents.length - 1]?.friendlyName}`}
                                                 className="anime-btn btn-dark border-change me-3"
                                             >
-                                                READ FIRST
+                                                ĐỌC ĐẦU CHƯƠNG
                                             </a>
-                                            <a href="manga-content.html" className="anime-btn btn-dark">
-                                                READ LAST
+                                            <a href={`/truyen-tranh/${comic?.friendlyName}/${comic?.contents[0]?.friendlyName}`}
+                                                className="anime-btn btn-dark">
+                                                ĐỌC CUỐI CHƯƠNG
                                             </a>
                                         </div>
                                     </div>
@@ -110,30 +106,30 @@ export default function InfomationComic() {
                         </div>
                         <div className="col-lg-3 col-sm-6 col-12">
                             <div className="trailer-content">
-                                <h3>Manga Detail</h3>
+                                <h3>Thông Tin</h3>
                                 <p>
-                                    <span>Author:</span> <b>Bones</b>
+                                    <span>Tác Giả:</span> <b>{comic?.authorNames}</b>
                                 </p>
                                 <p>
-                                    <span>Artist:</span> <b>Bones</b>
+                                    <span>Họa sĩ:</span> <b>Bones</b>
                                 </p>
                                 <p>
-                                    <span>Date of release:</span> Jan 15, 2023
+                                    <span>Năm: </span> {comic?.releaseYear}
                                 </p>
                                 <p>
-                                    <span>Status:</span> <b>Completed</b>
+                                    <span>Tình trạng:</span> <b>{comic?.albumStatus == EAlbumStatus.Ongoing ? 'Đang tiến hành' : 'Đã hoàn thành'}</b>
                                 </p>
                                 <p>
-                                    <span>Genre:</span> Action, School, Shounen
+                                    <span>Thể loại:</span> {comic?.contentTypeNames}
                                 </p>
                                 <p>
-                                    <span>Country:</span> Japan
+                                    <span>Quốc Gia:</span> {comic?.tags}
                                 </p>
-                                <p>
+                                {/* <p>
                                     <span>Scores:</span> 2.53 by 4,405 reviews
-                                </p>
+                                </p> */}
                                 <p>
-                                    <span>Views:</span> 18,284
+                                    <span>Views:</span> Đang cập nhật
                                 </p>
                             </div>
                         </div>
