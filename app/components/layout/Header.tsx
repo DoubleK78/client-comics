@@ -25,93 +25,70 @@ export default async function Header() {
                     <div className="collapsed navbar-collapse collapse" id="mynavbar">
                         <ul className="navbar-nav ms-auto mainmenu">
                             <li className="menu-item-has-children">
-                                <a href="home.html">Anime</a>
+                                <a href="home.html">Following</a>
                             </li>
                             <li className="menu-item-has-children">
-                                <a href="home-2.html">Movie</a>
-                            </li>
-                            <li className="menu-item-has-children">
-                                <a href="home-3.html">Manga</a>
-                            </li>
-                            <li className="menu-item-has-children">
-                                <a
-                                    href="manga-detail.html#Pages"
+                            <a
+                                    href="#"
                                     className="dropdown-toggle"
-                                    id="pages"
+                                    id="ranking"
                                     data-bs-toggle="dropdown"
                                     data-bs-auto-close="outside"
                                     aria-expanded="false"
                                 >
-                                    Pages
+                                    Ranking
                                 </a>
-                                <ul className="dropdown-menu" aria-labelledby="pages">
-                                    <li>
-                                        <a href="home.html">Anime</a>
-                                    </li>
-                                    <li>
-                                        <a href="home-2.html">Movie</a>
-                                    </li>
-                                    <li>
-                                        <a href="home-3.html">Manga</a>
-                                    </li>
-                                    <li>
-                                        <a href="streaming-season.html">Streaming Season</a>
-                                    </li>
-                                    <li>
-                                        <a href="streaming-movie.html">Streaming Movie</a>
-                                    </li>
+                                <ul className="dropdown-menu" aria-labelledby="ranking">
                                     <li>
                                         <a href="manga-detail.html" className="active">
-                                            Manga Detail
+                                            Top all
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="manga-content.html">Manga Content </a>
+                                        <a href="home-2.html">Top year</a>
                                     </li>
                                     <li>
-                                        <a href="list-view.html">List View</a>
+                                        <a href="home-3.html">Top month</a>
                                     </li>
                                     <li>
-                                        <a href="grid-view.html">grid View</a>
+                                        <a href="streaming-season.html">Top day</a>
                                     </li>
                                     <li>
-                                        <a href="blog.html">Blog</a>
+                                        <a href="streaming-movie.html">Top follow</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li className="menu-item-has-children">
+                                <a href="search">Advanced Search</a>
+                            </li>
+                            <li className="menu-item-has-children">
+                                <a
+                                    href="#"
+                                    className="dropdown-toggle"
+                                    id="types"
+                                    data-bs-toggle="dropdown"
+                                    data-bs-auto-close="outside"
+                                    aria-expanded="false"
+                                >
+                                    Genre
+                                </a>
+                                <ul className="dropdown-menu" aria-labelledby="types">
+                                    <li>
+                                        <a href="manga-detail.html" className="active">
+                                            Manga
+                                        </a>
                                     </li>
                                     <li>
-                                        <a href="blog-detail.html">Blog Detail</a>
+                                        <a href="home-2.html">Manhwa</a>
                                     </li>
                                     <li>
-                                        <a href="privacy.html"> Privacy Policy</a>
+                                        <a href="home-3.html">Manhua</a>
                                     </li>
                                     <li>
-                                        <a href="comments.html"> Comments Policy </a>
+                                        <a href="streaming-season.html">Comic</a>
                                     </li>
                                     <li>
-                                        <a href="profile.html">Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="edit-profile.html"> Edit Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="watch-history.html">Watch History</a>
-                                    </li>
-                                    <li>
-                                        <a href="playlist.html">Playlist</a>
-                                    </li>
-                                    <li>
-                                        <a href="login.html">Log In</a>
-                                    </li>
-                                    <li>
-                                        <a href="signup.html">Sign Up</a>
-                                    </li>
-                                    <li>
-                                        <a href="reset-password.html">Reset Password</a>
-                                    </li>
-                                    <li>
-                                        <a href="404.html">404</a>
-                                    </li>
-                                    <li>
-                                        <a href="coming-soon.html"> Coming Soon</a>
+                                        <a href="streaming-movie.html">Bande Dessinée</a>
                                     </li>
                                 </ul>
                             </li>
@@ -132,12 +109,6 @@ export default async function Header() {
                         </form>
                         {!isLogined ? (
                             <div className="d-flex right-nav">
-                                <a
-                                    href="signup.html"
-                                    className="anime-btn btn-dark border-change me-3"
-                                >
-                                    SIGN UP
-                                </a>
                                 <a href="login" className="anime-btn btn-dark">
                                     LOG IN
                                 </a>
@@ -150,7 +121,7 @@ export default async function Header() {
                                     style={{ width: 55 }}
                                     alt="Avatar"
                                 />
-                                <a href="/profile" className="anime-btn btn-dark border-change me-2">
+                                <a href="/pages/profile" className="anime-btn btn-dark border-change me-2">
                                     {session.user?.name}
                                 </a>
                                 <LogoutButton />

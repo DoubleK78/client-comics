@@ -28,17 +28,10 @@ export default async function Login() {
                                     id="check"
                                 />
                                 <label className="custom-control-label" htmlFor="check">
-                                    I wish to receive news and promotions from ANIMELOOP Company by
-                                    email.
-                                </label>
-                            </div>
-                            <p className="policy">
                                 By continuing, you agree to ANIMELOOP Terms of Use and Privacy
                                 Policy.
-                            </p>
-                            <p className="guide">
-                                Create an account? <a href="signup.html">Sign Up</a>
-                            </p>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
