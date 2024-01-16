@@ -188,7 +188,7 @@ table th {
     Typography
 -------------------------*/
 body {
-  font-family: var(--font-primary);
+  font-family: 'CC Astro City';
   font-size: var(--font-body-2);
   line-height: var(--line-height-b1);
   color: var(--color-dark);
@@ -234,7 +234,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-primary);
+  font-family: 'CC Astro City';
   font-weight: 500;
   letter-spacing: 1.5px;
   color: var(--color-text-dark);
@@ -772,7 +772,7 @@ p.text-box:hover{
 
 .heading.style-1 h2 {
   width: 100%;
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: 'CC Astro City';
   font-weight: 700;
   font-size: 40px;
   color: var(--color-white);
@@ -991,6 +991,7 @@ ul.pagination li a.current {
 
 .breadcrumb-content {
   display: block;
+  font-family: 'CC Astro City';
 }
 
 .breadcrumb .breadcrumb-content ul {
@@ -1064,7 +1065,7 @@ ul.pagination li a.current {
 .timer li {
   background-color: var(--color-white);
   color: var(--color-black-light);
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: 'CC Astro City';
   display: inline-block;
   box-shadow: 0px 0px 15px #B35D22;
   border-radius: 13px;
@@ -1076,7 +1077,7 @@ ul.pagination li a.current {
 
 .timer li small {
   font-size: 20px;
-  font-family: var(--font-Noir-Pro-Light);
+  font-family: 'CC Astro City';
   color: var(--color-dark-grey);
   padding-left: 5px;
 }
@@ -1524,7 +1525,7 @@ ul.pagination li a.current {
   margin-right: 0;
 }
 .footer-widget p {
-  font-family: var(--font-primary);
+  font-family: 'CC Astro City';
   font-weight: 400;
   font-size: 18px;
   color: var(--color-semi-grey);
@@ -1564,7 +1565,7 @@ ul.pagination li a.current {
   height: 45px;
   border: 1px solid var(--color-white);
   border-radius: 0px 8px 8px 0px;
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: 'CC Astro City';
   font-weight: 700;
   font-size: 20px;
   letter-spacing: 1px;
@@ -1577,7 +1578,7 @@ ul.pagination li a.current {
 }
 
 .footer-widget .text {
-  font-family: var(--font-Noir-Pro-Light);
+  font-family: 'CC Astro City';
   font-weight: 300;
   font-size: 14px;
   color: var(--color-grey-light);
@@ -1763,7 +1764,7 @@ ul.pagination li a.current {
 }
 
 .banner-block h2.title {
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: 'CC Astro City';
   font-size: 80px;
   color: var(--color-white);
   margin-bottom: 0;
@@ -1801,7 +1802,7 @@ ul.pagination li a.current {
 }
 
 .banner.style-3 p.light-text {
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: 'CC Astro City';
   margin-bottom: 0;
 }
 
@@ -1846,7 +1847,7 @@ ul.pagination li a.current {
 }
 
 .banner.style-2 .banner-block p.light-text {
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: 'CC Astro City';
   font-size: 40px;
   color: var(--color-white);
   margin-bottom: 0px;
@@ -1860,7 +1861,7 @@ ul.pagination li a.current {
   margin-bottom: 0px;
 }
 .banner.style-2 .banner-content p.light-text {
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: 'CC Astro City';
   font-weight: 600;
   font-size: 30px;
   color: var(--color-white);
@@ -2086,7 +2087,7 @@ ul.pagination li a.current {
   border-radius: 7px;
   color: var(--color-white);
   font-size: 35px;
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: 'CC Astro City';
   transition: all 0.5s ease;
   opacity: 0;
   visibility: hidden;
@@ -2261,7 +2262,7 @@ ul.pagination li a.current {
 }
 
 .comingOut-content .title {
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: 'CC Astro City';
   font-weight: 700;
   font-size: 80px;
   color: var(--color-white);
@@ -2269,7 +2270,7 @@ ul.pagination li a.current {
 }
 
 .comingOut-content p.light-text {
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: 'CC Astro City';
   font-weight: 400;
   font-size: 40px;
   color: var(--color-white);
@@ -2513,7 +2514,7 @@ ul.pagination li a.current {
   padding: 0 10px;
 }
 .schedule .card-body h4 {
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: 'CC Astro City';
   color: var(--color-grey-light);
   font-weight: 700;
   font-size: 20px;
@@ -2565,7 +2566,7 @@ ul.pagination li a.current {
   font-size: 20px;
   color: var(--color-grey-light);
   margin-bottom: 0;
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: 'CC Astro City';
 }
 
 
@@ -2573,7 +2574,7 @@ ul.pagination li a.current {
   font-size: 22px;
   color: var(--color-white);
   margin-bottom: 15px;
-  font-family: var(--font-Noir-Pro);
+  font-family: 'CC Astro City';
 }
 
 .card-body .tab-pane p.text-box {
@@ -3119,7 +3120,7 @@ ul.pagination li a.current {
 }
 
 .blog-search h5 {
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: 'CC Astro City';
   font-weight: 700;
   font-size: 20px;
   color: var(--color-white);
@@ -3139,7 +3140,7 @@ ul.pagination li a.current {
 }
 
 .blog-search ul li a {
-  font-family: 'Noir Pro';
+  font-family: 'CC Astro City';
   font-weight: 400;
   font-size: 16px;
   color: var(--color-semi-grey);
@@ -3172,7 +3173,7 @@ ul.pagination li a.current {
   background: var(--color-grey-light);
 }
 .blog-search ul.categories li a{
-  font-family: 'Noir Pro';
+  font-family: 'CC Astro City';
   font-weight: 400;
   font-size: 16px;
   color: var(--color-semi-grey);
@@ -3226,14 +3227,14 @@ ul.pagination li a.current {
 .blog.style-2 .inner-box .heading span {
   background: transparent;
   border-radius: 0;
-  font-family: var(--font-Noir-Pro);
+  font-family: 'CC Astro City';
   font-weight: 700;
   font-size: 18px;
   color: var(--color-grey-light);
   transform: rotate(-90deg);
 }
 .author-box h4 {
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: 'CC Astro City';
   color: var(--color-white);
   font-weight: 600;
   font-size: 25px;
@@ -3245,7 +3246,7 @@ ul.pagination li a.current {
   color: var(--color-primary);
 }
 .blog.style-2 .author-box h4 {
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: 'CC Astro City';
   font-size: 22px;
   margin-bottom: 18px;
 }
@@ -3272,7 +3273,7 @@ ul.pagination li a.current {
   display: block;
   color: var(--color-primary);
   margin-bottom: 0;
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: 'CC Astro City';
 }
 
 .author-box a:hover {
@@ -3783,7 +3784,7 @@ ul.pagination li a.current {
 }
 
 .trailer-content h2 {
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: 'CC Astro City';
   font-size: 35px;
   color: var(--color-white);
   margin-bottom: 0px;
@@ -3865,7 +3866,7 @@ ul.pagination li a.current {
 }
 
 .rating-content h4 {
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: 'CC Astro City';
   font-weight: 700;
   letter-spacing: 1px;
   font-size: 18px;
@@ -4320,7 +4321,7 @@ ul.pagination li a.current {
 }
 
 .comment .small-title {
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: 'CC Astro City';
   font-weight: 700;
   font-size: 40px;
   color: var(--color-white);
@@ -4508,7 +4509,7 @@ ul.pagination li a.current {
 -------------------------*/
 .content h1 {
   font-size: 35px;
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: 'CC Astro City';
   color: var(--color-white);
   margin-bottom: 30px;
 }
@@ -4527,7 +4528,7 @@ ul.pagination li a.current {
 }
 
 .content-text h3 {
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: 'CC Astro City';
   font-size: 25px;
   color: var(--color-white);
   margin-bottom: 10px;
@@ -4544,7 +4545,7 @@ ul.pagination li a.current {
 }
 
 .content-text-block h2 {
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: 'CC Astro City';
   font-size: 25px;
   color: var(--color-white);
   margin-bottom: 20px;
@@ -4670,7 +4671,7 @@ ul.pagination li a.current {
 }
 
 .profile h5 {
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: 'CC Astro City';
   font-size: 35px;
   color: var(--color-white);
   margin: 0;
@@ -4905,7 +4906,7 @@ ul.pagination li a.current {
   text-transform: uppercase;
   margin-bottom: 24px;
   color: var(--color-white);
-  font-family: var(--font-primary);
+  font-family: 'CC Astro City';
 }
 .login-content label {
   display: inline;
@@ -5073,7 +5074,7 @@ input:focus,
   border-radius: 10px;
 }
 .text-details p.author {
-  font-family: var(--font-primary);
+  font-family: 'CC Astro City';
   font-weight: 400;
   font-size: 15px;
   color: var(--color-grey-light);
@@ -5081,7 +5082,7 @@ input:focus,
 }
 
 .text-details p.author b {
-  font-family: var(--font-primary);
+  font-family: 'CC Astro City';
   font-weight: 600;
   font-size: 20px;
   color: var(--color-grey-light);
@@ -5251,7 +5252,7 @@ input:focus,
 .policy .policy-content h3 {
   font-size: 40px;
   line-height: 48px;
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: 'CC Astro City';
   color: var(--color-white);
   margin-bottom: 16px;
 }

@@ -59,7 +59,7 @@ export default async function Header() {
                                 </ul>
                             </li>
                             <li className="menu-item-has-children">
-                                <a href="search">Explore</a>
+                                <a href="/search">Explore</a>
                             </li>
                             <li className="menu-item-has-children">
                                 <a

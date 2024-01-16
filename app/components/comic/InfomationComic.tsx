@@ -14,7 +14,7 @@ export default function InfomationComic({ comic }: { comic?: ComicDetail | null 
                                 <div className="col-lg-6 col-md-7 col-12">
                                     <div className="trailer-box">
                                         <img
-                                            src="/assets/media/manga/manga-img-1.png"
+                                            src={comic?.thumbnailUrl ?? "/assets/media/manga/manga-img-1.png"}
                                             alt=""
                                             className="image"
                                         />
