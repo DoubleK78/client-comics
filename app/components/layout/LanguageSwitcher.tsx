@@ -15,17 +15,17 @@ export default function LanguageSwitcher({ locale }: { locale: string }) {
                 data-bs-auto-close="outside"
                 aria-expanded="false"
             >
-                {t('language')}
+                {locale === 'vi' ? <span className="flag-icon flag-icon-vn flag-icon-squared"></span> : <span className="flag-icon flag-icon-gb-eng flag-icon-squared"></span>}
             </a>
             <ul className="dropdown-menu" aria-labelledby="types">
                 <li>
                     <Link locale="vi" href={pathName} className={locale === 'vi' ? 'active' : ''}>
-                        {t('vietnamese')}
+                        <span className="flag-icon flag-icon-vn flag-icon-squared"></span> {t('vietnamese')}
                     </Link>
                 </li>
                 <li>
                     <Link locale="en" href={pathName} className={locale === 'en' ? 'active' : ''}>
-                        {t('english')}
+                        <span className="flag-icon flag-icon-gb-eng flag-icon-squared"></span> {t('english')}
                     </Link>
                 </li>
             </ul>

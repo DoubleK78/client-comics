@@ -132,12 +132,6 @@ export default async function Header() {
                             </div>
                         ) : (
                             <div className="d-flex right-nav">
-                                <img
-                                    src={session.user?.image ?? ''}
-                                    className="rounded-circle shadow-4 px-2"
-                                    style={{ height: 55 }}
-                                    alt="Avatar"
-                                />
                                 <a href="/profile" className="anime-btn btn-dark border-change me-2 text-avt">
                                     {session.user?.name}
                                 </a>

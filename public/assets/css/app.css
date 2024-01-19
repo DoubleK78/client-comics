@@ -234,7 +234,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'CC Astro City';
+  font-family: 'MTO Astro City';
   font-weight: 500;
   letter-spacing: 1.5px;
   color: var(--color-text-dark);
@@ -5347,7 +5347,7 @@ input:focus,
 }
 .text-avt{
   font-size: 12px;
-  padding-top: 8% !important;
+  padding-top: 6% !important;
 }
 .page-link.active {
   color: var(--color-primary) !important;

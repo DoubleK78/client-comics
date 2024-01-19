@@ -6,7 +6,7 @@ import '@/public/assets/css/vendor/slick.css'
 import '@/public/assets/css/vendor/slick-theme.css'
 import '@/public/assets/css/vendor/sal.css'
 import '@/public/assets/css/app.css'
-
+import '@/public/assets/css/flag-icon-css/css/flag-icons.min.css';
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
