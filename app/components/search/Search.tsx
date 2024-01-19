@@ -24,7 +24,7 @@ export default function Search() {
     const [isSubmitFilter, setIsSubmitFilter] = useState(false);
     const [pagingParams, setPagingParams] = useState<PagingRequest>({
         PageNumber: 1,
-        PageSize: 2,
+        PageSize: 12,
         SearchTerm: '',
         SortColumn: '',
         SortDirection: 'asc'
