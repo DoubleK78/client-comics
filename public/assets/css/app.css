@@ -78,6 +78,10 @@ STYLESHEETS INDEXING
   src: url(fonts/NoirPro-Light.otf) format('opentype');
 }
 
+@font-face {
+  font-family: 'MTO';
+  src: url(fonts/MTO\ Astro\ City.ttf) format('opentype');
+}
 :root {
   --color-primary: #F5CF49;
   --color-purple: #A958A5;
@@ -188,7 +192,7 @@ table th {
     Typography
 -------------------------*/
 body {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-size: var(--font-body-2);
   line-height: var(--line-height-b1);
   color: var(--color-dark);
@@ -234,7 +238,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'MTO Astro City';
+  font-family: MTO;
   font-weight: 500;
   letter-spacing: 1.5px;
   color: var(--color-text-dark);
@@ -729,6 +733,7 @@ p.text-box:hover{
   z-index: 1;
   border-right: none;
   background: var(--color-black-light);
+  font-family: MTO;
 }
 
 .anime-btn.btn-dark.border-change {
@@ -772,7 +777,7 @@ p.text-box:hover{
 
 .heading.style-1 h2 {
   width: 100%;
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-weight: 700;
   font-size: 40px;
   color: var(--color-white);
@@ -991,7 +996,7 @@ ul.pagination li a.current {
 
 .breadcrumb-content {
   display: block;
-  font-family: 'CC Astro City';
+  font-family: MTO;
 }
 
 .breadcrumb .breadcrumb-content ul {
@@ -1065,7 +1070,7 @@ ul.pagination li a.current {
 .timer li {
   background-color: var(--color-white);
   color: var(--color-black-light);
-  font-family: 'CC Astro City';
+  font-family: MTO;
   display: inline-block;
   box-shadow: 0px 0px 15px #B35D22;
   border-radius: 13px;
@@ -1077,7 +1082,7 @@ ul.pagination li a.current {
 
 .timer li small {
   font-size: 20px;
-  font-family: 'CC Astro City';
+  font-family: MTO;
   color: var(--color-dark-grey);
   padding-left: 5px;
 }
@@ -1161,6 +1166,7 @@ ul.pagination li a.current {
 
 .mainmenu>li {
   margin: 0 10px;
+  font-family: MTO;
 }
 
 .mainmenu>li>a {
@@ -1525,7 +1531,7 @@ ul.pagination li a.current {
   margin-right: 0;
 }
 .footer-widget p {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-weight: 400;
   font-size: 18px;
   color: var(--color-semi-grey);
@@ -1565,7 +1571,7 @@ ul.pagination li a.current {
   height: 45px;
   border: 1px solid var(--color-white);
   border-radius: 0px 8px 8px 0px;
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-weight: 700;
   font-size: 20px;
   letter-spacing: 1px;
@@ -1578,7 +1584,7 @@ ul.pagination li a.current {
 }
 
 .footer-widget .text {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-weight: 300;
   font-size: 14px;
   color: var(--color-grey-light);
@@ -1764,7 +1770,7 @@ ul.pagination li a.current {
 }
 
 .banner-block h2.title {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-size: 80px;
   color: var(--color-white);
   margin-bottom: 0;
@@ -1802,7 +1808,7 @@ ul.pagination li a.current {
 }
 
 .banner.style-3 p.light-text {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   margin-bottom: 0;
 }
 
@@ -1847,7 +1853,7 @@ ul.pagination li a.current {
 }
 
 .banner.style-2 .banner-block p.light-text {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-size: 40px;
   color: var(--color-white);
   margin-bottom: 0px;
@@ -1861,7 +1867,7 @@ ul.pagination li a.current {
   margin-bottom: 0px;
 }
 .banner.style-2 .banner-content p.light-text {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-weight: 600;
   font-size: 30px;
   color: var(--color-white);
@@ -2060,6 +2066,7 @@ ul.pagination li a.current {
 .anime-blog{
   margin-bottom: 30px;
   position: relative;
+  font-family: MTO;
 }
 
 /* .anime-blog a{
@@ -2087,7 +2094,7 @@ ul.pagination li a.current {
   border-radius: 7px;
   color: var(--color-white);
   font-size: 35px;
-  font-family: 'CC Astro City';
+  font-family: MTO;
   transition: all 0.5s ease;
   opacity: 0;
   visibility: hidden;
@@ -2262,7 +2269,7 @@ ul.pagination li a.current {
 }
 
 .comingOut-content .title {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-weight: 700;
   font-size: 80px;
   color: var(--color-white);
@@ -2270,7 +2277,7 @@ ul.pagination li a.current {
 }
 
 .comingOut-content p.light-text {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-weight: 400;
   font-size: 40px;
   color: var(--color-white);
@@ -2514,7 +2521,7 @@ ul.pagination li a.current {
   padding: 0 10px;
 }
 .schedule .card-body h4 {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   color: var(--color-grey-light);
   font-weight: 700;
   font-size: 20px;
@@ -2566,7 +2573,7 @@ ul.pagination li a.current {
   font-size: 20px;
   color: var(--color-grey-light);
   margin-bottom: 0;
-  font-family: 'CC Astro City';
+  font-family: MTO;
 }
 
 
@@ -2574,7 +2581,7 @@ ul.pagination li a.current {
   font-size: 22px;
   color: var(--color-white);
   margin-bottom: 15px;
-  font-family: 'CC Astro City';
+  font-family: MTO;
 }
 
 .card-body .tab-pane p.text-box {
@@ -3120,7 +3127,7 @@ ul.pagination li a.current {
 }
 
 .blog-search h5 {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-weight: 700;
   font-size: 20px;
   color: var(--color-white);
@@ -3140,7 +3147,7 @@ ul.pagination li a.current {
 }
 
 .blog-search ul li a {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-weight: 400;
   font-size: 16px;
   color: var(--color-semi-grey);
@@ -3173,7 +3180,7 @@ ul.pagination li a.current {
   background: var(--color-grey-light);
 }
 .blog-search ul.categories li a{
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-weight: 400;
   font-size: 16px;
   color: var(--color-semi-grey);
@@ -3227,14 +3234,14 @@ ul.pagination li a.current {
 .blog.style-2 .inner-box .heading span {
   background: transparent;
   border-radius: 0;
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-weight: 700;
   font-size: 18px;
   color: var(--color-grey-light);
   transform: rotate(-90deg);
 }
 .author-box h4 {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   color: var(--color-white);
   font-weight: 600;
   font-size: 25px;
@@ -3246,7 +3253,7 @@ ul.pagination li a.current {
   color: var(--color-primary);
 }
 .blog.style-2 .author-box h4 {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-size: 22px;
   margin-bottom: 18px;
 }
@@ -3273,7 +3280,7 @@ ul.pagination li a.current {
   display: block;
   color: var(--color-primary);
   margin-bottom: 0;
-  font-family: 'CC Astro City';
+  font-family: MTO;
 }
 
 .author-box a:hover {
@@ -3445,6 +3452,7 @@ ul.pagination li a.current {
   width: 100%;
   padding: 5px;
   display: inline-block;
+  font-family: MTO;
 }
 
 .filter-block .dropdown-menu li {
@@ -3784,7 +3792,7 @@ ul.pagination li a.current {
 }
 
 .trailer-content h2 {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-size: 35px;
   color: var(--color-white);
   margin-bottom: 0px;
@@ -3866,7 +3874,7 @@ ul.pagination li a.current {
 }
 
 .rating-content h4 {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-weight: 700;
   letter-spacing: 1px;
   font-size: 18px;
@@ -4321,7 +4329,7 @@ ul.pagination li a.current {
 }
 
 .comment .small-title {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-weight: 700;
   font-size: 40px;
   color: var(--color-white);
@@ -4509,7 +4517,7 @@ ul.pagination li a.current {
 -------------------------*/
 .content h1 {
   font-size: 35px;
-  font-family: 'CC Astro City';
+  font-family: MTO;
   color: var(--color-white);
   margin-bottom: 30px;
 }
@@ -4528,7 +4536,7 @@ ul.pagination li a.current {
 }
 
 .content-text h3 {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-size: 25px;
   color: var(--color-white);
   margin-bottom: 10px;
@@ -4545,7 +4553,7 @@ ul.pagination li a.current {
 }
 
 .content-text-block h2 {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-size: 25px;
   color: var(--color-white);
   margin-bottom: 20px;
@@ -4668,10 +4676,11 @@ ul.pagination li a.current {
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 30px;
+  font-family: MTO;
 }
 
 .profile h5 {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-size: 35px;
   color: var(--color-white);
   margin: 0;
@@ -4705,7 +4714,10 @@ ul.pagination li a.current {
   background: var(--color-black);
   border-radius: 5px;
 }
-
+.profile-seting
+{
+  font-family: MTO;
+}
 .profile .profile-seting .anime-btn.btn-dark {
   margin: 15px 0;
 }
@@ -4906,7 +4918,7 @@ ul.pagination li a.current {
   text-transform: uppercase;
   margin-bottom: 24px;
   color: var(--color-white);
-  font-family: 'CC Astro City';
+  font-family: MTO;
 }
 .login-content label {
   display: inline;
@@ -5074,7 +5086,7 @@ input:focus,
   border-radius: 10px;
 }
 .text-details p.author {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-weight: 400;
   font-size: 15px;
   color: var(--color-grey-light);
@@ -5082,7 +5094,7 @@ input:focus,
 }
 
 .text-details p.author b {
-  font-family: 'CC Astro City';
+  font-family: MTO;
   font-weight: 600;
   font-size: 20px;
   color: var(--color-grey-light);
@@ -5252,7 +5264,7 @@ input:focus,
 .policy .policy-content h3 {
   font-size: 40px;
   line-height: 48px;
-  font-family: 'CC Astro City';
+  font-family: MTO;
   color: var(--color-white);
   margin-bottom: 16px;
 }
@@ -5349,8 +5361,10 @@ input:focus,
   font-size: 12px;
   padding-top: 6% !important;
 }
+.page-link{
+  font-family: MTO;
+}
 .page-link.active {
   color: var(--color-primary) !important;
   background: var(--color-black) !important;
 }
-
