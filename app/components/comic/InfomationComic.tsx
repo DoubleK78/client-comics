@@ -131,7 +131,7 @@ export default function InfomationComic({ comic }: { comic?: ComicDetail | null 
                                     <span>Scores:</span> 2.53 by 4,405 reviews
                                 </p> */}
                                 <p>
-                                    <span>{t('views')}:</span> {comic?.views}
+                                    <span>{t('views')}:</span> {comic?.views.toLocaleString()}
                                 </p>
                             </div>
                         </div>

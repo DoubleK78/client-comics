@@ -2080,7 +2080,9 @@ ul.pagination li a.current {
   width: 100%;
   border-radius: 10px;
   object-fit: fill;
+  height: calc(350px + 5vh);
 }
+
 .anime-blog .action-overlay{
   background-color: #000000b3;
   position: absolute;
@@ -2143,6 +2145,7 @@ ul.pagination li a.current {
 .anime-blog .dropdown {
   position: relative;
   float: right;
+  margin-right: 10px;
 }
 .anime-blog .dropdown button:hover svg rect, .anime-blog .dropdown button:hover svg path{
  fill: var(--color-primary);
@@ -5357,6 +5360,9 @@ input:focus,
   .post-btn{
     margin-top: 7vh !important;
   }
+  .anime-blog img {
+    height: calc(200px + 5vh);
+  }
 }
 .text-avt{
   font-size: 12px;
@@ -5412,4 +5418,9 @@ input:focus,
 {
   width: 20%;
   text-align: right;
+}
+.view-more:hover
+{
+  cursor: pointer;
+  color: #3c798a !important;
 }
