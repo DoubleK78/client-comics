@@ -62,7 +62,7 @@ export default function RecentlyUploadedComic() {
                                     <img src={album.cdnThumbnailUrl ?? "/assets/media/404/none.jpg"} alt={album.title} />
                                 </a>
                                 <div className="d-flex justify-content-between">
-                                    <p className="text">{album?.contents[0]?.title}</p>
+                                    <p className="text">{album?.lastCollectionTitle}</p>
                                     <div className="dropdown">
                                         <button
                                             type="button"
