@@ -62,7 +62,7 @@ export default function RecentlyUploadedComic() {
                                     <img src={album.cdnThumbnailUrl ?? "/assets/media/404/none.jpg"} alt={album.title} />
                                 </a>
                                 <div className="d-flex justify-content-between">
-                                    <p className="text">Chapter 179</p>
+                                    <p className="text">{album?.contents[0]?.title}</p>
                                     <div className="dropdown">
                                         <button
                                             type="button"
@@ -112,14 +112,14 @@ export default function RecentlyUploadedComic() {
                                         </button>
                                         <ul className="dropdown-menu bg-color-black pt-3 pb-3 ps-3 pe-3">
                                             <li>
-                                                <a href="manga-detail.html" className="none">
+                                                <a href="#" className="none">
                                                     <i className="fa fa-check" /> Follow{" "}
                                                 </a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                                <a href="manga-detail.html">
+                                <a href={`truyen-tranh/${album.friendlyName}`}>
                                     <p>{album.title}</p>
                                 </a>
                             </div>
