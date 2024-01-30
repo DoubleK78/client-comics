@@ -62,7 +62,7 @@ export default function PopularComic() {
                     )}
                     <div className="row">
                         {albums?.map((album: any) => (
-                            <div className="col-lg-3 col-sm-6 col-12 comic-element">
+                            <div key={album.id} className="col-lg-3 col-sm-6 col-12 comic-element">
                                 <div className="anime-blog">
                                     <a href={`truyen-tranh/${album.friendlyName}`}>
                                         <img src={album.cdnThumbnailUrl ?? "/assets/media/404/none.jpg"} alt={album.title} />
