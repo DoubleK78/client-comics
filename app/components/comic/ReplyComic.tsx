@@ -3,7 +3,7 @@ import { ERoleType } from "@/app/models/common/ERoleType";
 import { formatDateToLocale } from "@/lib/dayjs/format-date";
 import { getComments, pushComment } from "@/lib/services/client/comment/commentService";
 import { useTranslations } from "next-intl";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import ReactQuill from "react-quill";
 import { getHoverText, getHoverTextValue, getLevelBadgeClass, getRoleBadge, getUserClass, getUserNameClass } from '@/app/utils/HelperFunctions';
 
@@ -22,7 +22,11 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
     const t = useTranslations('comic_detail');
     const [replies, setReplies] = useState<any[]>([]);
     const [reply, setReply] = useState('');
+
+    const [isOpenToggle, setIsOpenToggle] = useState<boolean>(false);
     const [reloadTrigger, setReloadTrigger] = useState(false);
+    const toggleEditorRef = useRef<any>(null);
+
     const [loading, setLoading] = useState(false);
     const userSession = useMemo<UserSession>(() => {
         const session = localStorage.getItem('userSession');
@@ -30,7 +34,7 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
     }, []);
 
     useEffect(() => {
-        if (replyCount > 0) {
+        if (replyCount > 0 && isOpenToggle) {
             const query = {
                 albumId: comicId,
                 pageNumber: 1,
@@ -45,7 +49,7 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
 
             getComments(query)
                 .then((response) => {
-                    if (response && response.data) {
+                    if (response?.data) {
                         setReplies(response.data);
                     }
                 })
@@ -56,21 +60,10 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
                     setLoading(false);
                 });
         }
-    }, [reloadTrigger, replyCount]);
+    }, [replyCount, reloadTrigger, isOpenToggle]);
 
     const toggleReplies = async () => {
-        const query = {
-            albumId: comicId,
-            pageNumber: 1,
-            pageSize: 10,
-            sortColumn: 'createdOnUtc',
-            sortDirection: 'desc',
-            isReply: true,
-            parentCommentId: commentId
-        };
-
-        var result = await getComments(query);
-        setReplies(result.data);
+        setIsOpenToggle(!isOpenToggle);
     };
 
     const handlePostReply = async (event: any, commentId: any) => {
@@ -94,6 +87,10 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
     const scrollToReplyEditor = () => {
         const section = document.querySelector(`#reply${index}1`);
         if (section) {
+            if (!section.classList.contains('show')) {
+                toggleEditorRef.current?.click();
+            }
+
             if (!section.classList.contains('shake-highlight')) {
                 section.classList.add('shake-highlight');
 
@@ -112,6 +109,7 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
                 data-bs-toggle="collapse"
                 data-bs-target={`#reply${index}1`}
                 aria-expanded="true"
+                ref={toggleEditorRef}
             >
                 {t('reply')}
             </button>
