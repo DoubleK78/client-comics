@@ -17,7 +17,7 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
     comment: any,
     comicId: number,
     commentId: number, replyCount: number,
-    index: number
+    index: string
 }) {
     const t = useTranslations('comic_detail');
     const [replies, setReplies] = useState<any[]>([]);
