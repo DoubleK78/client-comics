@@ -9,6 +9,7 @@ import { authOptions } from "@/lib/auth";
 import { headers } from "next/headers";
 import dynamic from "next/dynamic";
 import ComicDetail from "@/app/models/comics/ComicDetail";
+import ClearSearchParams from "@/app/components/contents/ClearSearchParams";
 
 const DynamicCommentComic = dynamic(() => import('@/app/components/comic/CommentComic'), {
     ssr: false
@@ -18,13 +19,17 @@ const getContent = async (
     comicid: string | null,
     contentid: string | null,
     token: string | null = null,
-    ip: string | null = null
+    ip: string | null = null,
+    previousCollectionId?: string | string[] | null
 ) => {
     try {
         const response = await getAxiosInstance(portalServer, token)
             .get<ServerResponse<ContentResponse>>(process.env.PORTAL_API_URL + `/api/client/ContentApp/comics/${comicid}/contents/${contentid}`, {
                 headers: {
                     'x-forwarded-for': ip
+                },
+                params: {
+                    previousCollectionId
                 }
             });
         return response.data.data;
@@ -44,18 +49,22 @@ const getComic = async (comicid: string | null) => {
     }
 }
 
-export default async function Content({ params }: { params: { comicid: string | null, contentid: string | null } }) {
+export default async function Page({ params, searchParams }: {
+    params: { comicid: string | null, contentid: string | null },
+    searchParams: { [key: string]: string | string[] | undefined }
+}) {
     const headersList = headers();
     const ip = headersList.get("cf-connecting-ip") ?? headersList.get("x-forwarded-for");
     const comic = await getComic(params.comicid);
 
     const session = await getServerSession(authOptions);
-    const content = await getContent(params.comicid, params.contentid, session?.user?.token?.apiToken, ip);
+    const content = await getContent(params.comicid, params.contentid, session?.user?.token?.apiToken, ip, searchParams?.previousCollectionId);
     return (
         <>
             <Breadcrumb content={content} />
-            <ContentComic content={content} comic={comic}/>
-            <DynamicCommentComic comicId={content?.albumId} collectionId={content?.id}/>
+            <ClearSearchParams />
+            <ContentComic content={content} comic={comic} />
+            <DynamicCommentComic comicId={content?.albumId} collectionId={content?.id} />
         </>
     );
 }

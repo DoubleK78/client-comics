@@ -3,6 +3,8 @@ import ContentComicItem from './ContentComicItem';
 import ComicDetail from '@/app/models/comics/ComicDetail';
 import dynamic from "next/dynamic";
 import { useTranslations } from 'next-intl';
+import { v4 as uuidv4 } from 'uuid';
+
 const ScrollButton = dynamic(() => import('@/app/components/common/ScrollButton'), {
     ssr: false
 });
@@ -75,8 +77,8 @@ export default async function ContentComic({ content, comic }: { content?: Conte
                         </div>
                     </div>
                     <div className="row text-center pt-4">
-                        {content?.contentItems && content?.contentItems.map((item: any, index: number) => (
-                            <ContentComicItem key={index} imageUrl={item} />
+                        {content?.contentItems && content?.contentItems.map((item: any) => (
+                            <ContentComicItem key={uuidv4()} imageUrl={item} />
                         ))}
                     </div>
                     <br></br>
@@ -90,7 +92,7 @@ export default async function ContentComic({ content, comic }: { content?: Conte
                             }
                             {isLastChap &&
                                 <a
-                                    href={nextChap}
+                                    href={nextChap + "?previousCollectionId=" + content?.id}
                                     className="anime-btn btn-dark border-change ms-1"
                                 >
                                     {t('next')}

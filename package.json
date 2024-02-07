@@ -15,7 +15,7 @@
     "dayjs": "^1.11.10",
     "flag-icon-css": "^4.1.7",
     "jquery": "^3.7.1",
-    "next": "14.0.4",
+    "next": "^14.1.0",
     "next-auth": "^4.24.5",
     "next-intl": "^3.4.4",
     "react": "^18",
