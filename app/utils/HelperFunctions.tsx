@@ -6,6 +6,7 @@ import FollowingRequestModel from '../models/comics/FollowingRequestModel';
 import axiosClientApiInstance from '@/lib/services/client/interceptor';
 import ServerResponse from '../models/common/ServerResponse';
 import { portalServer } from '@/lib/services/client/baseUrl';
+import { ELevel, levelEnumMapping } from '../models/enums/ELevel';
 
 export const getHoverText = (roleType: any): string => {
     if (roleType === ERoleType.UserSuperPremium) return "78%";
@@ -112,3 +113,13 @@ export const unFollow = async (requestModel: FollowingRequestModel) => {
         return null;
     }
 };
+
+export const getLevelNameById = (levelId?: number | null) => {
+    try {
+        if (!levelId) return levelEnumMapping[ELevel.Base];
+        return levelEnumMapping[levelId as ELevel];
+    }
+    catch {
+        return levelEnumMapping[ELevel.Base];
+    }
+}

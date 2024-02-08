@@ -24,7 +24,7 @@ const getContent = async (
 ) => {
     try {
         const response = await getAxiosInstance(portalServer, token)
-            .get<ServerResponse<ContentResponse>>(process.env.PORTAL_API_URL + `/api/client/ContentApp/comics/${comicid}/contents/${contentid}`, {
+            .get<ServerResponse<ContentResponse>>(`/api/client/ContentApp/comics/${comicid}/contents/${contentid}`, {
                 headers: {
                     'x-forwarded-for': ip
                 },

@@ -5,7 +5,7 @@ import { getComments, pushComment } from "@/lib/services/client/comment/commentS
 import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useRef, useState } from "react";
 import ReactQuill from "react-quill";
-import { getHoverText, getHoverTextValue, getLevelBadgeClass, getRoleBadge, getUserClass, getUserNameClass } from '@/app/utils/HelperFunctions';
+import { getHoverText, getHoverTextValue, getLevelBadgeClass, getLevelNameById, getRoleBadge, getUserClass, getUserNameClass } from '@/app/utils/HelperFunctions';
 
 const editorStyle = {
     width: '100%',
@@ -153,8 +153,8 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
                                 <div className="d-inline-flex align-items-start">
                                     <a data-hover-text={getHoverText(rl.roleType)} className={getUserClass(rl.roleType)}>
                                         <img src={rl.avatar} className="avatar-reply" alt="" />
-                                        <span className={getLevelBadgeClass(rl.roleType)}>Base</span>
-                                        <div className="hover-text">{getHoverTextValue(rl.roleType)}</div>
+                                        <span className={getLevelBadgeClass(rl.roleType)}>{getLevelNameById(rl.levelId)}</span>
+                                        <div className="hover-text">{rl.currentExp / (rl.nextLevelExp !== 0 ? rl.nextLevelExp : 1) * 100}%</div>
                                     </a>
                                     <div className="replies">
                                         <h5>

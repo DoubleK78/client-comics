@@ -2,7 +2,8 @@ import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { getTranslations } from 'next-intl/server';
-import { getEnumValueFromString, getProgressBar, getRoleBadge, getUserNameClass } from "@/app/utils/HelperFunctions";
+import { getEnumValueFromString, getLevelNameById, getProgressBar, getRoleBadge, getUserNameClass } from "@/app/utils/HelperFunctions";
+import { getProfile } from "@/lib/services/server/users";
 
 export default async function Page() {
     const t = await getTranslations('profile');
@@ -11,6 +12,8 @@ export default async function Page() {
         return redirect('/login');
     }
     const roleUser = getEnumValueFromString((session.user?.token?.roles ? session.user.token.roles : []).join(','));
+    const userProfile = await getProfile(session.user?.token?.apiToken);
+
     return (
         <>
             {/*=====================================*/}
@@ -52,9 +55,9 @@ export default async function Page() {
                                     <p className={getUserNameClass(roleUser)}>{session.user?.email?.split('@')[0]}</p>
                                     <p className={"pb-3 " + getUserNameClass(roleUser)}>{session.user?.email}</p>
                                     <br />
-                                    <p className={"user-level " + getUserNameClass(roleUser)}>{t('level')}: Base</p>
+                                    <p className={"user-level " + getUserNameClass(roleUser)}>{t('level')}: {getLevelNameById(userProfile?.levelId)}</p>
                                     <div className="progress-container">
-                                        {getProgressBar(roleUser, 70)}
+                                        {getProgressBar(roleUser, Math.ceil((userProfile?.currentExp ?? 0) / (userProfile?.nextLevelExp ?? 1) * 100))}
                                     </div>
                                     <a
                                         href="#"
