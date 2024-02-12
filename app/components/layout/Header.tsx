@@ -31,7 +31,7 @@ export default async function Header() {
                 {/* Start Mainmanu Nav */}
                 <nav className="navbar navbar-expand-lg">
                     <a className="navbar-brand" href="/">
-                        <Image src={Logo} alt="logo" />
+                        <Image src={Logo} alt="logo" priority />
                     </a>
                     <button
                         className="navbar-toggler"

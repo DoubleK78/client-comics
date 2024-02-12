@@ -1475,13 +1475,13 @@ ul.pagination li a.current {
 -------------------------*/
 
 .footer-main.style-1 {
-  background: url(../media/footer/footer-bg.png);
+  background: url(../media/footer/footer-bg.webp);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .footer-main.style-2 {
-  background: url(../media/footer/footer-bg.png);
+  background: url(../media/footer/footer-bg.webp);
   background-repeat: no-repeat;
   background-size: cover;
   height: 530px;
