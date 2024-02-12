@@ -1,4 +1,30 @@
 {
+    "metadata": {
+        "home": "Fast Scans - Kho truyện tranh online miễn phí | Truyện hay. Truyện mới.",
+        "home_description": "Website luôn cập nhập những bộ truyện mới nhất thuộc các thể loại đặc sắc như truyện tiên hiệp, kiếm hiệp, truyện teen, tiểu thuyết ngôn tình hay nhất và không tốn 500 đồng.",
+        "search": "Khám phá truyện tranh online | Fast Scans",
+        "search_description": "Khám phá truyện tranh online | Fast Scans",
+        "top": "Xếp hạng | Fast Scans",
+        "top_description": "Xếp hạng | Fast Scans",
+        "upgrade_account": "Nâng cấp tài khoản để mang đến trải nghiệm hơn thế nữa | Fast Scans",
+        "upgrade_account_description": "Nâng cấp tài khoản để mang đến trải nghiệm hơn thế nữa | Fast Scans",
+        "detail_package": "Chi tiết gói nâng cấp PREMIUM | Fast Scans",
+        "detail_package_description": "Chi tiết gói nâng cấp PREMIUM | Fast Scans",
+        "following": "Theo dõi | Fast Scans",
+        "following_description": "Theo dõi | Fast Scans",
+        "login": "Đăng nhập đơn giản bằng tài khoản Google | Fast Scans",
+        "login_description": "Đăng nhập đơn giản bằng tài khoản Google | Fast Scans",
+        "profile": "Hồ sơ cá nhân | Fast Scans",
+        "profile_description": "Hồ sơ của bằng tài khoản | Fast Scans",
+        "comic": "{title} [Tới {lastedChapter}] | Fast Scans",
+        "comic_description": "{title} [Tới {lastedChapter}] | Fast Scans",
+        "comic_blank": "Truyện tranh tiếng việt Vietsub | Fast Scans",
+        "comic_blank_description": "Truyện tranh việt Vietsub | Fast Scans",
+        "content": "{albumTitle} - {contentTile} | Fast Scans",
+        "content_description": "{albumTitle} - {contentTile} | Fast Scans",
+        "content_blank": "Comic Chapter Vietsub | Fast Scans",
+        "content_blank_description": "Comic Chapter Vietsub | Fast Scans"
+    },
     "header": {
         "following": "Theo dõi",
         "ranking": "Xếp hạng",
@@ -43,14 +69,15 @@
         "top_day": "Top ngày",
         "top_all": "Top Tổng",
         "top_follow": "Top theo dõi",
-        "views": "Lượt xem",        "manga": "Truyện Nhật",
+        "views": "Lượt xem",
+        "manga": "Truyện Nhật",
         "manhwa": "Truyện Hàn Xẻng",
         "manhua": "Truyện Khựa",
         "comic": "Truyện Mỹ",
         "bande_dessinée": "Truyện Pháp",
         "no_data": "Không có dữ liệu..."
     },
-    "profile":{
+    "profile": {
         "profile": "Hồ sơ cá nhân",
         "upgrade_account": "Nâng cấp tài khoản",
         "shortcut": "Lối tắt",
@@ -67,7 +94,7 @@
         "unfollow": "Bỏ theo dõi",
         "no_data": "Không có dữ liệu..."
     },
-    "home":{
+    "home": {
         "popular": "Truyện phổ biến",
         "recently_uploaded": "Truyện vừa cập nhật",
         "to_not_die": "Để Có Thể Sống Sót",
@@ -76,7 +103,7 @@
         "featured_comics": "Truyện nổi bật",
         "view_more": "Xem thêm",
         "views": "Lượt xem",
-        "follow":"Theo dõi",
+        "follow": "Theo dõi",
         "unfollow": "Bỏ theo dõi",
         "day": "Ngày",
         "month": "Tháng",
@@ -84,7 +111,7 @@
         "read_now": "Đọc ngay",
         "no_data": "Không có dữ liệu..."
     },
-    "comic_detail":{
+    "comic_detail": {
         "home_page": "Trang Chủ",
         "explore": "Khám phá",
         "description": "Nội dung",
@@ -119,13 +146,13 @@
         "all_cmt": "Tất cả bình luận",
         "chap_cmt": "Bình luận chap"
     },
-    "logins":{
+    "logins": {
         "login": "Đăng nhập",
         "policy": "Để tiếp tục, bạn phải đồng ý với Điều khoản sử dụng và Chính sách quyền riêng tư của Fast Scans.",
         "continue_with_google": "Đăng nhập bằng Google",
         "is_messenger": "Vui lòng đăng nhập bằng ứng dụng trình duyệt trên máy của bạn"
     },
-    "footer":{
+    "footer": {
         "info": "Fast Scans - Kho truyện tranh online miễn phí | Truyện hay. Truyện  mới. Website luôn cập nhập những bộ truyện mới nhất thuộc các thể loại đặc sắc như truyện tiên hiệp, kiếm hiệp, truyện teen, tiểu thuyết ngôn tình hay nhất và không tốn 500 đồng.",
         "join_us_on": "Tham gia cùng chúng tôi",
         "right": "Mọi quyền được bảo lưu bởi",
@@ -133,8 +160,8 @@
         "comment_policy": "Chính sách bình luận",
         "cooperate": "Hợp tác với chúng tôi"
     },
-    "upgrade":{
-        "upgrade_package":"Gói nâng cấp",
+    "upgrade": {
+        "upgrade_package": "Gói nâng cấp",
         "days": "Ngày",
         "money": "vnđ",
         "premium": "Gói Premium",

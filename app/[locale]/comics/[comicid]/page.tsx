@@ -8,10 +8,44 @@ import { portalServer } from "@/lib/services/client/baseUrl";
 import dynamic from "next/dynamic";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { getTranslations } from "next-intl/server";
+
+type Props = {
+    params: { comicid: string | null, locale: string }
+    searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function generateMetadata({ params: { comicid, locale } }: Props) {
+    const t = await getTranslations({ locale, namespace: 'metadata' });
+    const comic: ComicDetail | null | undefined = await fetch(process.env.PORTAL_API_URL + `/api/client/ComicApp/${comicid}`).then(res => res.json()).then(res => res.data);
+    if (comic && comic.title && comic.contents[0]?.title) {
+        return {
+            title: t('comic', {
+                title: comic?.title,
+                lastedChapter: comic.contents[0].title
+            }),
+            description: t('comic_description', {
+                title: comic?.title,
+                lastedChapter: comic.contents[0].title
+            }),
+            icons: {
+                icon: '/assets/media/icon/head.ico',
+            }
+        };
+    }
+
+    return {
+        title: t('comic'),
+        description: t('comic_description'),
+        icons: {
+            icon: '/assets/media/icon/head.ico',
+        }
+    }
+}
 
 const ScrollButton = dynamic(() => import('@/app/components/common/ScrollButton'), {
     ssr: false
-  });
+});
 const DynamicCommentComic = dynamic(() => import('@/app/components/comic/CommentComic'), {
     ssr: false
 });
@@ -33,9 +67,9 @@ export default async function Comic({ params }: { params: { comicid: string | nu
         <>
             <ScrollButton />
             <Breadcrumb title={comic?.title} friendlyName={comic?.friendlyName} />
-            <InfomationComic comic={comic} session={session}/>
+            <InfomationComic comic={comic} session={session} />
             <ChapterComic contents={comic?.contents} />
-            <DynamicCommentComic comicId={comic?.id} collectionId={null}/>
+            <DynamicCommentComic comicId={comic?.id} collectionId={null} />
         </>
     );
 }

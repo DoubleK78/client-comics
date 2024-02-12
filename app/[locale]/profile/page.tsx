@@ -6,6 +6,18 @@ import { getEnumValueFromString, getLevelNameById, getProgressBar, getRoleBadge,
 import { getProfile } from "@/lib/services/server/users";
 import { getPercentByDivdeTwoNumber } from "@/lib/math/mathHelper";
 
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+    const t = await getTranslations({ locale, namespace: 'metadata' });
+
+    return {
+        title: t('profile'),
+        description: t('profile_description'),
+        icons: {
+            icon: '/assets/media/icon/head.ico',
+        }
+    };
+}
+
 export default async function Page() {
     const t = await getTranslations('profile');
     const session = await getServerSession(authOptions);

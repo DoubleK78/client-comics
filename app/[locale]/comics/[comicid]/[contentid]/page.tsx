@@ -10,6 +10,41 @@ import { headers } from "next/headers";
 import dynamic from "next/dynamic";
 import ComicDetail from "@/app/models/comics/ComicDetail";
 import ClearSearchParams from "@/app/components/contents/ClearSearchParams";
+import { getTranslations } from "next-intl/server";
+
+type Props = {
+    params: { comicid: string | null, contentid: string | null, locale: string }
+    searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function generateMetadata({ params: { comicid, contentid, locale } }: Props) {
+    const t = await getTranslations({ locale, namespace: 'metadata' });
+    const content: ContentResponse | null | undefined = await fetch(process.env.PORTAL_API_URL + `/api/client/ContentApp/comics/${comicid}/contents/${contentid}`).then(res => res.json()).then(res => res.data);
+
+    if (content && content.albumTitle && content.title) {
+        return {
+            title: t('content', {
+                albumTitle: content.albumTitle,
+                contentTile: content.title
+            }),
+            description: t('content_description', {
+                albumTitle: content.albumTitle,
+                contentTile: content.title
+            }),
+            icons: {
+                icon: '/assets/media/icon/head.ico',
+            }
+        };
+    }
+
+    return {
+        title: t('content_blank'),
+        description: t('content_blank_description'),
+        icons: {
+            icon: '/assets/media/icon/head.ico',
+        }
+    }
+}
 
 const DynamicCommentComic = dynamic(() => import('@/app/components/comic/CommentComic'), {
     ssr: false

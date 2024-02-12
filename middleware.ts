@@ -15,12 +15,29 @@ export const config = {
 
 export default async function middleware(request: NextRequest) {
   // Step: Create and call the next-intl middleware (example)
-  const handleI18nRouting = createIntlMiddleware({
+  const config: any = {
     defaultLocale: 'vi',
     locales,
     localePrefix,
     pathnames
-  });
+  };
+
+  if (process.env?.ENVIRONMENT?.toLowerCase() !== 'local') {
+    config.domains = [
+      {
+        domain: process.env.NEXT_VI_URL!,
+        defaultLocale: 'vi',
+        locales: ['vi']
+      },
+      {
+        domain: process.env.NEXT_EN_URL!,
+        defaultLocale: 'en',
+        locales: ['en']
+      }
+    ];
+  }
+
+  const handleI18nRouting = createIntlMiddleware(config);
   const response = handleI18nRouting(request);
   return response;
 }
