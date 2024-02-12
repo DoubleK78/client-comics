@@ -11,6 +11,7 @@ import dynamic from "next/dynamic";
 import ComicDetail from "@/app/models/comics/ComicDetail";
 import ClearSearchParams from "@/app/components/contents/ClearSearchParams";
 import { getTranslations } from "next-intl/server";
+import ContentMetadata from "@/app/models/contents/ContentMetadata";
 
 type Props = {
     params: { comicid: string | null, contentid: string | null, locale: string }
@@ -19,17 +20,18 @@ type Props = {
 
 export async function generateMetadata({ params: { comicid, contentid, locale } }: Props) {
     const t = await getTranslations({ locale, namespace: 'metadata' });
-    const content: ContentResponse | null | undefined = await fetch(process.env.PORTAL_API_URL + `/api/client/ContentApp/comics/${comicid}/contents/${contentid}`).then(res => res.json()).then(res => res.data);
+    const contentMetadata: ContentMetadata | null | undefined = await fetch(process.env.PORTAL_API_URL + `/api/client/ContentApp/comics/${comicid}/contents/${contentid}/metadata`)
+        .then(res => res.json());
 
-    if (content && content.albumTitle && content.title) {
+    if (contentMetadata && contentMetadata.comicTitle && contentMetadata.contentTitle) {
         return {
             title: t('content', {
-                albumTitle: content.albumTitle,
-                contentTile: content.title
+                comicTitle: contentMetadata.comicTitle,
+                contentTile: contentMetadata.contentTitle
             }),
             description: t('content_description', {
-                albumTitle: content.albumTitle,
-                contentTile: content.title
+                comicTitle: contentMetadata.comicTitle,
+                contentTile: contentMetadata.contentTitle
             }),
             icons: {
                 icon: '/assets/media/icon/head.ico',

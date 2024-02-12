@@ -20,8 +20,8 @@
         "comic_description": "{title}} [Next to {lastedChapter}] | Fast Scans",
         "comic_blank": "Comic English | Fast Scans",
         "comic_blank_description": "Comic English | Fast Scans",
-        "content": "{albumTitle} - {contentTile} | Fast Scans",
-        "content_description": "{albumTitle} - {contentTile} | Fast Scans",
+        "content": "{comicTitle} - {contentTile} | Fast Scans",
+        "content_description": "{comicTitle} - {contentTile} | Fast Scans",
         "content_blank": "Comic Chapter English | Fast Scans",
         "content_blank_description": "Comic Chapter English | Fast Scans"
     },

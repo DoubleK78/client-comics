@@ -20,8 +20,8 @@
         "comic_description": "{title} [Tới {lastedChapter}] | Fast Scans",
         "comic_blank": "Truyện tranh tiếng việt Vietsub | Fast Scans",
         "comic_blank_description": "Truyện tranh việt Vietsub | Fast Scans",
-        "content": "{albumTitle} - {contentTile} | Fast Scans",
-        "content_description": "{albumTitle} - {contentTile} | Fast Scans",
+        "content": "{comicTitle} - {contentTile} | Fast Scans",
+        "content_description": "{comicTitle} - {contentTile} | Fast Scans",
         "content_blank": "Comic Chapter Vietsub | Fast Scans",
         "content_blank_description": "Comic Chapter Vietsub | Fast Scans"
     },

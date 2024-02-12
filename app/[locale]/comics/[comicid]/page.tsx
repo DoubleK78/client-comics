@@ -9,6 +9,7 @@ import dynamic from "next/dynamic";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { getTranslations } from "next-intl/server";
+import ComicMetadata from "@/app/models/comics/ComicMetadata";
 
 type Props = {
     params: { comicid: string | null, locale: string }
@@ -17,16 +18,18 @@ type Props = {
 
 export async function generateMetadata({ params: { comicid, locale } }: Props) {
     const t = await getTranslations({ locale, namespace: 'metadata' });
-    const comic: ComicDetail | null | undefined = await fetch(process.env.PORTAL_API_URL + `/api/client/ComicApp/${comicid}`).then(res => res.json()).then(res => res.data);
-    if (comic && comic.title && comic.contents[0]?.title) {
+    const comicMetadata: ComicMetadata | null | undefined = await fetch(process.env.PORTAL_API_URL + `/api/client/ComicApp/${comicid}/metadata`)
+        .then(res => res.json())
+
+    if (comicMetadata) {
         return {
             title: t('comic', {
-                title: comic?.title,
-                lastedChapter: comic.contents[0].title
+                title: comicMetadata.title,
+                lastedChapter: comicMetadata.lastestChapter
             }),
             description: t('comic_description', {
-                title: comic?.title,
-                lastedChapter: comic.contents[0].title
+                title: comicMetadata.title,
+                lastedChapter: comicMetadata.lastestChapter
             }),
             icons: {
                 icon: '/assets/media/icon/head.ico',
