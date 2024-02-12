@@ -1,10 +1,4 @@
 /*---------------------------------------------
-Template Name: AnimeLoop
-Template URL: https://techpedia.co.uk/template/animeLoop/
-Description: AnimeLoop HTML5 Template
-Author: TPD-Themes
-Version: 1.0.0
-
 ===============================================   
 STYLESHEETS INDEXING
 |
@@ -78,6 +72,10 @@ STYLESHEETS INDEXING
   src: url(fonts/NoirPro-Light.otf) format('opentype');
 }
 
+@font-face {
+  font-family: 'MTO';
+  src: url(fonts/MTO\ Astro\ City.ttf) format('opentype');
+}
 :root {
   --color-primary: #F5CF49;
   --color-purple: #A958A5;
@@ -188,14 +186,14 @@ table th {
     Typography
 -------------------------*/
 body {
-  font-family: var(--font-primary);
+  font-family: MTO;
   font-size: var(--font-body-2);
   line-height: var(--line-height-b1);
   color: var(--color-dark);
   font-weight: 400;
   letter-spacing: 0.5px;
   height: 100%;
-  background-color: var(--color-black-light);
+  background-color: var(--color-black-light) !important;
 }
 
 h1,
@@ -234,7 +232,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-primary);
+  font-family: MTO;
   font-weight: 500;
   letter-spacing: 1.5px;
   color: var(--color-text-dark);
@@ -729,6 +727,7 @@ p.text-box:hover{
   z-index: 1;
   border-right: none;
   background: var(--color-black-light);
+  font-family: MTO;
 }
 
 .anime-btn.btn-dark.border-change {
@@ -772,7 +771,7 @@ p.text-box:hover{
 
 .heading.style-1 h2 {
   width: 100%;
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: MTO;
   font-weight: 700;
   font-size: 40px;
   color: var(--color-white);
@@ -991,6 +990,7 @@ ul.pagination li a.current {
 
 .breadcrumb-content {
   display: block;
+  font-family: MTO;
 }
 
 .breadcrumb .breadcrumb-content ul {
@@ -1064,7 +1064,7 @@ ul.pagination li a.current {
 .timer li {
   background-color: var(--color-white);
   color: var(--color-black-light);
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: MTO;
   display: inline-block;
   box-shadow: 0px 0px 15px #B35D22;
   border-radius: 13px;
@@ -1076,7 +1076,7 @@ ul.pagination li a.current {
 
 .timer li small {
   font-size: 20px;
-  font-family: var(--font-Noir-Pro-Light);
+  font-family: MTO;
   color: var(--color-dark-grey);
   padding-left: 5px;
 }
@@ -1160,6 +1160,7 @@ ul.pagination li a.current {
 
 .mainmenu>li {
   margin: 0 10px;
+  font-family: MTO;
 }
 
 .mainmenu>li>a {
@@ -1480,7 +1481,7 @@ ul.pagination li a.current {
 }
 
 .footer-main.style-2 {
-  background: url(../media/footer/footer-bg-2.png);
+  background: url(../media/footer/footer-bg.png);
   background-repeat: no-repeat;
   background-size: cover;
   height: 530px;
@@ -1500,6 +1501,7 @@ ul.pagination li a.current {
 .footer-widget.align-middle {
   float: right;
   padding: 110px 0;
+  margin-right: 5vw;
 }
 
 .footer-widget img {
@@ -1524,9 +1526,9 @@ ul.pagination li a.current {
   margin-right: 0;
 }
 .footer-widget p {
-  font-family: var(--font-primary);
+  font-family: MTO;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   color: var(--color-semi-grey);
 }
 
@@ -1564,7 +1566,7 @@ ul.pagination li a.current {
   height: 45px;
   border: 1px solid var(--color-white);
   border-radius: 0px 8px 8px 0px;
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: MTO;
   font-weight: 700;
   font-size: 20px;
   letter-spacing: 1px;
@@ -1577,7 +1579,7 @@ ul.pagination li a.current {
 }
 
 .footer-widget .text {
-  font-family: var(--font-Noir-Pro-Light);
+  font-family: MTO;
   font-weight: 300;
   font-size: 14px;
   color: var(--color-grey-light);
@@ -1686,28 +1688,6 @@ ul.pagination li a.current {
 /*-------------------------
     Banner
 -------------------------*/
-
-.banner.style-1 .banner-block.style-1 {
-  background: url(../media/banner/banner-bg-1.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.banner.style-2 .banner-block.style-1{
-  background: url(../media/banner/banner-bg-6.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.banner.style-2 .banner-block.style-2{
-  background: url(../media/banner/banner-bg-4.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.banner.style-2 .banner-block.style-3{
-  background: url(../media/banner/banner-bg-7.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 .banner.style-2 .banner-block {
   padding: 160px 0 50px;
 }
@@ -1716,18 +1696,6 @@ ul.pagination li a.current {
   display: table-cell;
   height: 700px;
   vertical-align: middle;
-}
-
-.banner.style-1 .banner-block.style-2 {
-  background: url(../media/banner/banner-bg-2.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.banner.style-1 .banner-block.style-3 {
-  background: url(../media/banner/banner-bg-3.png);
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .banner .slick-prev {
@@ -1763,7 +1731,7 @@ ul.pagination li a.current {
 }
 
 .banner-block h2.title {
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: MTO;
   font-size: 80px;
   color: var(--color-white);
   margin-bottom: 0;
@@ -1801,7 +1769,7 @@ ul.pagination li a.current {
 }
 
 .banner.style-3 p.light-text {
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: MTO;
   margin-bottom: 0;
 }
 
@@ -1846,7 +1814,7 @@ ul.pagination li a.current {
 }
 
 .banner.style-2 .banner-block p.light-text {
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: MTO;
   font-size: 40px;
   color: var(--color-white);
   margin-bottom: 0px;
@@ -1860,7 +1828,7 @@ ul.pagination li a.current {
   margin-bottom: 0px;
 }
 .banner.style-2 .banner-content p.light-text {
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: MTO;
   font-weight: 600;
   font-size: 30px;
   color: var(--color-white);
@@ -1985,10 +1953,6 @@ ul.pagination li a.current {
 }
 
 @media only screen and (max-width: 492px) {
-  .banner.style-2 {
-    background: url(../media/banner/banner-bg-5.png);
-  }
-
   .banner.style-1 .banner-content {
     height: 500px;
   }
@@ -2059,6 +2023,7 @@ ul.pagination li a.current {
 .anime-blog{
   margin-bottom: 30px;
   position: relative;
+  font-family: MTO;
 }
 
 /* .anime-blog a{
@@ -2072,27 +2037,29 @@ ul.pagination li a.current {
   width: 100%;
   border-radius: 10px;
   object-fit: fill;
+  height: calc(200px + 5vh);
 }
+
 .anime-blog .action-overlay{
   background-color: #000000b3;
   position: absolute;
-  width: 100%;
-  padding-top: 150px;
+  width: 87%;
+  padding-top: 90px;
   text-align: center;
   top: 0;
   left: 0;
   z-index: 999;
-  height: 407px;
+  height: calc(200px + 5vh);
   border-radius: 7px;
   color: var(--color-white);
-  font-size: 35px;
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-size: 20px;
+  font-family: MTO;
   transition: all 0.5s ease;
   opacity: 0;
   visibility: hidden;
 }
 .anime-blog .img-block:hover + .action-overlay{
- display: block;
+  display: block;
   opacity: 1;
   visibility: visible;
 }
@@ -2103,7 +2070,7 @@ ul.pagination li a.current {
 }
 .anime-blog .text {
   font-weight: 400;
-  font-size: 20px;
+  font-size: 12px;
   line-height: 24px;
   margin-bottom: 0;
   color: var(--color-medium-grey);
@@ -2126,7 +2093,7 @@ ul.pagination li a.current {
 
 .anime-blog a p {
   font-weight: 500;
-  font-size: 24px;
+  font-size: 16px;
   margin: 16px 0 0;
 }
 .anime-blog a:hover p{
@@ -2135,6 +2102,7 @@ ul.pagination li a.current {
 .anime-blog .dropdown {
   position: relative;
   float: right;
+  margin-right: 10px;
 }
 .anime-blog .dropdown button:hover svg rect, .anime-blog .dropdown button:hover svg path{
  fill: var(--color-primary);
@@ -2187,7 +2155,7 @@ ul.pagination li a.current {
 
 
   .anime-blog .text {
-    font-size: 14px;
+    font-size: 12px;
   }
   .anime-box.style-2 .text {
     display: inline-block;
@@ -2215,7 +2183,7 @@ ul.pagination li a.current {
   }
 
   .anime-blog .text {
-    font-size: 18px;
+    font-size: 12px;
   }
 }
 
@@ -2234,34 +2202,15 @@ ul.pagination li a.current {
   }
 
   .anime-blog .text {
-    font-size: 14px;
+    font-size: 11px;
   }
 }
 
 /*-------------------------
   Coming out
 -------------------------*/
-.coming-out.style-1 {
-  background: url(../media/coming-out/comingOut-bg.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.coming-out.style-2 {
-  background: url(../media/coming-out/comingOut-bg-1.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.coming-out.style-3 {
-  background: url(../media/coming-out/comingOut-bg-3.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: bottom;
-}
-
 .comingOut-content .title {
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: MTO;
   font-weight: 700;
   font-size: 80px;
   color: var(--color-white);
@@ -2269,7 +2218,7 @@ ul.pagination li a.current {
 }
 
 .comingOut-content p.light-text {
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: MTO;
   font-weight: 400;
   font-size: 40px;
   color: var(--color-white);
@@ -2331,10 +2280,6 @@ ul.pagination li a.current {
 }
 
 @media only screen and (max-width: 992px) {
-  .coming-out.style-2 {
-    background: url(../media/coming-out/comingOut-bg-2.png);
-  }
-
   .comingOut-content {
     width: 80%;
     height: auto;
@@ -2492,28 +2437,11 @@ ul.pagination li a.current {
   padding: 30px;
 }
 
-.schedule.style-3 .card-body.style-1 {
-  height: 910px;
-}
-
-.schedule.style-2 .card-body.style-2 {
-  background: url(../media/movie/movie-bg.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 0;
-}
-
-.schedule.style-2 .card-body.style-3 {
-  background: url(../media/movie/movie-bg.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 100px 20px 30px;
-}
 .schedule.style-2 .card-body.style-3 .tab-pane{
   padding: 0 10px;
 }
 .schedule .card-body h4 {
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: MTO;
   color: var(--color-grey-light);
   font-weight: 700;
   font-size: 20px;
@@ -2565,7 +2493,7 @@ ul.pagination li a.current {
   font-size: 20px;
   color: var(--color-grey-light);
   margin-bottom: 0;
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: MTO;
 }
 
 
@@ -2573,7 +2501,7 @@ ul.pagination li a.current {
   font-size: 22px;
   color: var(--color-white);
   margin-bottom: 15px;
-  font-family: var(--font-Noir-Pro);
+  font-family: MTO;
 }
 
 .card-body .tab-pane p.text-box {
@@ -2602,7 +2530,7 @@ ul.pagination li a.current {
 .schedule .small-text {
   text-align: center;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 17px;
   color: var(--color-grey-light);
 }
 
@@ -2619,10 +2547,6 @@ ul.pagination li a.current {
 
 .schedule .card-body h4.space-right {
   padding-right: 80px;
-}
-
-.schedule .card-body .space-right {
-  padding-right: 50px;
 }
 
 .schedule .card-body .space-top {
@@ -2692,7 +2616,7 @@ ul.pagination li a.current {
   }
   .schedule .small-text {
     text-align: left;
-    font-size: 20px;
+    font-size: 12px;
   }
   .schedule h3 {
     text-align: left;
@@ -2912,7 +2836,7 @@ ul.pagination li a.current {
   }
 
   .schedule .small-text {
-    font-size: 16px;
+    font-size: 10px;
   }
 
   .schedule h3 {
@@ -3074,24 +2998,6 @@ ul.pagination li a.current {
   border-radius: 15px;
 }
 
-.blog.style-2 .inner-box.style-1 {
-  background: url(../media/blog/blog-bg-1.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.blog.style-2 .inner-box.style-2 {
-  background: url(../media/blog/blog-bg-2.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.blog.style-2 .inner-box.style-3 {
-  background: url(../media/blog/blog-bg-3.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .blog-search {
   padding: 20px;
   border-radius: 10px;
@@ -3119,7 +3025,7 @@ ul.pagination li a.current {
 }
 
 .blog-search h5 {
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: MTO;
   font-weight: 700;
   font-size: 20px;
   color: var(--color-white);
@@ -3139,7 +3045,7 @@ ul.pagination li a.current {
 }
 
 .blog-search ul li a {
-  font-family: 'Noir Pro';
+  font-family: MTO;
   font-weight: 400;
   font-size: 16px;
   color: var(--color-semi-grey);
@@ -3172,7 +3078,7 @@ ul.pagination li a.current {
   background: var(--color-grey-light);
 }
 .blog-search ul.categories li a{
-  font-family: 'Noir Pro';
+  font-family: MTO;
   font-weight: 400;
   font-size: 16px;
   color: var(--color-semi-grey);
@@ -3226,17 +3132,17 @@ ul.pagination li a.current {
 .blog.style-2 .inner-box .heading span {
   background: transparent;
   border-radius: 0;
-  font-family: var(--font-Noir-Pro);
+  font-family: MTO;
   font-weight: 700;
   font-size: 18px;
   color: var(--color-grey-light);
   transform: rotate(-90deg);
 }
 .author-box h4 {
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: MTO;
   color: var(--color-white);
   font-weight: 600;
-  font-size: 25px;
+  font-size: 24px;
   line-height: 30px;
   text-transform: uppercase;
   margin-bottom: 20px;
@@ -3245,7 +3151,7 @@ ul.pagination li a.current {
   color: var(--color-primary);
 }
 .blog.style-2 .author-box h4 {
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: MTO;
   font-size: 22px;
   margin-bottom: 18px;
 }
@@ -3272,7 +3178,7 @@ ul.pagination li a.current {
   display: block;
   color: var(--color-primary);
   margin-bottom: 0;
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: MTO;
 }
 
 .author-box a:hover {
@@ -3444,6 +3350,7 @@ ul.pagination li a.current {
   width: 100%;
   padding: 5px;
   display: inline-block;
+  font-family: MTO;
 }
 
 .filter-block .dropdown-menu li {
@@ -3493,7 +3400,8 @@ ul.pagination li a.current {
   }
 
   .filter-block .custom-control label {
-    font-size: 12px;
+    font-size: 11px;
+    padding-left: 2px;
   }
 
   .filter-block #genre+.dropdown-menu.show li {
@@ -3783,7 +3691,7 @@ ul.pagination li a.current {
 }
 
 .trailer-content h2 {
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: MTO;
   font-size: 35px;
   color: var(--color-white);
   margin-bottom: 0px;
@@ -3865,7 +3773,7 @@ ul.pagination li a.current {
 }
 
 .rating-content h4 {
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: MTO;
   font-weight: 700;
   letter-spacing: 1px;
   font-size: 18px;
@@ -4248,15 +4156,13 @@ ul.pagination li a.current {
 .site-comment .comment-btn:hover,
 .site-comment .comment-btn:focus {
   color: var(--color-primary);
+  cursor: pointer;
 }
 
 .site-comment img {
   object-fit: contain;
 }
 
-.site-comment .d-inline-flex a{
-  display: contents;
-}
 .site-comment .d-inline-flex img {
   padding-right: 10px;
 }
@@ -4320,7 +4226,7 @@ ul.pagination li a.current {
 }
 
 .comment .small-title {
-  font-family: var(--font-Noir-Pro-Bold);
+  font-family: MTO;
   font-weight: 700;
   font-size: 40px;
   color: var(--color-white);
@@ -4412,6 +4318,9 @@ ul.pagination li a.current {
   .comment .small-title {
     font-size: 22px;
     text-align: center;
+  }
+  .anime-blog .action-overlay{
+    width: 100%;
   }
 }
 
@@ -4508,7 +4417,7 @@ ul.pagination li a.current {
 -------------------------*/
 .content h1 {
   font-size: 35px;
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: MTO;
   color: var(--color-white);
   margin-bottom: 30px;
 }
@@ -4527,7 +4436,7 @@ ul.pagination li a.current {
 }
 
 .content-text h3 {
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: MTO;
   font-size: 25px;
   color: var(--color-white);
   margin-bottom: 10px;
@@ -4544,7 +4453,7 @@ ul.pagination li a.current {
 }
 
 .content-text-block h2 {
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: MTO;
   font-size: 25px;
   color: var(--color-white);
   margin-bottom: 20px;
@@ -4667,10 +4576,11 @@ ul.pagination li a.current {
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 30px;
+  font-family: MTO;
 }
 
 .profile h5 {
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: MTO;
   font-size: 35px;
   color: var(--color-white);
   margin: 0;
@@ -4704,7 +4614,10 @@ ul.pagination li a.current {
   background: var(--color-black);
   border-radius: 5px;
 }
-
+.profile-seting
+{
+  font-family: MTO;
+}
 .profile .profile-seting .anime-btn.btn-dark {
   margin: 15px 0;
 }
@@ -4742,6 +4655,7 @@ ul.pagination li a.current {
 
   .img-box {
     margin-bottom: 15px;
+    text-align: center;
   }
 }
 
@@ -4782,28 +4696,6 @@ ul.pagination li a.current {
   margin: 0 auto;
   width: 500px;
   position: relative;
-}
-.coming-soon-block::before{
-  content: '';
-  position: absolute;
-  left: -200px;
-  top: -25%;
-  background: url(../media/comming-soon/comming-soon-img-2.png);
-  z-index: 999;
-  width: 290px;
-  height: 590px;
-  background-repeat: no-repeat ;
-}
-.coming-soon-block::after{
-  content: '';
-  position: absolute;
-  right: -210px;
-  top: -25%;
-  background: url(../media/comming-soon/comming-soon-img-1.png);
-  z-index: 999;
-  width: 290px;
-  height: 590px;
-  background-repeat: no-repeat ;
 }
 
 .coming-soon-content {
@@ -4888,7 +4780,7 @@ ul.pagination li a.current {
 
 .login-content {
   width: 350px;
-  height: 700px;
+  height: 500px;
   display: table-cell;
   vertical-align: middle;
   position: relative;
@@ -4905,7 +4797,7 @@ ul.pagination li a.current {
   text-transform: uppercase;
   margin-bottom: 24px;
   color: var(--color-white);
-  font-family: var(--font-primary);
+  font-family: MTO;
 }
 .login-content label {
   display: inline;
@@ -5073,7 +4965,7 @@ input:focus,
   border-radius: 10px;
 }
 .text-details p.author {
-  font-family: var(--font-primary);
+  font-family: MTO;
   font-weight: 400;
   font-size: 15px;
   color: var(--color-grey-light);
@@ -5081,7 +4973,7 @@ input:focus,
 }
 
 .text-details p.author b {
-  font-family: var(--font-primary);
+  font-family: MTO;
   font-weight: 600;
   font-size: 20px;
   color: var(--color-grey-light);
@@ -5251,7 +5143,7 @@ input:focus,
 .policy .policy-content h3 {
   font-size: 40px;
   line-height: 48px;
-  font-family: var(--font-Noir-Pro-semiBold);
+  font-family: MTO;
   color: var(--color-white);
   margin-bottom: 16px;
 }
@@ -5339,8 +5231,389 @@ input:focus,
     line-height: 28px;
   }
 }
+.label-filter{
+  font-size: 12px !important;
+}
+.package-heading{
+  height: 50px;
+}
 @media only screen and (max-width: 575px){
   .comic-element{
     width: 50% !important;
   }
+  .post-btn{
+    margin-top: 6vh !important;
+  }
+  .anime-blog img {
+    height: calc(200px + 5vh);
+  }
+  .label-filter{
+    font-size: 10px !important;
+  }
+  .package-heading{
+    height: 100px;
+  }
+}
+@media only screen and (max-height: 700px){
+  .post-btn{
+    margin-top: calc(30px + 7vh) !important;
+  }
+}
+.text-avt{
+  font-size: 12px;
+  padding-top: 1.5vh !important;
+}
+.page-link{
+  font-family: MTO;
+}
+.page-link:hover{
+  color: var(--color-primary) !important;
+  cursor: pointer;
+}
+.page-link.active {
+  color: var(--color-primary) !important;
+  background: var(--color-black) !important;
+}
+.hide-link:hover{
+  opacity: 0.5;
+}
+.relation-chap
+{
+  font-style: italic !important;
+  font-size: 12px;
+  color: #6094A2 !important;
+}
+.relation-chap:hover{
+  cursor: pointer;
+  color: #acddeb !important;
+}
+.date-comment{
+  display: block;
+  margin-bottom: 2vh;
+  color: white;
+  font-size: 11px;
+  font-family: 'MTO';
+}
+.d-inline-flex
+{
+  display: -webkit-inline-box !important;
+}
+.chapter-list
+{
+  display: flex;
+  justify-content: space-between;
+}
+.chapter-list span
+{
+  width: 40%;
+  text-align: left;
+  font-size: 15px;
+}
+.chapter-list a
+{
+  width: 25%;
+  text-align: left;
+}
+.chapter-list p
+{
+  width: 20%;
+  text-align: right;
+  margin-right: 5px;
+  font-size: 12px;
+}
+.view-more:hover
+{
+  cursor: pointer;
+  color: #3c798a !important;
+}
+.chapter-list-container {
+  max-height: 400px;
+  overflow-y: auto;
+}
+.chapter-list-content {
+  max-height: 150px;
+  overflow-y: auto;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: gray; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(91, 91, 61); 
+}
+.chevron-down
+{
+  margin-left: 5px;
+}
+.glitter-text {
+  background: linear-gradient(45deg, #D16BA5, #86A8E7, #5FFBF1);
+  background-size: 200% 200%;
+  animation: gradient 3s infinite;
+  display: inline-block;
+  color: transparent !important;
+  background-clip: text;
+}
+.s-glitter-text {
+  background: linear-gradient(45deg, #f06, yellow, #9f6);
+  background-size: 200% 200%;
+  animation: gradient 3s infinite;
+  display: inline-block;
+  color: transparent !important;
+  background-clip: text;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.s-premium-badge {
+  border: 2px solid #ffc107;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: #ffc107;
+  font-size: 5px;
+  margin-right: 10px;
+}
+.premium-badge {
+  border: 2px solid silver;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: silver;
+  font-size: 5px;
+  margin-right: 10px;
+}
+.level-badge-s-premium {
+  background: linear-gradient(45deg, #f06, yellow, #9f6);
+  background-size: 200% 200%;
+  animation: gradient 3s infinite;
+  display: inline-block;
+  color: transparent;
+  background-clip: text;
+  border-image: linear-gradient(45deg, #f06, yellow, #9f6);
+  border-image-slice: 1;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 10px;
+  padding: 3px 5px;
+}
+.level-badge-premium {
+  background: linear-gradient(45deg, #D16BA5, #86A8E7, #5FFBF1);
+  background-size: 200% 200%;
+  animation: gradient 3s infinite;
+  display: inline-block;
+  color: transparent;
+  background-clip: text;
+  border-image: linear-gradient(45deg, #D16BA5, #86A8E7, #5FFBF1);
+  border-image-slice: 1;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 10px;
+  padding: 3px 5px;
+}
+.level-badge {
+  background: white;
+  background-size: 200% 200%;
+  animation: gradient 3s infinite;
+  display: inline-block;
+  color: transparent;
+  background-clip: text;
+  border: 2px solid white;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 10px;
+  padding: 3px 5px;
+}
+.hover-text {
+  display: none;
+  position: absolute;
+  background-color: #f0f0f0;
+  padding: 5px;
+  border: 1px solid #ccc;
+  z-index: 1;
+}
+
+.user-level:hover .hover-text {
+  background: white;
+  background-size: 200% 200%;
+  animation: gradient 3s infinite;
+  display: block;
+  color: transparent;
+  background-clip: text;
+  border-image: white;
+  border-image-slice: 1;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: 10px;
+  padding: 3px 5px;
+}
+.user-level-premium:hover .hover-text {
+  background: linear-gradient(45deg, #D16BA5, #86A8E7, #5FFBF1);
+  background-size: 200% 200%;
+  animation: gradient 3s infinite;
+  display: block;
+  color: transparent;
+  background-clip: text;
+  border-image: linear-gradient(45deg, #D16BA5, #86A8E7, #5FFBF1);
+  border-image-slice: 1;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: 10px;
+  padding: 3px 5px;
+}
+.user-level-s-premium:hover .hover-text {
+  background: linear-gradient(45deg, #f06, yellow, #9f6);
+  background-size: 200% 200%;
+  animation: gradient 3s infinite;
+  display: block;
+  color: transparent;
+  background-clip: text;
+  border-image: linear-gradient(45deg, #f06, yellow, #9f6);
+  border-image-slice: 1;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: 10px;
+  padding: 3px 5px;
+}
+
+.user-level:hover,
+.user-level-premium:hover,
+.user-level-s-premium:hover {
+  cursor: pointer;
+}
+
+.progress-container {
+  width: 50%;
+  background-color: #eee;
+  border-radius: 5px;
+}
+
+.progress-bar {
+  height: 30px;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+
+.progress-bar-rgb-s-premium {
+  background: linear-gradient(45deg, #f06, yellow, #9f6);
+  background-size: 200% 200%;
+  animation: gradient 3s infinite;
+  display: block;
+  color: #6a4949;;
+  margin-top: 5px;
+  font-size: 10px;
+}
+.progress-bar-rgb-premium {
+  background: linear-gradient(45deg, #D16BA5, #86A8E7, #5FFBF1);
+  background-size: 200% 200%;
+  animation: gradient 3s infinite;
+  display: block;
+  color: #6a4949;;
+  margin-top: 5px;
+  font-size: 10px;
+}
+.progress-bar-rgb {
+  background: linear-gradient(45deg, rgb(215, 206, 209), rgb(131, 131, 105));
+  background-size: 200% 200%;
+  animation: gradient 3s infinite;
+  display: block;
+  color: #6a4949;;
+  margin-top: 5px;
+  font-size: 10px;
+}
+
+.level-step{
+  width: 200px;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative !important;
+}
+.user-name-profile{
+  display: inline-flex;
+}
+.profile-tag{
+  display: block;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+.block-horizal{
+  overflow-x: hidden;
+  max-width: 100%;
+}
+.img-box {
+  text-align: center;
+}
+.no-data-message{
+  font-size: 15px;
+  font-family: 'MTO';
+  color: white;
+  text-align: center;
+}
+.follow:hover{
+  cursor: pointer;
+}
+.new-chap{
+  text-align: left;
+  width: 10vw;
+}
+.new-chap p{
+  color: #ff0000;
+}
+.role-badge{
+  display: grid;
+  margin-top: 10px;
+}
+.inner-box:hover{
+  opacity: 0.7;
+}
+.heading{
+  display: flex;
+}
+p {
+  font-family: MTO;
+}
+.package-now{
+  text-align: center;
+  margin-right: 20px;
+}
+.another-package{
+  margin-bottom: 15px;
+  display: table;
+  margin-left: auto;
+}
+.comment-block p{
+  text-align: left !important;
 }

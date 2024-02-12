@@ -1,13 +1,37 @@
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
+import dynamic from 'next/dynamic'
+import { getTranslations, getLocale } from 'next-intl/server';
+import Initial from "./Initial";
+import Logo from '@/public/assets/media/logo.png';
 import Image from "next/image";
 
-export default function Header() {
+const DynamicLogoutButton = dynamic(() => import('./LogoutButton'), {
+    ssr: false
+});
+
+const DynamicLanguageSwitcher = dynamic(() => import('./LanguageSwitcher'), {
+    ssr: false
+})
+
+const DynamicSearchHeader = dynamic(() => import('./SearchHeader'), {
+    ssr: false
+});
+
+export default async function Header() {
+    const session = await getServerSession(authOptions);
+    const isLogined = !!session;
+    const t = await getTranslations('header');
+    const locale = await getLocale();
+
     return (
         <header className="header style-1">
+            <Initial props={session} />
             <div className="container">
                 {/* Start Mainmanu Nav */}
                 <nav className="navbar navbar-expand-lg">
-                    <a className="navbar-brand" href="home.html">
-                        <img src="/assets/media/logo.png" alt="" />
+                    <a className="navbar-brand" href="/">
+                        <Image src={Logo} alt="logo" />
                     </a>
                     <button
                         className="navbar-toggler"
@@ -20,122 +44,92 @@ export default function Header() {
                     <div className="collapsed navbar-collapse collapse" id="mynavbar">
                         <ul className="navbar-nav ms-auto mainmenu">
                             <li className="menu-item-has-children">
-                                <a href="home.html">Anime</a>
-                            </li>
-                            <li className="menu-item-has-children">
-                                <a href="home-2.html">Movie</a>
-                            </li>
-                            <li className="menu-item-has-children">
-                                <a href="home-3.html">Manga</a>
+                                <a href="/following">{t('following')}</a>
                             </li>
                             <li className="menu-item-has-children">
                                 <a
-                                    href="manga-detail.html#Pages"
+                                    href="#"
                                     className="dropdown-toggle"
-                                    id="pages"
+                                    id="ranking"
                                     data-bs-toggle="dropdown"
                                     data-bs-auto-close="outside"
                                     aria-expanded="false"
                                 >
-                                    Pages
+                                    {t('ranking')}
                                 </a>
-                                <ul className="dropdown-menu" aria-labelledby="pages">
+                                <ul className="dropdown-menu" aria-labelledby="ranking">
                                     <li>
-                                        <a href="home.html">Anime</a>
-                                    </li>
-                                    <li>
-                                        <a href="home-2.html">Movie</a>
-                                    </li>
-                                    <li>
-                                        <a href="home-3.html">Manga</a>
-                                    </li>
-                                    <li>
-                                        <a href="streaming-season.html">Streaming Season</a>
-                                    </li>
-                                    <li>
-                                        <a href="streaming-movie.html">Streaming Movie</a>
-                                    </li>
-                                    <li>
-                                        <a href="manga-detail.html" className="active">
-                                            Manga Detail
+                                        <a href="/top-page?typePage=" className="active">
+                                            {t('top_all')}
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="manga-content.html">Manga Content </a>
+                                        <a href="/top-page?typePage=year">{t('top_year')}</a>
                                     </li>
                                     <li>
-                                        <a href="list-view.html">List View</a>
+                                        <a href="/top-page?typePage=month">{t('top_month')}</a>
                                     </li>
                                     <li>
-                                        <a href="grid-view.html">grid View</a>
+                                        <a href="/top-page?typePage=day">{t('top_day')}</a>
                                     </li>
                                     <li>
-                                        <a href="blog.html">Blog</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-detail.html">Blog Detail</a>
-                                    </li>
-                                    <li>
-                                        <a href="privacy.html"> Privacy Policy</a>
-                                    </li>
-                                    <li>
-                                        <a href="comments.html"> Comments Policy </a>
-                                    </li>
-                                    <li>
-                                        <a href="profile.html">Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="edit-profile.html"> Edit Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="watch-history.html">Watch History</a>
-                                    </li>
-                                    <li>
-                                        <a href="playlist.html">Playlist</a>
-                                    </li>
-                                    <li>
-                                        <a href="login.html">Log In</a>
-                                    </li>
-                                    <li>
-                                        <a href="signup.html">Sign Up</a>
-                                    </li>
-                                    <li>
-                                        <a href="reset-password.html">Reset Password</a>
-                                    </li>
-                                    <li>
-                                        <a href="404.html">404</a>
-                                    </li>
-                                    <li>
-                                        <a href="coming-soon.html"> Coming Soon</a>
+                                        <a href="#">{t('top_follow')}</a>
                                     </li>
                                 </ul>
                             </li>
+                            <li className="menu-item-has-children">
+                                <a href="/search">{t('explore')}</a>
+                            </li>
+                            <li className="menu-item-has-children">
+                                <a
+                                    href="#"
+                                    className="dropdown-toggle"
+                                    id="types"
+                                    data-bs-toggle="dropdown"
+                                    data-bs-auto-close="outside"
+                                    aria-expanded="false"
+                                >
+                                    {t('genre')}
+                                </a>
+                                <ul className="dropdown-menu" aria-labelledby="types">
+                                    <li>
+                                        <a href="/top-page?typePage=manga" className="active">
+                                            {t('manga')}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/top-page?typePage=manhwa">{t('manhwa')}</a>
+                                    </li>
+                                    <li>
+                                        <a href="/top-page?typePage=manhua">{t('manhua')}</a>
+                                    </li>
+                                    <li>
+                                        <a href="/top-page?typePage=comic">{t('comic')}</a>
+                                    </li>
+                                    <li>
+                                        <a href="/top-page?typePage=bande_dessinée">{t('bande_dessinée')}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li className="menu-item-has-children">
+                                <DynamicLanguageSwitcher locale={locale} />
+                            </li>
                         </ul>
-                        <form action="list-view.html">
-                            <div className="input-group form-group header-search-box">
-                                <button className="input-group-text anime-btn" type="submit">
-                                    <i className="fal fa-search" />
-                                </button>
-                                <input
-                                    className="form-control"
-                                    type="text"
-                                    name="query"
-                                    required={true}
-                                    placeholder="Search"
-                                />
+                        <DynamicSearchHeader />
+                        {!isLogined ? (
+                            <div className="d-flex right-nav">
+                                <a href="/login" className="anime-btn btn-dark">
+                                    {t('login')}
+                                </a>
                             </div>
-                        </form>
-                        <div className="d-flex right-nav">
-                            <a
-                                href="signup.html"
-                                className="anime-btn btn-dark border-change me-3"
-                            >
-                                SIGN UP
-                            </a>
-                            <a href="login.html" className="anime-btn btn-dark">
-                                LOG IN
-                            </a>
-                        </div>
+                        ) : (
+                            <div className="d-flex right-nav">
+                                <a href="/profile" className="anime-btn btn-dark border-change me-2 text-avt">
+                                    {session.user?.name}
+                                </a>
+                                <DynamicLogoutButton />
+                            </div>
+                        )}
                     </div>
                 </nav>
             </div>

@@ -24,11 +24,12 @@ export default interface ComicDetail {
     // Thumbnail
     thumbnailUrl?: string;
 
-    createdDate: Date;
-    updatedDate?: Date;
+    views: number;
+
+    createdOnUtc: Date;
+    updatedOnUtc?: Date;
 
     isPublic: boolean;
     friendlyName?: string;
-
     contents: ContentResponse[];
 }

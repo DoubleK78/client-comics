@@ -1,6 +1,9 @@
 import Image from "next/image";
+import { useTranslations } from 'next-intl';
+import ToNotDieBanner from '@/public/assets/media/banner/to_not_die.png';
 
 export default function BannerComic() {
+    const t = useTranslations('home');
     return (
         <>
             {/*=====================================*/}
@@ -11,74 +14,25 @@ export default function BannerComic() {
                     <div className="container">
                         <div className=" banner-block bg-color-black">
                             <div className="row">
-                                <div className="col-lg-5 col-sm-5 col-12 d-flex align-items-center">
+                                <div className="col-lg-6 col-sm-6 col-12 d-flex align-items-center">
                                     <div className="banner-content">
-                                        <h2 className="title">ONE PIECE</h2>
-                                        <p className="text">VOLUME 104</p>
-                                        <p className="text">CHAPTER 1016</p>
+                                        <h2 className="title">{t('to_not_die')}</h2>
+                                        <p className="text">{t('chapter')} 122</p>
                                         <div className="tag-box">
-                                            <a href="manga-detail.html" className="text-box active">
-                                                pg-13
-                                            </a>
-                                            <a href="manga-detail.html" className="text-box">
-                                                dub
-                                            </a>
-                                            <a href="manga-detail.html" className="text-box">
-                                                sub
+                                            <a href="/truyen-tranh/de-co-the-song-sot" className="text-box">
+                                                {t('view_now')}
                                             </a>
                                         </div>
-                                        <p className="light-text">APRIL 07, 2023</p>
+                                        <p className="light-text">{t('featured_comics')}</p>
                                     </div>
                                 </div>
-                                <div className="col-lg-7 col-sm-7 col-12 ">
-                                    <img
-                                        src="/assets/media/banner/banner-img-4.png"
+                                <div className="col-lg-6 col-sm-6 col-12 ">
+                                    <Image
+                                        src={ToNotDieBanner}
                                         className="dignole-img show-img"
-                                        alt=""
+                                        alt="to-not-die-banner"
+                                        priority
                                     />
-                                    <img
-                                        src="/assets/media/banner/banner-img-7.png"
-                                        className="dignole-img hide-img"
-                                        alt=""
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="banner-block bg-color-black">
-                            <div className="row">
-                                <div className="col-lg-7 col-sm-7 col-12">
-                                    <img
-                                        src="/assets/media/banner/banner-img-5.png"
-                                        className="dignole-img show-img"
-                                        alt=""
-                                    />
-                                    <img
-                                        src="/assets/media/banner/banner-img-8.png"
-                                        className="dignole-img hide-img"
-                                        alt=""
-                                    />
-                                </div>
-                                <div className="col-lg-5 col-sm-5 col-12 d-flex align-items-center">
-                                    <div className="banner-content text-end">
-                                        <h2 className="title">THAT TIME I GOT A SLIME</h2>
-                                        <p className="text">VOLUME 104</p>
-                                        <p className="text pe-0">CHAPTER 1016</p>
-                                        <div className="tag-box">
-                                            <a
-                                                href="manga-detail.html"
-                                                className="text-box active ms-2"
-                                            >
-                                                pg-13
-                                            </a>
-                                            <a href="manga-detail.html" className="text-box">
-                                                dub
-                                            </a>
-                                            <a href="manga-detail.html" className="text-box">
-                                                sub
-                                            </a>
-                                        </div>
-                                        <p className="light-text">APRIL 07, 2023</p>
-                                    </div>
                                 </div>
                             </div>
                         </div>

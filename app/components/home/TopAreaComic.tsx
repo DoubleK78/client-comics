@@ -1,6 +1,65 @@
-import Image from "next/image";
+"use client"
+import { useTranslations } from 'next-intl';
+import PagingRequest from "@/app/models/paging/PagingRequest";
+import axiosClientApiInstance from "@/lib/services/client/interceptor";
+import ServerResponse from "@/app/models/common/ServerResponse";
+import { portalServer } from "@/lib/services/client/baseUrl";
+import { useEffect, useState } from 'react';
 
-export default function TopAreaComic() {
+const getAlbums = async (params: PagingRequest, filter: any) => {
+    try {
+        const response = await axiosClientApiInstance.get<ServerResponse<any>>(portalServer + '/api/album', {
+            params: { ...params, ...filter },
+        });
+        return response.data.data;
+    } catch (error) {
+        return null;
+    }
+};
+export default function TopAreaComic({ locale }: { locale: any }) {
+    const t = useTranslations('home');
+    const [albumsDay, setAlbumsDay] = useState<any>();
+    const [albumsMonth, setAlbumsMonth] = useState<any>();
+    const [albumsYear, setAlbumsYear] = useState<any>();
+    const [loading, setLoading] = useState(true);
+
+    const pagingParams: PagingRequest = {
+        PageNumber: 1,
+        PageSize: 5,
+        SearchTerm: '',
+        SortColumn: 'viewByTopType',
+        SortDirection: 'desc',
+    };
+
+    const filterTypes = ['day', 'month', 'year'];
+
+    const createFilters = (type: string): any => ({
+        firstChar: '',
+        genre: '',
+        country: '',
+        year: '',
+        status: false,
+        language: '',
+        rating: '',
+        topType: type,
+        region: locale
+    });
+
+    const fetchData = async (filters: any, setAlbums: (data: any) => void) => {
+        const response = await getAlbums(pagingParams, filters);
+        if (response && response.data) {
+            setAlbums(response.data);
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        filterTypes.forEach(async (type) => {
+            const filters = createFilters(type);
+            await fetchData(filters, type === 'day' ? setAlbumsDay : type === 'month' ? setAlbumsMonth : setAlbumsYear);
+        });
+    }, []);
+
     return (
         <>
             {/*=====================================*/}
@@ -10,340 +69,70 @@ export default function TopAreaComic() {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-4 col-md-6 col-sm-8 offset-lg-0 offset-md-0 offset-sm-2 col-12">
-                            <h3>Recently Completed</h3>
-                            <div className="anime-box style-2 bg-color-black">
-                                <a href="manga-detail.html">
-                                    <div className="row m-0">
-                                        <div className="p-0 col-4">
-                                            <img
-                                                src="/assets/media/manga-sm-img/manga-img-1.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="p-0 col-8">
-                                            <div className="anime-blog">
-                                                <p>Darling in the Franxx!</p>
-                                                <p className="text">Chapter 120</p>
+                            <h3>Top {t('day')}</h3>
+                            {albumsDay?.map((album: any) => (
+                                <div key={album.id} className="anime-box style-2 bg-color-black">
+                                    <a href={`truyen-tranh/${album.friendlyName}`}>
+                                        <div className="row m-0">
+                                            <div className="p-0 col-4">
+                                                <img
+                                                    src={album.cdnThumbnailUrl ?? "/assets/media/404/none.jpg"} alt={album.title}
+                                                />
+                                            </div>
+                                            <div className="p-0 col-8">
+                                                <div className="anime-blog">
+                                                    <p>{album.title}</p>
+                                                    <p className="text">{album?.lastCollectionTitle}</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="anime-box style-2 bg-color-black">
-                                <a href="manga-detail.html">
-                                    <div className="row m-0">
-                                        <div className="p-0 col-4">
-                                            <img
-                                                src="/assets/media/manga-sm-img/manga-img-2.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="p-0 col-8">
-                                            <div className="anime-blog">
-                                                <p>Plastic Memories</p>
-                                                <p className="text">Chapter 150</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="anime-box style-2 bg-color-black">
-                                <a href="manga-detail.html">
-                                    <div className="row m-0">
-                                        <div className="p-0 col-4">
-                                            <img
-                                                src="/assets/media/manga-sm-img/manga-img-3.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="p-0 col-8">
-                                            <div className="anime-blog">
-                                                <p>That Time I Reincarnated</p>
-                                                <p className="text">Chapter 379</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="anime-box style-2 bg-color-black">
-                                <a href="manga-detail.html">
-                                    <div className="row m-0">
-                                        <div className="p-0 col-4">
-                                            <img
-                                                src="/assets/media/manga-sm-img/manga-img-4.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="p-0 col-8">
-                                            <div className="anime-blog">
-                                                <p>Assassination Classroom</p>
-                                                <p className="text">Chapter 199</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="anime-box style-2 bg-color-black">
-                                <a href="manga-detail.html">
-                                    <div className="row m-0">
-                                        <div className="p-0 col-4">
-                                            <img
-                                                src="/assets/media/manga-sm-img/manga-img-5.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="p-0 col-8">
-                                            <div className="anime-blog">
-                                                <p>Chainsaw Man</p>
-                                                <p className="text">Chapter 79</p>
-                                                <p className="text-box active ms-2 me-0">18+</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="anime-box style-2 bg-color-black">
-                                <a href="manga-detail.html">
-                                    <div className="row m-0">
-                                        <div className="p-0 col-4">
-                                            <img
-                                                src="/assets/media/manga-sm-img/manga-img-6.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="p-0 col-8">
-                                            <div className="anime-blog">
-                                                <p>No Game No Life Zero</p>
-                                                <p className="text">Chapter 159</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                                    </a>
+                                </div>
+                            ))}
                         </div>
                         <div className="col-lg-4 col-md-6 col-sm-8 offset-lg-0 offset-md-0 offset-sm-2 col-12">
-                            <h3>New</h3>
-                            <div className="anime-box style-2 bg-color-black">
-                                <a href="manga-detail.html">
-                                    <div className="row m-0">
-                                        <div className="p-0 col-4">
-                                            <img
-                                                src="/assets/media/manga-sm-img/manga-img-7.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="p-0 col-8">
-                                            <div className="anime-blog">
-                                                <p>86</p>
-                                                <p className="text">Chapter 129</p>
+                            <h3>Top {t('month')}</h3>
+                            {albumsMonth?.map((album: any) => (
+                                <div key={album.id} className="anime-box style-2 bg-color-black">
+                                    <a href={`truyen-tranh/${album.friendlyName}`}>
+                                        <div className="row m-0">
+                                            <div className="p-0 col-4">
+                                                <img
+                                                    src={album.cdnThumbnailUrl ?? "/assets/media/404/none.jpg"} alt={album.title}
+                                                />
+                                            </div>
+                                            <div className="p-0 col-8">
+                                                <div className="anime-blog">
+                                                    <p>{album.title}</p>
+                                                    <p className="text">{album?.lastCollectionTitle}</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="anime-box style-2 bg-color-black">
-                                <a href="manga-detail.html">
-                                    <div className="row m-0">
-                                        <div className="p-0 col-4">
-                                            <img
-                                                src="/assets/media/manga-sm-img/manga-img-8.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="p-0 col-8">
-                                            <div className="anime-blog">
-                                                <p>Re-Zero</p>
-                                                <p className="text">Chapter 169</p>
-                                                <p className="ms-2 me-0 text-box active">18+</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="anime-box style-2 bg-color-black">
-                                <a href="manga-detail.html">
-                                    <div className="row m-0">
-                                        <div className="p-0 col-4">
-                                            <img
-                                                src="/assets/media/manga-sm-img/manga-img-9.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="p-0 col-8">
-                                            <div className="anime-blog">
-                                                <p>Tokyo Ghoul</p>
-                                                <p className="text">Chapter 279</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="anime-box style-2 bg-color-black">
-                                <a href="manga-detail.html">
-                                    <div className="row m-0">
-                                        <div className="p-0 col-4">
-                                            <img
-                                                src="/assets/media/manga-sm-img/manga-img-10.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="p-0 col-8">
-                                            <div className="anime-blog">
-                                                <p>Sword Art Online</p>
-                                                <p className="text">Chapter 223</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="anime-box style-2 bg-color-black">
-                                <a href="manga-detail.html">
-                                    <div className="row m-0">
-                                        <div className="p-0 col-4">
-                                            <img
-                                                src="/assets/media/manga-sm-img/manga-img-11.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="p-0 col-8">
-                                            <div className="anime-blog">
-                                                <p>Sword Art Online: Alicization</p>
-                                                <p className="text">Chapter 94</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="anime-box style-2 bg-color-black">
-                                <a href="manga-detail.html">
-                                    <div className="row m-0">
-                                        <div className="p-0 col-4">
-                                            <img
-                                                src="/assets/media/manga-sm-img/manga-img-12.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="p-0 col-8">
-                                            <div className="anime-blog">
-                                                <p>One Piece</p>
-                                                <p className="text">Chapter 1016</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                                    </a>
+                                </div>
+                            ))}
                         </div>
                         <div className="col-lg-4 col-md-6 col-sm-8 offset-lg-0 offset-md-3 offset-sm-2 col-12">
-                            <h3>Top Rated Manga</h3>
-                            <div className="anime-box style-2 bg-color-black">
-                                <a href="manga-detail.html">
-                                    <div className="row m-0">
-                                        <div className="p-0 col-4">
-                                            <img
-                                                src="/assets/media/manga-sm-img/manga-img-7.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="p-0 col-8">
-                                            <div className="anime-blog">
-                                                <p>86</p>
-                                                <p className="text">Chapter 129</p>
+                            <h3>Top {t('year')}</h3>
+                            {albumsYear?.map((album: any) => (
+                                <div key={album.id} className="anime-box style-2 bg-color-black">
+                                    <a href={`truyen-tranh/${album.friendlyName}`}>
+                                        <div className="row m-0">
+                                            <div className="p-0 col-4">
+                                                <img
+                                                    src={album.cdnThumbnailUrl ?? "/assets/media/404/none.jpg"} alt={album.title}
+                                                />
+                                            </div>
+                                            <div className="p-0 col-8">
+                                                <div className="anime-blog">
+                                                    <p>{album.title}</p>
+                                                    <p className="text">{album?.lastCollectionTitle}</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="anime-box style-2 bg-color-black">
-                                <a href="manga-detail.html">
-                                    <div className="row m-0">
-                                        <div className="p-0 col-4">
-                                            <img
-                                                src="/assets/media/manga-sm-img/manga-img-8.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="p-0 col-8">
-                                            <div className="anime-blog">
-                                                <p>Re-Zero</p>
-                                                <p className="text">Chapter 169</p>
-                                                <p className="ms-2 me-0 text-box active">18+</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="anime-box style-2 bg-color-black">
-                                <a href="manga-detail.html">
-                                    <div className="row m-0">
-                                        <div className="p-0 col-4">
-                                            <img
-                                                src="/assets/media/manga-sm-img/manga-img-9.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="p-0 col-8">
-                                            <div className="anime-blog">
-                                                <p>Tokyo Ghoul</p>
-                                                <p className="text">Chapter 279</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="anime-box style-2 bg-color-black">
-                                <a href="manga-detail.html">
-                                    <div className="row m-0">
-                                        <div className="p-0 col-4">
-                                            <img
-                                                src="/assets/media/manga-sm-img/manga-img-10.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="p-0 col-8">
-                                            <div className="anime-blog">
-                                                <p>Sword Art Online</p>
-                                                <p className="text">Chapter 223</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="anime-box style-2 bg-color-black">
-                                <a href="manga-detail.html">
-                                    <div className="row m-0">
-                                        <div className="p-0 col-4">
-                                            <img
-                                                src="/assets/media/manga-sm-img/manga-img-11.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="p-0 col-8">
-                                            <div className="anime-blog">
-                                                <p>Sword Art Online: Alicization</p>
-                                                <p className="text">Chapter 94</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="anime-box style-2 bg-color-black">
-                                <a href="manga-detail.html">
-                                    <div className="row m-0">
-                                        <div className="p-0 col-4">
-                                            <img
-                                                src="/assets/media/manga-sm-img/manga-img-12.png"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="p-0 col-8">
-                                            <div className="anime-blog">
-                                                <p>One Piece</p>
-                                                <p className="text">Chapter 1016</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                                    </a>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>

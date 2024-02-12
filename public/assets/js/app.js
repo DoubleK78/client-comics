@@ -1,8 +1,3 @@
-// Template Name: AnimeLoop
-// Template URL: https://techpedia.co.uk/AnimeLoop/
-// Description: AnimeLoop HTML5 Template
-// Author: TPD-Themes
-// Version: 1.0.0
 (function (window, document, $, undefined) {
   "use strict";
   var animeInit = {

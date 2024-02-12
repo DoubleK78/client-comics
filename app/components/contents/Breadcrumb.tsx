@@ -1,6 +1,8 @@
 import ContentResponse from "@/app/models/contents/ContentResponse";
+import { useTranslations } from 'next-intl';
 
 export default function Breadcrumb({ content }: { content?: ContentResponse | null }) {
+    const t = useTranslations('comic_detail');
     return (
         <>
             {/*=====================================*/}
@@ -12,14 +14,14 @@ export default function Breadcrumb({ content }: { content?: ContentResponse | nu
                         <ul>
                             <li>
                                 <a href="/">
-                                    Trang chủ
+                                    {t('home_page')}
                                 </a>
                             </li>
                             <li>
-                                <a href="/truyen-tranh">Truyện tranh</a>
+                                <a href="/search">{t('explore')}</a>
                             </li>
                             <li>
-                                <a href={`/truyen-tranh/${content?.albumFriendlyName}`}>{content?.albumTitle}</a>
+                                <a href={`/comics/${content?.albumFriendlyName}`}>{content?.albumTitle}</a>
                             </li>
                             <li>
                                 <a className="active">{content?.title}</a>
