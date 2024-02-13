@@ -116,10 +116,11 @@ export default async function sitemap({
 
     comicSitemap.forEach(comic => {
         const comicRegion = comic.region === ERegion.en ? 1 : 0;
+        const comicNameRoute = comic.region === ERegion.en ? 'comcis' : 'truyen-tranh';
         if (id === comicRegion) {
             // Comics
             sitemap.push({
-                url: `${baseUrl}/${id}/${comic.friendlyName}`,
+                url: `${baseUrl}/${comicNameRoute}/${comic.friendlyName}`,
                 lastModified: new Date(),
                 changeFrequency: 'daily',
                 priority: 0.7,
@@ -128,7 +129,7 @@ export default async function sitemap({
             // Contents
             comic.contentFriendlyNames?.forEach(content => {
                 sitemap.push({
-                    url: `${baseUrl}/${id}/${comic.friendlyName}/${content}`,
+                    url: `${baseUrl}/${comicNameRoute}/${comic.friendlyName}/${content}`,
                     lastModified: new Date(),
                     changeFrequency: 'daily',
                     priority: 0.7,
