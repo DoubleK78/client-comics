@@ -8,7 +8,7 @@ import { portalServer } from "@/lib/services/client/baseUrl";
 import dynamic from "next/dynamic";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import ComicMetadata from "@/app/models/comics/ComicMetadata";
 
 type Props = {
@@ -66,12 +66,14 @@ const getComic = async (comicid: string | null) => {
 export default async function Comic({ params }: { params: { comicid: string | null } }) {
     const comic = await getComic(params.comicid);
     const session = await getServerSession(authOptions);
+    const locale = await getLocale();
+
     return (
         <>
             <ScrollButton />
             <Breadcrumb title={comic?.title} friendlyName={comic?.friendlyName} />
             <InfomationComic comic={comic} session={session} />
-            <ChapterComic contents={comic?.contents} />
+            <ChapterComic contents={comic?.contents} locale={locale}/>
             <DynamicCommentComic comicId={comic?.id} collectionId={null} />
         </>
     );

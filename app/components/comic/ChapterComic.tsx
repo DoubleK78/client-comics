@@ -2,7 +2,7 @@ import ContentResponse from "@/app/models/contents/ContentResponse";
 import dayjs from "@/lib/dayjs/dayjs-custom";
 import { useTranslations } from 'next-intl';
 
-export default function ChapterComic({ contents }: { contents?: ContentResponse[] | null }) {
+export default function ChapterComic({ contents, locale }: { contents?: ContentResponse[] | null, locale: any }) {
     const t = useTranslations('comic_detail');
     const checkVisibility = (createdOnUtc: any) => {
         const currentTime = dayjs();
@@ -33,7 +33,15 @@ export default function ChapterComic({ contents }: { contents?: ContentResponse[
                                                     </>
                                                 }
                                             </div>
-                                            <span>{dayjs.utc(content.createdOnUtc).local().format('DD-MM-YYYY HH:mm')}</span>
+                                            {locale == 'vi'? (
+                                            <>
+                                                <span>{dayjs.utc(content.createdOnUtc).local().format('DD-MM-YYYY HH:mm')}</span>
+                                            </>
+                                            ):(
+                                            <>
+                                                <span>{dayjs.utc(content.createdOnUtc).format('DD-MM-YYYY HH:mm')}</span>
+                                            </>
+                                            )}
                                             <p><i className="fas fa-eye"></i> {content.views.toLocaleString()}</p>
                                         </h5>
                                         <hr />

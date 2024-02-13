@@ -18,7 +18,7 @@ export default interface ComicDetail {
     albumStatus: EAlbumStatus;
     releaseYear?: string;
     authorNames?: string;
-    artistNames?: string;
+    artitstNames?: string;
     tags?: string;
 
     // Thumbnail

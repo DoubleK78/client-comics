@@ -53,8 +53,10 @@ export default async function ContentComic({ content, comic }: { content?: Conte
                             <ul className="dropdown-menu" aria-labelledby="country">
                                 <div className='chapter-list-content'>
                                     {comic?.contents?.map((content, index) => (
-                                        <li key={index}>
-                                            <a className='page-link' href={`/truyen-tranh/${content.albumFriendlyName}/${content.friendlyName}`}>{content.title}</a>
+                                        <li key={index} className="grid-item">
+                                            <a className='page-link' href={`/truyen-tranh/${content.albumFriendlyName}/${content.friendlyName}`}>
+                                                {content.title}
+                                            </a>
                                         </li>
                                     ))}
                                 </div>
@@ -91,7 +93,32 @@ export default async function ContentComic({ content, comic }: { content?: Conte
                     </div>
                     <br></br>
                     <div className="d-flex justify-content-between mb-4">
-                        <div className="left"></div>
+                        <div className="left">
+                            <a
+                                href="#"
+                                className="anime-btn btn-dark border-change dropdown-toggle"
+                                id="country"
+                                data-bs-toggle="dropdown"
+                                data-bs-auto-close="outside"
+                                aria-expanded="false"
+                            >
+                                {content?.title}
+                                <span className='chevron-down'>
+                                    <i className="fa fa-chevron-down" />
+                                </span>
+                            </a>
+                            <ul className="dropdown-menu" aria-labelledby="country">
+                                <div className='chapter-list-content'>
+                                    {comic?.contents?.map((content, index) => (
+                                        <li key={index} className="grid-item">
+                                            <a className='page-link' href={`/truyen-tranh/${content.albumFriendlyName}/${content.friendlyName}`}>
+                                                {content.title}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </div>
+                            </ul>
+                        </div>
                         <div className="right">
                             {isFirstChap &&
                                 <a href={prevChap} className="anime-btn btn-dark">

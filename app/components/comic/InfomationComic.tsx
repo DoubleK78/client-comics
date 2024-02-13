@@ -9,7 +9,7 @@ export default function InfomationComic({ comic, session }: { comic?: ComicDetai
     const t = useTranslations('comic_detail');
     const [loadingFollow, setLoadingFollow] = useState(true);
     const [statusFollow, setStatusFollow] = useState(null);
-
+    
     const dropdownRef = useRef<HTMLUListElement | null>(null);
 
     const handleDropdownToggle = async (albumId: any) => {
@@ -210,7 +210,7 @@ export default function InfomationComic({ comic, session }: { comic?: ComicDetai
                                     <span>{t('author')}:</span> <b>{comic?.authorNames}</b>
                                 </p>
                                 <p>
-                                    <span>{t('artist')}:</span> <b>Bones</b>
+                                    <span>{t('artist')}:</span> <b>{comic?.artitstNames}</b>
                                 </p>
                                 <p>
                                     <span>{t('year')}: </span> {comic?.releaseYear}
@@ -222,7 +222,7 @@ export default function InfomationComic({ comic, session }: { comic?: ComicDetai
                                     <span>{t('type')}:</span> {comic?.contentTypeNames}
                                 </p>
                                 <p>
-                                    <span>{t('nation')}:</span> {comic?.tags} <b>Hàn</b>
+                                    <span>{t('nation')}:</span>  {t(`country.${comic?.tags}`)}
                                 </p>
                                 {/* <p>
                                     <span>Scores:</span> 2.53 by 4,405 reviews

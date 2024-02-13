@@ -246,7 +246,6 @@ export default function Following({ session }: { session: any }) {
                                     </div>
                                 </div>
                                 <div className="col-lg-12 col-sm-6 col-6" style={{textAlign: 'center'}}>
-                                    <p className={`small-text pt-1 ${getUserNameClass(roleUser)}`}>{session.user?.email}</p>
                                     <a href="/profile" className="d-inline"><h3 className={`${getUserNameClass(roleUser)}`} style={{display: 'block', marginLeft: '10px'}}>{session.user?.name} <div className="role-badge">{getRoleBadge(roleUser)}</div></h3></a>
                                 </div>
                             </div>

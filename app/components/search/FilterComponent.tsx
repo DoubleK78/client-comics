@@ -69,7 +69,6 @@ export function FilterComponent({ locale, pagingParams, setPagingParams, filter,
         getTypes(locale)
             .then(response => {
                 if (response && response.data) {
-                    console.log(response)
                     setContentTypes(response.data);
                 }
             })

@@ -12,8 +12,8 @@
         "detail_package_description": "Chi tiết gói nâng cấp PREMIUM | Fast Scans",
         "following": "Theo dõi | Fast Scans",
         "following_description": "Theo dõi | Fast Scans",
-        "login": "Đăng nhập đơn giản bằng tài khoản Google | Fast Scans",
-        "login_description": "Đăng nhập đơn giản bằng tài khoản Google | Fast Scans",
+        "login": "Đăng nhập bằng tài khoản Google | Fast Scans",
+        "login_description": "Đăng nhập bằng tài khoản Google | Fast Scans",
         "profile": "Hồ sơ cá nhân | Fast Scans",
         "profile_description": "Hồ sơ của bằng tài khoản | Fast Scans",
         "comic": "{title} [Tới {lastedChapter}] | Fast Scans",
@@ -99,7 +99,7 @@
         "recently_uploaded": "Truyện vừa cập nhật",
         "to_not_die": "Để Có Thể Sống Sót",
         "view_now": "Xem ngay",
-        "chapter": "Chương",
+        "season": "Phần",
         "featured_comics": "Truyện nổi bật",
         "view_more": "Xem thêm",
         "views": "Lượt xem",
@@ -144,7 +144,14 @@
         "unfollow": "Bỏ theo dõi",
         "no_data": "Chưa có ai bình luận cả...",
         "all_cmt": "Tất cả bình luận",
-        "chap_cmt": "Bình luận chap"
+        "chap_cmt": "Bình luận chap",
+        "country": {
+            "manhwa": "Hàn xẻng",
+            "manhua": "Tàu khựa",
+            "manga": "Nhật bổn",
+            "comic": "Mỹ đế",
+            "bande_dessinée": "Thực dân Pháp"
+        }
     },
     "logins": {
         "login": "Đăng nhập",

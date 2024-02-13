@@ -110,7 +110,11 @@ export default function RecentlyUploadedComic({ session, locale }: { session: an
             <section className="popular style-2  sec-mar">
                 <div className="container">
                     <div className="heading style-1">
-                        <h2> {t('recently_uploaded')}<span className="view-more">{t('view_more')}</span></h2>
+                        <h2> {t('recently_uploaded')}
+                            <a href="/top-page?typePage=&sort=updateDate">
+                                <span className="view-more">{t('view_more')}</span>
+                            </a>
+                        </h2>               
                     </div>
                     {loading && (
                         // Display the spinner when loading is true

@@ -17,7 +17,7 @@ export default function BannerComic() {
                                 <div className="col-lg-6 col-sm-6 col-12 d-flex align-items-center">
                                     <div className="banner-content">
                                         <h2 className="title">{t('to_not_die')}</h2>
-                                        <p className="text">{t('chapter')} 122</p>
+                                        <p className="text">{t('season')} 2</p>
                                         <div className="tag-box">
                                             <a href="/truyen-tranh/de-co-the-song-sot" className="text-box">
                                                 {t('view_now')}

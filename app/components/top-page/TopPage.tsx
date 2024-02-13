@@ -20,15 +20,24 @@ const getAlbums = async (params: PagingRequest, filter: any) => {
 
 export default function TopPage({ locale }: { locale: any }) {
     const typePage = typeof window !== 'undefined' ? new URLSearchParams(window.location.search)?.get('typePage') || "" : "";
+    const typeSort = typeof window !== 'undefined' ? new URLSearchParams(window.location.search)?.get('sort') || "" : "";
     const t = useTranslations('search');
     const [albums, setAlbums] = useState<any>();
     const [pagingCount, setPagingCount] = useState({});
     const types = ['manhwa', 'manga', 'manhua', 'comic', 'bande_dessinée'];
+    let sortColumn = 'views';
+
+    if (typeSort !== "" && typePage === "") {
+        sortColumn = 'updatedOnUtc';
+    } else if (typePage !== "" && typeSort === "") {
+        sortColumn = 'viewByTopType';
+    }
+
     const initialParams = {
         PageNumber: 1,
         PageSize: 12,
         SearchTerm: '',
-        SortColumn: 'viewByTopType',
+        SortColumn: sortColumn,
         SortDirection: 'desc'
     };
 
