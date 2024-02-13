@@ -11,6 +11,9 @@ export default function robots(): MetadataRoute.Robots {
                 '/profile'
             ],
         },
-        sitemap: `${baseUrl}/sitemap.xml`
+        sitemap: [
+            `${baseUrl}/sitemap/0.xml`,
+            `${baseUrl}/sitemap/1.xml`,
+        ]
     }
 }
