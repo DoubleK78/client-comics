@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 
 const getAlbums = async (params: PagingRequest, filter: any) => {
     try {
-        const response = await axiosClientApiInstance.get<ServerResponse<any>>(portalServer + '/api/album', {
+        const response = await axiosClientApiInstance.get<ServerResponse<any>>('/api/album', {
             params: { ...params, ...filter },
         });
         return response.data.data;
