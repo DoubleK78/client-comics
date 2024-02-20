@@ -2,13 +2,12 @@
 import ServerResponse from '@/app/models/common/ServerResponse';
 import PagingRequest from '@/app/models/paging/PagingRequest';
 import React, { useEffect, useState } from 'react';
-import { portalServer } from "@/lib/services/client/baseUrl";
-import axiosClientApiInstance from '@/lib/services/client/interceptor';
 import { useTranslations } from 'next-intl';
+import axiosClientApiInstance from '@/lib/services/client/interceptor';
 
 const getTypes = async (locale: any) => {
     try {
-        const response = await axiosClientApiInstance.get<ServerResponse<any>>(portalServer + `/api/contentType/all?region=${locale}`);
+        const response = await axiosClientApiInstance.get<ServerResponse<any>>(`/api/contentType/all?region=${locale}`);
         return response.data;
     } catch (error) {
         return null;

@@ -1,25 +1,11 @@
 "use client"
 import ContentResponse from "@/app/models/contents/ContentResponse";
-import { countryFlags, getEnumValueFromString, handleRedirect, shortNumberViews } from "@/app/utils/HelperFunctions";
+import { countryFlags, handleRedirect, shortNumberViews } from "@/app/utils/HelperFunctions";
 import dayjs from "@/lib/dayjs/dayjs-custom";
-import { Session } from "next-auth";
 import { useTranslations } from 'next-intl';
 import PagingRequest from "@/app/models/paging/PagingRequest";
-import axiosClientApiInstance from "@/lib/services/client/interceptor";
-import ServerResponse from "@/app/models/common/ServerResponse";
-import { portalServer } from "@/lib/services/client/baseUrl";
 import { useEffect, useState } from "react";
-
-const getAlbums = async (params: PagingRequest, filter: any) => {
-    try {
-        const response = await axiosClientApiInstance.get<ServerResponse<any>>('/api/album', {
-            params: { ...params, ...filter },
-        });
-        return response.data.data;
-    } catch (error) {
-        return null;
-    }
-};
+import { getAlbums } from "@/lib/services/client/album/albumService";
 
 export default function ChapterComic({ contents, locale, roleUser, genre, comicId, region }: {
     contents?: ContentResponse[] | null, locale: any, roleUser: any, genre: any, comicId: any, region: any

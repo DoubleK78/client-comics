@@ -1,22 +1,10 @@
 "use client"
 import { useTranslations } from 'next-intl';
 import PagingRequest from "@/app/models/paging/PagingRequest";
-import axiosClientApiInstance from "@/lib/services/client/interceptor";
-import ServerResponse from "@/app/models/common/ServerResponse";
-import { portalServer } from "@/lib/services/client/baseUrl";
 import { useEffect, useState, useRef } from 'react';
 import FollowingRequestModel from '@/app/models/comics/FollowingRequestModel';
-import { affiliateLinks, followAlbum, generateAffiliateLink, getStatusFollow, handleRedirect, percentAff, unFollow } from '@/app/utils/HelperFunctions';
-const getAlbums = async (params: PagingRequest, filter: any) => {
-    try {
-        const response = await axiosClientApiInstance.get<ServerResponse<any>>(portalServer + '/api/album', {
-            params: { ...params, ...filter },
-        });
-        return response.data.data;
-    } catch (error) {
-        return null;
-    }
-};
+import { followAlbum, getStatusFollow, handleRedirect, unFollow } from '@/app/utils/HelperFunctions';
+import { getAlbums } from '@/lib/services/client/album/albumService';
 
 export default function RecentlyUploadedComic({ roleUser, locale }: { roleUser: any, locale: any }) {
     const t = useTranslations('home');

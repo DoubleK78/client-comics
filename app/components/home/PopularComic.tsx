@@ -3,15 +3,13 @@ import { useTranslations } from 'next-intl';
 import PagingRequest from "@/app/models/paging/PagingRequest";
 import axiosClientApiInstance from "@/lib/services/client/interceptor";
 import ServerResponse from "@/app/models/common/ServerResponse";
-import { portalServer } from "@/lib/services/client/baseUrl";
 import { useEffect, useRef, useState } from 'react';
-import { affiliateLinks, followAlbum, generateAffiliateLink, getStatusFollow, handleRedirect, percentAff, shortNumberViews, unFollow } from "@/app/utils/HelperFunctions";
+import { followAlbum, getStatusFollow, handleRedirect, shortNumberViews, unFollow } from "@/app/utils/HelperFunctions";
 import FollowingRequestModel from "@/app/models/comics/FollowingRequestModel";
-import { ERoleType } from '@/app/models/enums/ERoleType';
 
 const getAlbums = async (params: PagingRequest, filter: any) => {
     try {
-        const response = await axiosClientApiInstance.get<ServerResponse<any>>(portalServer + '/api/album', {
+        const response = await axiosClientApiInstance.get<ServerResponse<any>>('/api/album', {
             params: { ...params, ...filter },
         });
         return response.data.data;

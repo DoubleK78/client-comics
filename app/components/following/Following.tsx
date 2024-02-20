@@ -3,15 +3,14 @@ import { useTranslations } from "next-intl";
 import PagingRequest from "@/app/models/paging/PagingRequest";
 import axiosClientApiInstance from "@/lib/services/client/interceptor";
 import ServerResponse from "@/app/models/common/ServerResponse";
-import { portalServer } from "@/lib/services/client/baseUrl";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import FollowingRequestModel from "@/app/models/comics/FollowingRequestModel";
 import { getEnumValueFromString, getRoleBadge, getUserNameClass, handleRedirect, shortNumberViews, unFollow } from "@/app/utils/HelperFunctions";
 import Pagination from "../common/Pagination";
 
 const getFollowings = async (params: PagingRequest) => {
     try {
-        const response = await axiosClientApiInstance.get<ServerResponse<any>>(portalServer + '/api/following/paging', {
+        const response = await axiosClientApiInstance.get<ServerResponse<any>>('/api/following/paging', {
             params: { ...params },
         });
         return response.data.data;

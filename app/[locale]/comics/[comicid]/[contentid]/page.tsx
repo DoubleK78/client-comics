@@ -2,8 +2,7 @@ import Breadcrumb from "@/app/components/contents/Breadcrumb";
 import ContentComic from "@/app/components/contents/ContentComic";
 import ContentResponse from "@/app/models/contents/ContentResponse";
 import ServerResponse from "@/app/models/common/ServerResponse";
-import getAxiosInstance from "@/lib/axios";
-import { portalServer } from "@/lib/services/client/baseUrl";
+import { getAxiosInstanceAsync } from "@/lib/axios";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { headers } from "next/headers";
@@ -71,7 +70,7 @@ const getContent = async (
     previousCollectionId?: string | string[] | null,
 ) => {
     try {
-        const response = await getAxiosInstance(portalServer, token)
+        const response = await (await getAxiosInstanceAsync())
             .get<ServerResponse<ContentResponse>>(`/api/client/ContentApp/comics/${comicid}/contents/${contentid}`, {
                 headers: {
                     'x-forwarded-for': ip
@@ -90,7 +89,7 @@ const getContent = async (
 
 const getComic = async (comicid: string | null) => {
     try {
-        const response = await getAxiosInstance(portalServer).get<ServerResponse<ComicDetail>>(process.env.PORTAL_API_URL + `/api/client/ComicApp/${comicid}`);
+        const response = await (await getAxiosInstanceAsync()).get<ServerResponse<ComicDetail>>(`/api/client/ComicApp/${comicid}`);
         return response.data.data;
     }
     catch (exception: any) {

@@ -22,7 +22,7 @@ export default async function Page() {
         return redirect('/login');
     }
     const roleUser = getEnumValueFromString(session.user?.token?.roles);
-    const userProfile = await getProfile(session.user?.token?.apiToken);
+    const userProfile = await getProfile();
 
     return (
         <>

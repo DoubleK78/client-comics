@@ -1,22 +1,10 @@
 "use client"
 import { useTranslations } from 'next-intl';
 import PagingRequest from "@/app/models/paging/PagingRequest";
-import axiosClientApiInstance from "@/lib/services/client/interceptor";
-import ServerResponse from "@/app/models/common/ServerResponse";
-import { portalServer } from "@/lib/services/client/baseUrl";
 import { useEffect, useState } from 'react';
 import { handleRedirect } from '@/app/utils/HelperFunctions';
+import { getAlbums } from '@/lib/services/client/album/albumService';
 
-const getAlbums = async (params: PagingRequest, filter: any) => {
-    try {
-        const response = await axiosClientApiInstance.get<ServerResponse<any>>(portalServer + '/api/album', {
-            params: { ...params, ...filter },
-        });
-        return response.data.data;
-    } catch (error) {
-        return null;
-    }
-};
 export default function TopAreaComic({ locale, roleUser }: { locale: any, roleUser: any }) {
     const t = useTranslations('home');
     const [albumsDay, setAlbumsDay] = useState<any>();

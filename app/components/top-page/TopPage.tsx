@@ -1,22 +1,9 @@
 "use client"
 import ComicSearchResult from "@/app/components/search/ComicSearchResult";
-import ServerResponse from "@/app/models/common/ServerResponse";
 import PagingRequest from "@/app/models/paging/PagingRequest";
-import { portalServer } from "@/lib/services/client/baseUrl";
-import axiosClientApiInstance from "@/lib/services/client/interceptor";
+import { getAlbums } from "@/lib/services/client/album/albumService";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-
-const getAlbums = async (params: PagingRequest, filter: any) => {
-    try {
-        const response = await axiosClientApiInstance.get<ServerResponse<any>>(portalServer + '/api/album', {
-            params: { ...params, ...filter },
-        });
-        return response.data.data;
-    } catch (error) {
-        return null;
-    }
-};
 
 export default function TopPage({ locale, roleUser }: { locale: any, roleUser: any }) {
     const typePage = typeof window !== 'undefined' ? new URLSearchParams(window.location.search)?.get('typePage') || "" : "";

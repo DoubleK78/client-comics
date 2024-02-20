@@ -5,7 +5,6 @@ import { ERoleType, roleTypeEnumMapping } from '../models/enums/ERoleType';
 import FollowingRequestModel from '../models/comics/FollowingRequestModel';
 import axiosClientApiInstance from '@/lib/services/client/interceptor';
 import ServerResponse from '../models/common/ServerResponse';
-import { portalServer } from '@/lib/services/client/baseUrl';
 import { ELevel, levelEnumMapping } from '../models/enums/ELevel';
 import { TypeCountry } from '../models/comics/TypeCountry';
 import axios from 'axios';
@@ -96,7 +95,7 @@ export const getEnumValueFromString = (roles?: string[] | null): ERoleType => {
 
 export const followAlbum = async (requestModel: FollowingRequestModel) => {
     try {
-        const response = await axiosClientApiInstance.post<ServerResponse<any>>(portalServer + '/api/following', requestModel);
+        const response = await axiosClientApiInstance.post<ServerResponse<any>>('/api/following', requestModel);
         return response.data;
     } catch (error) {
         return null;
@@ -105,7 +104,7 @@ export const followAlbum = async (requestModel: FollowingRequestModel) => {
 
 export const getStatusFollow = async (requestModel: FollowingRequestModel) => {
     try {
-        const response = await axiosClientApiInstance.get<ServerResponse<any>>(portalServer + '/api/following', {
+        const response = await axiosClientApiInstance.get<ServerResponse<any>>('/api/following', {
             params: requestModel,
         });
         return response.data.data;
@@ -116,7 +115,7 @@ export const getStatusFollow = async (requestModel: FollowingRequestModel) => {
 
 export const unFollow = async (requestModel: FollowingRequestModel) => {
     try {
-        const response = await axiosClientApiInstance.delete<ServerResponse<any>>(portalServer + '/api/following', {
+        const response = await axiosClientApiInstance.delete<ServerResponse<any>>('/api/following', {
             params: requestModel,
         });
         return response.data.data;
