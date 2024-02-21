@@ -46,9 +46,8 @@ export default function CommentComic({ comicId, collectionId, roleUser }: { comi
         setSelectedOption(selectedValue);
         let dropdownMenu = document.querySelector('#dropdown-menu');
         dropdownMenu?.classList.remove('show');
-
         let updatedCollectionId: string | null = '';
-        if (selectedValue === 'Chapter Comment')
+        if (selectedValue === t('chap_cmt'))
             updatedCollectionId = collectionId;
 
         setPagingParams((prevState: any) => ({

@@ -4,6 +4,10 @@ import Image from "next/image";
 import FacebookImage from '@/public/assets/media/footer/facebook.png';
 import { useState } from "react";
 import { sendEmail } from "@/lib/services/client/email/EmailService";
+import { createActivityLog } from "@/lib/services/client/activity-log/activityLogService";
+import ActivityLogRequestModel from "@/app/models/activity/ActivityLogRequestModel";
+import { EActivityType } from "@/app/models/enums/EActivityType";
+import { trackingIpV4 } from "@/app/utils/HelperFunctions";
 
 export default function Payment({ userEmail }: { userEmail: any }) {
     const t = useTranslations('upgrade');
@@ -18,7 +22,7 @@ export default function Payment({ userEmail }: { userEmail: any }) {
         setIsLoading(true);
         setIsSubmit(true);
 
-        if (/^\d*$/.test(code) && code.length === 11 || code === '')
+        if (code.length >= 11)
         {
             const emailMessage: SendEmailMessage = {
                 subject: "[Payment Upgrade Account]",
@@ -31,6 +35,15 @@ export default function Payment({ userEmail }: { userEmail: any }) {
             try
             {
                 await sendEmail(emailMessage);
+
+                const myActivityLog: ActivityLogRequestModel = {
+                    ActivityType: EActivityType.Payment,
+                    LimitTimes: 100,
+                    IpV4Address: await trackingIpV4(),
+                    Description: userEmail
+                };
+                
+                await createActivityLog(myActivityLog);
                 setMessage(<p className="success-submit">{t('success')}</p>);
             } catch(error){
                 console.error('Error fetching types:', error);
