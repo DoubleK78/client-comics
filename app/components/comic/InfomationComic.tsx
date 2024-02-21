@@ -56,11 +56,11 @@ export default function InfomationComic({ comic, roleUser, region }: { comic?: C
     useEffect(() => {
         const storedHistory = sessionStorage.getItem("history");
         let listHistory = storedHistory ? JSON.parse(storedHistory) : [];
-        
+
         if (!listHistory.includes(comic))
             listHistory.push(comic);
-        
-        if (listHistory.length > 5) 
+
+        if (listHistory.length > 5)
             listHistory.shift();
 
         listHistory = filterDuplicates(listHistory, "id")
@@ -188,24 +188,28 @@ export default function InfomationComic({ comic, roleUser, region }: { comic?: C
                                             {comic?.description}
                                         </p>
                                         <div className="d-flex pt-4">
-                                            <a
-                                                href={`/truyen-tranh/${comic?.friendlyName}/${comic?.contents[comic?.contents.length - 1]?.friendlyName}`}
-                                                className="anime-btn btn-dark border-change me-3"
-                                            >
-                                                {t('read_first_chapter')}
-                                            </a>
-                                            <a
-                                                href={`/truyen-tranh/${comic?.friendlyName}/${comic?.contents[0]?.friendlyName}`}
-                                                className="anime-btn btn-dark border-change me-3"
-                                            >
-                                                {t('read_last_chapter')}
-                                            </a>
+                                            {comic && comic?.contents.length > 0 &&
+                                                <>
+                                                    <a
+                                                        href={`/truyen-tranh/${comic?.friendlyName}/${comic?.contents[comic?.contents.length - 1]?.friendlyName}`}
+                                                        className="anime-btn btn-dark border-change me-3"
+                                                    >
+                                                        {t('read_first_chapter')}
+                                                    </a>
+                                                    <a
+                                                        href={`/truyen-tranh/${comic?.friendlyName}/${comic?.contents[0]?.friendlyName}`}
+                                                        className="anime-btn btn-dark border-change me-3"
+                                                    >
+                                                        {t('read_last_chapter')}
+                                                    </a>
+                                                </>
+                                            }
                                             {region === ERegion.vn ? (
                                                 <a href="#"
                                                     className="anime-btn btn-dark">
                                                     {t('en_version')}
                                                 </a>
-                                            ):(
+                                            ) : (
                                                 <a href="#"
                                                     className="anime-btn btn-dark">
                                                     {t('vi_version')}
