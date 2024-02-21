@@ -63,7 +63,7 @@ export default function CommentComic({ comicId, collectionId, roleUser }: { comi
     const handlePostComment = async (event: any) => {
         event.preventDefault();
         const regex = /[^\s\n\r]/;
-        if (!regex.test(comment) || comment.length < 10 || comment == '<p>&nbsp;</p>') {
+        if (!regex.test(comment) || comment.length < 10 || comment == '<p>&nbsp;</p>' || comment.length > 200) {
             setError(`${t('invalid_comment')}`);
             return;
         }
@@ -104,8 +104,7 @@ export default function CommentComic({ comicId, collectionId, roleUser }: { comi
 
         if (activity)
             await pushComment(commentData);
-        else
-        {
+        else {
             switch (roleUser) {
                 case ERoleType.User:
                     setError(`${t('error_comment_nor')} <a href="/upgrade-package">[${t('here')}]</a>`);
@@ -120,7 +119,7 @@ export default function CommentComic({ comicId, collectionId, roleUser }: { comi
                     break;
             }
         }
-        
+
         setReloadTrigger((prev) => !prev);
     };
 
@@ -164,8 +163,26 @@ export default function CommentComic({ comicId, collectionId, roleUser }: { comi
                                 </div>
                                 <p>
                                     {t('We hope you have a good time browsing the comment section!')}<br />
-                                    {t('Please read our')} <a href="#">{t('Comment Policy')}</a> {t('before commenting')}.
+                                    {t('Please read our')} <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">{t('Comment Policy')}</a> {t('before commenting')}.
                                 </p>
+
+                                <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div className="modal-dialog">
+                                        <div className="modal-content">
+                                            <div className="modal-header">
+                                                <h5 className='text-modal'>{t('Comment Policy')}</h5>
+                                            </div>
+                                            <div className="modal-body">
+                                                <p className='text-modal-p'>1. {t('policy_1')}</p>
+                                                <p className='text-modal-p'>2. {t('policy_2')}</p>
+                                                <p className='text-modal-p'>3. {t('policy_3')}</p>
+                                            </div>
+                                            <div className="modal-footer">
+                                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">{t('understood')}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div className="row">
                                 <div className="col-lg-1 col-2">

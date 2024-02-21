@@ -168,7 +168,11 @@
         "completed": "Đã hoàn thành",
         "en_version": "Phiên bản tiếng Anh",
         "vi_version": "Phiên bản tiếng Việt",
-        "invalid_comment": "Bình luận không hợp lệ"
+        "invalid_comment": "Bình luận không hợp lệ",
+        "policy_1": "Các bình luận spam link hoặc tiêu cực sẽ bị xóa, nếu vi phạm nhiều lần sẽ bị khóa tài khoản",
+        "policy_2": "Không được phân biệt vùng miền, chủng tộc, công kích tới người thân của người khác",
+        "policy_3": "Mọi bình luận chống phá nhà nước, vi phạm đạo đức sẽ bị xử lý",
+        "understood": "Đã hiểu"
     },
     "logins": {
         "login": "Đăng nhập",

@@ -124,7 +124,7 @@ export default async function ContentComic({ content, comic, session, locale }: 
                                         </>
                                     )}</h3>
                                 }
-                                <p>{t('refer')} <a href="/upgrade-package">{t('here')}</a></p>
+                                <p>{t('refer')} <a style={{color: 'var(--color-primary)'}} href="/upgrade-package">{t('here')}</a></p>
                             </div>
                         )}
                     <br></br>

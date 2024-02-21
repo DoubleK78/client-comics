@@ -168,7 +168,11 @@
         "completed": "Completed",
         "vi_version": "VietNamese version",
         "en_version": "English version",
-        "invalid_comment": "Invalid comment"
+        "invalid_comment": "Invalid comment",
+        "policy_1": "Comments that spam links or are negative will be deleted, if repeated violations will result in your account being locked",
+        "policy_2": "Do not discriminate between regions, races, or attack other people's relatives",
+        "policy_3": "Any comments that sabotage the government or violate ethics will be handled",
+        "understood": "Understood"
     },
     "logins": {
         "login": "Log in",

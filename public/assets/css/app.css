@@ -5705,3 +5705,11 @@ a{
 b{
   font-family: MTO;
 }
+.text-modal{
+  color: #000000 !important;
+}
+
+.text-modal-p{
+  color: #000000 !important;
+  font-size: 12px !important;
+}
