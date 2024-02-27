@@ -42,7 +42,7 @@ export default function SchedulePage({ locale, roleUser }: { locale: any, roleUs
                             )}
                             {schedules && schedules.length > 0 && schedules.map((schedule: any, index: any) => (
                                 <div key={index}>
-                                    <a href="/truyen-tranh/kiem-si-thien-tai-cua-hoc-vien">
+                                    <a href={schedule.url}>
                                         <div className="row  align-items-center">
                                             <div className="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-0">
                                                 <p className="text">{schedule.timeRelease}</p>
