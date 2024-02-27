@@ -12,7 +12,7 @@ import ClearSearchParams from "@/app/components/contents/ClearSearchParams";
 import { getLocale, getTranslations } from "next-intl/server";
 import ContentMetadata from "@/app/models/contents/ContentMetadata";
 import { isbot } from "isbot";
-import { getEnumValueFromString } from "@/app/utils/HelperFunctions";
+import { getEnumValueFromString, getRegionByLocale } from "@/app/utils/HelperFunctions";
 import { pathnames } from "@/navigation";
 
 type Props = {
@@ -37,6 +37,10 @@ export async function generateMetadata({ params: { comicid, contentid, locale } 
                     'vi': routeVi,
                     'en': routeEn,
                 },
+            },
+            robots: {
+                index: contentMetadata.region === getRegionByLocale(locale),
+                follow: contentMetadata.region === getRegionByLocale(locale)
             },
             title: t('content', {
                 comicTitle: contentMetadata.comicTitle,

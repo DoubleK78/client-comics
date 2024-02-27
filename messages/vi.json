@@ -40,7 +40,9 @@
         "payment": "Thanh toán nâng cấp tài khoản Premium | Fast Scans",
         "payment_description": "Thanh toán nâng cấp tài khoản Premium trên Fast Scans để trải nghiệm truy cập không giới hạn đến thế giới truyện tranh. Không quảng cáo, truyện mới cập nhật hàng ngày và nhiều ưu đãi độc quyền đang chờ đón bạn!",
         "schedule": "Lịch ra mắt hàng tuần | Fast Scans",
-        "schedule_description": "Lịch ra mắt truyện hàng tuần và không tốn 500 đồng "
+        "schedule_description": "Lịch ra mắt truyện hàng tuần và không tốn 500 đồng",
+        "maintenance": "Bảo trì hệ thống | Fast Scans",
+        "maintenance_desctipion": "Xin lỗi vì sự bất tiện này! Chúng tôi đang bảo trì hệ thống Fast Scans. Chúng tôi sẽ quay trở lại sớm"
     },
     "header": {
         "following": "Theo dõi",
@@ -154,7 +156,8 @@
         "back_soon": "Chúng tôi sẽ quay trở lại sớm",
         "sorry": "Xin lỗi vì sự bất tiện này nhưng hiện tại chúng tôi đang thực hiện bảo trì cái server ngốc nghếch. Nếu bạn cần, bạn có thể ",
         "contact_us": "tâm sự mỏng với chúng tôi",
-        "dev": "chúng tôi đang dí dùi cui vào mông mấy thằng lập trình viên để họ bảo trì nhanh chóng"
+        "dev": "chúng tôi đang dí dùi cui vào mông mấy thằng lập trình viên để họ bảo trì nhanh chóng",
+        "estimate_completed": "Dự kiến hoàn thành: "
     },
     "comic_detail": {
         "home_page": "Trang Chủ",

@@ -40,7 +40,9 @@
         "payment": "Upgrade to Premium Account Payment | Fast Scans",
         "payment_description": "Upgrade to a Premium account payment on Fast Scans to experience unlimited access to the comic world. No ads, daily updates of new comics, and many exclusive offers await you!",
         "schedule": "Weekly Schedule | Fast Scans",
-        "schedule_description": "Weekly story release schedule and it doesn't cost 500 VND"
+        "schedule_description": "Weekly story release schedule and it doesn't cost 500 VND",
+        "maintenance": "System Maintenance | Fast Scans",
+        "maintenance_desctipion": "Sorry for the inconvenience! We are currently performing system maintenance on Fast Scans. We will be back up and running soon."
     },
     "header": {
         "following": "Following",
@@ -151,10 +153,11 @@
         "refer": "Refer to upgrading your account",
         "here": "here",
         "priority_pre": "Priority features for Premium and [S]Premium users !",
-        "back_soon": "We&rsquo;ll be back soon!",
-        "sorry": "Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment. If you need to you can always ",
+        "back_soon": "We will be back soon!",
+        "sorry": "Sorry for the inconvenience but we are performing some maintenance at the moment. If you need to you can always ",
         "contact_us": "Contact Us",
-        "dev": "Developer team is trying to perfect them"
+        "dev": "Developer team is trying to perfect them",
+        "estimate_completed": "Estimated completed: "
     },
     "comic_detail": {
         "home_page": "Home Page",

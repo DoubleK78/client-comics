@@ -8,6 +8,9 @@ import ServerResponse from '../models/common/ServerResponse';
 import { ELevel, levelEnumMapping } from '../models/enums/ELevel';
 import { TypeCountry } from '../models/comics/TypeCountry';
 import axios from 'axios';
+import dayjs from 'dayjs';
+import { locale } from 'dayjs';
+import { ERegion } from '../models/comics/ComicSitemap';
 
 export const getHoverText = (roleType: any): string => {
     if (roleType === ERoleType.UserSuperPremium) return "78%";
@@ -151,7 +154,7 @@ export const affiliateLinks = [
     "https://shope.ee/7KYjIQibg4",
     "https://shope.ee/3ffQvhVUKc",
     "https://shope.ee/7pUztMop8e"
-  ];
+];
 
 export const percentAff = (role: any) => {
     if (role == ERoleType.User || role === ERoleType.NoneRole)
@@ -206,4 +209,9 @@ export const imageLevel = (levelType: ELevel): string => {
 export const getLangByLocale = (locale: string) => {
     if (locale === "en") return "en";
     return "vi";
+}
+
+export const getRegionByLocale = (locale: string) => {
+    if (locale === "en") return ERegion.en;
+    return ERegion.vn;
 }

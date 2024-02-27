@@ -9,7 +9,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { getLocale, getTranslations } from "next-intl/server";
 import ComicMetadata from "@/app/models/comics/ComicMetadata";
-import { getEnumValueFromString } from "@/app/utils/HelperFunctions";
+import { getEnumValueFromString, getRegionByLocale } from "@/app/utils/HelperFunctions";
 import { pathnames } from "@/navigation";
 import { isbot } from "isbot";
 import { headers } from "next/headers";
@@ -36,6 +36,10 @@ export async function generateMetadata({ params: { comicid, locale } }: Props) {
                     'vi': routeVi,
                     'en': routeEn,
                 },
+            },
+            robots: {
+                index: comicMetadata.region === getRegionByLocale(locale),
+                follow: comicMetadata.region === getRegionByLocale(locale)
             },
             title: t('comic', {
                 title: comicMetadata.title,

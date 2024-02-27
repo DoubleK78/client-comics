@@ -7,6 +7,8 @@ const nextConfig = {
         clientServer: process.env.NEXT_BASE_URL,
         googleAnalytics: process.env.GOOGLE_ANALYTICS,
         prePortalServer: process.env.PORTAL_PRE_API_URL,
+        maintenanceMode: process.env.MAINTENANCE_MODE,
+        maintenanceEstimateCompleted: process.env.MAINTENANCE_ESTIMATE_COMPLETED
     }
 }
 
