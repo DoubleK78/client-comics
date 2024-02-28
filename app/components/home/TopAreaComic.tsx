@@ -2,7 +2,7 @@
 import { useTranslations } from 'next-intl';
 import PagingRequest from "@/app/models/paging/PagingRequest";
 import { useEffect, useState } from 'react';
-import { getLangByLocale, handleRedirect } from '@/app/utils/HelperFunctions';
+import { converPrefixtUrlByLocale, getLangByLocale, handleRedirect } from '@/app/utils/HelperFunctions';
 import { getAlbums } from '@/lib/services/client/album/albumService';
 import { pathnames } from '@/navigation';
 
@@ -81,7 +81,7 @@ export default function TopAreaComic({ locale, roleUser, isBot }: { locale: any,
                                         </a>
                                     )}
                                     {isBot && (
-                                        <a href={`${pathnames['/comics'][getLangByLocale(locale)]}/${album.friendlyName}`}>
+                                        <a href={`${converPrefixtUrlByLocale(pathnames['/comics'][getLangByLocale(locale)], locale)}/${album.friendlyName}`}>
                                             <div className="row m-0">
                                                 <div className="p-0 col-4">
                                                     <img
@@ -124,7 +124,7 @@ export default function TopAreaComic({ locale, roleUser, isBot }: { locale: any,
                                         </a>
                                     )}
                                     {isBot && (
-                                        <a href={`${pathnames['/comics'][getLangByLocale(locale)]}/${album.friendlyName}`}>
+                                        <a href={`${converPrefixtUrlByLocale(pathnames['/comics'][getLangByLocale(locale)], locale)}/${album.friendlyName}`}>
                                             <div className="row m-0">
                                                 <div className="p-0 col-4">
                                                     <img
@@ -167,7 +167,7 @@ export default function TopAreaComic({ locale, roleUser, isBot }: { locale: any,
                                         </a>
                                     )}
                                     {isBot && (
-                                        <a href={`${pathnames['/comics'][getLangByLocale(locale)]}/${album.friendlyName}`}>
+                                        <a href={`${converPrefixtUrlByLocale(pathnames['/comics'][getLangByLocale(locale)], locale)}/${album.friendlyName}`}>
                                             <div className="row m-0">
                                                 <div className="p-0 col-4">
                                                     <img

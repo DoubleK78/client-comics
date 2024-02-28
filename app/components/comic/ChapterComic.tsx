@@ -1,18 +1,18 @@
 "use client"
 import ContentResponse from "@/app/models/contents/ContentResponse";
-import { countryFlags, getLangByLocale, handleRedirect, shortNumberViews } from "@/app/utils/HelperFunctions";
+import { converPrefixtUrlByLocale, countryFlags, getLangByLocale, handleRedirect, shortNumberViews } from "@/app/utils/HelperFunctions";
 import dayjs from "@/lib/dayjs/dayjs-custom";
 import { useTranslations } from 'next-intl';
 import PagingRequest from "@/app/models/paging/PagingRequest";
 import { useEffect, useState } from "react";
 import { getAlbums } from "@/lib/services/client/album/albumService";
-import { Link, pathnames } from "@/navigation";
+import { pathnames } from "@/navigation";
 
 export default function ChapterComic({ contents, locale, roleUser, genre, comicId, region, isBot }: {
     contents?: ContentResponse[] | null, locale: any, roleUser: any, genre: any, comicId: any, region: any, isBot: boolean
 }) {
     const t = useTranslations('comic_detail');
-    const routeChapter = locale === 'vi' ? pathnames['/comics/[comicid]/[contentid]'][getLangByLocale(locale)] : `/${getLangByLocale(locale)}/${pathnames['/comics/[comicid]/[contentid]'][getLangByLocale(locale)]}`;
+    const routeChapter = locale === 'vi' ? pathnames['/comics/[comicid]/[contentid]'][getLangByLocale(locale)] : `/${getLangByLocale(locale)}${pathnames['/comics/[comicid]/[contentid]'][getLangByLocale(locale)]}`;
     
     const checkVisibility = (createdOnUtc: any) => {
         const currentTime = dayjs();
@@ -136,7 +136,7 @@ export default function ChapterComic({ contents, locale, roleUser, genre, comicI
                                     </a>
                                 )}
                                 {isBot && (
-                                    <Link href={`${pathnames['/comics'][getLangByLocale(locale)]}/${album.friendlyName}`}>
+                                    <a href={`${converPrefixtUrlByLocale(pathnames['/comics'][getLangByLocale(locale)], locale)}/${album.friendlyName}`}>
                                         <div className="row m-0">
                                             <div className="p-0 col-2">
                                                 <img src={album.cdnThumbnailUrl ?? "/assets/media/404/none.jpg"} alt={album.title} />
@@ -151,7 +151,7 @@ export default function ChapterComic({ contents, locale, roleUser, genre, comicI
                                                 <span className="show-type">{album.tags && <span className={(countryFlags as any)[album.tags]}></span>}</span>
                                             </div>
                                         </div>
-                                    </Link>
+                                    </a>
                                 )}
                             </div>
                         ))}

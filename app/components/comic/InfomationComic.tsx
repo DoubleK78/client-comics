@@ -2,12 +2,14 @@
 import ComicDetail, { EAlbumStatus } from "@/app/models/comics/ComicDetail";
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
-import { followAlbum, getStatusFollow, shortNumberViews, unFollow } from "@/app/utils/HelperFunctions";
+import { followAlbum, getLangByLocale, getStatusFollow, shortNumberViews, unFollow } from "@/app/utils/HelperFunctions";
 import FollowingRequestModel from "@/app/models/comics/FollowingRequestModel";
 import { ERegion } from "@/app/models/comics/ComicSitemap";
+import { pathnames } from "@/navigation";
 
-export default function InfomationComic({ comic, roleUser, region }: { comic?: ComicDetail | null, roleUser: any, region: any }) {
+export default function InfomationComic({ comic, roleUser, region, locale }: { comic?: ComicDetail | null, roleUser: any, region: any, locale: string }) {
     const t = useTranslations('comic_detail');
+    const routeChapter = locale === 'vi' ? pathnames['/comics/[comicid]/[contentid]'][getLangByLocale(locale)] : `/${getLangByLocale(locale)}${pathnames['/comics/[comicid]/[contentid]'][getLangByLocale(locale)]}`;
     const [loadingFollow, setLoadingFollow] = useState(true);
     const [statusFollow, setStatusFollow] = useState(null);
     const dropdownRef = useRef<HTMLUListElement | null>(null);
@@ -80,6 +82,11 @@ export default function InfomationComic({ comic, roleUser, region }: { comic?: C
             document.removeEventListener('click', handleClickOutside);
         };
     }, []);
+
+    const generateContentUrlByLocale = (template: string, comicId: string, contentId: string) => {
+        return template.replace('[comicid]', comicId).replace('[contentid]', contentId);
+    }
+
     return (
         <>
             {/*=====================================*/}
@@ -94,7 +101,7 @@ export default function InfomationComic({ comic, roleUser, region }: { comic?: C
                                     <div className="trailer-box">
                                         <img
                                             src={comic?.thumbnailUrl ?? "/assets/media/manga/manga-img-1.png"}
-                                            alt=""
+                                            alt={comic?.title}
                                             className="image"
                                         />
                                     </div>
@@ -191,13 +198,13 @@ export default function InfomationComic({ comic, roleUser, region }: { comic?: C
                                             {comic && comic?.contents.length > 0 &&
                                                 <>
                                                     <a
-                                                        href={`/truyen-tranh/${comic?.friendlyName}/${comic?.contents[comic?.contents.length - 1]?.friendlyName}`}
+                                                        href={`${generateContentUrlByLocale(routeChapter, comic?.friendlyName ?? '', comic?.contents[comic?.contents.length - 1]?.friendlyName ?? '')}`}
                                                         className="anime-btn btn-dark border-change me-3"
                                                     >
                                                         {t('read_first_chapter')}
                                                     </a>
                                                     <a
-                                                        href={`/truyen-tranh/${comic?.friendlyName}/${comic?.contents[0]?.friendlyName}`}
+                                                        href={`${generateContentUrlByLocale(routeChapter, comic?.friendlyName ?? '', comic?.contents[0]?.friendlyName ?? '')}`}
                                                         className="anime-btn btn-dark border-change me-3"
                                                     >
                                                         {t('read_last_chapter')}

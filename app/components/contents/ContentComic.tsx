@@ -3,27 +3,34 @@ import ComicDetail from '@/app/models/comics/ComicDetail';
 import dynamic from "next/dynamic";
 import { useTranslations } from 'next-intl';
 import { v4 as uuidv4 } from 'uuid';
-import { getEnumValueFromString } from '@/app/utils/HelperFunctions';
+import { generateImageUrlByStorageType, getEnumValueFromString, getLangByLocale } from '@/app/utils/HelperFunctions';
 import { ERoleType } from '@/app/models/enums/ERoleType';
 import dayjs from "@/lib/dayjs/dayjs-custom";
 import ContentComicItemV2 from './ContentComicItemV2';
+import { pathnames } from '@/navigation';
 
 const ScrollButton = dynamic(() => import('@/app/components/common/ScrollButton'), {
     ssr: false
 });
 export default async function ContentComic({ content, comic, session, locale }: { content?: ContentResponse | null, comic?: ComicDetail | null, session: any, locale: any }) {
     const t = useTranslations('comic_detail');
+    const routeChapter = locale === 'vi' ? pathnames['/comics/[comicid]/[contentid]'][getLangByLocale(locale)] : `/${getLangByLocale(locale)}${pathnames['/comics/[comicid]/[contentid]'][getLangByLocale(locale)]}`;
+
     let albumFriendlyName = content?.albumFriendlyName;
     let currentFriendlyName = content?.friendlyName;
     let prevChap, nextChap, isLastChap, isFirstChap;
     const roleUser = getEnumValueFromString(session?.user?.token?.roles);
 
+    const generateContentUrlByLocale = (template: string, comicId: string, contentId: string) => {
+        return template.replace('[comicid]', comicId).replace('[contentid]', contentId);
+    }
+
     if (currentFriendlyName !== null && currentFriendlyName !== undefined) {
         let currentChapNumber = parseInt(currentFriendlyName.split("-")[1]);
         let endChapNumber = parseInt((comic?.contents[0]?.friendlyName ?? "0").split("-")[1]);
         let startChapNumber = parseInt((comic?.contents[comic?.contents.length - 1]?.friendlyName ?? "0").split("-")[1]);
-        prevChap = `/truyen-tranh/${albumFriendlyName}/${currentFriendlyName.replace(currentFriendlyName, 'chap-' + (currentChapNumber - 1) ?? '')}`;
-        nextChap = `/truyen-tranh/${albumFriendlyName}/${currentFriendlyName.replace(currentFriendlyName, 'chap-' + (currentChapNumber + 1) ?? '')}`;
+        prevChap = generateContentUrlByLocale(routeChapter, albumFriendlyName ?? '', currentFriendlyName.replace(currentFriendlyName, 'chap-' + (currentChapNumber - 1)  ?? ''));
+        nextChap = generateContentUrlByLocale(routeChapter, albumFriendlyName ?? '', currentFriendlyName.replace(currentFriendlyName, 'chap-' + (currentChapNumber + 1)  ?? ''));
         isLastChap = parseInt(currentFriendlyName.split("-")[1]) < endChapNumber || false;
         isFirstChap = parseInt(currentFriendlyName.split("-")[1]) > startChapNumber || false;
     }
@@ -58,7 +65,7 @@ export default async function ContentComic({ content, comic, session, locale }: 
                                 <div className='chapter-list-content'>
                                     {comic?.contents?.map((content, index) => (
                                         <li key={index} className="grid-item">
-                                            <a className='page-link' href={`/truyen-tranh/${content.albumFriendlyName}/${content.friendlyName}`}>
+                                            <a className='page-link' href={`${generateContentUrlByLocale(routeChapter, content.albumFriendlyName ?? '', content.friendlyName ?? '')}`}>
                                                 {content.title}
                                             </a>
                                         </li>
@@ -87,7 +94,7 @@ export default async function ContentComic({ content, comic, session, locale }: 
                             <div className="row text-center pt-4">
                                 {process.env.LAZY_LOADING_IMAGE == 'false' && content?.contentItems && content?.contentItems.map((item: any) => (
                                     <div key={uuidv4()} className="chapter-image col-lg-10 offset-lg-1 col-12 offset-0 img-chapter">
-                                        <img 
+                                        <img
                                             loading='lazy'
                                             src={item}
                                             alt=""
@@ -96,11 +103,11 @@ export default async function ContentComic({ content, comic, session, locale }: 
                                     </div>
                                 ))}
                                 {process.env.LAZY_LOADING_IMAGE == 'true' && content?.contentItems && content?.contentItems.map((item: any) => (
-                                    <ContentComicItemV2 key={uuidv4()} imageUrl={item} />
+                                    <ContentComicItemV2 key={uuidv4()} imageUrl={generateImageUrlByStorageType(content?.storageType, item)} />
                                 ))}
                             </div>
                         ) : (
-                            <div className="row text-center pt-4" style={{color: 'white'}}>
+                            <div className="row text-center pt-4" style={{ color: 'white' }}>
                                 <h1>{t('priority')}</h1>
                                 {roleUser === ERoleType.UserPremium &&
                                     <h3>{t('will_publish_pre')} {locale == 'vi' ? (
@@ -124,7 +131,7 @@ export default async function ContentComic({ content, comic, session, locale }: 
                                         </>
                                     )}</h3>
                                 }
-                                <p>{t('refer')} <a style={{color: 'var(--color-primary)'}} href="/upgrade-package">{t('here')}</a></p>
+                                <p>{t('refer')} <a style={{ color: 'var(--color-primary)' }} href="/upgrade-package">{t('here')}</a></p>
                             </div>
                         )}
                     <br></br>
@@ -149,7 +156,7 @@ export default async function ContentComic({ content, comic, session, locale }: 
                                     <div className='chapter-list-content'>
                                         {comic?.contents?.map((content, index) => (
                                             <li key={index} className="grid-item">
-                                                <a className='page-link' href={`/truyen-tranh/${content.albumFriendlyName}/${content.friendlyName}`}>
+                                                <a className='page-link' href={`${generateContentUrlByLocale(routeChapter, content.albumFriendlyName ?? '', content.friendlyName ?? '')}`}>
                                                     {content.title}
                                                 </a>
                                             </li>

@@ -8,7 +8,8 @@ const nextConfig = {
         googleAnalytics: process.env.GOOGLE_ANALYTICS,
         prePortalServer: process.env.PORTAL_PRE_API_URL,
         maintenanceMode: process.env.MAINTENANCE_MODE,
-        maintenanceEstimateCompleted: process.env.MAINTENANCE_ESTIMATE_COMPLETED
+        maintenanceEstimateCompleted: process.env.MAINTENANCE_ESTIMATE_COMPLETED,
+        storageS1: process.env.STORAGE_S1
     }
 }
 

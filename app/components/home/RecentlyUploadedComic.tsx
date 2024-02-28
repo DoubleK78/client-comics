@@ -2,8 +2,8 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { useEffect, useState, useRef } from 'react';
 import FollowingRequestModel from '@/app/models/comics/FollowingRequestModel';
-import { followAlbum, getLangByLocale, getStatusFollow, handleRedirect, unFollow } from '@/app/utils/HelperFunctions';
-import { Link, pathnames } from '@/navigation';
+import { converPrefixtUrlByLocale, followAlbum, getLangByLocale, getStatusFollow, handleRedirect, unFollow } from '@/app/utils/HelperFunctions';
+import { pathnames } from '@/navigation';
 
 export default function RecentlyUploadedComic({ roleUser, albums, isBot }: { roleUser: any, albums: any, isBot: boolean }) {
     const t = useTranslations('home');
@@ -93,10 +93,10 @@ export default function RecentlyUploadedComic({ roleUser, albums, isBot }: { rol
                                     )}
                                     {isBot && (
                                         <>
-                                            <Link className="img-block" href={`${pathnames['/comics'][getLangByLocale(locale)]}/${album.friendlyName}`}>
+                                            <a className="img-block" href={`${converPrefixtUrlByLocale(pathnames['/comics'][getLangByLocale(locale)], locale)}/${album.friendlyName}`}>
                                                 <img loading='lazy' src={album.cdnThumbnailUrl ?? "/assets/media/404/none.jpg"} alt={album.title} />
-                                            </Link>
-                                            <Link href={`${pathnames['/comics'][getLangByLocale(locale)]}/${album.friendlyName}`} className="action-overlay"><i className="fa fa-eye" aria-hidden="true"></i> {t('read_now')}</Link>
+                                            </a>
+                                            <a href={`${converPrefixtUrlByLocale(pathnames['/comics'][getLangByLocale(locale)], locale)}/${album.friendlyName}`} className="action-overlay"><i className="fa fa-eye" aria-hidden="true"></i> {t('read_now')}</a>
                                         </>
                                     )}
                                     <div className="d-flex justify-content-between">
@@ -185,9 +185,9 @@ export default function RecentlyUploadedComic({ roleUser, albums, isBot }: { rol
                                     {!isBot && <a onClick={() => handleRedirect(`truyen-tranh/${album.friendlyName}`, roleUser)}>
                                         <p>{album.title}</p>
                                     </a>}
-                                    {isBot && <Link href={`${pathnames['/comics'][getLangByLocale(locale)]}/${album.friendlyName}`}>
+                                    {isBot && <a href={`${converPrefixtUrlByLocale(pathnames['/comics'][getLangByLocale(locale)], locale)}/${album.friendlyName}`}>
                                         <p>{album.title}</p>
-                                    </Link>}
+                                    </a>}
                                 </div>
                             </div>
                         ))}

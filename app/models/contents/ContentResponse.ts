@@ -1,3 +1,5 @@
+import { EStorageType } from "../enums/EStorageType";
+
 export default interface ContentResponse {
     id: number;
     title: string | null;
@@ -14,4 +16,5 @@ export default interface ContentResponse {
     views: number;
     contentItems: Array<string> | null;
     levelPublic: number;
+    storageType: EStorageType;
 }
