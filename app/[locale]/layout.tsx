@@ -20,6 +20,7 @@ const inter = Inter({ subsets: ['latin'] });
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   const t = await getTranslations({ locale, namespace: 'metadata' });
   const baseUrl = process.env.NEXT_BASE_URL!;
+  const imageOGUrl = locale === 'en' ? `${baseUrl}/assets/media/meta_home_image_en.png`: `${baseUrl}/assets/media/meta_home_image.png`;
 
   return {
     metadataBase: new URL(baseUrl),
@@ -37,7 +38,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
       description: t('home_description'),
       images: [
         {
-          url: `${baseUrl}/assets/media/meta_home_image.png`,
+          url: imageOGUrl,
           width: 800,
           height: 600
         }
