@@ -8,6 +8,7 @@ import { ERoleType } from '@/app/models/enums/ERoleType';
 import dayjs from "@/lib/dayjs/dayjs-custom";
 import ContentComicItemV2 from './ContentComicItemV2';
 import { pathnames } from '@/navigation';
+import SupportButton from '../common/SupportButton';
 
 const ScrollButton = dynamic(() => import('@/app/components/common/ScrollButton'), {
     ssr: false
@@ -45,6 +46,7 @@ export default async function ContentComic({ content, comic, session, locale }: 
                     <div className="heading style-1">
                         <h1>{content?.albumTitle} - {content?.title}</h1>
                     </div>
+                    <SupportButton prevLink = {isFirstChap ? prevChap: null} nextLink={isLastChap ? nextChap: null}/>
                     <ScrollButton />
                     <div className="d-flex justify-content-between mb-4">
                         <div className="left">
