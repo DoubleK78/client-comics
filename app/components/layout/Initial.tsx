@@ -3,7 +3,7 @@ import { getEnumValueFromString } from "@/app/utils/HelperFunctions";
 import { parseJsonFromString } from "@/lib/json";
 import { checkRoleUpdate, getTokenFromSessionServer } from "@/lib/services/client/auth";
 import { Session } from "next-auth";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useEffect } from "react";
 
 export default function Initial({ props }: { props: Session | null }) {
@@ -18,9 +18,21 @@ export default function Initial({ props }: { props: Session | null }) {
 
         const isCheckRoleChanges = parseJsonFromString<boolean | null>(sessionStorage.getItem("isCheckRoleChanges"));
         if (!isCheckRoleChanges && token) {
-            checkRoleUpdate().then((roleType) => {
+            checkRoleUpdate().then((model) => {
+                // Banned Account will be log out
+                if (model?.isBanned) {
+                    signOut({
+                        redirect: true
+                    }).then(() => {
+                        localStorage.removeItem('token');
+                        localStorage.removeItem('userSession');
+                    });
+                    return;
+                }
+
+                // Update Account when subscription changes
                 const currentRoleType = getEnumValueFromString(props?.user?.token?.roles);
-                if (currentRoleType != roleType) {
+                if (currentRoleType != model?.roleType) {
                     update();
                 }
                 sessionStorage.setItem("isCheckRoleChanges", JSON.stringify(true));

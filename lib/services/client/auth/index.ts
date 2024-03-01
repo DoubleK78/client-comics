@@ -23,7 +23,7 @@ export const getTokenFromSessionServer = async () => {
 
 export const checkRoleUpdate = async () => {
     try {
-        const response = await axios.get<number>('/api/user/type-sub', {
+        const response = await axios.get<{ isBanned?: boolean; roleType?: number }>('/api/user/type-sub', {
             baseURL: identityServer,
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
