@@ -56,7 +56,12 @@ export default function Following({ session }: { session: any }) {
         });
 
         const storedHistory = sessionStorage.getItem("history");
-        setListHistory(storedHistory ? JSON.parse(storedHistory) : []);
+        try {
+            setListHistory(storedHistory ? JSON.parse(storedHistory) : []);
+        }
+        catch(ex){
+            setListHistory([]);
+        }
     }, [toggleRemove, pagingParams]);
 
     return (
