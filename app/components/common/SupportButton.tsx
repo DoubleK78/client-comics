@@ -17,7 +17,6 @@ const SupportButton: React.FC<SupportButtonProps> = ({ prevLink, nextLink}) => {
   };
 
   useEffect(() => {
-    console.log(prevLink, nextLink)
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);

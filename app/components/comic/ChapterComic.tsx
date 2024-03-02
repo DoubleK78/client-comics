@@ -1,6 +1,6 @@
 "use client"
 import ContentResponse from "@/app/models/contents/ContentResponse";
-import { converPrefixtUrlByLocale, countryFlags, getLangByLocale, handleRedirect, shortNumberViews } from "@/app/utils/HelperFunctions";
+import { checkChapHistory, converPrefixtUrlByLocale, countryFlags, getLangByLocale, handleRedirect, shortNumberViews } from "@/app/utils/HelperFunctions";
 import dayjs from "@/lib/dayjs/dayjs-custom";
 import { useTranslations } from 'next-intl';
 import PagingRequest from "@/app/models/paging/PagingRequest";
@@ -65,11 +65,12 @@ export default function ChapterComic({ contents, locale, roleUser, genre, comicI
                     <div className="row">
                         <div className="col-lg-8 col-md-12 col-sm-12">
                             <h3 className="small-title">{t('chapter_list')}</h3>
-                            <div className=" chapter-list-container">
+                            <div className="chapter-list-container">
                                 {contents?.map((content, index) => (
                                     <div key={index}>
                                         <h5 className="chapter-list">
-                                            {!isBot && <a onClick={() => handleRedirect(`/truyen-tranh/${content.albumFriendlyName}/${content.friendlyName}`, roleUser)}>{content.title}</a>}
+                                            {!isBot && <a onClick={() => handleRedirect(`/truyen-tranh/${content.albumFriendlyName}/${content.friendlyName}`, roleUser)} 
+                                            className={checkChapHistory(content.albumFriendlyName, content.friendlyName)}>{content.title}</a>}
                                             {isBot && <a href={`${generateContentUrlByLocale(routeChapter, content.albumFriendlyName ?? '', content.friendlyName ?? '')}`}>{content.title}</a>}
                                             <div className="new-chap">
                                                 {checkVisibility(content.createdOnUtc) &&
