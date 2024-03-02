@@ -22,7 +22,7 @@ export default function Payment({ userEmail }: { userEmail: any }) {
         setIsLoading(true);
         setIsSubmit(true);
 
-        if (code.length >= 11)
+        if (code.length >= 10)
         {
             const emailMessage: SendEmailMessage = {
                 subject: "[Payment Upgrade Account]",
@@ -123,6 +123,7 @@ export default function Payment({ userEmail }: { userEmail: any }) {
                         <p>{t('note_2')}</p>
                         <p>{t('note_3')}</p>
                         <p>{t('note_4')}</p>
+                        <p>{t('note_5')}</p>
                         <ul className="social-icons">
                             <a href="https://www.facebook.com/tonotdievietnam">
                                 <Image src={FacebookImage} alt="facebook" />

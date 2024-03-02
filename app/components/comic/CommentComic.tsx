@@ -299,7 +299,7 @@ export default function CommentComic({ comicId, collectionId, roleUser }: { comi
                                                 <div className="hover-text">{getPercentByDivdeTwoNumber(cmt.currentExp, cmt.nextLevelExp)}%</div>
                                             </a>
                                         </div>
-                                        <div className="col-lg-11 col-10">
+                                        <div className="col-lg-7 col-10">
                                             <h5>
                                                 {getRoleBadge(cmt.roleType)}
                                                 <a href="#" className={getUserNameClass(cmt.roleType)}>{cmt.userName}</a>

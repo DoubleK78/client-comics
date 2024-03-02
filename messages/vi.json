@@ -267,6 +267,7 @@
         "note_2": "Giao dịch sẽ được xử lý trong vòng 10 phút (8:30 tới 22:59 mỗi ngày - giờ Việt Nam).",
         "note_3": "Nếu giao dịch ngoài thời điểm trên thì sẽ được xử lý vào ngày hôm sau.",
         "note_4": "Nếu trong thời gian giao dịch quá 10 phút không được xử lý thì hãy liên hệ fanpage để được hỗ trợ:",
+        "note_5": "Sau khi thanh toán xong vui lòng chờ 5 phút sau đó đăng xuất và đăng nhập lại",
         "success": "Gửi mã thanh toán thành công !",
         "invalid_code": "Mã giao dịch không hợp lệ !",
         "forever": "Vĩnh viễn"
