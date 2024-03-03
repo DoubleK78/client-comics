@@ -1,12 +1,10 @@
 import UserSession from "@/app/models/auth/UserSession";
-import { formatDateToLocale } from "@/lib/dayjs/format-date";
 import { getComments, pushComment } from "@/lib/services/client/comment/commentService";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useMemo, useRef, useState } from "react";
 import ReactQuill from "react-quill";
-import { getHoverText, getLevelBadgeClass, getLevelNameById, getRoleBadge, getUserClass, getUserNameClass } from '@/app/utils/HelperFunctions';
+import { getDayjsByLocale, getHoverText, getLevelBadgeClass, getLevelNameById, getRoleBadge, getUserClass, getUserNameClass } from '@/app/utils/HelperFunctions';
 import { getPercentByDivdeTwoNumber } from "@/lib/math/mathHelper";
-import dayjs from "dayjs";
 
 const editorStyle = {
     width: '100%',
@@ -21,6 +19,7 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
     index: string
 }) {
     const t = useTranslations('comic_detail');
+    const locale = useLocale();
     const [replies, setReplies] = useState<any[]>([]);
     const [reply, setReply] = useState('');
 
@@ -82,7 +81,7 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
 
         const regexEmpty = /<p><br><\/p>$/;
         let modifiedComment;
-        
+
         if (regexEmpty.test(reply))
             modifiedComment = reply.slice(0, reply.lastIndexOf('<p><br></p>'));
         else
@@ -183,7 +182,7 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
                                             {rl.collectionId && <b className='relation-chap'><a href={`/truyen-tranh/${rl.albumFriendlyName}/${rl.friendlyName}`}>{rl.title}</a></b>}
                                         </h5>
                                         <div dangerouslySetInnerHTML={{ __html: rl.text }} />
-                                        <span className='date-comment'>{dayjs.utc(rl.createdOnUtc).local().format('DD-MM-YYYY HH:mm')}</span>
+                                        <span className='date-comment'>{getDayjsByLocale(locale, rl.createdOnUtc).format('DD-MM-YYYY HH:mm')}</span>
                                         {userSession &&
                                             <button
                                                 className=" accordion-button comment-btn"

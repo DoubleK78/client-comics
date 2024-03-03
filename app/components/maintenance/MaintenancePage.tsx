@@ -11,7 +11,7 @@ export default function MaintenancePage({ locale }: { locale: any }) {
             return dayjs.utc(date).format('DD-MM-YYYY HH:mm');
         }
 
-        return dayjs.utc(date).subtract(7, 'hours').format('MM-DD-YYYY HH:mm') + " (UTC)";
+        return dayjs.utc(date).subtract(7, 'hours').format('DD-MM-YYYY HH:mm') + " (UTC)";
     }, [locale]);
 
     return (

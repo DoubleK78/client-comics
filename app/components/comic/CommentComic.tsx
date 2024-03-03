@@ -6,8 +6,7 @@ import { useEffect, useMemo, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import ReplyComic from './ReplyComic';
-import { getHoverText, getLevelBadgeClass, getLevelNameById, getRoleBadge, getUserClass, getUserNameClass, trackingIpV4 } from '@/app/utils/HelperFunctions';
-import dayjs from "@/lib/dayjs/dayjs-custom";
+import { getDayjsByLocale, getHoverText, getLevelBadgeClass, getLevelNameById, getRoleBadge, getUserClass, getUserNameClass, trackingIpV4 } from '@/app/utils/HelperFunctions';
 import { v4 as uuidv4 } from 'uuid';
 import { getPercentByDivdeTwoNumber } from '@/lib/math/mathHelper';
 import Pagination from '../common/Pagination';
@@ -22,7 +21,7 @@ const editorStyle = {
     color: 'white',
 };
 
-export default function CommentComic({ comicId, collectionId, roleUser }: { comicId: any, collectionId: any, roleUser: any }) {
+export default function CommentComic({ comicId, collectionId, roleUser, locale }: { comicId: any, collectionId: any, roleUser: any, locale: string }) {
     const t = useTranslations('comic_detail');
     const [comment, setComment] = useState('');
     const [error, setError] = useState('');
@@ -306,7 +305,7 @@ export default function CommentComic({ comicId, collectionId, roleUser }: { comi
                                                 {cmt.collectionId && <b className='relation-chap'><a href={`/truyen-tranh/${cmt.albumFriendlyName}/${cmt.friendlyName}`}>{cmt.title}</a></b>}
                                             </h5>
                                             <div dangerouslySetInnerHTML={{ __html: cmt.text }} />
-                                            <span className='date-comment'>{dayjs.utc(cmt.createdOnUtc).local().format('DD-MM-YYYY HH:mm')}</span>
+                                            <span className='date-comment'>{getDayjsByLocale(locale, cmt.createdOnUtc).format('DD-MM-YYYY HH:mm')}</span>
                                             <ReplyComic
                                                 comment={cmt}
                                                 comicId={comicId}

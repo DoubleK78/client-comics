@@ -11,6 +11,7 @@ import axios from 'axios';
 import { ERegion } from '../models/comics/ComicSitemap';
 import { EStorageType } from '../models/enums/EStorageType';
 import { parseJsonFromString } from '@/lib/json';
+import dayjs from '@/lib/dayjs/dayjs-custom';
 
 export const getHoverText = (roleType: any): string => {
     if (roleType === ERoleType.UserSuperPremium) return "78%";
@@ -251,4 +252,12 @@ export const generateImageUrlByStorageType = (storageType: EStorageType, relativ
         default:
             return `${process.env.storageS1}/${relativeUrl}`;
     }
+}
+
+export const getDayjsByLocale = (locale: string, date?: Date | string | null) => {
+    if (locale === 'vi') {
+        return date ? dayjs.utc(date).add(7, 'hours') : dayjs().utc().add(7, 'hours');
+    }
+
+    return date ? dayjs.utc(date) : dayjs().utc();
 }

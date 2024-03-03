@@ -1,7 +1,6 @@
 "use client"
 import ContentResponse from "@/app/models/contents/ContentResponse";
-import { converPrefixtUrlByLocale, countryFlags, getLangByLocale, handleRedirect, shortNumberViews } from "@/app/utils/HelperFunctions";
-import dayjs from "@/lib/dayjs/dayjs-custom";
+import { converPrefixtUrlByLocale, countryFlags, getDayjsByLocale, getLangByLocale, handleRedirect, shortNumberViews } from "@/app/utils/HelperFunctions";
 import { useTranslations } from 'next-intl';
 import PagingRequest from "@/app/models/paging/PagingRequest";
 import { useEffect, useState } from "react";
@@ -16,8 +15,8 @@ export default function ChapterComic({ contents, locale, roleUser, genre, comicI
     const routeChapter = locale === 'vi' ? pathnames['/comics/[comicid]/[contentid]'][getLangByLocale(locale)] : `/${getLangByLocale(locale)}${pathnames['/comics/[comicid]/[contentid]'][getLangByLocale(locale)]}`;
 
     const checkVisibility = (createdOnUtc: any) => {
-        const currentTime = dayjs();
-        const createdTime = dayjs.utc(createdOnUtc).local();
+        const currentTime = getDayjsByLocale(locale);
+        const createdTime = getDayjsByLocale(locale, createdOnUtc);
         const timeDifference = currentTime.diff(createdTime, 'hours');
         return timeDifference <= 4;
     };
@@ -84,11 +83,11 @@ export default function ChapterComic({ contents, locale, roleUser, genre, comicI
                                                     <>
                                                         {locale == 'vi' ? (
                                                             <>
-                                                                <span>{dayjs.utc(content.createdOnUtc).local().format('DD-MM-YYYY HH:mm')}</span>
+                                                                <span>{getDayjsByLocale(locale, content.createdOnUtc).format('DD-MM-YYYY HH:mm')}</span>
                                                             </>
                                                         ) : (
                                                             <>
-                                                                <span>{dayjs.utc(content.createdOnUtc).format('DD-MM-YYYY HH:mm')}</span>
+                                                                <span>{getDayjsByLocale(locale, content.createdOnUtc).format('DD-MM-YYYY HH:mm')}</span>
                                                             </>
                                                         )}
                                                     </>

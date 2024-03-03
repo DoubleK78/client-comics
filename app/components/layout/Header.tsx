@@ -8,15 +8,15 @@ import Image from "next/image";
 import SessionProviderWrapper from "./SessionProviderWrapper";
 
 const DynamicLogoutButton = dynamic(() => import('./LogoutButton'), {
-    ssr: false
+    ssr: true
 });
 
 const DynamicLanguageSwitcher = dynamic(() => import('./LanguageSwitcher'), {
-    ssr: false
+    ssr: true
 })
 
 const DynamicSearchHeader = dynamic(() => import('./SearchHeader'), {
-    ssr: false
+    ssr: true
 });
 
 export default async function Header() {

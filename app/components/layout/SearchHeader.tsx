@@ -11,7 +11,7 @@ export default function SearchHeader() {
         if (searchValue != "" && searchValue != null)
             window.location.href = `/search?value=${searchValue}`;
         else
-            window.location.href = "#"
+            window.location.href = "/search"
     };
 
     const handleInputChange = (e: any) => {

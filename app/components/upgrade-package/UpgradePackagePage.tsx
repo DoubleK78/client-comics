@@ -1,15 +1,15 @@
 "use client"
-import { getEnumValueFromString, getRoleBadge } from "@/app/utils/HelperFunctions";
-import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { getDayjsByLocale, getEnumValueFromString, getRoleBadge } from "@/app/utils/HelperFunctions";
+import { useLocale, useTranslations } from "next-intl";
+import { useEffect } from "react";
 import Premium from '@/public/assets/media/banner/premium.jpg';
 import SPremium from '@/public/assets/media/banner/s-premium.jpg';
 import Image from "next/image";
 import { ERoleType } from "@/app/models/enums/ERoleType";
-import dayjs from "dayjs";
 
 export default function UpgradePackagePage({ session }: { session: any }) {
     const t = useTranslations('upgrade');
+    const locale = useLocale();
     const roleUser = getEnumValueFromString(session.user?.token?.roles);
 
     useEffect(() => {
@@ -29,7 +29,7 @@ export default function UpgradePackagePage({ session }: { session: any }) {
                             </p>
                             <p className="package-now duration">{t('expires_on')}:
                                 <div>
-                                    {session?.user?.token?.expriedRoleDate ? dayjs.utc(session.user.token.expriedRoleDate).local().format('DD-MM-YYYY') : t('forever')}
+                                    {session?.user?.token?.expriedRoleDate ? getDayjsByLocale(locale, session.user.token.expriedRoleDate).format('DD-MM-YYYY') : t('forever')}
                                 </div>
                             </p>
                         </>
