@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { generateImageUrlByStorageType, getEnumValueFromString, getLangByLocale } from '@/app/utils/HelperFunctions';
 import { ERoleType } from '@/app/models/enums/ERoleType';
 import dayjs from "@/lib/dayjs/dayjs-custom";
-import ContentComicItemV2 from './ContentComicItemV2';
 import { pathnames } from '@/navigation';
 import SupportButton from '../common/SupportButton';
 import PreviousNextButton from './PreviousNextButton';
