@@ -87,7 +87,7 @@ const DynamicCommentComic = dynamic(() => import('@/app/components/comic/Comment
 });
 
 const DynamicChapterComic = dynamic(() => import('@/app/components/comic/ChapterComic'), {
-    ssr: false
+    ssr: true
 })
 
 const getComic = async (comicid: string | null) => {

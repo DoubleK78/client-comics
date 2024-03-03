@@ -7,24 +7,7 @@ import PagingRequest from "@/app/models/paging/PagingRequest";
 import { useEffect, useState } from "react";
 import { getAlbums } from "@/lib/services/client/album/albumService";
 import { pathnames } from "@/navigation";
-
-const checkChapHistory = (albumNameParam: any, chapParam: any): string => {
-    const history = localStorage.getItem("history_chap");
-    if (history !== undefined && history) {
-        let historyList;
-        try {
-            historyList = JSON.parse(history);
-            if (!Array.isArray(historyList)) {
-                historyList = [];
-            }
-        } catch (error) {
-            historyList = [];
-        }
-        if (historyList.find((item: any) => item.albumName === albumNameParam && item.chap === chapParam) !== undefined)
-            return "readed";
-    }
-    return "";
-}
+import ChapterComicItem from "./ChapterComicItem";
 
 export default function ChapterComic({ contents, locale, roleUser, genre, comicId, region, isBot }: {
     contents?: ContentResponse[] | null, locale: any, roleUser: any, genre: any, comicId: any, region: any, isBot: boolean
@@ -87,8 +70,7 @@ export default function ChapterComic({ contents, locale, roleUser, genre, comicI
                                 {contents?.map((content, index) => (
                                     <div key={index}>
                                         <h5 className="chapter-list">
-                                            {!isBot && <a onClick={() => handleRedirect(`/truyen-tranh/${content.albumFriendlyName}/${content.friendlyName}`, roleUser)}
-                                                className={checkChapHistory(content.albumFriendlyName, content.friendlyName)}>{content.title}</a>}
+                                            {!isBot && <ChapterComicItem title={content.title} albumFriendlyName={content.albumFriendlyName} collectionfriendlyName={content.friendlyName} onClick={() => handleRedirect(`/truyen-tranh/${content.albumFriendlyName}/${content.friendlyName}`, roleUser)} />}
                                             {isBot && <a href={`${generateContentUrlByLocale(routeChapter, content.albumFriendlyName ?? '', content.friendlyName ?? '')}`}>{content.title}</a>}
                                             <div className="new-chap">
                                                 {checkVisibility(content.createdOnUtc) &&

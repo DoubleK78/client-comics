@@ -16,7 +16,11 @@ const ScrollButton = dynamic(() => import('@/app/components/common/ScrollButton'
 });
 
 const DynamiChooseChapButton = dynamic(() => import('@/app/components/contents/ChooseChapButton'), {
-    ssr: false
+    ssr: true
+});
+
+const DynamicContentComicItemV2 = dynamic(() => import('./ContentComicItemV2'), {
+    ssr: true
 })
 
 export default async function ContentComic({ content, comic, session, locale, isBot }: { content?: ContentResponse | null, comic?: ComicDetail | null, session: any, locale: any, isBot: boolean }) {
@@ -126,7 +130,7 @@ export default async function ContentComic({ content, comic, session, locale, is
                                     </div>
                                 ))}
                                 {process.env.LAZY_LOADING_IMAGE == 'true' && content?.contentItems && content?.contentItems.map((item: any) => (
-                                    <ContentComicItemV2 key={uuidv4()} imageUrl={generateImageUrlByStorageType(content?.storageType, item)} />
+                                    <DynamicContentComicItemV2 key={uuidv4()} imageUrl={generateImageUrlByStorageType(content?.storageType, item)} />
                                 ))}
                             </div>
                         ) : (

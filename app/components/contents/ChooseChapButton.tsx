@@ -1,7 +1,7 @@
 "use client";
-
 import { setHistory } from "@/app/utils/HelperFunctions";
 import classNames from "classnames";
+import { useEffect, useState } from "react";
 
 type Props = {
     albumFriendlyName: string | null;
@@ -30,10 +30,15 @@ const checkChapHistory = (albumNameParam: any, chapParam: any): string => {
 }
 
 export default function ChooseChapButton({ targeLink, title, albumFriendlyName, collectionfriendlyName, isActive }: Props) {
+    const [classNameReaded, setClassNameReaded] = useState<string>("");
+
+    useEffect(() => {
+        setClassNameReaded(checkChapHistory(albumFriendlyName, collectionfriendlyName));
+    }, []);
 
     return (
         <a className={classNames('page-link', {
-            readed: checkChapHistory(albumFriendlyName, collectionfriendlyName),
+            readed: classNameReaded,
             active: isActive
         })}
             onClick={() => setHistory(targeLink)}
