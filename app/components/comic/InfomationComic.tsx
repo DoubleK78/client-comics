@@ -100,6 +100,7 @@ export default function InfomationComic({ comic, roleUser, region, locale }: { c
                                 <div className="col-lg-6 col-md-7 col-12">
                                     <div className="trailer-box">
                                         <img
+                                            loading="lazy"
                                             src={comic?.thumbnailUrl ?? "/assets/media/manga/manga-img-1.png"}
                                             alt={comic?.title}
                                             className="image"

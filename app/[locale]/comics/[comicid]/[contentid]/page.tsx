@@ -14,6 +14,7 @@ import ContentMetadata from "@/app/models/contents/ContentMetadata";
 import { isbot } from "isbot";
 import { getEnumValueFromString, getRegionByLocale } from "@/app/utils/HelperFunctions";
 import { pathnames } from "@/navigation";
+import InitialContentComic from "@/app/components/contents/InitialContentComic";
 
 type Props = {
     params: { comicid: string | null, contentid: string | null, locale: string }
@@ -137,9 +138,10 @@ export default async function Page({ params, searchParams }: {
     const content = await getContent(params.comicid, params.contentid, session?.user?.token?.apiToken, ip, isBot, searchParams?.previousCollectionId);
     return (
         <>
+            <InitialContentComic isValid={content !== null} />
             <Breadcrumb content={content} />
             <ClearSearchParams />
-            <ContentComic content={content} comic={comic} session={session} locale={locale} />
+            <ContentComic content={content} comic={comic} session={session} locale={locale} isBot={isBot} />
             <DynamicCommentComic comicId={content?.albumId} collectionId={content?.id} roleUser={roleUser} />
         </>
     );

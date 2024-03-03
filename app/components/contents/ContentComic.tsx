@@ -9,11 +9,17 @@ import dayjs from "@/lib/dayjs/dayjs-custom";
 import ContentComicItemV2 from './ContentComicItemV2';
 import { pathnames } from '@/navigation';
 import SupportButton from '../common/SupportButton';
+import PreviousNextButton from './PreviousNextButton';
 
 const ScrollButton = dynamic(() => import('@/app/components/common/ScrollButton'), {
     ssr: false
 });
-export default async function ContentComic({ content, comic, session, locale }: { content?: ContentResponse | null, comic?: ComicDetail | null, session: any, locale: any }) {
+
+const DynamiChooseChapButton = dynamic(() => import('@/app/components/contents/ChooseChapButton'), {
+    ssr: false
+})
+
+export default async function ContentComic({ content, comic, session, locale, isBot }: { content?: ContentResponse | null, comic?: ComicDetail | null, session: any, locale: any, isBot: boolean }) {
     const t = useTranslations('comic_detail');
     const routeChapter = locale === 'vi' ? pathnames['/comics/[comicid]/[contentid]'][getLangByLocale(locale)] : `/${getLangByLocale(locale)}${pathnames['/comics/[comicid]/[contentid]'][getLangByLocale(locale)]}`;
 
@@ -30,8 +36,8 @@ export default async function ContentComic({ content, comic, session, locale }: 
         let currentChapNumber = parseInt(currentFriendlyName.split("-")[1]);
         let endChapNumber = parseInt((comic?.contents[0]?.friendlyName ?? "0").split("-")[1]);
         let startChapNumber = parseInt((comic?.contents[comic?.contents.length - 1]?.friendlyName ?? "0").split("-")[1]);
-        prevChap = generateContentUrlByLocale(routeChapter, albumFriendlyName ?? '', currentFriendlyName.replace(currentFriendlyName, 'chap-' + (currentChapNumber - 1)  ?? ''));
-        nextChap = generateContentUrlByLocale(routeChapter, albumFriendlyName ?? '', currentFriendlyName.replace(currentFriendlyName, 'chap-' + (currentChapNumber + 1)  ?? ''));
+        prevChap = generateContentUrlByLocale(routeChapter, albumFriendlyName ?? '', currentFriendlyName.replace(currentFriendlyName, 'chap-' + (currentChapNumber - 1) ?? ''));
+        nextChap = generateContentUrlByLocale(routeChapter, albumFriendlyName ?? '', currentFriendlyName.replace(currentFriendlyName, 'chap-' + (currentChapNumber + 1) ?? ''));
         isLastChap = parseInt(currentFriendlyName.split("-")[1]) < endChapNumber || false;
         isFirstChap = parseInt(currentFriendlyName.split("-")[1]) > startChapNumber || false;
     }
@@ -46,7 +52,7 @@ export default async function ContentComic({ content, comic, session, locale }: 
                     <div className="heading style-1">
                         <h1>{content?.albumTitle} - {content?.title}</h1>
                     </div>
-                    <SupportButton prevLink = {isFirstChap ? prevChap: null} nextLink={isLastChap ? nextChap: null}/>
+                    <SupportButton prevLink={isFirstChap ? prevChap : null} nextLink={isLastChap ? nextChap : null} />
                     <ScrollButton />
                     <div className="d-flex justify-content-between mb-4">
                         <div className="left">
@@ -67,27 +73,42 @@ export default async function ContentComic({ content, comic, session, locale }: 
                                 <div className='chapter-list-content'>
                                     {comic?.contents?.map((content, index) => (
                                         <li key={index} className="grid-item">
-                                            <a className='page-link' href={`${generateContentUrlByLocale(routeChapter, content.albumFriendlyName ?? '', content.friendlyName ?? '')}`}>
-                                                {content.title}
-                                            </a>
+                                            {isBot && (
+                                                <a className='page-link' href={`${generateContentUrlByLocale(routeChapter, content.albumFriendlyName ?? '', content.friendlyName ?? '')}`}>
+                                                    {content.title}
+                                                </a>
+                                            )}
+                                            {!isBot && <DynamiChooseChapButton
+                                                targeLink={generateContentUrlByLocale(routeChapter, content.albumFriendlyName ?? '', content.friendlyName ?? '')}
+                                                title={content.title}
+                                                albumFriendlyName={content.albumFriendlyName}
+                                                collectionfriendlyName={content.friendlyName}
+                                                isActive={content.friendlyName === currentFriendlyName} />}
                                         </li>
                                     ))}
                                 </div>
                             </ul>
                         </div>
                         <div className="right">
-                            {isFirstChap &&
-                                <a href={prevChap} className="anime-btn btn-dark">
+                            {isFirstChap && isBot &&
+                                <a href={prevChap}
+                                    className="anime-btn btn-dark">
                                     {t('previous')}
                                 </a>
                             }
-                            {isLastChap &&
+                            {isLastChap && isBot &&
                                 <a
                                     href={nextChap}
                                     className="anime-btn btn-dark border-change ms-1"
                                 >
                                     {t('next')}
                                 </a>
+                            }
+                            {isFirstChap && !isBot &&
+                                <PreviousNextButton isNext={false} targeLink={prevChap} />
+                            }
+                            {isLastChap && !isBot &&
+                                <PreviousNextButton isNext={true} targeLink={nextChap} />
                             }
                         </div>
                     </div>
@@ -167,18 +188,29 @@ export default async function ContentComic({ content, comic, session, locale }: 
                                 </ul>
                             </div>
                             <div className="right">
-                                {isFirstChap &&
-                                    <a href={prevChap} className="anime-btn btn-dark">
+                                {isFirstChap && isBot &&
+                                    <a href={prevChap}
+                                        className="anime-btn btn-dark">
                                         {t('previous')}
                                     </a>
                                 }
-                                {isLastChap &&
+                                {isLastChap && isBot &&
                                     <a
                                         href={nextChap + "?previousCollectionId=" + content?.id}
                                         className="anime-btn btn-dark border-change ms-1"
                                     >
                                         {t('next')}
                                     </a>
+                                }
+                                {isFirstChap && !isBot &&
+                                    <PreviousNextButton isNext={false} targeLink={prevChap} />
+                                }
+                                {isLastChap && !isBot &&
+                                    <PreviousNextButton
+                                        isNext={true}
+                                        targeLink={nextChap}
+                                        alternativeTargertLink={nextChap + "?previousCollectionId=" + content?.id}
+                                    />
                                 }
                             </div>
                         </div>

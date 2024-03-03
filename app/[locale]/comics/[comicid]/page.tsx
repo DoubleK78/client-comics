@@ -1,6 +1,5 @@
 import { getAxiosInstanceAsync } from "@/lib/axios";
 import Breadcrumb from "../../../components/comic/Breadcrumb";
-import ChapterComic from "../../../components/comic/ChapterComic";
 import InfomationComic from "../../../components/comic/InfomationComic";
 import ServerResponse from "@/app/models/common/ServerResponse";
 import ComicDetail from "@/app/models/comics/ComicDetail";
@@ -87,6 +86,10 @@ const DynamicCommentComic = dynamic(() => import('@/app/components/comic/Comment
     ssr: false
 });
 
+const DynamicChapterComic = dynamic(() => import('@/app/components/comic/ChapterComic'), {
+    ssr: false
+})
+
 const getComic = async (comicid: string | null) => {
     try {
         const response = await (await getAxiosInstanceAsync()).get<ServerResponse<ComicDetail>>(`/api/client/ComicApp/${comicid}`);
@@ -109,7 +112,7 @@ export default async function Comic({ params }: { params: { comicid: string | nu
             <ScrollButton />
             <Breadcrumb title={comic?.title} friendlyName={comic?.friendlyName} />
             <InfomationComic comic={comic} roleUser={roleUser} region={comic?.region} locale={locale} />
-            <ChapterComic contents={comic?.contents} locale={locale} roleUser={roleUser} genre={comic?.tags} comicId={comic?.id} region={comic?.region} isBot={isBot} />
+            <DynamicChapterComic contents={comic?.contents} locale={locale} roleUser={roleUser} genre={comic?.tags} comicId={comic?.id} region={comic?.region} isBot={isBot} />
             <DynamicCommentComic comicId={comic?.id} collectionId={null} roleUser={roleUser} />
         </>
     );

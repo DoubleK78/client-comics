@@ -10,6 +10,7 @@ import { TypeCountry } from '../models/comics/TypeCountry';
 import axios from 'axios';
 import { ERegion } from '../models/comics/ComicSitemap';
 import { EStorageType } from '../models/enums/EStorageType';
+import { parseJsonFromString } from '@/lib/json';
 
 export const getHoverText = (roleType: any): string => {
     if (roleType === ERoleType.UserSuperPremium) return "78%";
@@ -172,42 +173,23 @@ export const generateAffiliateLink = (affiliateLinks: any) => {
 export const handleRedirect = (link: any, roleUser: any) => {
     if (percentAff(roleUser))
         window.open(generateAffiliateLink(affiliateLinks), '_blank');
-    else
-    {
+    else {
         setHistory(link);
         window.location.href = link;
     }
 }
 
-export const checkChapHistory = (albumNameParam: any, chapParam: any): string => {
-    const history = localStorage.getItem("history_chap");
-    if (history !== undefined && history) {
-        let historyList;
-        try {
-            historyList = JSON.parse(history);
-            if (!Array.isArray(historyList)) {
-                historyList = [];
-            }
-        } catch (error) {
-            historyList = [];
-        }
-        if (historyList.find((item: any) => item.albumName === albumNameParam && item.chap === chapParam) !== undefined)
-            return "readed";
-    }
-    return "";
-}
-
-function setHistory(link: any) {
+export const setHistory = (link: any) => {
     const pattern = /\/([a-zA-Z0-9-]+)\/(chap-[0-9]+)$/;
     const match = link.match(pattern);
-    
-    if (match) {
+
+    if (match && match.length > 2) {
         const albumName = match[1];
         const chap = match[2];
-        
+
         const existingHistoryJSON = localStorage.getItem("history_chap");
-        const existingHistory = existingHistoryJSON ? JSON.parse(existingHistoryJSON) : [];
-        const itemExists = existingHistory.some((item: any) => item.albumName === albumName && item.chap === chap);
+        const existingHistory: any[] = existingHistoryJSON ? (parseJsonFromString(existingHistoryJSON) ?? []) : [];
+        const itemExists = existingHistory?.some((item: any) => item.albumName === albumName && item.chap === chap);
 
         if (!itemExists) {
             existingHistory.push({ albumName, chap });

@@ -10,6 +10,7 @@ export default function LanguageSwitcher({ locale }) {
     const params = useParams();
 
     useEffect(() => {
+        // When switch langanege english, remove params ?switch=true
         if (locale === 'en') {
             const params = new URLSearchParams(window.location.search);
             params.delete('page');

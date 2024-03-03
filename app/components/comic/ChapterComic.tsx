@@ -1,6 +1,6 @@
 "use client"
 import ContentResponse from "@/app/models/contents/ContentResponse";
-import { checkChapHistory, converPrefixtUrlByLocale, countryFlags, getLangByLocale, handleRedirect, shortNumberViews } from "@/app/utils/HelperFunctions";
+import { converPrefixtUrlByLocale, countryFlags, getLangByLocale, handleRedirect, shortNumberViews } from "@/app/utils/HelperFunctions";
 import dayjs from "@/lib/dayjs/dayjs-custom";
 import { useTranslations } from 'next-intl';
 import PagingRequest from "@/app/models/paging/PagingRequest";
@@ -8,12 +8,30 @@ import { useEffect, useState } from "react";
 import { getAlbums } from "@/lib/services/client/album/albumService";
 import { pathnames } from "@/navigation";
 
+const checkChapHistory = (albumNameParam: any, chapParam: any): string => {
+    const history = localStorage.getItem("history_chap");
+    if (history !== undefined && history) {
+        let historyList;
+        try {
+            historyList = JSON.parse(history);
+            if (!Array.isArray(historyList)) {
+                historyList = [];
+            }
+        } catch (error) {
+            historyList = [];
+        }
+        if (historyList.find((item: any) => item.albumName === albumNameParam && item.chap === chapParam) !== undefined)
+            return "readed";
+    }
+    return "";
+}
+
 export default function ChapterComic({ contents, locale, roleUser, genre, comicId, region, isBot }: {
     contents?: ContentResponse[] | null, locale: any, roleUser: any, genre: any, comicId: any, region: any, isBot: boolean
 }) {
     const t = useTranslations('comic_detail');
     const routeChapter = locale === 'vi' ? pathnames['/comics/[comicid]/[contentid]'][getLangByLocale(locale)] : `/${getLangByLocale(locale)}${pathnames['/comics/[comicid]/[contentid]'][getLangByLocale(locale)]}`;
-    
+
     const checkVisibility = (createdOnUtc: any) => {
         const currentTime = dayjs();
         const createdTime = dayjs.utc(createdOnUtc).local();
@@ -69,8 +87,8 @@ export default function ChapterComic({ contents, locale, roleUser, genre, comicI
                                 {contents?.map((content, index) => (
                                     <div key={index}>
                                         <h5 className="chapter-list">
-                                            {!isBot && <a onClick={() => handleRedirect(`/truyen-tranh/${content.albumFriendlyName}/${content.friendlyName}`, roleUser)} 
-                                            className={checkChapHistory(content.albumFriendlyName, content.friendlyName)}>{content.title}</a>}
+                                            {!isBot && <a onClick={() => handleRedirect(`/truyen-tranh/${content.albumFriendlyName}/${content.friendlyName}`, roleUser)}
+                                                className={checkChapHistory(content.albumFriendlyName, content.friendlyName)}>{content.title}</a>}
                                             {isBot && <a href={`${generateContentUrlByLocale(routeChapter, content.albumFriendlyName ?? '', content.friendlyName ?? '')}`}>{content.title}</a>}
                                             <div className="new-chap">
                                                 {checkVisibility(content.createdOnUtc) &&
@@ -100,66 +118,66 @@ export default function ChapterComic({ contents, locale, roleUser, genre, comicI
                                         <hr />
                                     </div>
                                 ))}
+                            </div>
+                        </div>
+                        <div className="col-lg-4 col-md-6 col-sm-8 offset-lg-0 offset-md-3 offset-sm-2 mt-lg-0 mt-3">
+                            <h3 className="small-title">{t('similar')}</h3>
+                            {loading && (
+                                <div className="d-flex justify-content-center align-items-center">
+                                    <div className="spinner-border" role="status">
+                                        <span className="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            )}
+                            {!loading && albums && albums.length === 0 && (
+                                <div className="no-data-message">
+                                    {t('no_data1')}
+                                </div>
+                            )}
+                            {albums && albums?.filter((x: any) => x.id !== comicId).map((album: any) => (
+                                <div key={album.id} className="anime-box bg-color-black">
+                                    {!isBot && (
+                                        <a onClick={() => handleRedirect(`${album.friendlyName}`, roleUser)}>
+                                            <div className="row m-0">
+                                                <div className="p-0 col-2">
+                                                    <img loading="lazy" src={album.cdnThumbnailUrl ?? "/assets/media/404/none.jpg"} alt={album.title} />
+                                                </div>
+                                                <div className="p-0 col-9">
+                                                    <div className="anime-blog">
+                                                        <p>{album.title}</p>
+                                                        <p className="text-box">{album.lastCollectionTitle}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="p-0 col-1 show-type">
+                                                    <span className="show-type">{album.tags && <span className={(countryFlags as any)[album.tags]}></span>}</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    )}
+                                    {isBot && (
+                                        <a href={`${converPrefixtUrlByLocale(pathnames['/comics'][getLangByLocale(locale)], locale)}/${album.friendlyName}`}>
+                                            <div className="row m-0">
+                                                <div className="p-0 col-2">
+                                                    <img src={album.cdnThumbnailUrl ?? "/assets/media/404/none.jpg"} alt={album.title} />
+                                                </div>
+                                                <div className="p-0 col-9">
+                                                    <div className="anime-blog">
+                                                        <p>{album.title}</p>
+                                                        <p className="text-box">{album.lastCollectionTitle}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="p-0 col-1 show-type">
+                                                    <span className="show-type">{album.tags && <span className={(countryFlags as any)[album.tags]}></span>}</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    )}
+                                </div>
+                            ))}
                         </div>
                     </div>
-                    <div className="col-lg-4 col-md-6 col-sm-8 offset-lg-0 offset-md-3 offset-sm-2 mt-lg-0 mt-3">
-                        <h3 className="small-title">{t('similar')}</h3>
-                        {loading && (
-                            <div className="d-flex justify-content-center align-items-center">
-                                <div className="spinner-border" role="status">
-                                    <span className="visually-hidden">Loading...</span>
-                                </div>
-                            </div>
-                        )}
-                        {!loading && albums && albums.length === 0 && (
-                            <div className="no-data-message">
-                                {t('no_data1')}
-                            </div>
-                        )}
-                        {albums && albums?.filter((x: any) => x.id !== comicId).map((album: any) => (
-                            <div key={album.id} className="anime-box bg-color-black">
-                                {!isBot && (
-                                    <a onClick={() => handleRedirect(`${album.friendlyName}`, roleUser)}>
-                                        <div className="row m-0">
-                                            <div className="p-0 col-2">
-                                                <img src={album.cdnThumbnailUrl ?? "/assets/media/404/none.jpg"} alt={album.title} />
-                                            </div>
-                                            <div className="p-0 col-9">
-                                                <div className="anime-blog">
-                                                    <p>{album.title}</p>
-                                                    <p className="text-box">{album.lastCollectionTitle}</p>
-                                                </div>
-                                            </div>
-                                            <div className="p-0 col-1 show-type">
-                                                <span className="show-type">{album.tags && <span className={(countryFlags as any)[album.tags]}></span>}</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                )}
-                                {isBot && (
-                                    <a href={`${converPrefixtUrlByLocale(pathnames['/comics'][getLangByLocale(locale)], locale)}/${album.friendlyName}`}>
-                                        <div className="row m-0">
-                                            <div className="p-0 col-2">
-                                                <img src={album.cdnThumbnailUrl ?? "/assets/media/404/none.jpg"} alt={album.title} />
-                                            </div>
-                                            <div className="p-0 col-9">
-                                                <div className="anime-blog">
-                                                    <p>{album.title}</p>
-                                                    <p className="text-box">{album.lastCollectionTitle}</p>
-                                                </div>
-                                            </div>
-                                            <div className="p-0 col-1 show-type">
-                                                <span className="show-type">{album.tags && <span className={(countryFlags as any)[album.tags]}></span>}</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                )}
-                            </div>
-                        ))}
-                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
         </>
     )
 }
