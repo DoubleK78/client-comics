@@ -261,3 +261,19 @@ export const getDayjsByLocale = (locale: string, date?: Date | string | null) =>
 
     return date ? dayjs.utc(date) : dayjs().utc();
 }
+
+export const roundTimeTo30Minutes = (date: any) => {
+    let roundedDate = new Date(date);
+
+    let minutes = roundedDate.getMinutes();
+    if (minutes < 30) {
+        roundedDate.setMinutes(30);
+    } else if (minutes > 30) {
+        roundedDate.setMinutes(0);
+        roundedDate.setHours(roundedDate.getHours() + 1);
+    } else {
+
+    }
+
+    return roundedDate;
+}

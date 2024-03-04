@@ -3,7 +3,7 @@ import ComicDetail from '@/app/models/comics/ComicDetail';
 import dynamic from "next/dynamic";
 import { useTranslations } from 'next-intl';
 import { v4 as uuidv4 } from 'uuid';
-import { generateImageUrlByStorageType, getEnumValueFromString, getLangByLocale } from '@/app/utils/HelperFunctions';
+import { generateImageUrlByStorageType, getEnumValueFromString, getLangByLocale, roundTimeTo30Minutes } from '@/app/utils/HelperFunctions';
 import { ERoleType } from '@/app/models/enums/ERoleType';
 import dayjs from "@/lib/dayjs/dayjs-custom";
 import { pathnames } from '@/navigation';
@@ -138,22 +138,22 @@ export default async function ContentComic({ content, comic, session, locale, is
                                 {roleUser === ERoleType.UserPremium &&
                                     <h3>{t('will_publish_pre')} {locale == 'vi' ? (
                                         <>
-                                            <span>{dayjs.utc(content?.createdOnUtc).add(11, 'hours').format('HH:mm A DD-MM-YYYY')}</span>
+                                            <span>{dayjs.utc(roundTimeTo30Minutes(content?.createdOnUtc)).add(11, 'hours').format('HH:mm A DD-MM-YYYY')}</span>
                                         </>
                                     ) : (
                                         <>
-                                            <span>{dayjs.utc(content?.createdOnUtc).add(4, 'hours').format('HH:mm A DD-MM-YYYY')}</span>
+                                            <span>{dayjs.utc(roundTimeTo30Minutes(content?.createdOnUtc)).add(4, 'hours').format('HH:mm A DD-MM-YYYY')}</span>
                                         </>
                                     )}</h3>
                                 }
                                 {roleUser === ERoleType.User || roleUser === ERoleType.NoneRole &&
                                     <h3>{t('will_publish')} {locale == 'vi' ? (
                                         <>
-                                            <span>{dayjs.utc(content?.createdOnUtc).add(19, 'hours').format('HH A DD-MM-YYYY')}</span>
+                                            <span>{dayjs.utc(roundTimeTo30Minutes(content?.createdOnUtc)).add(19, 'hours').format('HH:mm A DD-MM-YYYY')}</span>
                                         </>
                                     ) : (
                                         <>
-                                            <span>{dayjs.utc(content?.createdOnUtc).add(12, 'hours').format('HH A DD-MM-YYYY')}</span>
+                                            <span>{dayjs.utc(roundTimeTo30Minutes(content?.createdOnUtc)).add(12, 'hours').format('HH:mm A DD-MM-YYYY')}</span>
                                         </>
                                     )}</h3>
                                 }
