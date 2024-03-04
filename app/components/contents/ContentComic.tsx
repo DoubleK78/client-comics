@@ -146,7 +146,7 @@ export default async function ContentComic({ content, comic, session, locale, is
                                         </>
                                     )}</h3>
                                 }
-                                {roleUser !== ERoleType.UserPremium &&
+                                {roleUser !== ERoleType.UserPremium && roleUser !== ERoleType.UserSuperPremium &&
                                     <h3>{t('will_publish')} {locale == 'vi' ? (
                                         <>
                                             <span>{dayjs.utc(roundTimeTo30Minutes(content?.createdOnUtc)).add(19, 'hours').format('HH:mm A DD-MM-YYYY')}</span>
