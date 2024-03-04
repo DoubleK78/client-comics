@@ -2907,8 +2907,6 @@ ul.pagination li a.current {
   display: inline-block;
   padding: 12px 15px;
   width: 100%;
-  display: flex;
-  justify-content: center;
 }
 .anime-box .anime-blog{
   border: 0;
