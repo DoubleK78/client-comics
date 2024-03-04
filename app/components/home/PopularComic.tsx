@@ -181,10 +181,10 @@ export default function PopularComic({ roleUser, albums, isBot }: { roleUser: an
                                             </ul>
                                         </div>
                                     </div>
-                                    {!isBot && <a onClick={() => handleRedirect(`truyen-tranh/${album.friendlyName}`, roleUser)}>
+                                    {!isBot && <a className='title-album-home' onClick={() => handleRedirect(`truyen-tranh/${album.friendlyName}`, roleUser)}>
                                         <p>{album.title}</p>
                                     </a>}
-                                    {isBot && <a href={`${converPrefixtUrlByLocale(pathnames['/comics'][getLangByLocale(locale)], locale)}/${album.friendlyName}`}>
+                                    {isBot && <a className='title-album-home' href={`${converPrefixtUrlByLocale(pathnames['/comics'][getLangByLocale(locale)], locale)}/${album.friendlyName}`}>
                                         <p>{album.title}</p>
                                     </a>}
                                 </div>
