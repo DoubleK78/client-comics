@@ -5318,6 +5318,9 @@ input:focus,
 @media only screen and (max-width: 575px){
   .comic-element{
     width: 50% !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .post-btn{
     margin-top: 6vh !important;

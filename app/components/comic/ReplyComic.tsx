@@ -168,7 +168,7 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
                 <div className="card card-body">
                     <div className="row pt-3">
                         {replies?.map((rl: any, rlIndex: number) => (
-                            <div key={rlIndex} className="col-lg-11 offset-lg-1 offset-2 col-10 pb-4">
+                            <div key={rlIndex} className="col-lg-11 offset-lg-1 offset-0 col-7 pb-4">
                                 <div className="d-inline-flex align-items-start">
                                     <a data-hover-text={getHoverText(rl.roleType)} className={getUserClass(rl.roleType)}>
                                         <img src={rl.avatar} className="avatar-reply" alt="" />
