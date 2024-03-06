@@ -3,8 +3,13 @@ import { getComments, pushComment } from "@/lib/services/client/comment/commentS
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useMemo, useRef, useState } from "react";
 import ReactQuill from "react-quill";
-import { getDayjsByLocale, getHoverText, getLevelBadgeClass, getLevelNameById, getRoleBadge, getUserClass, getUserNameClass } from '@/app/utils/HelperFunctions';
+import { getDayjsByLocale, getHoverText, getLevelBadgeClass, getLevelNameById, getRoleBadge, getUserClass, getUserNameClass, hasBadWord, trackingIpV4 } from '@/app/utils/HelperFunctions';
 import { getPercentByDivdeTwoNumber } from "@/lib/math/mathHelper";
+import { vietnameseOffensiveWords } from "@/lib/offensive-words";
+import { createActivityLog } from "@/lib/services/client/activity-log/activityLogService";
+import ActivityLogRequestModel from "@/app/models/activity/ActivityLogRequestModel";
+import { EActivityType } from "@/app/models/enums/EActivityType";
+import { ERoleType } from "@/app/models/enums/ERoleType";
 
 const editorStyle = {
     width: '100%',
@@ -12,11 +17,12 @@ const editorStyle = {
     color: 'white',
 };
 
-export default function ReplyComic({ comment, comicId, commentId, replyCount, index }: {
+export default function ReplyComic({ comment, comicId, commentId, replyCount, index, roleUser }: {
     comment: any,
     comicId: number,
     commentId: number, replyCount: number,
-    index: string
+    index: string,
+    roleUser: any
 }) {
     const t = useTranslations('comic_detail');
     const locale = useLocale();
@@ -79,6 +85,10 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
             return;
         }
 
+        if (hasBadWord(reply, vietnameseOffensiveWords)) {
+            return;
+        }
+
         const regexEmpty = /<p><br><\/p>$/;
         let modifiedComment;
 
@@ -92,6 +102,30 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
             CollectionId: null,
             ParentCommentId: commentId
         };
+
+        let limitTimes: number | null = null;
+
+        switch (roleUser) {
+            case ERoleType.User:
+                limitTimes = 5;
+                break;
+            case ERoleType.UserPremium:
+                limitTimes = 10;
+                break;
+            case ERoleType.UserSuperPremium:
+                limitTimes = 20;
+                break;
+            default:
+                break;
+        }
+
+        const myActivityLog: ActivityLogRequestModel = {
+            ActivityType: EActivityType.Comment,
+            LimitTimes: limitTimes,
+            IpV4Address: await trackingIpV4()
+        };
+
+        let activity = await createActivityLog(myActivityLog);
 
         await pushComment(commentData);
         setReply('');

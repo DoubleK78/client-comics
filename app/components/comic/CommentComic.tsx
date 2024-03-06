@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import ReplyComic from './ReplyComic';
-import { getDayjsByLocale, getHoverText, getLevelBadgeClass, getLevelNameById, getRoleBadge, getUserClass, getUserNameClass, trackingIpV4 } from '@/app/utils/HelperFunctions';
+import { getDayjsByLocale, getHoverText, getLevelBadgeClass, getLevelNameById, getRoleBadge, getUserClass, getUserNameClass, hasBadWord, trackingIpV4 } from '@/app/utils/HelperFunctions';
 import { v4 as uuidv4 } from 'uuid';
 import { getPercentByDivdeTwoNumber } from '@/lib/math/mathHelper';
 import Pagination from '../common/Pagination';
@@ -14,6 +14,7 @@ import ActivityLogRequestModel from '@/app/models/activity/ActivityLogRequestMod
 import { EActivityType } from '@/app/models/enums/EActivityType';
 import { createActivityLog } from '@/lib/services/client/activity-log/activityLogService';
 import { ERoleType } from '@/app/models/enums/ERoleType';
+import { vietnameseOffensiveWords } from '@/lib/offensive-words';
 
 const editorStyle = {
     width: '100%',
@@ -42,7 +43,7 @@ export default function CommentComic({ comicId, collectionId, roleUser, locale }
     const [showPicker, setShowPicker] = useState(false);
     const emojiList = [
         '😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍'
-      ];
+    ];
     const handleDropdownChange = (event: any) => {
         const selectedValue = event.target.innerText.trim();
         setSelectedOption(selectedValue);
@@ -70,9 +71,14 @@ export default function CommentComic({ comicId, collectionId, roleUser, locale }
             return;
         }
 
+        if (hasBadWord(comment, vietnameseOffensiveWords)) {
+            setError(`${t('invalid_comment')}`);
+            return;
+        }
+
         const regexEmpty = /<p><br><\/p>$/;
         let modifiedComment;
-        
+
         if (regexEmpty.test(comment))
             modifiedComment = comment.slice(0, comment.lastIndexOf('<p><br></p>'));
         else
@@ -140,13 +146,13 @@ export default function CommentComic({ comicId, collectionId, roleUser, locale }
 
     const togglePicker = () => {
         setShowPicker(!showPicker);
-      };
-    
-      const handleSelectEmoji = (emoji: any) => {
+    };
+
+    const handleSelectEmoji = (emoji: any) => {
         var newComment = comment.concat(emoji);
         setComment(newComment);
         togglePicker();
-      };
+    };
 
     useEffect(() => {
         setLoading(true);
@@ -230,23 +236,23 @@ export default function CommentComic({ comicId, collectionId, roleUser, locale }
                                                     />
                                                 </div>
                                                 {!loading &&
-                                                <>
-                                                    <button className="input-group-text post-btn" type="submit">
-                                                        {t('post')}
-                                                    </button>
-                                                    <a className="input-group-text post-btn" onClick={togglePicker}>
-                                                        Icon
-                                                    </a>
-                                                    {showPicker && (
-                                                    <div style={{marginTop: '10px'}}>
-                                                        {emojiList.map((emoji, index) => (
-                                                            <span key={index} onClick={() => handleSelectEmoji(emoji)} style={{ cursor: 'pointer' }}>
-                                                            {emoji}
-                                                            </span>
-                                                        ))}
-                                                    </div>
-                                                )}
-                                                </>                            
+                                                    <>
+                                                        <button className="input-group-text post-btn" type="submit">
+                                                            {t('post')}
+                                                        </button>
+                                                        <a className="input-group-text post-btn" onClick={togglePicker}>
+                                                            Icon
+                                                        </a>
+                                                        {showPicker && (
+                                                            <div style={{ marginTop: '10px' }}>
+                                                                {emojiList.map((emoji, index) => (
+                                                                    <span key={index} onClick={() => handleSelectEmoji(emoji)} style={{ cursor: 'pointer' }}>
+                                                                        {emoji}
+                                                                    </span>
+                                                                ))}
+                                                            </div>
+                                                        )}
+                                                    </>
                                                 }
                                             </form>
                                         </div>
@@ -311,7 +317,8 @@ export default function CommentComic({ comicId, collectionId, roleUser, locale }
                                                 comicId={comicId}
                                                 commentId={cmt.id}
                                                 replyCount={cmt.replyCount}
-                                                index={uuidv4()} />
+                                                index={uuidv4()}
+                                                roleUser={roleUser} />
                                         </div>
                                     </div>
                                 ))}
