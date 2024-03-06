@@ -28,6 +28,7 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
     const locale = useLocale();
     const [replies, setReplies] = useState<any[]>([]);
     const [reply, setReply] = useState('');
+    const [error, setError] = useState('');
 
     const [isOpenToggle, setIsOpenToggle] = useState<boolean>(false);
     const [reloadTrigger, setReloadTrigger] = useState(false);
@@ -82,10 +83,12 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
     const handlePostReply = async (event: any, commentId: any) => {
         event.preventDefault();
         if (reply.trim() === '') {
+            setError(`${t('invalid_comment')}`);
             return;
         }
 
         if (hasBadWord(reply, vietnameseOffensiveWords)) {
+            setError(`${t('invalid_comment')}`);
             return;
         }
 
@@ -127,8 +130,26 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
 
         let activity = await createActivityLog(myActivityLog);
 
-        await pushComment(commentData);
+        if (activity)
+            await pushComment(commentData);
+        else {
+            switch (roleUser) {
+                case ERoleType.User:
+                    setError(`${t('error_comment_nor')} <a href="/upgrade-package">[${t('here')}]</a>`);
+                    break;
+                case ERoleType.UserPremium:
+                    setError(`${t('error_comment_pre')} <a href="/upgrade-package">[${t('here')}]</a>`);
+                    break;
+                case ERoleType.UserSuperPremium:
+                    setError(`${t('error_comment_spre')}`);
+                    break;
+                default:
+                    break;
+            }
+        }
+
         setReply('');
+        setError('');
         setReloadTrigger((prev) => !prev);
 
         if (trueReplyCount === 0) {
@@ -181,6 +202,7 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
                         </button>
                     </form>
                 </div>
+                {error && <p dangerouslySetInnerHTML={{ __html: error }} />}
             </div>
             {loading && <div className="spinner-border text-primary" role="status"></div>}
             {!loading && trueReplyCount > 0 && <a
