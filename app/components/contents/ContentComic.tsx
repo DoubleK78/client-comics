@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { generateImageUrlByStorageType, getEnumValueFromString, getLangByLocale, roundTimeTo30Minutes } from '@/app/utils/HelperFunctions';
 import { ERoleType } from '@/app/models/enums/ERoleType';
 import dayjs from "@/lib/dayjs/dayjs-custom";
+import ContentComicItemV2 from './ContentComicItemV2';
 import { pathnames } from '@/navigation';
 import SupportButton from '../common/SupportButton';
 import PreviousNextButton from './PreviousNextButton';
@@ -17,10 +18,6 @@ const ScrollButton = dynamic(() => import('@/app/components/common/ScrollButton'
 const DynamiChooseChapButton = dynamic(() => import('@/app/components/contents/ChooseChapButton'), {
     ssr: true
 });
-
-const DynamicContentComicItemV2 = dynamic(() => import('./ContentComicItemV2'), {
-    ssr: false
-})
 
 export default async function ContentComic({ content, comic, session, locale, isBot }: { content?: ContentResponse | null, comic?: ComicDetail | null, session: any, locale: any, isBot: boolean }) {
     const t = useTranslations('comic_detail');
@@ -129,7 +126,7 @@ export default async function ContentComic({ content, comic, session, locale, is
                                     </div>
                                 ))}
                                 {process.env.LAZY_LOADING_IMAGE == 'true' && content?.contentItems && content?.contentItems.map((item: any) => (
-                                    <DynamicContentComicItemV2 key={uuidv4()} imageUrl={generateImageUrlByStorageType(content?.storageType, item)} />
+                                    <ContentComicItemV2 key={uuidv4()} imageUrl={generateImageUrlByStorageType(content?.storageType, item)} />
                                 ))}
                             </div>
                         ) : (
