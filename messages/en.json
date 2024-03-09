@@ -67,7 +67,13 @@
         "search": "Search",
         "advanced_search": "Advanced Search",
         "power": "Power",
-        "schedule": "Launch calendar"
+        "schedule": "Launch calendar",
+        "standalone_mobile": "Welcome, to use the mobile app, please upgrade your account to Premium.",
+        "standalone_mobile_description": "If you already have a Premium account, please log in",
+        "standalone_mobile_here": "here",
+        "standalone_mobile_refer": "Please refer to the account upgrade guide",
+        "standalone_mobile_support": "If you have any questions",
+        "standalone_mobile_contact_us": "please contact us"
     },
     "search": {
         "home_page": "Home Page",

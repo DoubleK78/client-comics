@@ -1,8 +1,15 @@
 "use client";
-import { usePathname, useSearchParams } from "next/navigation";
+import { ERoleType } from "@/app/models/enums/ERoleType";
+import { getEnumValueFromString } from "@/app/utils/HelperFunctions";
+import { Session } from "next-auth";
+import { redirect, usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function StandonlineChecker() {
+type Props = {
+    session: Session | null;
+}
+
+export default function StandonlineChecker({ session }: Props) {
     const [isLoading, setIsLoading] = useState(false);
     const pathName = usePathname();
     const searchParams = useSearchParams();
@@ -50,6 +57,15 @@ export default function StandonlineChecker() {
             }
         }
     }, [pathName, searchParams]);
+
+    useEffect(() => {
+        const roleType = getEnumValueFromString(session?.user?.token?.roles);
+        if (isPwa()) {
+            if (roleType !== ERoleType.UserPremium && roleType !== ERoleType.UserSuperPremium) {
+                redirect('/standalone');
+            }
+        }
+    }, []);
 
     return (
         <>

@@ -22,7 +22,7 @@ const ScrollButton: React.FC = () => {
   }, []);
 
   return (
-    <button
+    <div
       id="scrollBtn"
       onClick={scrollToTop}
       style={{
@@ -41,7 +41,7 @@ const ScrollButton: React.FC = () => {
       }}
     >
       <i className="fas fa-arrow-up"></i>
-    </button>
+    </div>
   );
 };
 

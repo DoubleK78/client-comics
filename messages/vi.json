@@ -67,7 +67,13 @@
         "search": "Tìm kiếm",
         "advanced_search": "Tìm kiếm nâng cao",
         "power": "Sức mạnh",
-        "schedule": "Lịch ra mắt"
+        "schedule": "Lịch ra mắt",
+        "standalone_mobile": "Xin chào bạn, để sử dụng ứng dụng tại Mobile vui lòng sử dụng tài khoản Premium để sử dụng",
+        "standalone_mobile_description": "Nếu bạn đã có tài khoản Premium, vui lòng đăng nhập",
+        "standalone_mobile_here": "tại đây",
+        "standalone_mobile_refer": "Tham khảo nâng cấp tài khoản",
+        "standalone_mobile_support": "Mọi sự thắc mắc",
+        "standalone_mobile_contact_us": "liên hệ với chúng tôi"
     },
     "search": {
         "home_page": "Trang Chủ",
