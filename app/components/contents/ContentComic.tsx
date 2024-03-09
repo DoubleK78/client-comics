@@ -19,7 +19,7 @@ const DynamiChooseChapButton = dynamic(() => import('@/app/components/contents/C
 });
 
 const DynamicContentComicItemV2 = dynamic(() => import('./ContentComicItemV2'), {
-    ssr: true
+    ssr: false
 })
 
 export default async function ContentComic({ content, comic, session, locale, isBot }: { content?: ContentResponse | null, comic?: ComicDetail | null, session: any, locale: any, isBot: boolean }) {
