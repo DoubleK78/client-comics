@@ -4,6 +4,7 @@ import PagingRequest from "@/app/models/paging/PagingRequest";
 import { getAlbums } from "@/lib/services/client/album/albumService";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import ScrollButton from "../common/ScrollButton";
 
 export default function TopPage({ locale, roleUser }: { locale: any, roleUser: any }) {
     const typePage = typeof window !== 'undefined' ? new URLSearchParams(window.location.search)?.get('typePage') || "" : "";
@@ -75,6 +76,7 @@ export default function TopPage({ locale, roleUser }: { locale: any, roleUser: a
             <!--=      Breadcrumb Area Start        =-->
             <!--=====================================--> */}
             <section className="breadcrumb">
+                <ScrollButton />
                 <div className="container">
                     <div className="breadcrumb-content">
                         <ul>

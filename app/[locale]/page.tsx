@@ -21,6 +21,10 @@ const ScrollButton = dynamic(() => import('@/app/components/common/ScrollButton'
   ssr: false
 });
 
+const ChatBoxButton = dynamic(() => import('@/app/components/common/ChatBoxButton'), {
+  ssr: false
+});
+
 const getAlbums = cache(async (params: PagingRequest, filter: any) => {
   try {
     const response = await (await getAxiosInstanceAsync()).get<ServerResponse<any>>('/api/client/comicapp/paging', {
@@ -80,6 +84,7 @@ export default async function Home() {
 
   return (
     <>
+      <ChatBoxButton />
       <ScrollButton />
       <BannerComic roleUser={roleUser} isBot={isBot} />
       <PopularComic roleUser={roleUser} albums={popularComics} isBot={isBot} />

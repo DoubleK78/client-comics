@@ -774,7 +774,7 @@ p.text-box:hover{
   Heading Styles 
 --------------------------*/
 .heading.style-1 {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .heading.style-1 h1 {
@@ -884,7 +884,7 @@ p.text-box:hover{
   }
 
   .heading.style-1 h1 {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   .heading.style-1 h2 span {

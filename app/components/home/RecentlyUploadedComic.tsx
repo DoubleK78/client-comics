@@ -2,7 +2,7 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { useEffect, useState, useRef } from 'react';
 import FollowingRequestModel from '@/app/models/comics/FollowingRequestModel';
-import { converPrefixtUrlByLocale, followAlbum, getLangByLocale, getStatusFollow, handleRedirect, unFollow } from '@/app/utils/HelperFunctions';
+import { converPrefixtUrlByLocale, followAlbum, getLangByLocale, getStatusFollow, getUserNameClass, handleRedirect, unFollow } from '@/app/utils/HelperFunctions';
 import { pathnames } from '@/navigation';
 
 export default function RecentlyUploadedComic({ roleUser, albums, isBot }: { roleUser: any, albums: any, isBot: boolean }) {
@@ -68,7 +68,7 @@ export default function RecentlyUploadedComic({ roleUser, albums, isBot }: { rol
             <section className="popular style-2  sec-mar">
                 <div className="container">
                     <div className="heading style-1">
-                        <h1> {t('recently_uploaded')}
+                        <h1 className={getUserNameClass(roleUser)} style={{height: '70px'}}> {t('recently_uploaded')}
                             <a href="/top-page?typePage=&sort=updateDate">
                                 <span className="view-more">{t('view_more')}</span>
                             </a>
