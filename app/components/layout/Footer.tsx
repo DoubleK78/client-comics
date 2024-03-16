@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
-import Logo from '@/public/assets/media/logo_testing.png';
+import Logo from '@/public/assets/media/logo.png';
 import FacebookImage from '@/public/assets/media/footer/facebook.png';
 
 export default function Footer() {

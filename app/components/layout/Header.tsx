@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import dynamic from 'next/dynamic'
 import { getTranslations, getLocale } from 'next-intl/server';
 import Initial from "./Initial";
-import Logo from '@/public/assets/media/logo_testing.png';
+import Logo from '@/public/assets/media/logo.png';
 import Image from "next/image";
 import SessionProviderWrapper from "./SessionProviderWrapper";
 
