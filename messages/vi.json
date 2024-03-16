@@ -1,7 +1,7 @@
 {
     "metadata": {
         "home": "Fast Scans - Đọc Truyện Tranh Miễn Phí | Truyện Mới Cập Nhật Hằng Ngày",
-        "home_description": "Tại sao phải tốn 500đ để đọc truyện lậu? Hãy đến Fast Scans để khám phá nhiều bộ truyện tranh mới nhất trong nhiều thể loại đặc sắc: tiên hiệp, kiếm hiệp, teen, ngôn tình hay nhất, hoàn toàn MIỄN PHÍ.",
+        "home_description": "Hãy đến Fast Scans để khám phá nhiều bộ truyện tranh mới nhất trong nhiều thể loại đặc sắc: tiên hiệp, kiếm hiệp, teen, ngôn tình hay nhất, hoàn toàn không tốn tiền.",
         "search": "Khám phá truyện tranh online | Fast Scans",
         "search_description": "Đọc miễn phí nhiều bộ truyện tranh online mới nhất thuộc đa dạng thể loại tại Fast Scans. Cập nhật liên tục, không lo hết truyện!",
         "top": "{title}",
@@ -28,11 +28,11 @@
         "profile": "Hồ sơ cá nhân | Fast Scans",
         "profile_description": "Thông tin cá nhân và trạng thái cấp độ, theo dõi, lịch sử đọc truyện và nhiều tính năng khác để cá nhân hóa trải nghiệm đọc truyện của bạn!",
         "comic": "{title} [Tới {lastedChapter}] | Fast Scans",
-        "comic_description": "{title} {lastedChapter} mới nhất chất lượng ảnh cao tại Fast Scans. Cập nhật sớm, nhanh chóng, hoàn toàn MIỄN PHÍ và đặc biệt KHÔNG TÍNH PHÍ 500đ.",
+        "comic_description": "{title} {lastedChapter} mới nhất chất lượng ảnh cao tại Fast Scans. Cập nhật sớm, nhanh chóng, hoàn toàn không tốn tiền, trải nghiệm hơn thế nữa.",
         "comic_blank": "Truyện tranh tiếng việt Vietsub | Fast Scans",
         "comic_blank_description": "Truyện tranh việt Vietsub | Fast Scans",
         "content": "{comicTitle} - {contentTile} | Fast Scans",
-        "content_description": "Đọc truyện {comicTitle} {contentTile} chất lượng ảnh cao tại Fast Scans. Cập nhật sớm, nhanh chóng, hoàn toàn MIỄN PHÍ và đặc biệt KHÔNG TÍNH PHÍ 500đ.",
+        "content_description": "Đọc truyện {comicTitle} {contentTile} chất lượng ảnh cao tại Fast Scans. Cập nhật sớm, nhanh chóng, hoàn toàn không tốn tiền, trải nghiệm hơn thế nữa.",
         "content_blank": "Comic Chapter Vietsub | Fast Scans",
         "content_blank_description": "Comic Chapter Vietsub | Fast Scans",
         "top_user": "Bảng xếp hạng người dùng | Fast Scans",
@@ -40,9 +40,11 @@
         "payment": "Thanh toán nâng cấp tài khoản Premium | Fast Scans",
         "payment_description": "Thanh toán nâng cấp tài khoản Premium trên Fast Scans để trải nghiệm truy cập không giới hạn đến thế giới truyện tranh. Không quảng cáo, truyện mới cập nhật hàng ngày và nhiều ưu đãi độc quyền đang chờ đón bạn!",
         "schedule": "Lịch ra mắt hàng tuần | Fast Scans",
-        "schedule_description": "Lịch ra mắt truyện hàng tuần và không tốn 500 đồng",
+        "schedule_description": "Lịch ra mắt truyện hàng tuần dành cho hội viên Premium",
         "maintenance": "Bảo trì hệ thống | Fast Scans",
-        "maintenance_desctipion": "Xin lỗi vì sự bất tiện này! Chúng tôi đang bảo trì hệ thống Fast Scans. Chúng tôi sẽ quay trở lại sớm"
+        "maintenance_desctipion": "Xin lỗi vì sự bất tiện này! Chúng tôi đang bảo trì hệ thống Fast Scans. Chúng tôi sẽ quay trở lại sớm",
+        "install": "Cài đặt ứng dụng web cho iOS & Android | Fast Scans",
+        "install_description": "Cài đặt ứng dụng web Fast Scans cho iOS và Android để truy cập nhanh hơn, trải nghiệm mượt mà hơn, độc quyền dành riêng cho hội viên Premium."
     },
     "header": {
         "following": "Theo dõi",
@@ -67,7 +69,8 @@
         "search": "Tìm kiếm",
         "advanced_search": "Tìm kiếm nâng cao",
         "power": "Sức mạnh",
-        "schedule": "Lịch ra mắt"
+        "schedule": "Lịch ra mắt",
+        "install": "Cài đặt App [Pre]"
     },
     "search": {
         "home_page": "Trang Chủ",
@@ -226,7 +229,7 @@
         "is_messenger": "Vui lòng đăng nhập bằng ứng dụng trình duyệt trên máy của bạn"
     },
     "footer": {
-        "info": "Fast Scans - Kho truyện tranh online miễn phí | Truyện hay. Truyện  mới. Website luôn cập nhập những bộ truyện mới nhất thuộc các thể loại đặc sắc như truyện tiên hiệp, kiếm hiệp, truyện teen, tiểu thuyết ngôn tình hay nhất và không tốn 500 đồng.",
+        "info": "Fast Scans - Kho truyện tranh online miễn phí | Truyện hay. Truyện  mới. Website luôn cập nhập những bộ truyện mới nhất thuộc các thể loại đặc sắc như truyện tiên hiệp, kiếm hiệp, truyện teen, tiểu thuyết ngôn tình hay nhất và không tốn tiền.",
         "join_us_on": "Tham gia cùng chúng tôi",
         "right": "Mọi quyền được bảo lưu bởi",
         "privacy_policy": "Chính sách bảo mật",
@@ -271,5 +274,31 @@
         "success": "Gửi mã thanh toán thành công !",
         "invalid_code": "Mã giao dịch không hợp lệ !",
         "forever": "Vĩnh viễn"
+    },
+    "error": {
+        "something_went_wrong": "Đã có lỗi xảy ra, xin lỗi vì sự bất tiện!",
+        "something_went_wrong_action": "Bạn có thể tải lại trang bằng cách nhấn nút",
+        "here": "tại đây",
+        "try_again": "Tải lại",
+        "support": "Nếu vẫn xảy ra lỗi",
+        "contact_us": "hãy liên hệ với chúng tôi"
+    },
+    "install": {
+        "title": "Cài đặt ứng dụng web trên iOS & Android dành riêng cho hội viên [Premium]",
+        "description": "Ứng dụng hỗ trợ truy cập nhanh hơn, trải nghiệm mượt mà hơn. Để tối ưu trải nghiệm, vui lòng sử dụng trình Safari (iOS) hoặc Chrome (Android) truy cập vào link",
+        "here": "tại đây",
+        "description_extra": "để cài đặt.",
+        "ios_user": "Cài đặt với hệ điều hành iOS",
+        "android_user": "Cài đặt với hệ điều hành Android",
+        "support": "Mọi sự thắc mắc",
+        "contact_us": "hãy liên hệ với chúng tôi",
+        "step_ios_1": "Bước 1: Sau khi trang web được tải xong, hãy bấm vào biểu tượng chia sẻ.",
+        "step_ios_2": "Bước 2: Tiếp theo, hãy bấm vào Thêm MH chính.",
+        "step_ios_3": "Bước 3: Khi thông tin được hiển thị như trên hình, hãy bấm vào nút Thêm.",
+        "step_ios_4": "Bước 4: iOS sẽ tự động quay trở lại màn hình chính và thêm biểu tượng ứng dụng vào đó.",
+        "step_android_1": "Bước 1: Sau khi trang web được tải xong, hãy bấm vào biểu tượng Menu.",
+        "step_android_2": "Bước 2: Tiếp theo, hãy bấm vào mục Cài đặt ứng dụng.",
+        "step_android_3": "Bước 3: Khi thông tin được hiển thị như trên hình, hãy bấm vào nút Cài đặt.",
+        "step_android_4": "Bước 4: Android sẽ thêm biểu tượng ứng dụng vào màn hình chính."
     }
 }

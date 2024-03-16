@@ -5,7 +5,7 @@ const ChatBoxButton: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const redirectFanpage = () => {
-    window.open('https://www.facebook.com/tonotdievietnam', '_blank');
+    window.open('https://www.messenger.com/t/102376344776439', '_blank');
   };
 
   const handleScroll = () => {

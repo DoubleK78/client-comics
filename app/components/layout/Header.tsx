@@ -106,6 +106,11 @@ export default async function Header() {
                                     <li>
                                         <a href="/schedule">{t('schedule')}</a>
                                     </li>
+                                    {process.env.MOBILE_URL && (
+                                        <li>
+                                            <a href="/install">{t('install')}</a>
+                                        </li>
+                                    )}
                                 </ul>
                             </li>
                             <li className="menu-item-has-children">

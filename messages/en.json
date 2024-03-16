@@ -1,7 +1,7 @@
 {
     "metadata": {
         "home": "Fast Scans - Read Free Comics | New Comics Updated Daily",
-        "home_description": "Come to Fast Scans to explore the latest and greatest comics across various unique genres: fantasy, martial arts, teen, romance, and more, completely FREE of charge.",
+        "home_description": "Come to Fast Scans to explore the latest and greatest comics across various unique genres: fantasy, martial arts, teen, romance, and more, completely free of charge.",
         "search": "Explore online comic | Fast Scans",
         "search_description": "Explore a Wide Range of Latest Online Comic Series for Free at Fast Scans. Stay Updated with Continuous Releases, Never Run Out of Engaging Stories!",
         "top": "{title}",
@@ -28,11 +28,11 @@
         "profile": "User Profile | Fast Scans",
         "profile_description": "Personal information, level status, follow list, reading history, and many other features to personalize your comic reading experience!",
         "comic": "{title} [Go to {lastedChapter}] | Fast Scans",
-        "comic_description": "{title} {lastedChapter} latest high-quality images at Fast Scans. Early updates, fast, completely FREE.",
+        "comic_description": "{title} {lastedChapter} latest high-quality images at Fast Scans. Early updates, fast, completely free.",
         "comic_blank": "English Comic Subtitles | Fast Scans",
         "comic_blank_description": "English Comic Subtitles | Fast Scans",
         "content": "{comicTitle} - {contentTile} | Fast Scans",
-        "content_description": "Read {comicTitle} {contentTile} high-quality images at Fast Scans. Early updates, fast, completely FREE.",
+        "content_description": "Read {comicTitle} {contentTile} high-quality images at Fast Scans. Early updates, fast, completely free.",
         "content_blank": "Comic Chapter Subtitles | Fast Scans",
         "content_blank_description": "Comic Chapter Subtitles | Fast Scans",
         "top_user": "User Power Rankings | Fast Scans",
@@ -40,9 +40,11 @@
         "payment": "Upgrade to Premium Account Payment | Fast Scans",
         "payment_description": "Upgrade to a Premium account payment on Fast Scans to experience unlimited access to the comic world. No ads, daily updates of new comics, and many exclusive offers await you!",
         "schedule": "Weekly Schedule | Fast Scans",
-        "schedule_description": "Weekly story release schedule and it doesn't cost 500 VND",
+        "schedule_description": "Weekly story release schedule for Premium members",
         "maintenance": "System Maintenance | Fast Scans",
-        "maintenance_desctipion": "Sorry for the inconvenience! We are currently performing system maintenance on Fast Scans. We will be back up and running soon."
+        "maintenance_desctipion": "Sorry for the inconvenience! We are currently performing system maintenance on Fast Scans. We will be back up and running soon.",
+        "install": "Get Fast Scans Web App for iOS & Android",
+        "install_description": "Get Fast Scans web app for iOS and Android to enjoy faster loading, smoother experience, and exclusive features for Premium members."
     },
     "header": {
         "following": "Following",
@@ -67,7 +69,8 @@
         "search": "Search",
         "advanced_search": "Advanced Search",
         "power": "Power",
-        "schedule": "Launch calendar"
+        "schedule": "Launch calendar",
+        "install": "Install App [Pre]"
     },
     "search": {
         "home_page": "Home Page",
@@ -226,7 +229,7 @@
         "is_messenger": "Please log in using your device's browser application"
     },
     "footer": {
-        "info": "Fast Scans - Free online comic book store | Good comics. New comics. The website always updates the latest series of unique genres such as fairy tales, swordplay, teen stories, and the best love novels and doesn't cost 500 VND.",
+        "info": "Fast Scans - Free online comic book store | Good comics. New comics. The website always updates the latest series of unique genres such as fairy tales, swordplay, teen stories, and the best love novels and completely free of charge.",
         "join_us_on": "Join Us on",
         "right": "All rights reserved by",
         "privacy_policy": "Privacy Policy",
@@ -272,5 +275,31 @@
         "success": "Submit code successfully !",
         "invalid_code": "Invalid transaction code !",
         "forever": "Forever"
+    },
+    "error": {
+        "something_went_wrong": "Something went wrong, we apologize for the inconvenience!",
+        "something_went_wrong_action": "You can reload the page by clicking the button here",
+        "here": "here",
+        "try_again": "Reload",
+        "support": "If the error persists",
+        "contact_us": "please contact us"
+    },
+    "install": {
+        "title": "Install Web App iOS & Android Exclusively for [Premium] Members",
+        "description": "The app supports faster access and smoother experience. To optimize your experience, please use Safari (iOS) or Chrome (Android) browser to access the link",
+        "here": "here",
+        "description_extra": "to install.",
+        "ios_user": "Install with iOS",
+        "android_user": "Install with Android",
+        "support": "If you have a question",
+        "contact_us": "please contact us",
+        "step_ios_1": "Step 1: After the web page has finished loading, tap on the share icon.",
+        "step_ios_2": "Step 2: Next, tap on the Add to Home screen.",
+        "step_ios_3": "Step 3: When the information is displayed as shown in the image, tap on the Add button.",
+        "step_ios_4": "Step 4: iOS will automatically return to the home screen and add the app icon to it.",
+        "step_android_1": "Step 1: After the web page has finished loading, tap on the Menu icon.",
+        "step_android_2": "Step 2: Next, tap on the Install app option.",
+        "step_android_3": "Step 3: When the information is displayed as shown in the image, tap on the Install button.",
+        "step_android_4": "Step 4: Android will add the app icon to the home screen."
     }
 }

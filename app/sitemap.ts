@@ -12,6 +12,8 @@ export default async function sitemap({
     id: number
 }): Promise<MetadataRoute.Sitemap> {
     const baseUrl = process.env.NEXT_BASE_URL!;
+    if (process.env.SITEMAP_DISABLE_FETCH) return [];
+
     // Google's limit is 50,000 URLs per sitemap
     const comicSitemap: Array<ComicSitemap> | null | undefined = await fetch(process.env.PORTAL_API_URL + `/api/client/ComicApp/sitemap`).then(res => res.json());
     if (!comicSitemap || comicSitemap.length === 0) {
