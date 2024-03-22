@@ -949,7 +949,7 @@ ul.pagination li a {
   transition: all 0.5s;
   display: block;
   padding: 0 10px;
-  font-size: 32px;
+  font-size: 20px;
   transition: all 0.5s;
   border: var(--border-light);
   border-radius: 4px;
@@ -991,7 +991,7 @@ ul.pagination li a.current {
     line-height: 25px;
     width: 30px;
     padding: 0 4px;
-    font-size: 16px;
+    font-size: 15px;
   }
 
   ul.pagination li a.arrow {
