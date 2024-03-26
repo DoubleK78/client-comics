@@ -277,3 +277,12 @@ export const roundTimeTo30Minutes = (date: any) => {
 
     return roundedDate;
 }
+
+export const hasBadWord = (comment: string, badWords: string[]): boolean => {
+    for (const badWord of badWords) {
+        if (comment.toLowerCase().includes(badWord.toLowerCase())) {
+            return true;
+        }
+    }
+    return false;
+}

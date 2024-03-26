@@ -3,8 +3,13 @@ import { getComments, pushComment } from "@/lib/services/client/comment/commentS
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useMemo, useRef, useState } from "react";
 import ReactQuill from "react-quill";
-import { getDayjsByLocale, getHoverText, getLevelBadgeClass, getLevelNameById, getRoleBadge, getUserClass, getUserNameClass } from '@/app/utils/HelperFunctions';
+import { getDayjsByLocale, getHoverText, getLevelBadgeClass, getLevelNameById, getRoleBadge, getUserClass, getUserNameClass, hasBadWord, trackingIpV4 } from '@/app/utils/HelperFunctions';
 import { getPercentByDivdeTwoNumber } from "@/lib/math/mathHelper";
+import { vietnameseOffensiveWords } from "@/lib/offensive-words";
+import { createActivityLog } from "@/lib/services/client/activity-log/activityLogService";
+import ActivityLogRequestModel from "@/app/models/activity/ActivityLogRequestModel";
+import { EActivityType } from "@/app/models/enums/EActivityType";
+import { ERoleType } from "@/app/models/enums/ERoleType";
 
 const editorStyle = {
     width: '100%',
@@ -12,16 +17,18 @@ const editorStyle = {
     color: 'white',
 };
 
-export default function ReplyComic({ comment, comicId, commentId, replyCount, index }: {
+export default function ReplyComic({ comment, comicId, commentId, replyCount, index, roleUser }: {
     comment: any,
     comicId: number,
     commentId: number, replyCount: number,
-    index: string
+    index: string,
+    roleUser: any
 }) {
     const t = useTranslations('comic_detail');
     const locale = useLocale();
     const [replies, setReplies] = useState<any[]>([]);
     const [reply, setReply] = useState('');
+    const [error, setError] = useState('');
 
     const [isOpenToggle, setIsOpenToggle] = useState<boolean>(false);
     const [reloadTrigger, setReloadTrigger] = useState(false);
@@ -76,6 +83,12 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
     const handlePostReply = async (event: any, commentId: any) => {
         event.preventDefault();
         if (reply.trim() === '') {
+            setError(`${t('invalid_comment')}`);
+            return;
+        }
+
+        if (hasBadWord(reply, vietnameseOffensiveWords)) {
+            setError(`${t('invalid_comment')}`);
             return;
         }
 
@@ -93,8 +106,50 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
             ParentCommentId: commentId
         };
 
-        await pushComment(commentData);
+        let limitTimes: number | null = null;
+
+        switch (roleUser) {
+            case ERoleType.User:
+                limitTimes = 5;
+                break;
+            case ERoleType.UserPremium:
+                limitTimes = 10;
+                break;
+            case ERoleType.UserSuperPremium:
+                limitTimes = 20;
+                break;
+            default:
+                break;
+        }
+
+        const myActivityLog: ActivityLogRequestModel = {
+            ActivityType: EActivityType.Comment,
+            LimitTimes: limitTimes,
+            IpV4Address: await trackingIpV4()
+        };
+
+        let activity = await createActivityLog(myActivityLog);
+
+        if (activity)
+            await pushComment(commentData);
+        else {
+            switch (roleUser) {
+                case ERoleType.User:
+                    setError(`${t('error_comment_nor')} <a href="/upgrade-package">[${t('here')}]</a>`);
+                    break;
+                case ERoleType.UserPremium:
+                    setError(`${t('error_comment_pre')} <a href="/upgrade-package">[${t('here')}]</a>`);
+                    break;
+                case ERoleType.UserSuperPremium:
+                    setError(`${t('error_comment_spre')}`);
+                    break;
+                default:
+                    break;
+            }
+        }
+
         setReply('');
+        setError('');
         setReloadTrigger((prev) => !prev);
 
         if (trueReplyCount === 0) {
@@ -147,6 +202,7 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
                         </button>
                     </form>
                 </div>
+                {error && <p dangerouslySetInnerHTML={{ __html: error }} />}
             </div>
             {loading && <div className="spinner-border text-primary" role="status"></div>}
             {!loading && trueReplyCount > 0 && <a
