@@ -14,13 +14,14 @@ import Footer from '../components/layout/Footer'
 import { NextIntlClientProvider, useMessages } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import GoogleAnalytics from '../components/analytics/GoogleAnalytics'
+import GoogleAdsense from '../components/analytics/GoogleAdsense'
 
 const inter = Inter({ subsets: ['latin'] });
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
   const t = await getTranslations({ locale, namespace: 'metadata' });
   const baseUrl = process.env.NEXT_BASE_URL!;
-  const imageOGUrl = locale === 'en' ? `${baseUrl}/assets/media/meta_home_image_en.png`: `${baseUrl}/assets/media/meta_home_image.png`;
+  const imageOGUrl = locale === 'en' ? `${baseUrl}/assets/media/meta_home_image_en.png` : `${baseUrl}/assets/media/meta_home_image.png`;
 
   return {
     metadataBase: new URL(baseUrl),
@@ -59,6 +60,11 @@ export default function RootLayout({
 
   return (
     <html lang={locale} className='block-horizal'>
+      {process.env.googleAdsense && (
+        <head>
+          <GoogleAdsense ca_id={process.env.googleAdsense} />
+        </head>
+      )}
       <body className={inter.className + " sticky-header block-horizal"}>
         {process.env.googleAnalytics ? <GoogleAnalytics ga_id={process.env.googleAnalytics} /> : null}
         <div className="main-wrapper" id="main-wrapper">
@@ -72,7 +78,7 @@ export default function RootLayout({
       <Script src="/assets/js/vendor/jquery-3.6.0.min.js" strategy='lazyOnload' />
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" />
       {/* <Script src="/assets/js/vendor/imagesloaded.pkgd.min.js" /> */}
-      <Script src="/assets/js/vendor/sal.js" strategy='lazyOnload'/>
+      <Script src="/assets/js/vendor/sal.js" strategy='lazyOnload' />
     </html>
   )
 }
