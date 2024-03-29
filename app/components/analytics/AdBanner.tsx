@@ -3,10 +3,6 @@
 import { useEffect } from "react";
 
 export default function AdBanner(props: any) {
-    if (!process.env.googleAdsense) {
-        return <></>;
-    }
-
     useEffect(() => {
         try {
             if ((window as any).adsbygoogle && !(window as any).adsbygoogle.loaded) {
@@ -17,7 +13,7 @@ export default function AdBanner(props: any) {
         }
     }, []);
 
-    return (
+    return process.env.googleAdsense ? (
         <ins
             className="adsbygoogle"
             style={{
@@ -28,5 +24,5 @@ export default function AdBanner(props: any) {
             data-ad-client={process.env.googleAdsense}
             {...props}
         />
-    );
+    ) : <></>;
 };
