@@ -16,6 +16,7 @@
     "classnames": "^2.5.1",
     "dayjs": "^1.11.10",
     "flag-icon-css": "^4.1.7",
+    "fuzzy-search": "^3.2.1",
     "isbot": "^4.4.0",
     "jquery": "^3.7.1",
     "next": "^14.1.0",
@@ -30,6 +31,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@types/fuzzy-search": "^2.1.5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
