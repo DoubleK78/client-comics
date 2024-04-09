@@ -145,21 +145,21 @@ export const countryFlags = {
     [TypeCountry.BandeDessinée]: 'flag-icon flag-icon-fr flag-icon-squared',
 };
 export const affiliateLinks = [
-    "https://shope.ee/AUVl49dEmk",
-    "https://shope.ee/qLFYPmlLV",
-    "https://shope.ee/8A7qHtpdwo",
-    "https://shope.ee/8f46sq0k1G",
-    "https://shope.ee/4prOJnxKch",
-    "https://shope.ee/9KJng5NvGn",
-    "https://shope.ee/2VTTXXNPRa",
-    "https://shope.ee/7KYjIQibg4",
-    "https://shope.ee/3ffQvhVUKc",
-    "https://shope.ee/7pUztMop8e"
+    "https://shope.ee/40JfLz3YAs",
+    "https://shope.ee/9UebuDSBJF",
+    "https://shope.ee/3fgoxWNBMO",
+    "https://shope.ee/10g3mdseah",
+    "https://shope.ee/VjnDJyZ04",
+    "https://shope.ee/4Ad5a4obIX",
+    "https://shope.ee/1VcKPDK9Jr",
+    "https://shope.ee/2q7hzgRruw",
+    "https://shope.ee/9pHSKZioUk",
+    "https://shope.ee/4VFvympRf8"
 ];
 
 export const percentAff = (role: any) => {
     if (role == ERoleType.User || role === ERoleType.NoneRole)
-        return Math.random() <= 0.10;
+        return Math.random() <= 0.11;
     if (role == ERoleType.UserPremium)
         return Math.random() <= 0.03;
     if (role == ERoleType.UserSuperPremium)
