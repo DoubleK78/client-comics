@@ -1,3 +1,4 @@
+import Install from "@/app/components/install/Install";
 import { pathnames } from "@/navigation";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
@@ -79,6 +80,7 @@ export default async function Page() {
                     </figure>
                 </div>
                 <br />
+                <Install />
                 <div>
                     <p>{t('support')}<a style={{ color: 'var(--color-primary)' }} href="https://www.facebook.com/tonotdievietnam">&nbsp;{t('contact_us')}</a></p>
                     <p>&mdash; Fast Scans &mdash;</p>

@@ -1,7 +1,7 @@
 {
     "metadata": {
-        "home": "Fast Scans - Read Free Comics | New Comics Updated Daily",
-        "home_description": "Come to Fast Scans to explore the latest and greatest comics across various unique genres: fantasy, martial arts, teen, romance, and more, completely free of charge.",
+        "home": "Fast Scans - Read Free English Comics Daily - New Comics Updated Every Day",
+        "home_description": "Discover a vast collection of free, up-to-date English comics across diverse genres including fantasy, martial arts, teen, romance, and more on Fast Scans. Read the latest releases daily without any cost.",
         "search": "Explore online comic | Fast Scans",
         "search_description": "Explore a Wide Range of Latest Online Comic Series for Free at Fast Scans. Stay Updated with Continuous Releases, Never Run Out of Engaging Stories!",
         "top": "{title}",
@@ -28,11 +28,11 @@
         "profile": "User Profile | Fast Scans",
         "profile_description": "Personal information, level status, follow list, reading history, and many other features to personalize your comic reading experience!",
         "comic": "{title} [Go to {lastedChapter}] | Fast Scans",
-        "comic_description": "{title} {lastedChapter} latest high-quality images at Fast Scans. Early updates, fast, completely free.",
+        "comic_description": "{title} - Latest {lastedChapter} English Version, High-Quality Images Updated Daily on Fast Scans",
         "comic_blank": "English Comic Subtitles | Fast Scans",
         "comic_blank_description": "English Comic Subtitles | Fast Scans",
         "content": "{comicTitle} - {contentTile} | Fast Scans",
-        "content_description": "Read {comicTitle} {contentTile} high-quality images at Fast Scans. Early updates, fast, completely free.",
+        "content_description": "Read {comicTitle} {contentTile} English Version, High-Quality Images Updated Daily on Fast Scans",
         "content_blank": "Comic Chapter Subtitles | Fast Scans",
         "content_blank_description": "Comic Chapter Subtitles | Fast Scans",
         "top_user": "User Power Rankings | Fast Scans",
@@ -43,8 +43,8 @@
         "schedule_description": "Weekly story release schedule for Premium members",
         "maintenance": "System Maintenance | Fast Scans",
         "maintenance_desctipion": "Sorry for the inconvenience! We are currently performing system maintenance on Fast Scans. We will be back up and running soon.",
-        "install": "Get Fast Scans Web App for iOS & Android",
-        "install_description": "Get Fast Scans web app for iOS and Android to enjoy faster loading, smoother experience, and exclusive features for Premium members."
+        "install": "Comic reading web application for iOS and Android | Fast Scans",
+        "install_description": "Install the Fast Scans web application for iOS and Android for quicker access, smoother experience, notifications for new chapters, and exclusive features for Premium members."
     },
     "header": {
         "following": "Following",
@@ -285,10 +285,10 @@
         "contact_us": "please contact us"
     },
     "install": {
-        "title": "Install Web App iOS & Android Exclusively for [Premium] Members",
-        "description": "The app supports faster access and smoother experience. To optimize your experience, please use Safari (iOS) or Chrome (Android) browser to access the link",
+        "title": "Install Web App iOS and Android Exclusively for [Premium] Members",
+        "description": "An application that facilitates quicker access, smoother experience, notifies users of new chapters for followed comics (Supports iOS 16.4 and Android 9.0 or above). For optimized experience, please use Safari (iOS) or Chrome (Android) browsers to access the link.",
         "here": "here",
-        "description_extra": "to install.",
+        "description_extra": "and installing the application.",
         "ios_user": "Install with iOS",
         "android_user": "Install with Android",
         "support": "If you have a question",
@@ -300,6 +300,21 @@
         "step_android_1": "Step 1: After the web page has finished loading, tap on the Menu icon.",
         "step_android_2": "Step 2: Next, tap on the Install app option.",
         "step_android_3": "Step 3: When the information is displayed as shown in the image, tap on the Install button.",
-        "step_android_4": "Step 4: Android will add the app icon to the home screen."
+        "step_android_4": "Step 4: Android will add the app icon to the home screen.",
+        "faq": "Frequently Asked Questions",
+        "faq_question_1": "What is a web application?",
+        "faq_answer_1": "A web application is an application accessed through a web browser such as Safari on iOS or Chrome on Android. It allows you to experience like a mobile app without the need for separate installation.",
+        "faq_question_2": "Why should I use a web application instead of accessing the website directly?",
+        "faq_answer_2": "Web applications provide a faster, smoother, and more convenient experience by being able to add app icons directly to the home screen of your phone. Additionally, you will receive push notifications when new content is updated, helping you stay up-to-date with the latest updates.",
+        "faq_question_3": "Device requirements and versions for using the web application",
+        "faq_answer_3": "Use a mobile device with iOS 11.3 or Android 4.4 and above. To experience the web application optimally, use popular web browsers and update to the latest versions such as Safari (iOS) or Chrome (Android). High-speed internet connection (3G/4G/5G or WiFi) is required. Push notification feature will require iOS 16.4 and above to function.",
+        "faq_question_4": "What features does Fastscans application have?",
+        "faq_answer_4": "Fastscans application offers features and a user interface similar to the website, but with a faster experience thanks to cache storage. Additionally, you can also receive push notifications for new content and access quickly by adding the app icon to the home screen.",
+        "faq_question_5": "Do I need to register or pay to use the Fastscans application?",
+        "faq_answer_5": "The Fastscans application is one of the privileges reserved for users who subscribe to the Premium or SPremium package. To use this application, you need to subscribe to one of the two subscription packages on our website.",
+        "faq_question_6": "Is the Fastscans application heavy? How much storage space will it occupy on my phone?",
+        "faq_answer_6": "The Fastscans application is very light, only about 400KB. It will not occupy much storage space on your phone.",
+        "faq_question_7": "Can I use the Fastscans application on both iOS and Android?",
+        "faq_answer_7": "Yes, you can use the Fastscans application on both iOS and Android operating systems. For optimal experience, we recommend using Safari browser on iOS or Chrome on Android."
     }
 }

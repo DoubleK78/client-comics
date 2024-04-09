@@ -1,12 +1,17 @@
 "use client"
 import ContentResponse from "@/app/models/contents/ContentResponse";
-import { converPrefixtUrlByLocale, countryFlags, getDayjsByLocale, getLangByLocale, handleRedirect, shortNumberViews } from "@/app/utils/HelperFunctions";
+import { converPrefixtUrlByLocale, countryFlags, getDayjsByLocale, getLangByLocale, handleRedirect, percentBanner, shortNumberViews } from "@/app/utils/HelperFunctions";
 import { useTranslations } from 'next-intl';
 import PagingRequest from "@/app/models/paging/PagingRequest";
 import { useEffect, useState } from "react";
 import { getAlbums } from "@/lib/services/client/album/albumService";
 import { pathnames } from "@/navigation";
 import ChapterComicItem from "./ChapterComicItem";
+import dynamic from "next/dynamic";
+
+const DynamicAdUnit = dynamic(() => import('@/app/components/analytics/AdUnit'), {
+    ssr: false
+})
 
 export default function ChapterComic({ contents, locale, roleUser, genre, comicId, region, isBot }: {
     contents?: ContentResponse[] | null, locale: any, roleUser: any, genre: any, comicId: any, region: any, isBot: boolean
@@ -62,6 +67,13 @@ export default function ChapterComic({ contents, locale, roleUser, genre, comicI
             {/*=====================================*/}
             <section className="relese sec-mar">
                 <div className="container">
+                    {process.env.activeBanner && percentBanner(roleUser) && (
+                        <div className="row">
+                            <div className="col">
+                                <DynamicAdUnit />
+                            </div>
+                        </div>
+                    )}
                     <div className="row">
                         <div className="col-lg-8 col-md-12 col-sm-12">
                             <h3 className="small-title">{t('chapter_list')}</h3>

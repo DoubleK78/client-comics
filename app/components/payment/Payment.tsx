@@ -40,7 +40,7 @@ export default function Payment({ userEmail }: { userEmail: any }) {
                     ActivityType: EActivityType.Payment,
                     LimitTimes: 100,
                     IpV4Address: await trackingIpV4(),
-                    Description: userEmail
+                    Description: `${code} - ${typePage} - ${userEmail}`
                 };
                 
                 await createActivityLog(myActivityLog);

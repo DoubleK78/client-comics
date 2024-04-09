@@ -43,8 +43,8 @@
         "schedule_description": "Lịch ra mắt truyện hàng tuần dành cho hội viên Premium",
         "maintenance": "Bảo trì hệ thống | Fast Scans",
         "maintenance_desctipion": "Xin lỗi vì sự bất tiện này! Chúng tôi đang bảo trì hệ thống Fast Scans. Chúng tôi sẽ quay trở lại sớm",
-        "install": "Cài đặt ứng dụng web cho iOS & Android | Fast Scans",
-        "install_description": "Cài đặt ứng dụng web Fast Scans cho iOS và Android để truy cập nhanh hơn, trải nghiệm mượt mà hơn, độc quyền dành riêng cho hội viên Premium."
+        "install": "Ứng dụng web đọc truyện tranh cho iOS và Android | Fast Scans",
+        "install_description": "Cài đặt ứng dụng web Fast Scans trên iOS và Android để trải nghiệm truy cập nhanh hơn, mượt mà hơn, và nhận thông báo đẩy khi có truyện mới cập nhật, giành riêng cho hội viên Premium."
     },
     "header": {
         "following": "Theo dõi",
@@ -284,10 +284,10 @@
         "contact_us": "hãy liên hệ với chúng tôi"
     },
     "install": {
-        "title": "Cài đặt ứng dụng web trên iOS & Android dành riêng cho hội viên [Premium]",
-        "description": "Ứng dụng hỗ trợ truy cập nhanh hơn, trải nghiệm mượt mà hơn. Để tối ưu trải nghiệm, vui lòng sử dụng trình Safari (iOS) hoặc Chrome (Android) truy cập vào link",
-        "here": "tại đây",
-        "description_extra": "để cài đặt.",
+        "title": "Cài đặt ứng dụng web trên iOS và Android dành riêng cho hội viên [Premium]",
+        "description": "Ứng dụng cung cấp trải nghiệm truy cập nhanh chóng và mượt mà, đồng thời gửi thông báo khi có chương truyện mới được cập nhật. Để có trải nghiệm tối ưu nhất, chúng tôi khuyên bạn nên sử dụng trình duyệt Safari trên iOS hoặc Chrome trên Android khi truy cập liên kết",
+        "here": "sau đây",
+        "description_extra": "và cài đặt ứng dụng.",
         "ios_user": "Cài đặt với hệ điều hành iOS",
         "android_user": "Cài đặt với hệ điều hành Android",
         "support": "Mọi sự thắc mắc",
@@ -299,6 +299,21 @@
         "step_android_1": "Bước 1: Sau khi trang web được tải xong, hãy bấm vào biểu tượng Menu.",
         "step_android_2": "Bước 2: Tiếp theo, hãy bấm vào mục Cài đặt ứng dụng.",
         "step_android_3": "Bước 3: Khi thông tin được hiển thị như trên hình, hãy bấm vào nút Cài đặt.",
-        "step_android_4": "Bước 4: Android sẽ thêm biểu tượng ứng dụng vào màn hình chính."
+        "step_android_4": "Bước 4: Android sẽ thêm biểu tượng ứng dụng vào màn hình chính.",
+        "faq": "Câu hỏi thường gặp",
+        "faq_question_1": "Ứng dụng web là gì?",
+        "faq_answer_1": "Ứng dụng web là một ứng dụng được truy cập thông qua trình duyệt web như Safari trên iOS hoặc Chrome trên Android. Nó cho phép bạn trải nghiệm giống như một ứng dụng di động, nhưng không cần cài đặt riêng biệt.",
+        "faq_question_2": "Tại sao tôi nên sử dụng ứng dụng web thay vì truy cập website trực tiếp?",
+        "faq_answer_2": "Ứng dụng web mang lại trải nghiệm nhanh hơn, mượt mà hơn và tiện lợi hơn khi có thể thêm biểu tượng ứng dụng ngay trên màn hình chính của điện thoại. Ngoài ra, bạn sẽ nhận được thông báo đẩy (push notification) khi có chương truyện mới được cập nhật, giúp bạn không bỏ lỡ những cập nhật mới nhất.",
+        "faq_question_3": "Yêu cầu thiết bị và phiên bản để sử dụng ứng dụng web",
+        "faq_answer_3": "Sử dụng thiết bị di động với phiên bản hệ điều hành iOS 11.3 hoặc Android 4.4 trở lên. Để trải nghiệm ứng dụng web một cách tối ưu, sử dụng trình duyệt web phổ biến và cập nhật phiên bản mới nhất như Safari (iOS) hoặc Chrome (Android). Kết nối internet tốc độ cao (3G/4G/5G hoặc WiFi). Tính năng thông báo đẩy (push notification) sẽ yêu cầu iOS 16.4 trở lên để hoạt động.",
+        "faq_question_4": "Ứng dụng Fastscans có những tính năng gì?",
+        "faq_answer_4": "Ứng dụng Fastscans cung cấp các tính năng và giao diện tương tự như website, nhưng với trải nghiệm nhanh hơn nhờ khả năng lưu trữ cache. Ngoài ra, bạn cũng có thể nhận thông báo đẩy khi có nội dung mới và truy cập nhanh chóng bằng cách thêm biểu tượng ứng dụng lên màn hình chính.",
+        "faq_question_5": "Tôi cần đăng ký hoặc trả phí để sử dụng ứng dụng Fastscans?",
+        "faq_answer_5": "Ứng dụng Fastscans là một trong những quyền lợi dành riêng cho người dùng đăng ký gói Premium hoặc SPremium. Để sử dụng ứng dụng này, bạn cần đăng ký một trong hai gói đăng ký trên website của chúng tôi, với mức phí bắt đầu từ 19.000 VNĐ/tháng.",
+        "faq_question_6": "Ứng dụng Fastscans có nặng không? Nó sẽ chiếm bao nhiêu dung lượng trên điện thoại?",
+        "faq_answer_6": "Ứng dụng Fastscans rất nhẹ, chỉ khoảng 400KB. Nó sẽ không chiếm nhiều dung lượng trên điện thoại của bạn.",
+        "faq_question_7": "Tôi có thể sử dụng ứng dụng Fastscans trên cả iOS và Android?",
+        "faq_answer_7": "Đúng vậy, ứng dụng Fastscans có thể sử dụng trên cả hệ điều hành iOS và Android. Để có trải nghiệm tối ưu, chúng tôi khuyến nghị sử dụng trình duyệt Safari trên iOS hoặc Chrome trên Android."
     }
 }
