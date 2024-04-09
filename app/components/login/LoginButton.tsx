@@ -21,6 +21,11 @@ export default function LoginButton() {
         localStorage.removeItem('token');
         localStorage.removeItem('userSession');
         setIsLoading(true);
+
+        // Banned Account can not login and use other accounts
+        const bannedAccount = localStorage.getItem('verified');
+        if (bannedAccount) return;
+
         signIn('google');
     };
 
