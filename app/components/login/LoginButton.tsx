@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslations } from 'next-intl';
 import Image from "next/image";
 import GoogleLogo from '@/public/assets/media/login/google.png'
+import { getCurrentBrowserFingerPrint } from "@rajesh896/broprint.js";
 
 export default function LoginButton() {
     const [isFromMessenger, setIsFromMessenger] = useState(false);
@@ -11,7 +12,11 @@ export default function LoginButton() {
     useEffect(() => {
         const isMessenger = navigator.userAgent.includes("FBAN") || navigator.userAgent.includes("FBAV");
         if (isMessenger)
-            setIsFromMessenger(true);       
+            setIsFromMessenger(true);
+
+        getCurrentBrowserFingerPrint().then((fingerprint) => {
+            alert(fingerprint);
+        })
       }, []);
     
     const [isLoading, setIsLoading] = useState(false);
