@@ -6,6 +6,7 @@ import { Session } from "next-auth";
 import { signOut, useSession } from "next-auth/react";
 import { useEffect } from "react";
 import dayjs from '@/lib/dayjs/dayjs-custom';
+import { getCurrentBrowserFingerPrint } from "@rajesh896/broprint.js";
 
 export default function Initial({ props }: { props: Session | null }) {
     const { update } = useSession();
@@ -15,6 +16,11 @@ export default function Initial({ props }: { props: Session | null }) {
         if (props?.user && !token) {
             getTokenFromSessionServer();
             localStorage.setItem('token', props.user.token?.apiToken ?? '');
+
+            // Register Finger Print when user login
+            getCurrentBrowserFingerPrint().then((fingerprint) => {
+                alert(fingerprint);
+            })
         }
 
         const isCheckRoleChanges = parseJsonFromString<boolean | null>(sessionStorage.getItem("isCheckRoleChanges"));
@@ -23,14 +29,14 @@ export default function Initial({ props }: { props: Session | null }) {
             checkRoleUpdate().then((model) => {
                 // Banned Account will be log out
                 if (model?.isBanned) {
-                    // Mark for user banned
-                    localStorage.setItem('verified', '1');
-
                     signOut({
                         redirect: true
                     }).then(() => {
                         localStorage.removeItem('token');
                         localStorage.removeItem('userSession');
+
+                        // Mark for user banned
+                        localStorage.setItem('verified', '1');
                     });
                     return;
                 }
@@ -42,7 +48,7 @@ export default function Initial({ props }: { props: Session | null }) {
                 }
 
                 sessionStorage.setItem("isCheckRoleChanges", JSON.stringify(true));
-                sessionStorage.setItem("checkRoleChangesOnUtc", JSON.stringify(dayjs.utc().add(7, 'minutes').toDate()));
+                sessionStorage.setItem("checkRoleChangesOnUtc", JSON.stringify(dayjs.utc().add(5, 'minutes').toDate()));
             }).catch(() => { });
         }
     }, [props]);
