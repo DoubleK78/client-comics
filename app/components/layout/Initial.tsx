@@ -21,7 +21,7 @@ export default function Initial({ props }: { props: Session | null }) {
             // Register Finger Print when user login
             getCurrentBrowserFingerPrint().then((fingerprint) => {
                 registerFingerprint(fingerprint, getBrowserVersion() + " - " + getScreenResolution());
-            })
+            }).catch(() => { });
         }
 
         const isCheckRoleChanges = parseJsonFromString<boolean | null>(sessionStorage.getItem("isCheckRoleChanges"));
