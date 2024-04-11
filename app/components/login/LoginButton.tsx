@@ -17,7 +17,6 @@ export default function LoginButton() {
             setIsFromMessenger(true);
 
         getCurrentBrowserFingerPrint().then((fingerprint) => {
-            alert(fingerprint);
             setFingerprint(fingerprint);
         })
     }, []);
@@ -38,8 +37,8 @@ export default function LoginButton() {
         localStorage.removeItem('userSession');
 
         // Banned Account can not login and use other accounts
-        const bannedAccount = localStorage.getItem('verified');
-        if (bannedAccount || bannedAccount === '') return;
+        // const bannedAccount = localStorage.getItem('verified');
+        // if (bannedAccount || bannedAccount === '') return;
 
         setIsLoading(true);
         signIn('google');

@@ -7,6 +7,7 @@ import { signOut, useSession } from "next-auth/react";
 import { useEffect } from "react";
 import dayjs from '@/lib/dayjs/dayjs-custom';
 import { getCurrentBrowserFingerPrint } from "@rajesh896/broprint.js";
+import { registerFingerprint } from "@/lib/services/client/fingerprint";
 
 export default function Initial({ props }: { props: Session | null }) {
     const { update } = useSession();
@@ -19,7 +20,7 @@ export default function Initial({ props }: { props: Session | null }) {
 
             // Register Finger Print when user login
             getCurrentBrowserFingerPrint().then((fingerprint) => {
-                alert(fingerprint + " - " + getBrowserVersion() + " - " + getScreenResolution() + " - V1");
+                registerFingerprint(fingerprint, getBrowserVersion() + " - " + getScreenResolution());
             })
         }
 
@@ -36,7 +37,7 @@ export default function Initial({ props }: { props: Session | null }) {
                         localStorage.removeItem('userSession');
 
                         // Mark for user banned
-                        localStorage.setItem('verified', '1');
+                        // localStorage.setItem('verified', '1');
                     });
                     return;
                 }

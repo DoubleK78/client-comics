@@ -20,8 +20,8 @@ export const prepareGetFingerprint = async (fingerprint: string) => {
 
 export const registerFingerprint = async (fingerprint: string, additionalDetail: string | null) => {
     try {
-        const response = await axios.post('/api/user/prepare', {
-            code: fingerprint,
+        const response = await axios.put('/api/user/prepare', {
+            code: fingerprint?.toString(),
             info: additionalDetail
         }, {
             baseURL: identityServer,
