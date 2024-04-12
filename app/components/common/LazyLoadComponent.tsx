@@ -1,3 +1,4 @@
+"use client"
 import LazyLoad from "react-lazyload";
 
 type Props = {

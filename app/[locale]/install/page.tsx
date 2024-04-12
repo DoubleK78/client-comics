@@ -1,4 +1,4 @@
-import Install from "@/app/components/install/Install";
+import Install from "@/app/components/Install/Install";
 import { pathnames } from "@/navigation";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
