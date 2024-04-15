@@ -12,11 +12,12 @@ const editorStyle = {
     color: 'white',
 };
 
-export default function ReplyComic({ comment, comicId, commentId, replyCount, index }: {
+export default function ReplyComic({ comment, comicId, commentId, replyCount, index, hideComment }: {
     comment: any,
     comicId: number,
     commentId: number, replyCount: number,
-    index: string
+    index: string,
+    hideComment: boolean
 }) {
     const t = useTranslations('comic_detail');
     const locale = useLocale();
@@ -44,7 +45,7 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
                 pageNumber: 1,
                 pageSize: 10,
                 sortColumn: 'createdOnUtc',
-                sortDirection: 'desc',
+                sortDirection: 'asc',
                 isReply: true,
                 parentCommentId: commentId
             };
@@ -122,7 +123,7 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
 
     return (
         <>
-            {userSession && <button
+            {userSession && !hideComment && <button
                 className=" accordion-button comment-btn"
                 data-bs-toggle="collapse"
                 data-bs-target={`#reply${index}1`}
@@ -183,7 +184,7 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
                                         </h5>
                                         <div dangerouslySetInnerHTML={{ __html: rl.text }} />
                                         <span className='date-comment'>{getDayjsByLocale(locale, rl.createdOnUtc).format('DD-MM-YYYY HH:mm')}</span>
-                                        {userSession &&
+                                        {userSession && !hideComment &&
                                             <button
                                                 className=" accordion-button comment-btn"
                                                 data-bs-toggle=""

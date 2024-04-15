@@ -14,6 +14,7 @@ import ActivityLogRequestModel from '@/app/models/activity/ActivityLogRequestMod
 import { EActivityType } from '@/app/models/enums/EActivityType';
 import { createActivityLog } from '@/lib/services/client/activity-log/activityLogService';
 import { ERoleType } from '@/app/models/enums/ERoleType';
+import dayjs from '@/lib/dayjs/dayjs-custom';
 
 const editorStyle = {
     width: '100%',
@@ -21,7 +22,7 @@ const editorStyle = {
     color: 'white',
 };
 
-export default function CommentComic({ comicId, collectionId, roleUser, locale }: { comicId: any, collectionId: any, roleUser: any, locale: string }) {
+export default function CommentComic({ comicId, collectionId, roleUser, locale, createdOnUtc }: { comicId: any, collectionId: any, roleUser: any, locale: string, createdOnUtc?: Date | null }) {
     const t = useTranslations('comic_detail');
     const [comment, setComment] = useState('');
     const [error, setError] = useState('');
@@ -42,7 +43,8 @@ export default function CommentComic({ comicId, collectionId, roleUser, locale }
     const [showPicker, setShowPicker] = useState(false);
     const emojiList = [
         '😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍'
-      ];
+    ];
+    const [hideComment, setHideComment] = useState(false);
     const handleDropdownChange = (event: any) => {
         const selectedValue = event.target.innerText.trim();
         setSelectedOption(selectedValue);
@@ -72,7 +74,7 @@ export default function CommentComic({ comicId, collectionId, roleUser, locale }
 
         const regexEmpty = /<p><br><\/p>$/;
         let modifiedComment;
-        
+
         if (regexEmpty.test(comment))
             modifiedComment = comment.slice(0, comment.lastIndexOf('<p><br></p>'));
         else
@@ -99,15 +101,15 @@ export default function CommentComic({ comicId, collectionId, roleUser, locale }
                 break;
         }
 
+        setComment('');
+        setError('');
+        setLoading(true);
+
         const myActivityLog: ActivityLogRequestModel = {
             ActivityType: EActivityType.Comment,
             LimitTimes: limitTimes,
             IpV4Address: await trackingIpV4()
         };
-
-        setComment('');
-        setLoading(true);
-        setError('');
 
         let activity = await createActivityLog(myActivityLog);
 
@@ -140,13 +142,13 @@ export default function CommentComic({ comicId, collectionId, roleUser, locale }
 
     const togglePicker = () => {
         setShowPicker(!showPicker);
-      };
-    
-      const handleSelectEmoji = (emoji: any) => {
+    };
+
+    const handleSelectEmoji = (emoji: any) => {
         var newComment = comment.concat(emoji);
         setComment(newComment);
         togglePicker();
-      };
+    };
 
     useEffect(() => {
         setLoading(true);
@@ -165,6 +167,12 @@ export default function CommentComic({ comicId, collectionId, roleUser, locale }
                 setLoading(false);
             });
     }, [reloadTrigger, pagingParams]);
+
+    useEffect(() => {
+        if (createdOnUtc && dayjs.utc().diff(dayjs.utc(createdOnUtc), 'days') < 7) {
+            setHideComment(true);
+        }
+    }, [createdOnUtc]);
 
     const scrollUpByPercentage = (percentage: number) => {
         const currentPosition = window.scrollY || document.documentElement.scrollTop;
@@ -211,45 +219,53 @@ export default function CommentComic({ comicId, collectionId, roleUser, locale }
                             </div>
                             <div className="row">
                                 <div className="col-lg-1 col-2">
-                                    <a href="#">
-                                        <img src={userSession?.image ?? ''} alt="" />
-                                    </a>
+                                    {userSession && !hideComment && (
+                                        <a href="#">
+                                            <img src={userSession?.image ?? ''} alt="" />
+                                        </a>
+                                    )}
                                 </div>
                                 {
                                     userSession ? (
-                                        <div className="col-lg-11 col-10">
-                                            <form onSubmit={handlePostComment}>
-                                                <div className="input-group form-group footer-email-box">
-                                                    <ReactQuill
-                                                        style={editorStyle}
-                                                        theme="snow"
-                                                        value={comment}
-                                                        onChange={(content, delta, source, editor) => setComment(content)}
-                                                        preserveWhitespace={true}
-                                                        onKeyDown={handleKeyDown}
-                                                    />
-                                                </div>
-                                                {!loading &&
-                                                <>
-                                                    <button className="input-group-text post-btn" type="submit">
-                                                        {t('post')}
-                                                    </button>
-                                                    <a className="input-group-text post-btn" onClick={togglePicker}>
-                                                        Icon
-                                                    </a>
-                                                    {showPicker && (
-                                                    <div style={{marginTop: '10px'}}>
-                                                        {emojiList.map((emoji, index) => (
-                                                            <span key={index} onClick={() => handleSelectEmoji(emoji)} style={{ cursor: 'pointer' }}>
-                                                            {emoji}
-                                                            </span>
-                                                        ))}
+                                        hideComment ? (
+                                            <p>
+                                                {t('please_more_times')}...
+                                            </p>
+                                        ) : (
+                                            <div className="col-lg-11 col-10">
+                                                <form onSubmit={handlePostComment}>
+                                                    <div className="input-group form-group footer-email-box">
+                                                        <ReactQuill
+                                                            style={editorStyle}
+                                                            theme="snow"
+                                                            value={comment}
+                                                            onChange={(content, delta, source, editor) => setComment(content)}
+                                                            preserveWhitespace={true}
+                                                            onKeyDown={handleKeyDown}
+                                                        />
                                                     </div>
-                                                )}
-                                                </>                            
-                                                }
-                                            </form>
-                                        </div>
+                                                    {!loading &&
+                                                        <>
+                                                            <button className="input-group-text post-btn" type="submit">
+                                                                {t('post')}
+                                                            </button>
+                                                            <a className="input-group-text post-btn" onClick={togglePicker}>
+                                                                Icon
+                                                            </a>
+                                                            {showPicker && (
+                                                                <div style={{ marginTop: '10px' }}>
+                                                                    {emojiList.map((emoji, index) => (
+                                                                        <span key={index} onClick={() => handleSelectEmoji(emoji)} style={{ cursor: 'pointer' }}>
+                                                                            {emoji}
+                                                                        </span>
+                                                                    ))}
+                                                                </div>
+                                                            )}
+                                                        </>
+                                                    }
+                                                </form>
+                                            </div>
+                                        )
                                     ) : (
                                         <p>
                                             {t('please_login')}...
@@ -311,7 +327,9 @@ export default function CommentComic({ comicId, collectionId, roleUser, locale }
                                                 comicId={comicId}
                                                 commentId={cmt.id}
                                                 replyCount={cmt.replyCount}
-                                                index={uuidv4()} />
+                                                index={uuidv4()}
+                                                hideComment={hideComment}
+                                            />
                                         </div>
                                     </div>
                                 ))}
@@ -334,9 +352,9 @@ export default function CommentComic({ comicId, collectionId, roleUser, locale }
                                 </div>
                             )}
                         </div>
-                    </div>
-                </div>
-            </section>
+                    </div >
+                </div >
+            </section >
         </>
     )
 }

@@ -192,6 +192,7 @@
         "next": "Next",
         "previous": "Previous",
         "please_login": "Please login to post a comment",
+        "please_more_times": "Your account needs to be at least 7 days old before you can post a comment.",
         "unfollow": "Unfollow",
         "no_data": "No one has commented yet...",
         "no_data1": "No data available...",

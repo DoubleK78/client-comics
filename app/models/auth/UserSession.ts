@@ -4,4 +4,5 @@ export default interface UserSession {
     image?: string | null;
     roles?: Array<string> | null;
     expriedRoleDate?: Date | null;
+    createdOnUtc?: Date | null;
 }
