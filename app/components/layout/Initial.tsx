@@ -5,6 +5,7 @@ import { checkRoleUpdate, getTokenFromSessionServer } from "@/lib/services/clien
 import { Session } from "next-auth";
 import { signOut, useSession } from "next-auth/react";
 import { useEffect } from "react";
+import dayjs from '@/lib/dayjs/dayjs-custom';
 
 export default function Initial({ props }: { props: Session | null }) {
     const { update } = useSession();
@@ -17,7 +18,8 @@ export default function Initial({ props }: { props: Session | null }) {
         }
 
         const isCheckRoleChanges = parseJsonFromString<boolean | null>(sessionStorage.getItem("isCheckRoleChanges"));
-        if (!isCheckRoleChanges && token) {
+        const checkRoleChangesOnUtc = parseJsonFromString<Date | null>(sessionStorage.getItem("checkRoleChangesOnUtc"));
+        if ((!isCheckRoleChanges || (checkRoleChangesOnUtc && dayjs.utc(checkRoleChangesOnUtc) < dayjs.utc())) && token) {
             checkRoleUpdate().then((model) => {
                 // Banned Account will be log out
                 if (model?.isBanned) {
@@ -35,7 +37,9 @@ export default function Initial({ props }: { props: Session | null }) {
                 if (currentRoleType != model?.roleType) {
                     update();
                 }
+
                 sessionStorage.setItem("isCheckRoleChanges", JSON.stringify(true));
+                sessionStorage.setItem("checkRoleChangesOnUtc", JSON.stringify(dayjs.utc().add(5, 'minutes').toDate()));
             }).catch(() => { });
         }
     }, [props]);

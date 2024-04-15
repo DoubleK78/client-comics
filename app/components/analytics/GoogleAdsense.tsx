@@ -8,7 +8,7 @@ export default async function GoogleAdsense({ ca_id }: { ca_id: string }) {
     const session = await getServerSession(authOptions);
     const roleUser = getEnumValueFromString(session?.user?.token?.roles);
 
-    if (roleUser === ERoleType.UserSuperPremium) {
+    if (roleUser === ERoleType.UserPremium || roleUser === ERoleType.UserSuperPremium) {
         return <></>;
     }
 

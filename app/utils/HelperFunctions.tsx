@@ -281,8 +281,6 @@ export const roundTimeTo30Minutes = (date: any) => {
 export const percentBanner = (role: any) => {
     if (role == ERoleType.User || role === ERoleType.NoneRole)
         return true;
-    if (role == ERoleType.UserPremium)
-        return Math.random() <= 0.1;
-    if (role == ERoleType.UserSuperPremium)
+    if (role == ERoleType.UserPremium || role == ERoleType.UserSuperPremium)
         return false;
 }
