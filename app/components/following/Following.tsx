@@ -140,6 +140,7 @@ export default function Following({ session }: { session: any }) {
                                                                             <div className="schedule-content align-middle align-middle">
                                                                                 <a onClick={() => handleRedirect(`truyen-tranh/${fl.friendlyName}`, roleUser)}>
                                                                                     <p className="small-title">{fl.title}</p>
+                                                                                    <p className="small-title d-block d-sm-none">{fl.lastCollectionTitle}</p>
                                                                                 </a>
                                                                                 <a className="follow" onClick={() => handleUnfollow(fl.albumId)}>
                                                                                     <p className="text-box"><i className="fa fa-times" /> {t('unfollow')}</p>
@@ -183,6 +184,7 @@ export default function Following({ session }: { session: any }) {
                                                                             <div className="schedule-content align-middle align-middle">
                                                                                 <a onClick={() => handleRedirect(`truyen-tranh/${history.friendlyName}`, roleUser)}>
                                                                                     <p className="small-title">{history.title}</p>
+                                                                                    <p className="small-title d-block d-sm-none">{history.contents[0]?.title}</p>
                                                                                 </a>
                                                                             </div>
                                                                         </div>
@@ -192,7 +194,7 @@ export default function Following({ session }: { session: any }) {
                                                                     <p className="space-right d-inline">{history.views.toLocaleString()}</p>
                                                                 </div>
                                                                 <div className=" col-xl-3 col-lg-2 col-md-3 col-sm-2 col-0 space-top text-end">
-                                                                    <p className="d-inline">{history.contents[0].title}</p>
+                                                                    <p className="d-inline">{history.contents[0]?.title}</p>
                                                                 </div>
                                                             </div>
                                                             <hr />

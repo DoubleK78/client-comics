@@ -145,21 +145,21 @@ export const countryFlags = {
     [TypeCountry.BandeDessinée]: 'flag-icon flag-icon-fr flag-icon-squared',
 };
 export const affiliateLinks = [
-    "https://shope.ee/AUVl49dEmk",
-    "https://shope.ee/qLFYPmlLV",
-    "https://shope.ee/8A7qHtpdwo",
-    "https://shope.ee/8f46sq0k1G",
-    "https://shope.ee/4prOJnxKch",
-    "https://shope.ee/9KJng5NvGn",
-    "https://shope.ee/2VTTXXNPRa",
-    "https://shope.ee/7KYjIQibg4",
-    "https://shope.ee/3ffQvhVUKc",
-    "https://shope.ee/7pUztMop8e"
+    "https://shope.ee/4fZW6Jx6zH",
+    "https://shope.ee/5KpCtdsM9p",
+    "https://shope.ee/1LJ48Il733",
+    "https://shope.ee/8ziVGOvO0g",
+    "https://shope.ee/5V8d5z8J4E",
+    "https://shope.ee/3fgyudx5M0",
+    "https://shope.ee/2foRipDcQf",
+    "https://shope.ee/7AGr57QkCa",
+    "https://shope.ee/4pswIqDQle",
+    "https://shope.ee/5fS3IO13Su"
 ];
 
 export const percentAff = (role: any) => {
     if (role == ERoleType.User || role === ERoleType.NoneRole)
-        return Math.random() <= 0.10;
+        return Math.random() <= 0.11;
     if (role == ERoleType.UserPremium)
         return Math.random() <= 0.03;
     if (role == ERoleType.UserSuperPremium)
@@ -276,4 +276,11 @@ export const roundTimeTo30Minutes = (date: any) => {
     }
 
     return roundedDate;
+}
+
+export const percentBanner = (role: any) => {
+    if (role == ERoleType.User || role === ERoleType.NoneRole)
+        return true;
+    if (role == ERoleType.UserPremium || role == ERoleType.UserSuperPremium)
+        return false;
 }

@@ -22,7 +22,7 @@ export default function Payment({ userEmail }: { userEmail: any }) {
         setIsLoading(true);
         setIsSubmit(true);
 
-        if (code.length >= 10)
+        if (code.length >= 9 && code.length <= 14)
         {
             const emailMessage: SendEmailMessage = {
                 subject: "[Payment Upgrade Account]",
@@ -40,7 +40,7 @@ export default function Payment({ userEmail }: { userEmail: any }) {
                     ActivityType: EActivityType.Payment,
                     LimitTimes: 100,
                     IpV4Address: await trackingIpV4(),
-                    Description: userEmail
+                    Description: `${code} - ${typePage} - ${userEmail}`
                 };
                 
                 await createActivityLog(myActivityLog);

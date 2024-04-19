@@ -1,7 +1,7 @@
 {
     "metadata": {
         "home": "Fast Scans - Đọc Truyện Tranh Miễn Phí | Truyện Mới Cập Nhật Hằng Ngày",
-        "home_description": "Tại sao phải tốn 500đ để đọc truyện lậu? Hãy đến Fast Scans để khám phá nhiều bộ truyện tranh mới nhất trong nhiều thể loại đặc sắc: tiên hiệp, kiếm hiệp, teen, ngôn tình hay nhất, hoàn toàn MIỄN PHÍ.",
+        "home_description": "Hãy đến Fast Scans để khám phá nhiều bộ truyện tranh mới nhất trong nhiều thể loại đặc sắc: tiên hiệp, kiếm hiệp, teen, ngôn tình hay nhất, hoàn toàn không tốn tiền.",
         "search": "Khám phá truyện tranh online | Fast Scans",
         "search_description": "Đọc miễn phí nhiều bộ truyện tranh online mới nhất thuộc đa dạng thể loại tại Fast Scans. Cập nhật liên tục, không lo hết truyện!",
         "top": "{title}",
@@ -28,11 +28,11 @@
         "profile": "Hồ sơ cá nhân | Fast Scans",
         "profile_description": "Thông tin cá nhân và trạng thái cấp độ, theo dõi, lịch sử đọc truyện và nhiều tính năng khác để cá nhân hóa trải nghiệm đọc truyện của bạn!",
         "comic": "{title} [Tới {lastedChapter}] | Fast Scans",
-        "comic_description": "{title} {lastedChapter} mới nhất chất lượng ảnh cao tại Fast Scans. Cập nhật sớm, nhanh chóng, hoàn toàn MIỄN PHÍ và đặc biệt KHÔNG TÍNH PHÍ 500đ.",
+        "comic_description": "{title} {lastedChapter} mới nhất chất lượng ảnh cao tại Fast Scans. Cập nhật sớm, nhanh chóng, hoàn toàn không tốn tiền, trải nghiệm hơn thế nữa.",
         "comic_blank": "Truyện tranh tiếng việt Vietsub | Fast Scans",
         "comic_blank_description": "Truyện tranh việt Vietsub | Fast Scans",
         "content": "{comicTitle} - {contentTile} | Fast Scans",
-        "content_description": "Đọc truyện {comicTitle} {contentTile} chất lượng ảnh cao tại Fast Scans. Cập nhật sớm, nhanh chóng, hoàn toàn MIỄN PHÍ và đặc biệt KHÔNG TÍNH PHÍ 500đ.",
+        "content_description": "Đọc truyện {comicTitle} {contentTile} chất lượng ảnh cao tại Fast Scans. Cập nhật sớm, nhanh chóng, hoàn toàn không tốn tiền, trải nghiệm hơn thế nữa.",
         "content_blank": "Comic Chapter Vietsub | Fast Scans",
         "content_blank_description": "Comic Chapter Vietsub | Fast Scans",
         "top_user": "Bảng xếp hạng người dùng | Fast Scans",
@@ -40,9 +40,11 @@
         "payment": "Thanh toán nâng cấp tài khoản Premium | Fast Scans",
         "payment_description": "Thanh toán nâng cấp tài khoản Premium trên Fast Scans để trải nghiệm truy cập không giới hạn đến thế giới truyện tranh. Không quảng cáo, truyện mới cập nhật hàng ngày và nhiều ưu đãi độc quyền đang chờ đón bạn!",
         "schedule": "Lịch ra mắt hàng tuần | Fast Scans",
-        "schedule_description": "Lịch ra mắt truyện hàng tuần và không tốn 500 đồng",
+        "schedule_description": "Lịch ra mắt truyện hàng tuần dành cho hội viên Premium",
         "maintenance": "Bảo trì hệ thống | Fast Scans",
-        "maintenance_desctipion": "Xin lỗi vì sự bất tiện này! Chúng tôi đang bảo trì hệ thống Fast Scans. Chúng tôi sẽ quay trở lại sớm"
+        "maintenance_desctipion": "Xin lỗi vì sự bất tiện này! Chúng tôi đang bảo trì hệ thống Fast Scans. Chúng tôi sẽ quay trở lại sớm",
+        "install": "Ứng dụng web đọc truyện tranh cho iOS và Android | Fast Scans",
+        "install_description": "Cài đặt ứng dụng web Fast Scans trên iOS và Android để trải nghiệm truy cập nhanh hơn, mượt mà hơn, và nhận thông báo đẩy khi có truyện mới cập nhật, giành riêng cho hội viên Premium."
     },
     "header": {
         "following": "Theo dõi",
@@ -67,7 +69,8 @@
         "search": "Tìm kiếm",
         "advanced_search": "Tìm kiếm nâng cao",
         "power": "Sức mạnh",
-        "schedule": "Lịch ra mắt"
+        "schedule": "Lịch ra mắt",
+        "install": "Cài đặt App [Pre]"
     },
     "search": {
         "home_page": "Trang Chủ",
@@ -189,6 +192,7 @@
         "next": "Chap sau",
         "previous": "Chap trước",
         "please_login": "Vui lòng đăng nhập để bình luận",
+        "please_more_times": "Tài khoản cần đủ 7 ngày để bình luận",
         "unfollow": "Bỏ theo dõi",
         "no_data": "Chưa có ai bình luận cả...",
         "no_data1": "Không có dữ liệu...",
@@ -226,7 +230,7 @@
         "is_messenger": "Vui lòng đăng nhập bằng ứng dụng trình duyệt trên máy của bạn"
     },
     "footer": {
-        "info": "Fast Scans - Kho truyện tranh online miễn phí | Truyện hay. Truyện  mới. Website luôn cập nhập những bộ truyện mới nhất thuộc các thể loại đặc sắc như truyện tiên hiệp, kiếm hiệp, truyện teen, tiểu thuyết ngôn tình hay nhất và không tốn 500 đồng.",
+        "info": "Fast Scans - Kho truyện tranh online miễn phí | Truyện hay. Truyện  mới. Website luôn cập nhập những bộ truyện mới nhất thuộc các thể loại đặc sắc như truyện tiên hiệp, kiếm hiệp, truyện teen, tiểu thuyết ngôn tình hay nhất và không tốn tiền.",
         "join_us_on": "Tham gia cùng chúng tôi",
         "right": "Mọi quyền được bảo lưu bởi",
         "privacy_policy": "Chính sách bảo mật",
@@ -258,7 +262,7 @@
         "benefit_11": "Được xem các chap mới nhất sớm hơn 8 giờ so với user thường, và trễ hơn 4 giờ so với [S]Premium",
         "benefit_12": "Tăng giới hạn bình luận lên tối đa 10 lần / ngày",
         "benefit_13": "Tham gia vòng quay may mắn 2 lần / ngày",
-        "benefit_14": "Tỉ lệ xuất hiện tab quảng cáo là 3% (so với user thường là 10%)",
+        "benefit_14": "Tỉ lệ xuất hiện tab quảng cáo shopee là 3% (so với user thường là 11%)",
         "benefit_15": "Được bình luận các bài viết thảo luận trên fast-blog",
         "transaction_code": "Mã Giao Dịch Momo",
         "enter_transaction_code": "Nhập mã giao dịch...",
@@ -271,5 +275,46 @@
         "success": "Gửi mã thanh toán thành công !",
         "invalid_code": "Mã giao dịch không hợp lệ !",
         "forever": "Vĩnh viễn"
+    },
+    "error": {
+        "something_went_wrong": "Đã có lỗi xảy ra, xin lỗi vì sự bất tiện!",
+        "something_went_wrong_action": "Bạn có thể tải lại trang bằng cách nhấn nút",
+        "here": "tại đây",
+        "try_again": "Tải lại",
+        "support": "Nếu vẫn xảy ra lỗi",
+        "contact_us": "hãy liên hệ với chúng tôi"
+    },
+    "install": {
+        "title": "Cài đặt ứng dụng web trên iOS và Android dành riêng cho hội viên [Premium]",
+        "description": "Ứng dụng cung cấp trải nghiệm truy cập nhanh chóng và mượt mà, đồng thời gửi thông báo khi có chương truyện mới được cập nhật. Để có trải nghiệm tối ưu nhất, chúng tôi khuyên bạn nên sử dụng trình duyệt Safari trên iOS hoặc Chrome trên Android khi truy cập liên kết",
+        "here": "sau đây",
+        "description_extra": "và cài đặt ứng dụng.",
+        "ios_user": "Cài đặt với hệ điều hành iOS",
+        "android_user": "Cài đặt với hệ điều hành Android",
+        "support": "Mọi sự thắc mắc",
+        "contact_us": "hãy liên hệ với chúng tôi",
+        "step_ios_1": "Bước 1: Sau khi trang web được tải xong, hãy bấm vào biểu tượng chia sẻ.",
+        "step_ios_2": "Bước 2: Tiếp theo, hãy bấm vào Thêm MH chính.",
+        "step_ios_3": "Bước 3: Khi thông tin được hiển thị như trên hình, hãy bấm vào nút Thêm.",
+        "step_ios_4": "Bước 4: iOS sẽ tự động quay trở lại màn hình chính và thêm biểu tượng ứng dụng vào đó.",
+        "step_android_1": "Bước 1: Sau khi trang web được tải xong, hãy bấm vào biểu tượng Menu.",
+        "step_android_2": "Bước 2: Tiếp theo, hãy bấm vào mục Cài đặt ứng dụng.",
+        "step_android_3": "Bước 3: Khi thông tin được hiển thị như trên hình, hãy bấm vào nút Cài đặt.",
+        "step_android_4": "Bước 4: Android sẽ thêm biểu tượng ứng dụng vào màn hình chính.",
+        "faq": "Câu hỏi thường gặp",
+        "faq_question_1": "Ứng dụng web là gì?",
+        "faq_answer_1": "Ứng dụng web là một ứng dụng được truy cập thông qua trình duyệt web như Safari trên iOS hoặc Chrome trên Android. Nó cho phép bạn trải nghiệm giống như một ứng dụng di động, nhưng không cần cài đặt riêng biệt.",
+        "faq_question_2": "Tại sao tôi nên sử dụng ứng dụng web thay vì truy cập website trực tiếp?",
+        "faq_answer_2": "Ứng dụng web mang lại trải nghiệm nhanh hơn, mượt mà hơn và tiện lợi hơn khi có thể thêm biểu tượng ứng dụng ngay trên màn hình chính của điện thoại. Ngoài ra, bạn sẽ nhận được thông báo đẩy (push notification) khi có chương truyện mới được cập nhật, giúp bạn không bỏ lỡ những cập nhật mới nhất.",
+        "faq_question_3": "Yêu cầu thiết bị và phiên bản để sử dụng ứng dụng web",
+        "faq_answer_3": "Sử dụng thiết bị di động với phiên bản hệ điều hành iOS 11.3 hoặc Android 4.4 trở lên. Để trải nghiệm ứng dụng web một cách tối ưu, sử dụng trình duyệt web phổ biến và cập nhật phiên bản mới nhất như Safari (iOS) hoặc Chrome (Android). Kết nối internet tốc độ cao (3G/4G/5G hoặc WiFi). Tính năng thông báo đẩy (push notification) sẽ yêu cầu iOS 16.4 trở lên để hoạt động.",
+        "faq_question_4": "Ứng dụng Fastscans có những tính năng gì?",
+        "faq_answer_4": "Ứng dụng Fastscans cung cấp các tính năng và giao diện tương tự như website, nhưng với trải nghiệm nhanh hơn nhờ khả năng lưu trữ cache. Ngoài ra, bạn cũng có thể nhận thông báo đẩy khi có nội dung mới và truy cập nhanh chóng bằng cách thêm biểu tượng ứng dụng lên màn hình chính.",
+        "faq_question_5": "Tôi cần đăng ký hoặc trả phí để sử dụng ứng dụng Fastscans?",
+        "faq_answer_5": "Ứng dụng Fastscans là một trong những quyền lợi dành riêng cho người dùng đăng ký gói Premium hoặc SPremium. Để sử dụng ứng dụng này, bạn cần đăng ký một trong hai gói đăng ký trên website của chúng tôi, với mức phí bắt đầu từ 19.000 VNĐ/tháng.",
+        "faq_question_6": "Ứng dụng Fastscans có nặng không? Nó sẽ chiếm bao nhiêu dung lượng trên điện thoại?",
+        "faq_answer_6": "Ứng dụng Fastscans rất nhẹ, chỉ khoảng 400KB. Nó sẽ không chiếm nhiều dung lượng trên điện thoại của bạn.",
+        "faq_question_7": "Tôi có thể sử dụng ứng dụng Fastscans trên cả iOS và Android?",
+        "faq_answer_7": "Đúng vậy, ứng dụng Fastscans có thể sử dụng trên cả hệ điều hành iOS và Android. Để có trải nghiệm tối ưu, chúng tôi khuyến nghị sử dụng trình duyệt Safari trên iOS hoặc Chrome trên Android."
     }
 }

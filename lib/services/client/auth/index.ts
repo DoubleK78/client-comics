@@ -12,7 +12,8 @@ export const getTokenFromSessionServer = async () => {
             email: response.data.session?.user.email,
             image: response.data.session?.user.image,
             roles: response.data.session?.user.token?.roles,
-            expriedRoleDate: response.data.session?.user.token?.expriedRoleDate
+            expriedRoleDate: response.data.session?.user.token?.expriedRoleDate,
+            createdOnUtc: response.data.session?.user.token?.createdOnUtc
         }
 
         localStorage.setItem('token', apiToken);

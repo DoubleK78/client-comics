@@ -774,7 +774,7 @@ p.text-box:hover{
   Heading Styles 
 --------------------------*/
 .heading.style-1 {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .heading.style-1 h1 {
@@ -884,7 +884,7 @@ p.text-box:hover{
   }
 
   .heading.style-1 h1 {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   .heading.style-1 h2 span {
@@ -949,7 +949,7 @@ ul.pagination li a {
   transition: all 0.5s;
   display: block;
   padding: 0 10px;
-  font-size: 32px;
+  font-size: 20px;
   transition: all 0.5s;
   border: var(--border-light);
   border-radius: 4px;
@@ -991,7 +991,7 @@ ul.pagination li a.current {
     line-height: 25px;
     width: 30px;
     padding: 0 4px;
-    font-size: 16px;
+    font-size: 15px;
   }
 
   ul.pagination li a.arrow {
@@ -2133,7 +2133,6 @@ ul.pagination li a.current {
 .anime-blog .dropdown {
   position: relative;
   float: right;
-  margin-right: 10px;
 }
 .anime-blog .dropdown button:hover svg rect, .anime-blog .dropdown button:hover svg path{
  fill: var(--color-primary);
@@ -2233,7 +2232,7 @@ ul.pagination li a.current {
   }
 
   .anime-blog .text {
-    font-size: 11px;
+    font-size: 10px;
   }
 }
 

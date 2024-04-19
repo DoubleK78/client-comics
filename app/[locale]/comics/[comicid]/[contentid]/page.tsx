@@ -142,7 +142,7 @@ export default async function Page({ params, searchParams }: {
             <Breadcrumb content={content} />
             <ClearSearchParams />
             <ContentComic content={content} comic={comic} session={session} locale={locale} isBot={isBot} />
-            <DynamicCommentComic comicId={content?.albumId} collectionId={content?.id} roleUser={roleUser} locale={locale} />
+            <DynamicCommentComic comicId={content?.albumId} collectionId={content?.id} roleUser={roleUser} locale={locale} createdOnUtc={session?.user?.token?.createdOnUtc} />
         </>
     );
 }

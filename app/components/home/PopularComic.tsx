@@ -1,7 +1,7 @@
 "use client"
 import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
-import { converPrefixtUrlByLocale, followAlbum, getLangByLocale, getStatusFollow, handleRedirect, shortNumberViews, unFollow } from "@/app/utils/HelperFunctions";
+import { converPrefixtUrlByLocale, followAlbum, getLangByLocale, getStatusFollow, getUserNameClass, handleRedirect, shortNumberViews, unFollow } from "@/app/utils/HelperFunctions";
 import FollowingRequestModel from "@/app/models/comics/FollowingRequestModel";
 import { pathnames } from '@/navigation';
 
@@ -66,7 +66,7 @@ export default function PopularComic({ roleUser, albums, isBot }: { roleUser: an
             <section className="recent style-2 sec-mar">
                 <div className="container">
                     <div className="heading style-1">
-                        <h1>
+                        <h1 className={getUserNameClass(roleUser)} style={{height: '70px'}}>
                             {t('popular')}
                             <a href="/top-page?typePage=">
                                 <span className="view-more">{t('view_more')}</span>

@@ -37,6 +37,7 @@ export const authOptions: AuthOptions = {
                 user.apiToken = response.data.data?.jwtToken;
                 user.roles = response.data.data?.roles;
                 user.expriedRoleDate = response.data.data?.expriedRoleDate;
+                user.createdOnUtc = response.data.data?.createdOnUtc;
                 return true;
             }
             return false;
@@ -60,6 +61,7 @@ export const authOptions: AuthOptions = {
                 token.apiToken = user.apiToken;
                 token.roles = user.roles;
                 token.expriedRoleDate = user.expriedRoleDate;
+                token.createdOnUtc = user.createdOnUtc;
             }
             return token;
         },

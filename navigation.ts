@@ -66,6 +66,10 @@ export const pathnames = {
     '/maintenance': {
         en: '/maintenance',
         vi: '/bao-tri'
+    },
+    '/install': {
+        en: '/install',
+        vi: '/cai-dat'
     }
 }
 
