@@ -1,5 +1,6 @@
 export enum EActivityType {
-    Login = 1,
-    Comment = 2,
-    Payment = 3
+    Login = 0,
+    Comment = 1,
+    Payment = 3,
+    Subscription = 4
 }
