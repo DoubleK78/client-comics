@@ -11,7 +11,8 @@ export default async function GoogleAdsense({ ca_id }: { ca_id: string }) {
     const roleUser = getEnumValueFromString(session?.user?.token?.roles);
     const isBot = isbot(headers().get('user-agent'));
 
-    if (isBot || roleUser === ERoleType.UserPremium || roleUser === ERoleType.UserSuperPremium) {
+    if (isBot || roleUser === ERoleType.UserPremium || roleUser === ERoleType.UserSuperPremium ||
+        (process.env.MAINTENANCE_MODE && process.env.MAINTENANCE_MODE?.toLowerCase() === 'true')) {
         return <></>;
     }
 
