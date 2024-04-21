@@ -22,9 +22,9 @@ const DynamicContentComicItemV2 = dynamic(() => import('./ContentComicItemV2'), 
     ssr: true
 })
 
-const DynamicAdBanner = dynamic(() => import('@/app/components/analytics/AdBanner'), {
-    ssr: false
-})
+// const DynamicAdBanner = dynamic(() => import('@/app/components/analytics/AdBanner'), {
+//     ssr: false
+// })
 
 export default async function ContentComic({ content, comic, session, locale, isBot }: { content?: ContentResponse | null, comic?: ComicDetail | null, session: any, locale: any, isBot: boolean }) {
     const t = useTranslations('comic_detail');
@@ -122,12 +122,12 @@ export default async function ContentComic({ content, comic, session, locale, is
                     {(content && roleUser && roleUser >= content.levelPublic) || (content && content.levelPublic == 0) ?
                         (
                             <div className="row text-center pt-4">
-                                {!isBot && process.env.ACTIVE_BANNER && percentBanner(roleUser) && (
+                                {/* {!isBot && process.env.ACTIVE_BANNER && percentBanner(roleUser) && (
                                     <div className="chapter-image col-lg-10 offset-lg-1 col-12 offset-0 img-chapter"
                                         style={{ display: 'flex', justifyContent: 'center' }}>
                                         <DynamicAdBanner />
                                     </div>
-                                )}
+                                )} */}
                                 {process.env.LAZY_LOADING_IMAGE == 'false' && content?.contentItems && content?.contentItems.map((item: any) => (
                                     <div key={uuidv4()} className="chapter-image col-lg-10 offset-lg-1 col-12 offset-0 img-chapter">
                                         <img
@@ -141,12 +141,12 @@ export default async function ContentComic({ content, comic, session, locale, is
                                 {process.env.LAZY_LOADING_IMAGE == 'true' && content?.contentItems && content?.contentItems.map((item: any) => (
                                     <DynamicContentComicItemV2 key={uuidv4()} imageUrl={generateImageUrlByStorageType(content?.storageType, item)} />
                                 ))}
-                                {!isBot && process.env.ACTIVE_BANNER && percentBanner(roleUser) && (
+                                {/* {!isBot && process.env.ACTIVE_BANNER && percentBanner(roleUser) && (
                                     <div className="chapter-image col-lg-10 offset-lg-1 col-12 offset-0 img-chapter"
                                         style={{ display: 'flex', justifyContent: 'center' }}>
                                         <DynamicAdBanner />
                                     </div>
-                                )}
+                                )} */}
                             </div>
                         ) : (
                             <div className="row text-center pt-4" style={{ color: 'white' }}>
@@ -174,12 +174,12 @@ export default async function ContentComic({ content, comic, session, locale, is
                                     )}</h3>
                                 }
                                 <p>{t('refer')} <a style={{ color: 'var(--color-primary)' }} href="/upgrade-package">{t('here')}</a></p>
-                                {!isBot && process.env.ACTIVE_BANNER && percentBanner(roleUser) && (
+                                {/* {!isBot && process.env.ACTIVE_BANNER && percentBanner(roleUser) && (
                                     <div className="chapter-image col-lg-10 offset-lg-1 col-12 offset-0 img-chapter"
                                         style={{ display: 'flex', justifyContent: 'center' }}>
                                         <DynamicAdBanner />
                                     </div>
-                                )}
+                                )} */}
                             </div>
                         )}
                     <br></br>
