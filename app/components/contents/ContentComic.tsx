@@ -3,7 +3,7 @@ import ComicDetail from '@/app/models/comics/ComicDetail';
 import dynamic from "next/dynamic";
 import { useTranslations } from 'next-intl';
 import { v4 as uuidv4 } from 'uuid';
-import { generateImageUrlByStorageType, getEnumValueFromString, getLangByLocale, percentBanner, roundTimeTo30Minutes } from '@/app/utils/HelperFunctions';
+import { generateImageUrlByStorageType, getEnumValueFromString, getLangByLocale, percentAffImage, roundTimeTo30Minutes } from '@/app/utils/HelperFunctions';
 import { ERoleType } from '@/app/models/enums/ERoleType';
 import dayjs from "@/lib/dayjs/dayjs-custom";
 import { pathnames } from '@/navigation';
@@ -25,6 +25,10 @@ const DynamicContentComicItemV2 = dynamic(() => import('./ContentComicItemV2'), 
 // const DynamicAdBanner = dynamic(() => import('@/app/components/analytics/AdBanner'), {
 //     ssr: false
 // })
+
+const DynamicProductBanner = dynamic(() => import('@/app/components/analytics/ProductBanner'), {
+    ssr: false
+})
 
 export default async function ContentComic({ content, comic, session, locale, isBot }: { content?: ContentResponse | null, comic?: ComicDetail | null, session: any, locale: any, isBot: boolean }) {
     const t = useTranslations('comic_detail');
@@ -128,6 +132,11 @@ export default async function ContentComic({ content, comic, session, locale, is
                                         <DynamicAdBanner />
                                     </div>
                                 )} */}
+                                {!isBot && percentAffImage(roleUser) && (
+                                    <div className="chapter-image col-lg-10 offset-lg-1 col-12 offset-0 img-chapter">
+                                        <DynamicProductBanner />
+                                    </div>
+                                )}
                                 {process.env.LAZY_LOADING_IMAGE == 'false' && content?.contentItems && content?.contentItems.map((item: any) => (
                                     <div key={uuidv4()} className="chapter-image col-lg-10 offset-lg-1 col-12 offset-0 img-chapter">
                                         <img
@@ -147,6 +156,11 @@ export default async function ContentComic({ content, comic, session, locale, is
                                         <DynamicAdBanner />
                                     </div>
                                 )} */}
+                                {!isBot && percentAffImage(roleUser) && (
+                                    <div className="chapter-image col-lg-10 offset-lg-1 col-12 offset-0 img-chapter">
+                                        <DynamicProductBanner />
+                                    </div>
+                                )}
                             </div>
                         ) : (
                             <div className="row text-center pt-4" style={{ color: 'white' }}>

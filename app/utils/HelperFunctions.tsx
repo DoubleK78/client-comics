@@ -12,6 +12,8 @@ import { ERegion } from '../models/comics/ComicSitemap';
 import { EStorageType } from '../models/enums/EStorageType';
 import { parseJsonFromString } from '@/lib/json';
 import dayjs from '@/lib/dayjs/dayjs-custom';
+import { productList } from './ProductUtils';
+import Product from '../models/common/Product';
 
 export const getHoverText = (roleType: any): string => {
     if (roleType === ERoleType.UserSuperPremium) return "78%";
@@ -152,8 +154,8 @@ export const affiliateLinks = [
     "https://shope.ee/8UmLHVAopb",
     "https://shope.ee/4KwmK192Rk",
     "https://shope.ee/9zb94dHg92",
-    "https://shope.ee/3fh5X5mAIH",
-    "https://shope.ee/2VV88yU4jX",
+    "https://shope.ee/2LBlVwsK1Z",
+    "https://shope.ee/50CWgZy2j4",
     "https://shope.ee/3q0VjefLHy"
 ];
 
@@ -166,9 +168,25 @@ export const percentAff = (role: any) => {
         return false;
 }
 
+export const percentAffImage = (role: any) => {
+    if (role == ERoleType.User || role === ERoleType.NoneRole)
+        return Math.random() <= 1;
+    if (role == ERoleType.UserPremium)
+        return Math.random() <= 0.1;
+    if (role == ERoleType.UserSuperPremium)
+        return false;
+}
+
 export const generateAffiliateLink = (affiliateLinks: any) => {
     const randomIndex = Math.floor(Math.random() * affiliateLinks.length);
     return affiliateLinks[randomIndex];
+}
+
+
+export const generateRandomProduct = () : Product => {
+    const randomIndex = Math.floor(Math.random() * productList.length);
+    const randomProduct = productList[randomIndex];
+    return randomProduct;
 }
 
 export const handleRedirect = (link: any, roleUser: any) => {
