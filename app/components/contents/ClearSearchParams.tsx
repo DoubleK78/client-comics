@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
-import { addListener, launch, } from 'devtools-detector';
+import { addListener, launch, isAndroid, isIphone, isIpad } from 'devtools-detector';
 import dayjs from "@/lib/dayjs/dayjs-custom";
 
 export default function ClearSearchParams() {
@@ -16,9 +16,14 @@ export default function ClearSearchParams() {
         if (!isSkip) {
             const child = document.querySelector(".row.text-center.pt-4");
             if (child && child.parentNode) {
-                child.addEventListener("contextmenu", function (ev) {
-                    ev.preventDefault();
-                });
+                if (!isAndroid && !isIphone && !isIpad) {
+                    child.addEventListener("contextmenu", function (ev) {
+                        ev.preventDefault();
+                    });
+                }
+                else {
+                    
+                }
             }
 
             addListener(isOpen => {

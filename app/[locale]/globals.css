@@ -115,3 +115,8 @@
 ins.adsbygoogle[data-ad-status='unfilled'] {
     display: none !important;
 }
+
+.row.text-center.pt-4 {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
