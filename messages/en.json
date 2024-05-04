@@ -125,7 +125,8 @@
         "views": "Views",
         "lastest_name": "New chapter",
         "unfollow": "Unfollow",
-        "no_data": "No data available..."
+        "no_data": "No data available...",
+        "follow_directive": "If the list of followed comics has an error, please log out and log in again!"
     },
     "home": {
         "popular": "Popular",

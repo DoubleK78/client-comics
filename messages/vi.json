@@ -125,7 +125,8 @@
         "views": "Lượt xem",
         "lastest_name": "Chap mới",
         "unfollow": "Bỏ theo dõi",
-        "no_data": "Không có dữ liệu..."
+        "no_data": "Không có dữ liệu...",
+        "follow_directive": "Nếu danh sách truyện theo dõi bị lỗi, vui lòng đăng xuất và đăng nhập lại !"
     },
     "home": {
         "popular": "Truyện phổ biến",

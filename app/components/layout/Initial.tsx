@@ -12,7 +12,7 @@ export default function Initial({ props }: { props: Session | null }) {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (props?.user && !token) {
+        if (props?.user && (!token || token !== props.user.token?.apiToken)) {
             getTokenFromSessionServer();
             localStorage.setItem('token', props.user.token?.apiToken ?? '');
         }

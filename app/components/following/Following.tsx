@@ -3,10 +3,11 @@ import { useTranslations } from "next-intl";
 import PagingRequest from "@/app/models/paging/PagingRequest";
 import axiosClientApiInstance from "@/lib/services/client/interceptor";
 import ServerResponse from "@/app/models/common/ServerResponse";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import FollowingRequestModel from "@/app/models/comics/FollowingRequestModel";
 import { getEnumValueFromString, getRoleBadge, getUserNameClass, handleRedirect, shortNumberViews, unFollow } from "@/app/utils/HelperFunctions";
 import Pagination from "../common/Pagination";
+import { v4 as uuidv4 } from 'uuid';
 
 const getFollowings = async (params: PagingRequest) => {
     try {
@@ -59,7 +60,7 @@ export default function Following({ session }: { session: any }) {
         try {
             setListHistory(storedHistory ? JSON.parse(storedHistory) : []);
         }
-        catch(ex){
+        catch (ex) {
             setListHistory([]);
         }
     }, [toggleRemove, pagingParams]);
@@ -124,43 +125,39 @@ export default function Following({ session }: { session: any }) {
                                                     </div>
                                                 </div>
                                             )}
-                                            {followings && followings.length > 0 &&
-                                                <>
-                                                    {followings?.map((fl: any, index: any) => (
-                                                        <>
-                                                            <div key={index} className="row ps-3 pe-3">
-                                                                <div className="col-xl-6 col-lg-8 col-12 col-md-7 col-sm-8">
-                                                                    <div className="row">
-                                                                        <div className="col-lg-2 col-sm-3 col-3 ps-0 space-left pe-0 text-end">
-                                                                            <a onClick={() => handleRedirect(`truyen-tranh/${fl.friendlyName}`, roleUser)}>
-                                                                                <img src={fl.cdnThumbnailUrl ?? "/assets/media/404/none.jpg"} alt={fl.title} />
-                                                                            </a>
-                                                                        </div>
-                                                                        <div className="col-lg-10 col-sm-9 col-9">
-                                                                            <div className="schedule-content align-middle align-middle">
-                                                                                <a onClick={() => handleRedirect(`truyen-tranh/${fl.friendlyName}`, roleUser)}>
-                                                                                    <p className="small-title">{fl.title}</p>
-                                                                                    <p className="small-title d-block d-sm-none">{fl.lastCollectionTitle}</p>
-                                                                                </a>
-                                                                                <a className="follow" onClick={() => handleUnfollow(fl.albumId)}>
-                                                                                    <p className="text-box"><i className="fa fa-times" /> {t('unfollow')}</p>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
+                                            {followings && followings.length > 0 && followings?.map((fl: any) => (
+                                                <Fragment key={uuidv4()}>
+                                                    <div className="row ps-3 pe-3">
+                                                        <div className="col-xl-6 col-lg-8 col-12 col-md-7 col-sm-8">
+                                                            <div className="row">
+                                                                <div className="col-lg-2 col-sm-3 col-3 ps-0 space-left pe-0 text-end">
+                                                                    <a onClick={() => handleRedirect(`truyen-tranh/${fl.friendlyName}`, roleUser)}>
+                                                                        <img src={fl.cdnThumbnailUrl ?? "/assets/media/404/none.jpg"} alt={fl.title} />
+                                                                    </a>
+                                                                </div>
+                                                                <div className="col-lg-10 col-sm-9 col-9">
+                                                                    <div className="schedule-content align-middle align-middle">
+                                                                        <a onClick={() => handleRedirect(`truyen-tranh/${fl.friendlyName}`, roleUser)}>
+                                                                            <p className="small-title">{fl.title}</p>
+                                                                            <p className="small-title d-block d-sm-none">{fl.lastCollectionTitle}</p>
+                                                                        </a>
+                                                                        <a className="follow" onClick={() => handleUnfollow(fl.albumId)}>
+                                                                            <p className="text-box"><i className="fa fa-times" /> {t('unfollow')}</p>
+                                                                        </a>
                                                                     </div>
                                                                 </div>
-                                                                <div className=" col-xl-3 col-lg-2 col-md-3 col-sm-2 col-0 space-top text-end">
-                                                                    <p className="space-right d-inline">{shortNumberViews(fl.views)}</p>
-                                                                </div>
-                                                                <div className=" col-xl-3 col-lg-2 col-md-3 col-sm-2 col-0 space-top text-end">
-                                                                    <p className="d-inline">{fl.lastCollectionTitle}</p>
-                                                                </div>
                                                             </div>
-                                                            <hr />
-                                                        </>
-                                                    ))}
-                                                </>
-                                            }
+                                                        </div>
+                                                        <div className=" col-xl-3 col-lg-2 col-md-3 col-sm-2 col-0 space-top text-end">
+                                                            <p className="space-right d-inline">{shortNumberViews(fl.views)}</p>
+                                                        </div>
+                                                        <div className=" col-xl-3 col-lg-2 col-md-3 col-sm-2 col-0 space-top text-end">
+                                                            <p className="d-inline">{fl.lastCollectionTitle}</p>
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                </Fragment>
+                                            ))}
                                             {!loading && followings && followings.length === 0 && (
                                                 <div className="no-data-message">
                                                     {t('no_data')}
@@ -168,40 +165,36 @@ export default function Following({ session }: { session: any }) {
                                             )}
                                         </div>
                                         <div className="tab-pane" id="playlist">
-                                            {listHistory && listHistory.length > 0 &&
-                                                <>
-                                                    {listHistory?.map((history: any, index: any) => (
-                                                        <>
-                                                            <div key={index} className="row ps-3 pe-3">
-                                                                <div className="col-xl-6 col-lg-8 col-12 col-md-7 col-sm-8">
-                                                                    <div className="row">
-                                                                        <div className="col-lg-2 col-sm-3 col-3 ps-0 space-left pe-0 text-end">
-                                                                            <a onClick={() => handleRedirect(`truyen-tranh/${history.friendlyName}`, roleUser)}>
-                                                                                <img src={history.thumbnailUrl ?? "/assets/media/404/none.jpg"} alt={history.title} />
-                                                                            </a>
-                                                                        </div>
-                                                                        <div className="col-lg-10 col-sm-9 col-9">
-                                                                            <div className="schedule-content align-middle align-middle">
-                                                                                <a onClick={() => handleRedirect(`truyen-tranh/${history.friendlyName}`, roleUser)}>
-                                                                                    <p className="small-title">{history.title}</p>
-                                                                                    <p className="small-title d-block d-sm-none">{history.contents[0]?.title}</p>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
+                                            {listHistory && listHistory.length > 0 && listHistory?.map((history: any) => (
+                                                <Fragment key={uuidv4()}>
+                                                    <div className="row ps-3 pe-3">
+                                                        <div className="col-xl-6 col-lg-8 col-12 col-md-7 col-sm-8">
+                                                            <div className="row">
+                                                                <div className="col-lg-2 col-sm-3 col-3 ps-0 space-left pe-0 text-end">
+                                                                    <a onClick={() => handleRedirect(`truyen-tranh/${history.friendlyName}`, roleUser)}>
+                                                                        <img src={history.thumbnailUrl ?? "/assets/media/404/none.jpg"} alt={history.title} />
+                                                                    </a>
+                                                                </div>
+                                                                <div className="col-lg-10 col-sm-9 col-9">
+                                                                    <div className="schedule-content align-middle align-middle">
+                                                                        <a onClick={() => handleRedirect(`truyen-tranh/${history.friendlyName}`, roleUser)}>
+                                                                            <p className="small-title">{history.title}</p>
+                                                                            <p className="small-title d-block d-sm-none">{history.contents[0]?.title}</p>
+                                                                        </a>
                                                                     </div>
                                                                 </div>
-                                                                <div className=" col-xl-3 col-lg-2 col-md-3 col-sm-2 col-0 space-top text-end">
-                                                                    <p className="space-right d-inline">{history.views.toLocaleString()}</p>
-                                                                </div>
-                                                                <div className=" col-xl-3 col-lg-2 col-md-3 col-sm-2 col-0 space-top text-end">
-                                                                    <p className="d-inline">{history.contents[0]?.title}</p>
-                                                                </div>
                                                             </div>
-                                                            <hr />
-                                                        </>
-                                                    ))}
-                                                </>
-                                            }
+                                                        </div>
+                                                        <div className=" col-xl-3 col-lg-2 col-md-3 col-sm-2 col-0 space-top text-end">
+                                                            <p className="space-right d-inline">{history.views.toLocaleString()}</p>
+                                                        </div>
+                                                        <div className=" col-xl-3 col-lg-2 col-md-3 col-sm-2 col-0 space-top text-end">
+                                                            <p className="d-inline">{history.contents[0]?.title}</p>
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                </Fragment>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
@@ -229,6 +222,11 @@ export default function Following({ session }: { session: any }) {
                                 onPageChange={page => setPagingParams({ ...pagingParams, PageNumber: page })} />
                         </div>
                     }
+                    <div className="text-details mt-4">
+                        <div className="text-box mb-4 text-center">
+                            {t('follow_directive')}
+                        </div>
+                    </div>
                 </div>
             </section>
         </>

@@ -115,3 +115,12 @@
 ins.adsbygoogle[data-ad-status='unfilled'] {
     display: none !important;
 }
+
+.row.text-center.pt-4 {
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.lazyload-wrapper > img {
+    pointer-events: none;
+}
