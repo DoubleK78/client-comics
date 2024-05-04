@@ -5,6 +5,7 @@ import ToNotDieBanner from '@/public/assets/media/banner/to_not_die.png';
 import VouncherBanner from '@/public/assets/media/banner/voucher.png';
 import { getLangByLocale, handleRedirect } from "@/app/utils/HelperFunctions";
 import { Link, pathnames } from "@/navigation";
+import { ERoleType } from "@/app/models/enums/ERoleType";
 
 export default function BannerComic({ roleUser, isBot }: { roleUser: any, isBot: boolean }) {
     const t = useTranslations('home');
@@ -44,6 +45,7 @@ export default function BannerComic({ roleUser, isBot }: { roleUser: any, isBot:
                                 </div>
                             </div>
                         </div>
+                        {roleUser != ERoleType.UserSuperPremium && roleUser != ERoleType.UserPremium &&
                         <div className=" banner-block-shopee bg-color-shopee banner-shopee">
                             <div className="row">
                                 <div className="col-lg-6 col-sm-6 col-12 d-flex align-items-center">
@@ -66,6 +68,7 @@ export default function BannerComic({ roleUser, isBot }: { roleUser: any, isBot:
                                 </div>
                             </div>
                         </div>
+                        }
                     </div>
                 </div>
             </section>
