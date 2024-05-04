@@ -506,7 +506,12 @@ input[type='radio']:checked {
 .bg-color-black {
   background-color: var(--color-black);
 }
-
+.bg-color-shopee{
+  background-color: rgb(219, 124, 15);
+}
+.banner-shopee{
+  border-radius: 1%;
+}
 .dropdown-toggle::after {
   display: none;
 }
@@ -538,6 +543,18 @@ a.text-box {
   color: var(--color-medium-grey);
   margin-bottom: 20px;
 }
+a.text-box-shopee {
+  display: inline-block;
+  padding: 0px 10px;
+  border: 2px solid var(--color-white);
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 16px;
+  margin-right: 10px;
+  color: var(--color-white);
+  margin-bottom: 5px;
+}
 a.white {
   border: 2px solid var(--color-white);
   color: var(--color-white);
@@ -548,6 +565,11 @@ a.text-box.active {
   border: 2px solid var(--color-primary);
 }
 a.text-box:hover{
+  color: var(--color-black);
+  background: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+a.text-box-shopee:hover{
   color: var(--color-black);
   background: var(--color-primary);
   border: 2px solid var(--color-primary);
@@ -1721,6 +1743,9 @@ ul.pagination li a.current {
 -------------------------*/
 .banner.style-2 .banner-block {
   padding: 160px 0 50px;
+}
+.banner.style-2 .banner-block-shopee {
+  padding: 120px 0 30px;
 }
 
 .banner.style-1 .banner-content {
