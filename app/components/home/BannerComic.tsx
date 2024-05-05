@@ -51,7 +51,7 @@ export default function BannerComic({ roleUser, isBot }: { roleUser: any, isBot:
                                 <div className="col-lg-6 col-sm-6 col-12 d-flex align-items-center">
                                     <div className="banner-content">
                                         <div className="tag-box">
-                                            <h4 className="title">Đại Lễ Mua Sắm Shopee 5/5</h4>
+                                            <h5 className="title">Đại Lễ Mua Sắm Shopee 5/5</h5>
                                             {!isBot && <a href="https://shope.ee/9UfFslgOEa" className="text-box-shopee">
                                                 Tham Gia Ngay
                                             </a>}
