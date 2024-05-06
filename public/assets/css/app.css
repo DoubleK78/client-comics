@@ -2089,7 +2089,7 @@ ul.pagination li a.current {
   border-radius: 10px;
 }
 .anime-blog img {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   width: 100%;
   border-radius: 10px;
   object-fit: fill;
@@ -2127,7 +2127,6 @@ ul.pagination li a.current {
 .anime-blog .text {
   font-weight: 400;
   font-size: 12px;
-  line-height: 24px;
   margin-bottom: 0;
   color: var(--color-medium-grey);
   display: inline;
@@ -2150,7 +2149,7 @@ ul.pagination li a.current {
 .anime-blog a p {
   font-weight: 500;
   font-size: 16px;
-  margin: 16px 0 0;
+  margin: 0px 0 0;
 }
 .anime-blog a:hover p{
   color: var(--color-primary);
@@ -5831,4 +5830,15 @@ b{
 }
 .readed{
   color: gray !important;
+}
+.chap-box{
+  font-size: 9px !important;
+  display: inline-block;
+  padding: 0px 10px;
+  border: 2px solid var(--color-primary);
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-right: 10px;
+  color: var(--color-medium-grey);
 }

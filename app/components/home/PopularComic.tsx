@@ -99,7 +99,10 @@ export default function PopularComic({ roleUser, albums, isBot }: { roleUser: an
                                         </>
                                     )}
                                     <div className="d-flex justify-content-between">
-                                        <p className="text">{t('views')}: {shortNumberViews(album.views)}</p>
+                                        <div>
+                                            <p className="text">{t('views')}: {shortNumberViews(album.views)}</p>
+                                            <p className="chap-box">{album.lastCollectionTitle}</p>
+                                        </div>
                                         <div className="dropdown">
                                             {roleUser !== -1 &&
                                                 <>

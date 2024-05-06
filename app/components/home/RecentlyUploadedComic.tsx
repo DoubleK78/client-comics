@@ -2,7 +2,7 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { useEffect, useState, useRef } from 'react';
 import FollowingRequestModel from '@/app/models/comics/FollowingRequestModel';
-import { converPrefixtUrlByLocale, followAlbum, getLangByLocale, getStatusFollow, getUserNameClass, handleRedirect, unFollow } from '@/app/utils/HelperFunctions';
+import { converPrefixtUrlByLocale, followAlbum, getLangByLocale, getStatusFollow, getUserNameClass, handleRedirect, shortNumberViews, unFollow } from '@/app/utils/HelperFunctions';
 import { pathnames } from '@/navigation';
 
 export default function RecentlyUploadedComic({ roleUser, albums, isBot }: { roleUser: any, albums: any, isBot: boolean }) {
@@ -100,7 +100,10 @@ export default function RecentlyUploadedComic({ roleUser, albums, isBot }: { rol
                                         </>
                                     )}
                                     <div className="d-flex justify-content-between">
-                                        <p className="text">{album?.lastCollectionTitle}</p>
+                                        <div>
+                                            <p className="text">{t('views')}: {shortNumberViews(album.views)}</p>
+                                            <p className="chap-box">{album.lastCollectionTitle}</p>
+                                        </div>
                                         <div className="dropdown">
                                             {roleUser !== -1 &&
                                                 <>
