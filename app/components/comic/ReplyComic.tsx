@@ -1,10 +1,9 @@
 import UserSession from "@/app/models/auth/UserSession";
-import { formatDateToLocale } from "@/lib/dayjs/format-date";
 import { getComments, pushComment } from "@/lib/services/client/comment/commentService";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useMemo, useRef, useState } from "react";
 import ReactQuill from "react-quill";
-import { getHoverText, getLevelBadgeClass, getLevelNameById, getRoleBadge, getUserClass, getUserNameClass } from '@/app/utils/HelperFunctions';
+import { getDayjsByLocale, getHoverText, getLevelBadgeClass, getLevelNameById, getRoleBadge, getUserClass, getUserNameClass } from '@/app/utils/HelperFunctions';
 import { getPercentByDivdeTwoNumber } from "@/lib/math/mathHelper";
 
 const editorStyle = {
@@ -13,19 +12,22 @@ const editorStyle = {
     color: 'white',
 };
 
-export default function ReplyComic({ comment, comicId, commentId, replyCount, index }: {
+export default function ReplyComic({ comment, comicId, commentId, replyCount, index, hideComment }: {
     comment: any,
     comicId: number,
     commentId: number, replyCount: number,
-    index: string
+    index: string,
+    hideComment: boolean
 }) {
     const t = useTranslations('comic_detail');
+    const locale = useLocale();
     const [replies, setReplies] = useState<any[]>([]);
     const [reply, setReply] = useState('');
 
     const [isOpenToggle, setIsOpenToggle] = useState<boolean>(false);
     const [reloadTrigger, setReloadTrigger] = useState(false);
     const toggleEditorRef = useRef<any>(null);
+    const toggleMoreReplyRef = useRef<any>(null);
 
     const [loading, setLoading] = useState(false);
     const userSession = useMemo<UserSession>(() => {
@@ -33,14 +35,17 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
         return session ? JSON.parse(session) : null;
     }, []);
 
+    // Calculate count when user firstly reply
+    const [trueReplyCount, setTrueReplyCount] = useState(replyCount);
+
     useEffect(() => {
-        if (replyCount > 0 && isOpenToggle) {
+        if (trueReplyCount > 0 && isOpenToggle) {
             const query = {
                 albumId: comicId,
                 pageNumber: 1,
                 pageSize: 10,
                 sortColumn: 'createdOnUtc',
-                sortDirection: 'desc',
+                sortDirection: 'asc',
                 isReply: true,
                 parentCommentId: commentId
             };
@@ -59,8 +64,11 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
                 .finally(() => {
                     setLoading(false);
                 });
+            // automatic open morre reply when user firstly sucessful reply
+        } else if (trueReplyCount > 0 && replyCount === 0 && !isOpenToggle) {
+            toggleMoreReplyRef.current?.click();
         }
-    }, [replyCount, reloadTrigger, isOpenToggle]);
+    }, [trueReplyCount, reloadTrigger, isOpenToggle]);
 
     const toggleReplies = async () => {
         setIsOpenToggle(!isOpenToggle);
@@ -72,8 +80,15 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
             return;
         }
 
+        const regexEmpty = /<p><br><\/p>$/;
+        let modifiedComment;
+
+        if (regexEmpty.test(reply))
+            modifiedComment = reply.slice(0, reply.lastIndexOf('<p><br></p>'));
+        else
+            modifiedComment = reply;
         const commentData = {
-            Text: reply,
+            Text: modifiedComment,
             AlbumId: comicId,
             CollectionId: null,
             ParentCommentId: commentId
@@ -82,6 +97,10 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
         await pushComment(commentData);
         setReply('');
         setReloadTrigger((prev) => !prev);
+
+        if (trueReplyCount === 0) {
+            setTrueReplyCount(1);
+        }
     };
 
     const scrollToReplyEditor = () => {
@@ -104,7 +123,7 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
 
     return (
         <>
-            {userSession && <button
+            {userSession && !hideComment && <button
                 className=" accordion-button comment-btn"
                 data-bs-toggle="collapse"
                 data-bs-target={`#reply${index}1`}
@@ -131,13 +150,14 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
                 </div>
             </div>
             {loading && <div className="spinner-border text-primary" role="status"></div>}
-            {!loading && replyCount > 0 && <a
+            {!loading && trueReplyCount > 0 && <a
                 className={'accordion-button comment-btn active'}
                 data-bs-toggle="collapse"
                 data-bs-target={`#reply${index}`}
                 aria-expanded={true}
                 aria-controls={`reply${index}`}
                 onClick={() => toggleReplies()}
+                ref={toggleMoreReplyRef}
             >
                 {t('view_more_replies')}
             </a>}
@@ -149,7 +169,7 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
                 <div className="card card-body">
                     <div className="row pt-3">
                         {replies?.map((rl: any, rlIndex: number) => (
-                            <div key={rlIndex} className="col-lg-11 offset-lg-1 offset-2 col-10 pb-4">
+                            <div key={rlIndex} className="col-lg-11 offset-lg-1 offset-0 col-9 pb-4">
                                 <div className="d-inline-flex align-items-start">
                                     <a data-hover-text={getHoverText(rl.roleType)} className={getUserClass(rl.roleType)}>
                                         <img src={rl.avatar} className="avatar-reply" alt="" />
@@ -163,8 +183,8 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
                                             {rl.collectionId && <b className='relation-chap'><a href={`/truyen-tranh/${rl.albumFriendlyName}/${rl.friendlyName}`}>{rl.title}</a></b>}
                                         </h5>
                                         <div dangerouslySetInnerHTML={{ __html: rl.text }} />
-                                        <span className='date-comment'>{formatDateToLocale(rl.createdOnUtc)}</span>
-                                        {userSession &&
+                                        <span className='date-comment'>{getDayjsByLocale(locale, rl.createdOnUtc).format('DD-MM-YYYY HH:mm')}</span>
+                                        {userSession && !hideComment &&
                                             <button
                                                 className=" accordion-button comment-btn"
                                                 data-bs-toggle=""

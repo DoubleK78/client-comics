@@ -3,4 +3,6 @@ export default interface UserSession {
     email?: string | null;
     image?: string | null;
     roles?: Array<string> | null;
+    expriedRoleDate?: Date | null;
+    createdOnUtc?: Date | null;
 }

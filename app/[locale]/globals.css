@@ -76,3 +76,51 @@
     margin-right: 15px;
     padding-right: 0px !important;
 }
+
+/* Autocomplete Search Bar */
+.autocomplete-search {
+    border-top-right-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+}
+
+.autocomplete-suggestions {
+    position: absolute;
+    z-index: 1000;
+    top: calc(100% + 2px);
+    left: 2px;
+    /* Adjust the left position */
+    right: 0px;
+    /* Add right position */
+    background-color: #111111;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    border-top: 0px;
+}
+
+.autocomplete-suggestions .suggestion {
+    padding: 8px 12px;
+    cursor: pointer;
+    color: white;
+}
+
+.autocomplete-suggestions .suggestion:hover {
+    background-color: #333333;
+}
+
+/* END Autocomplete Search Bar */
+
+/* Hide ad container if no ad is present */
+ins.adsbygoogle[data-ad-status='unfilled'] {
+    display: none !important;
+}
+
+.row.text-center.pt-4 {
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.lazyload-wrapper > img {
+    pointer-events: none;
+}

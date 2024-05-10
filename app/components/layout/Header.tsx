@@ -5,17 +5,18 @@ import { getTranslations, getLocale } from 'next-intl/server';
 import Initial from "./Initial";
 import Logo from '@/public/assets/media/logo.png';
 import Image from "next/image";
+import SessionProviderWrapper from "./SessionProviderWrapper";
 
 const DynamicLogoutButton = dynamic(() => import('./LogoutButton'), {
-    ssr: false
+    ssr: true
 });
 
 const DynamicLanguageSwitcher = dynamic(() => import('./LanguageSwitcher'), {
-    ssr: false
+    ssr: true
 })
 
 const DynamicSearchHeader = dynamic(() => import('./SearchHeader'), {
-    ssr: false
+    ssr: true
 });
 
 export default async function Header() {
@@ -26,7 +27,7 @@ export default async function Header() {
 
     return (
         <header className="header style-1">
-            <Initial props={session} />
+            <SessionProviderWrapper session={session} Component={<Initial props={session} />} />
             <div className="container">
                 {/* Start Mainmanu Nav */}
                 <nav className="navbar navbar-expand-lg">
@@ -73,12 +74,44 @@ export default async function Header() {
                                         <a href="/top-page?typePage=day">{t('top_day')}</a>
                                     </li>
                                     <li>
-                                        <a href="#">{t('top_follow')}</a>
+                                        <a href="/top-user">
+                                            {t('power')}
+                                        </a>
                                     </li>
+                                    {/* <li>
+                                        <a href="#">{t('top_follow')}</a>
+                                    </li> */}
                                 </ul>
                             </li>
                             <li className="menu-item-has-children">
-                                <a href="/search">{t('explore')}</a>
+                                <a
+                                    href="#"
+                                    className="dropdown-toggle"
+                                    id="explore"
+                                    data-bs-toggle="dropdown"
+                                    data-bs-auto-close="outside"
+                                    aria-expanded="false"
+                                >
+                                    {t('explore')}
+                                </a>
+                                <ul className="dropdown-menu" aria-labelledby="explore">
+                                    <li>
+                                        <a href="/top-page?typePage=" className="active">
+                                            [Fast] Reels
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/search">{t('advanced_search')}</a>
+                                    </li>
+                                    <li>
+                                        <a href="/schedule">{t('schedule')}</a>
+                                    </li>
+                                    {process.env.MOBILE_URL && (
+                                        <li>
+                                            <a href="/install">{t('install')}</a>
+                                        </li>
+                                    )}
+                                </ul>
                             </li>
                             <li className="menu-item-has-children">
                                 <a

@@ -9,7 +9,6 @@ export function ContentComicItem({ imageUrl, scrollPosition }: { imageUrl: strin
                 alt=""
                 scrollPosition={scrollPosition}
                 width={800}
-                threshold={75}
             />
         </div>
     )

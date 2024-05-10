@@ -12,7 +12,7 @@ export default function Footer() {
                     <div className="row justify-content-between align-items-center">
                         <div className="col-lg-5 col-sm-12 col-12">
                             <div className="footer-widget">
-                                <a href="#">
+                                <a href="/">
                                     <Image src={Logo} alt="logo" priority />
                                 </a>
                                 <p className="mt-2 mb-5">
@@ -45,7 +45,7 @@ export default function Footer() {
                             <div className="footer-copyright">
                                 <span className="copyright-text">
                                     © 2024. {t('right')}{" "}
-                                    <a href="#">Fast Scans</a>.
+                                    <a href="/">Fast Scans</a>.
                                 </span>
                             </div>
                         </div>

@@ -2,19 +2,29 @@ import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { getTranslations } from 'next-intl/server';
-import { getEnumValueFromString, getLevelNameById, getProgressBar, getRoleBadge, getUserNameClass } from "@/app/utils/HelperFunctions";
+import { getEnumValueFromString, getLevelNameById, getProgressBar, getRoleBadge, getUserNameClass, imageLevel } from "@/app/utils/HelperFunctions";
 import { getProfile } from "@/lib/services/server/users";
 import { getPercentByDivdeTwoNumber } from "@/lib/math/mathHelper";
+import { pathnames } from "@/navigation";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
     const t = await getTranslations({ locale, namespace: 'metadata' });
+    const baseUrl = process.env.NEXT_BASE_URL!;
+    
+    const routeVi = pathnames["/profile"]['vi'];
+    const routeEn = '/en' + pathnames["/profile"]['en'];
 
     return {
+        metadataBase: new URL(baseUrl),
+        alternates: {
+            canonical: locale === 'vi' ? routeVi : routeEn,
+            languages: {
+                'vi': routeVi,
+                'en': routeEn,
+            },
+        },
         title: t('profile'),
-        description: t('profile_description'),
-        icons: {
-            icon: '/assets/media/icon/head.ico',
-        }
+        description: t('profile_description')
     };
 }
 
@@ -24,8 +34,8 @@ export default async function Page() {
     if (!session) {
         return redirect('/login');
     }
-    const roleUser = getEnumValueFromString((session.user?.token?.roles ? session.user.token.roles : []).join(','));
-    const userProfile = await getProfile(session.user?.token?.apiToken);
+    const roleUser = getEnumValueFromString(session.user?.token?.roles);
+    const userProfile = await getProfile();
 
     return (
         <>
@@ -36,6 +46,7 @@ export default async function Page() {
                 <div className="container">
                     <div className="breadcrumb-content">
                         <ul>
+                            <li><a href="/">{t('home_page')}</a></li>
                             <li>
                                 <a className="active">{t('profile')}</a>
                             </li>
@@ -54,6 +65,7 @@ export default async function Page() {
                                 <div className="col-lg-4 col-sm-6 col-12">
                                     <div className="img-box">
                                         <img src={session.user?.image ?? ''} alt="Avatar" className="rounded-circle shadow-4 px-2" />
+                                        <img className="level-image" src={imageLevel(userProfile?.levelId ?? 0)} alt="" />
                                     </div>
                                 </div>
                                 <div className="profile-seting col-lg-8 col-sm-6 col-12">
@@ -65,7 +77,6 @@ export default async function Page() {
                                         </div>
                                     </div>
                                     <br />
-                                    <p className={getUserNameClass(roleUser)}>{session.user?.email?.split('@')[0]}</p>
                                     <p className={"pb-3 " + getUserNameClass(roleUser)}>{session.user?.email}</p>
                                     <br />
                                     <p className={"user-level " + getUserNameClass(roleUser)}>{t('level')}: {getLevelNameById(userProfile?.levelId)}</p>
@@ -84,7 +95,7 @@ export default async function Page() {
                         <div className="col-lg-3 col-sm-12 col-12">
                             <div className="profile-link bg-color-black">
                                 <a data-hover-text="Hello" className="user-level">
-                                    <p className="user-level">{t('level_list')}</p>
+                                    <p className="user-level">{t('level_list')} <i className="fas fa-arrow-down"></i></p>
                                     <div className="hover-text level-step">Base
                                         <hr /> SSJ1
                                         <hr /> SSJ2

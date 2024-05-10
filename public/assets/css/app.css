@@ -237,6 +237,7 @@ h6 {
   letter-spacing: 1.5px;
   color: var(--color-text-dark);
   line-height: var(--line-height-b3);
+  color: white;
 }
 
 
@@ -505,7 +506,12 @@ input[type='radio']:checked {
 .bg-color-black {
   background-color: var(--color-black);
 }
-
+.bg-color-shopee{
+  background-color: rgb(219, 124, 15);
+}
+.banner-shopee{
+  border-radius: 1%;
+}
 .dropdown-toggle::after {
   display: none;
 }
@@ -537,6 +543,18 @@ a.text-box {
   color: var(--color-medium-grey);
   margin-bottom: 20px;
 }
+a.text-box-shopee {
+  display: inline-block;
+  padding: 0px 10px;
+  border: 2px solid var(--color-white);
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 16px;
+  margin-right: 10px;
+  color: var(--color-white);
+  margin-bottom: 5px;
+}
 a.white {
   border: 2px solid var(--color-white);
   color: var(--color-white);
@@ -547,6 +565,11 @@ a.text-box.active {
   border: 2px solid var(--color-primary);
 }
 a.text-box:hover{
+  color: var(--color-black);
+  background: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+a.text-box-shopee:hover{
   color: var(--color-black);
   background: var(--color-primary);
   border: 2px solid var(--color-primary);
@@ -642,12 +665,19 @@ p.text-box:hover{
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-
+.view-search{
+  width: 10vw;
+  display: inline-block;
+}
 @media only screen and (max-width: 575px) {
   .back-to-top {
     width: 40px;
     height: 40px;
     line-height: 40px;
+  }
+  .view-search{
+    width: 25vw;
+    display: inline-block;
   }
 }
 
@@ -766,7 +796,20 @@ p.text-box:hover{
   Heading Styles 
 --------------------------*/
 .heading.style-1 {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+}
+
+.heading.style-1 h1 {
+  width: 100%;
+  font-family: MTO;
+  font-weight: 700;
+  font-size: 40px;
+  color: var(--color-white);
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0;
 }
 
 .heading.style-1 h2 {
@@ -842,6 +885,12 @@ p.text-box:hover{
     font-size: 14px;
     padding-top: 10px;
   }
+  .heading.style-1 h1{
+    justify-content: center;
+    flex-direction: column;
+    font-size: 30px;
+    
+  }
 }
 @media only screen and (max-width: 492px) {
   .heading.style-1 {
@@ -854,6 +903,10 @@ p.text-box:hover{
   }
   .heading.style-1 h2 {
     font-size: 30px;
+  }
+
+  .heading.style-1 h1 {
+    font-size: 28px;
   }
 
   .heading.style-1 h2 span {
@@ -918,7 +971,7 @@ ul.pagination li a {
   transition: all 0.5s;
   display: block;
   padding: 0 10px;
-  font-size: 32px;
+  font-size: 20px;
   transition: all 0.5s;
   border: var(--border-light);
   border-radius: 4px;
@@ -958,9 +1011,9 @@ ul.pagination li a.current {
 @media only screen and (max-width: 767px) {
   ul.pagination li a {
     line-height: 25px;
-    width: 32px;
+    width: 30px;
     padding: 0 4px;
-    font-size: 16px;
+    font-size: 15px;
   }
 
   ul.pagination li a.arrow {
@@ -972,7 +1025,7 @@ ul.pagination li a.current {
 
 
   ul.pagination li {
-    margin: 0 8px;
+    margin: 0 4px;
   }
 
   .pagination-wrape {
@@ -1118,7 +1171,7 @@ ul.pagination li a.current {
 }
 
 .header.style-1 nav {
-  padding: 30px 0px;
+  padding: 25px 0px;
   z-index: 999;
 }
 
@@ -1332,7 +1385,7 @@ ul.pagination li a.current {
     height: 80px;
   }
   .header.style-1 nav {
-    padding: 25px 0 0;
+    padding: 10px 0 0;
   }
   .header.style-1 .header-search-box {
     width: 350px;
@@ -1691,6 +1744,9 @@ ul.pagination li a.current {
 .banner.style-2 .banner-block {
   padding: 160px 0 50px;
 }
+.banner.style-2 .banner-block-shopee {
+  padding: 120px 0 30px;
+}
 
 .banner.style-1 .banner-content {
   display: table-cell;
@@ -2033,7 +2089,7 @@ ul.pagination li a.current {
   border-radius: 10px;
 }
 .anime-blog img {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   width: 100%;
   border-radius: 10px;
   object-fit: fill;
@@ -2043,7 +2099,7 @@ ul.pagination li a.current {
 .anime-blog .action-overlay{
   background-color: #000000b3;
   position: absolute;
-  width: 87%;
+  width: 88%;
   padding-top: 90px;
   text-align: center;
   top: 0;
@@ -2071,10 +2127,10 @@ ul.pagination li a.current {
 .anime-blog .text {
   font-weight: 400;
   font-size: 12px;
-  line-height: 24px;
   margin-bottom: 0;
   color: var(--color-medium-grey);
   display: inline;
+  margin-right: 8px;
 }
 .anime-blog .detail{
   display: flex;
@@ -2094,7 +2150,7 @@ ul.pagination li a.current {
 .anime-blog a p {
   font-weight: 500;
   font-size: 16px;
-  margin: 16px 0 0;
+  margin: 0px 0 0;
 }
 .anime-blog a:hover p{
   color: var(--color-primary);
@@ -2102,7 +2158,6 @@ ul.pagination li a.current {
 .anime-blog .dropdown {
   position: relative;
   float: right;
-  margin-right: 10px;
 }
 .anime-blog .dropdown button:hover svg rect, .anime-blog .dropdown button:hover svg path{
  fill: var(--color-primary);
@@ -2202,7 +2257,7 @@ ul.pagination li a.current {
   }
 
   .anime-blog .text {
-    font-size: 11px;
+    font-size: 10px;
   }
 }
 
@@ -3387,6 +3442,11 @@ ul.pagination li a.current {
   .filter-block li .anime-btn.btn-dark span i {
     font-size: 14px;
   }
+
+  .filter-block .custom-control label {
+    font-size: 11px;
+    padding-left: 2px;
+  }
 }
 
 @media only screen and (max-width: 490px) {
@@ -3397,11 +3457,6 @@ ul.pagination li a.current {
   .filter-block li {
     margin-right: 5px;
     margin-bottom: 10px;
-  }
-
-  .filter-block .custom-control label {
-    font-size: 11px;
-    padding-left: 2px;
   }
 
   .filter-block #genre+.dropdown-menu.show li {
@@ -3690,6 +3745,12 @@ ul.pagination li a.current {
   color: var(--color-white);
 }
 
+.trailer-content h1 {
+  font-family: MTO;
+  font-size: 35px;
+  color: var(--color-white);
+  margin-bottom: 0px;
+}
 .trailer-content h2 {
   font-family: MTO;
   font-size: 35px;
@@ -3707,6 +3768,7 @@ ul.pagination li a.current {
   display: inline-block;
   color: var(--color-grey-light);
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .trailer-content h5 {
@@ -3766,7 +3828,7 @@ ul.pagination li a.current {
 
 }
 .trailer-content a{
-  font-size: 22px;
+  font-size: 17px;
 }
 .rating-content {
   padding: 30px 0 0 0px;
@@ -3958,6 +4020,9 @@ ul.pagination li a.current {
     font-size: 16px;
   }
 
+  .comment .heading.style-1 h1 {
+    font-size: 32px;
+  }
   .comment .heading.style-1 h2 {
     font-size: 32px;
   }
@@ -4107,6 +4172,8 @@ ul.pagination li a.current {
   font-weight: 400;
   padding: 6px 15px;
   color: white;
+  display: inline-block;
+  margin-right: 10px;
 }
 
 .comment .post-btn:hover {
@@ -4259,6 +4326,11 @@ ul.pagination li a.current {
     font-size: 16px;
   }
 
+  .comment .heading.style-1 h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+
   .comment .heading.style-1 h2 {
     font-size: 32px;
     margin-bottom: 10px;
@@ -4279,6 +4351,10 @@ ul.pagination li a.current {
 }
 
 @media only screen and (max-width: 490px) {
+  .comment .heading.style-1 h1 {
+    font-size: 28px;
+  }
+
   .comment .heading.style-1 h2 {
     font-size: 28px;
   }
@@ -4318,9 +4394,6 @@ ul.pagination li a.current {
   .comment .small-title {
     font-size: 22px;
     text-align: center;
-  }
-  .anime-blog .action-overlay{
-    width: 100%;
   }
 }
 
@@ -4575,7 +4648,6 @@ ul.pagination li a.current {
 .profile-link {
   padding: 20px;
   border-radius: 8px;
-  margin-bottom: 30px;
   font-family: MTO;
 }
 
@@ -4741,6 +4813,9 @@ ul.pagination li a.current {
   .coming-soon-block{
     width: 480px;
     margin: 0 auto; 
+  }
+  .filter-block #genre+.dropdown-menu.show, .filter-block #rating+.dropdown-menu.show, .filter-block #sort-by+.dropdown-menu.show, .filter-block #year+.dropdown-menu.show {
+    width: 300px;
   }
 }
 @media only screen and (max-width: 490px) {
@@ -5237,9 +5312,43 @@ input:focus,
 .package-heading{
   height: 50px;
 }
+.duration{
+  width: 120px;
+}
+.top-user{
+  display: flex;
+  margin-bottom: 10px;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+.item-top-user{
+  padding-left: 1vw;
+}
+.user-top-level{
+  text-align: center;
+}
+.user-top-level span{
+  padding: 3px 25px;
+}
+.level-image{
+  margin-top: 10px;
+  width: 90px;
+  height: 90px;
+}
+.full-progress{
+  width: 90% !important;
+}
 @media only screen and (max-width: 575px){
   .comic-element{
     width: 50% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .title-album-home{
+    height: 75px;
+    width: 157px;
   }
   .post-btn{
     margin-top: 6vh !important;
@@ -5253,10 +5362,37 @@ input:focus,
   .package-heading{
     height: 100px;
   }
+  .duration{
+    width: 210px;
+  }
+  .item-top-user{
+    padding-left: 2vw;
+  }
+  .item-top-user h5{
+    font-size: 12px !important;
+  }
+  .user-top-level span{
+    padding: 3px 8px;
+    margin-top: 5px;
+  }
+  .name-cmt{
+    font-size: 16px;
+  }
+  .site-comment h5 b
+  {
+    font-size: 12px;
+  }
+  .level-image{
+    width: 50px;
+    height: 50px;
+  }
 }
 @media only screen and (max-height: 700px){
   .post-btn{
     margin-top: calc(30px + 7vh) !important;
+  }
+  .follow{
+    font-size: 14px !important;
   }
 }
 .text-avt{
@@ -5314,6 +5450,10 @@ input:focus,
   width: 25%;
   text-align: left;
 }
+.chapter-list a:hover
+{
+  color: #F5CF49 !important;
+}
 .chapter-list p
 {
   width: 20%;
@@ -5333,6 +5473,13 @@ input:focus,
 .chapter-list-content {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+.chapter-list-comment {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
   grid-gap: 20px;
   max-height: 150px;
   overflow-y: auto;
@@ -5400,17 +5547,17 @@ input:focus,
 .s-premium-badge {
   border: 2px solid #ffc107;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 5px 5px;
   color: #ffc107;
-  font-size: 5px;
+  font-size: 6px;
   margin-right: 10px;
 }
 .premium-badge {
   border: 2px solid silver;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 5px 5px;
   color: silver;
-  font-size: 5px;
+  font-size: 6px;
   margin-right: 10px;
 }
 .level-badge-s-premium {
@@ -5480,7 +5627,7 @@ input:focus,
   border-style: solid;
   border-radius: 5px;
   margin-top: 5px;
-  font-size: 10px;
+  font-size: 12px;
   padding: 3px 5px;
 }
 .user-level-premium:hover .hover-text {
@@ -5626,4 +5773,73 @@ p {
 }
 .comment-block p{
   text-align: left !important;
+}
+@media only screen and (min-width: 1050px) and (max-width: 1300px) {
+  .anime-blog .action-overlay {
+    width: 99%;
+  }
+}
+@media only screen and (max-width: 1049px) {
+  .anime-blog .action-overlay {
+    width: 100%;
+  }
+}
+a{
+  cursor: pointer;
+}
+.success-submit{
+  color: green;
+}
+.failure-submit{
+  color: red;
+}
+.active h1{
+  color: wheat;
+}
+b{
+  font-family: MTO;
+}
+.text-modal{
+  color: #000000 !important;
+}
+
+.text-modal-p{
+  color: #000000 !important;
+  font-size: 12px !important;
+}
+
+.list-group-item{
+  background-color: #000000;
+}
+.list-group-item:hover{
+  background-color: #000000;
+}
+.nav-link{
+  font-family: MTO;
+  color: white;
+}
+.nav-link:hover{
+  color: var(--color-primary);
+}
+.card-header-tabs{
+  display: flex;
+  justify-content: space-around;
+}
+.img-chapter{
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+.readed{
+  color: gray !important;
+}
+.chap-box{
+  font-size: 9px !important;
+  display: inline-block;
+  padding: 0px 10px;
+  border: 2px solid var(--color-primary);
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-right: 10px;
+  color: var(--color-medium-grey);
 }

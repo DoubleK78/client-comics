@@ -1,29 +1,17 @@
 "use client"
 import ComicSearchResult from "@/app/components/search/ComicSearchResult";
-import ServerResponse from "@/app/models/common/ServerResponse";
 import PagingRequest from "@/app/models/paging/PagingRequest";
-import { portalServer } from "@/lib/services/client/baseUrl";
-import axiosClientApiInstance from "@/lib/services/client/interceptor";
+import { getAlbums } from "@/lib/services/client/album/albumService";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import ScrollButton from "../common/ScrollButton";
 
-const getAlbums = async (params: PagingRequest, filter: any) => {
-    try {
-        const response = await axiosClientApiInstance.get<ServerResponse<any>>(portalServer + '/api/album', {
-            params: { ...params, ...filter },
-        });
-        return response.data.data;
-    } catch (error) {
-        return null;
-    }
-};
-
-export default function TopPage({ locale }: { locale: any }) {
+export default function TopPage({ locale, roleUser }: { locale: any, roleUser: any }) {
     const typePage = typeof window !== 'undefined' ? new URLSearchParams(window.location.search)?.get('typePage') || "" : "";
     const typeSort = typeof window !== 'undefined' ? new URLSearchParams(window.location.search)?.get('sort') || "" : "";
     const t = useTranslations('search');
     const [albums, setAlbums] = useState<any>();
-    const [pagingCount, setPagingCount] = useState({});
+    const [totalRecords, setTotalRecords] = useState(0);
     const types = ['manhwa', 'manga', 'manhua', 'comic', 'bande_dessinée'];
     let sortColumn = 'views';
 
@@ -58,19 +46,17 @@ export default function TopPage({ locale }: { locale: any }) {
         genre: '',
         country: '',
         year: '',
-        status: false,
+        status: null,
         language: '',
         rating: '',
-        topType: types.includes(typePage) ? '': type,
+        topType: types.includes(typePage) ? '' : type,
         region: locale
     });
 
     const fetchData = async (filters: any, setAlbums: (data: any) => void) => {
         const response = await getAlbums(pagingParams, filters);
         if (response && response.data) {
-            setPagingCount({
-                pageLength: response.rowNum,
-            })
+            setTotalRecords(response.rowNum);
             setAlbums(response.data);
         }
     };
@@ -82,7 +68,7 @@ export default function TopPage({ locale }: { locale: any }) {
         };
 
         fetchDataAndSetAlbums();
-    }, []);
+    }, [pagingParams]);
 
     return (
         <>
@@ -90,9 +76,11 @@ export default function TopPage({ locale }: { locale: any }) {
             <!--=      Breadcrumb Area Start        =-->
             <!--=====================================--> */}
             <section className="breadcrumb">
+                <ScrollButton />
                 <div className="container">
                     <div className="breadcrumb-content">
                         <ul>
+                            <li><a href="/">{t('home_page')}</a></li>
                             <li>
                                 {(() => {
                                     if (typePage === 'day') {
@@ -109,7 +97,11 @@ export default function TopPage({ locale }: { locale: any }) {
                                             <a className="active">{t('top_year')}</a>
                                         )
                                     }
-                                    else if (typePage === '') {
+                                    else if (typePage === '' && typeSort === 'updateDate') {
+                                        return (
+                                            <a className="active">{t('top_recently_updated')}</a>
+                                        )
+                                    } else if (typePage === '' && typeSort !== 'updateDate') {
                                         return (
                                             <a className="active">{t('top_all')}</a>
                                         )
@@ -150,7 +142,7 @@ export default function TopPage({ locale }: { locale: any }) {
                     </div>
                 </div>
             </section>
-            <ComicSearchResult albums={albums} pagingCount={pagingCount} setPagingParams={setPagingParams} pagingParams={pagingParams} />
+            <ComicSearchResult albums={albums} totalRecords={totalRecords} setPagingParams={setPagingParams} pagingParams={pagingParams} roleUser={roleUser} />
         </>
     );
 }

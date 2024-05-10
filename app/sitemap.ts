@@ -12,6 +12,8 @@ export default async function sitemap({
     id: number
 }): Promise<MetadataRoute.Sitemap> {
     const baseUrl = process.env.NEXT_BASE_URL!;
+    if (process.env.SITEMAP_DISABLE_FETCH) return [];
+
     // Google's limit is 50,000 URLs per sitemap
     const comicSitemap: Array<ComicSitemap> | null | undefined = await fetch(process.env.PORTAL_API_URL + `/api/client/ComicApp/sitemap`).then(res => res.json());
     if (!comicSitemap || comicSitemap.length === 0) {
@@ -28,28 +30,28 @@ export default async function sitemap({
                 url: baseUrl,
                 lastModified: new Date(),
                 changeFrequency: 'daily',
-                priority: 0.7,
+                priority: 0.8,
             },
             // Search
             {
                 url: `${baseUrl}/tim-kiem`,
                 lastModified: new Date(),
                 changeFrequency: 'daily',
-                priority: 0.7,
+                priority: 0.8,
             },
             // Comics (Equals to Search)
             {
                 url: `${baseUrl}/truyen-tranh`,
                 lastModified: new Date(),
                 changeFrequency: 'daily',
-                priority: 0.7,
+                priority: 0.8,
             },
             // Login
             {
                 url: `${baseUrl}/dang-nhap`,
                 lastModified: new Date(),
                 changeFrequency: 'daily',
-                priority: 0.7,
+                priority: 0.5,
             },
             // Top
             {
@@ -58,9 +60,30 @@ export default async function sitemap({
                 changeFrequency: 'daily',
                 priority: 0.7,
             },
-            // Following
+            // Upgrade-package
             {
-                url: `${baseUrl}/theo-doi`,
+                url: `${baseUrl}/nang-cap-goi`,
+                lastModified: new Date(),
+                changeFrequency: 'daily',
+                priority: 0.7,
+            },
+            // Detail-package
+            {
+                url: `${baseUrl}/chi-tiet-goi`,
+                lastModified: new Date(),
+                changeFrequency: 'daily',
+                priority: 0.7,
+            },
+            //Payment
+            {
+                url: `${baseUrl}/thanh-toan`,
+                lastModified: new Date(),
+                changeFrequency: 'daily',
+                priority: 0.5,
+            },
+            // Top User
+            {
+                url: `${baseUrl}/top-user`,
                 lastModified: new Date(),
                 changeFrequency: 'daily',
                 priority: 0.7,
@@ -74,28 +97,28 @@ export default async function sitemap({
                 url: `${baseUrl}/en`,
                 lastModified: new Date(),
                 changeFrequency: 'daily',
-                priority: 0.7,
+                priority: 0.8,
             },
             // Search
             {
                 url: `${baseUrl}/en/search`,
                 lastModified: new Date(),
                 changeFrequency: 'daily',
-                priority: 0.7,
+                priority: 0.8,
             },
             // Comics (Equals to Search)
             {
                 url: `${baseUrl}/en/comics`,
                 lastModified: new Date(),
                 changeFrequency: 'daily',
-                priority: 0.7,
+                priority: 0.8,
             },
             // Login
             {
                 url: `${baseUrl}/en/login`,
                 lastModified: new Date(),
                 changeFrequency: 'daily',
-                priority: 0.7,
+                priority: 0.5,
             },
             // Top
             {
@@ -104,13 +127,34 @@ export default async function sitemap({
                 changeFrequency: 'daily',
                 priority: 0.7,
             },
-            // Following
+            // Upgrade Package
             {
-                url: `${baseUrl}/en/following`,
+                url: `${baseUrl}/en/upgrade-package`,
                 lastModified: new Date(),
                 changeFrequency: 'daily',
                 priority: 0.7,
             },
+            // Detail Package
+            {
+                url: `${baseUrl}/en/detail-package`,
+                lastModified: new Date(),
+                changeFrequency: 'daily',
+                priority: 0.7,
+            },
+            // Payment
+            {
+                url: `${baseUrl}/en/payment`,
+                lastModified: new Date(),
+                changeFrequency: 'daily',
+                priority: 0.7,
+            },
+            // Top User
+            {
+                url: `${baseUrl}/en/top-user`,
+                lastModified: new Date(),
+                changeFrequency: 'daily',
+                priority: 0.7
+            }
         ];
     }
 
@@ -123,7 +167,7 @@ export default async function sitemap({
                 url: `${baseUrl}/${comicNameRoute}/${comic.friendlyName}`,
                 lastModified: new Date(),
                 changeFrequency: 'daily',
-                priority: 0.7,
+                priority: 0.8,
             });
 
             // Contents

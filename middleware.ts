@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import createIntlMiddleware from 'next-intl/middleware';
 import { locales, localePrefix, pathnames } from './navigation';
 
@@ -17,12 +17,20 @@ export default async function middleware(request: NextRequest) {
   // Step: Determine default language when new visit page
   let locale = null;
   let localeDetection = true;
+  let preventSwitchLocale = false;
 
   if (!request.cookies.has('NEXT_LOCALE')) {
     // Get path from request
     const { pathname } = request.nextUrl;
-    locale = pathname.includes('en') ? 'en' : 'vi';
+    locale = pathname.includes('/en') ? 'en' : 'vi';
     localeDetection = false;
+    // Vietnamese is default can not change langauge by url
+  } else if (request.cookies.get('NEXT_LOCALE')?.value === 'vi' && request.nextUrl.searchParams.get('switch') === 'true') {
+    locale = 'en';
+  } else if (request.cookies.get('NEXT_LOCALE')?.value === 'vi' && request.nextUrl.pathname.includes('/en')) {
+    locale = 'vi';
+    localeDetection = false;
+    preventSwitchLocale = true;
   }
 
   // Step: Create and call the next-intl middleware (example)
@@ -36,8 +44,19 @@ export default async function middleware(request: NextRequest) {
   const response = handleI18nRouting(request);
 
   // Step: When user navigate new page based on url, save langauge to cookie
-  if (locale)
+  if (locale) {
     response.cookies.set('NEXT_LOCALE', locale);
+
+    if (preventSwitchLocale)
+      return NextResponse.redirect(new URL(request.nextUrl.pathname.replace('/en', '/vi'), request.url));
+  }
+
+  // Checking Maintenance Mode
+  if (process.env.MAINTENANCE_MODE?.toLowerCase() === 'true'
+    && (!request.nextUrl.pathname.includes(pathnames['/maintenance'].vi)
+    && !request.nextUrl.pathname.includes(pathnames['/maintenance'].en))) {
+    return NextResponse.redirect(new URL('/maintenance', request.url));
+  }
 
   return response;
 }

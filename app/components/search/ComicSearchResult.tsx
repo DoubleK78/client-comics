@@ -1,20 +1,11 @@
 "use client";
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslations } from "next-intl";
-import { TypeCountry } from '@/app/models/comics/TypeCountry';
+import { countryFlags, handleRedirect, shortNumberViews } from '@/app/utils/HelperFunctions';
+import Pagination from '../common/Pagination';
 
-export default function ComicSearchResult({ albums, pagingCount, setPagingParams, pagingParams }: { albums: any, pagingCount: any, setPagingParams: any, pagingParams: any }) {
+export default function ComicSearchResult({ albums, totalRecords, setPagingParams, pagingParams, roleUser }: { albums: any, totalRecords: number, setPagingParams: any, pagingParams: any, roleUser: any }) {
     const [loading, setLoading] = useState(false);
-    const pageSize = pagingParams.PageSize;
-    const totalAlbums = pagingCount.pageLength;
-    const totalPages = Math.ceil(totalAlbums / pageSize);
-    const countryFlags = {
-        [TypeCountry.Manga]: 'flag-icon flag-icon-jp flag-icon-squared',
-        [TypeCountry.Manhwa]: 'flag-icon flag-icon-kr flag-icon-squared',
-        [TypeCountry.Manhua]: 'flag-icon flag-icon-cn flag-icon-squared',
-        [TypeCountry.Comic]: 'flag-icon flag-icon-us flag-icon-squared',
-        [TypeCountry.BandeDessinée]: 'flag-icon flag-icon-fr flag-icon-squared',
-      };
     const t = useTranslations('search');
 
     useEffect(() => {
@@ -22,45 +13,6 @@ export default function ComicSearchResult({ albums, pagingCount, setPagingParams
         if (albums == null)
             setLoading(true)
     }, [albums]);
-
-    const handlePageClick = (page: number) => {
-        setPagingParams({ ...pagingParams, PageNumber: page });
-    };
-    const handlePrevClick = () => {
-        const prevPage = pagingParams.PageNumber - 1;
-        if (prevPage >= 1) {
-            setPagingParams({ ...pagingParams, PageNumber: prevPage });
-        }
-    };
-
-    const handleNextClick = () => {
-        const nextPage = pagingParams.PageNumber + 1;
-        if (nextPage <= totalPages) {
-            setPagingParams({ ...pagingParams, PageNumber: nextPage });
-        }
-    };
-    const renderPagination = useMemo(() => {
-        const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
-        return (
-            <ul className="pagination">
-                <li className="page-item">
-                    <a className="hover page-link arrow" aria-label="Previous" onClick={handlePrevClick}>
-                        <i className="fa fa-chevron-left"></i>
-                    </a>
-                </li>
-                {pages.map((page) => (
-                    <li key={page} className="page-item">
-                        <a className={`hover page-link ${page === pagingParams.PageNumber ? 'active' : ''}`} onClick={() => handlePageClick(page)}>{page}</a>
-                    </li>
-                ))}
-                <li className="page-item">
-                    <a className="hover page-link arrow" aria-label="Next" onClick={handleNextClick}>
-                        <i className="fa fa-chevron-right"></i>
-                    </a>
-                </li>
-            </ul>
-        );
-    }, [pagingParams.PageNumber, totalPages]);
 
     return (
         <>
@@ -79,7 +31,7 @@ export default function ComicSearchResult({ albums, pagingCount, setPagingParams
                                 {albums?.map((album: any) => (
                                     <div key={album.id} className="col-lg-4 col-md-6 col-sm-8 offset-md-0 offset-sm-2 col-12">
                                         <div className="anime-box bg-color-black">
-                                            <a href={`truyen-tranh/${album.friendlyName}`}>
+                                            <a onClick={() => handleRedirect(`truyen-tranh/${album.friendlyName}`, roleUser)}>
                                                 <div className="row m-0">
                                                     <div className="p-0 col-2">
                                                         <img src={album.cdnThumbnailUrl ?? "/assets/media/404/none.jpg"} alt={album.title} />
@@ -87,8 +39,9 @@ export default function ComicSearchResult({ albums, pagingCount, setPagingParams
                                                     <div className="p-0 col-9">
                                                         <div className="anime-blog">
                                                             <p>{album.title}</p>
+                                                            <div className='view-search'><p className="text">{album?.lastCollectionTitle}</p></div>
                                                             <p className="text">
-                                                                {t('views')}: {album.viewByTopType !== null ? album.viewByTopType.toLocaleString() : album.views.toLocaleString()}
+                                                                <i className="fas fa-eye"></i> {album.viewByTopType !== null ? shortNumberViews(album.viewByTopType) : shortNumberViews(album.views)}
                                                             </p>
                                                         </div>
                                                     </div>
@@ -104,7 +57,11 @@ export default function ComicSearchResult({ albums, pagingCount, setPagingParams
                                 ))}
                             </div>
                             <div className="pagination-wrape">
-                                {renderPagination}
+                                <Pagination
+                                    pageIndex={pagingParams.PageNumber}
+                                    totalCounts={totalRecords}
+                                    pageSize={pagingParams.PageSize}
+                                    onPageChange={page => setPagingParams({ ...pagingParams, PageNumber: page })} />
                             </div>
                         </>
                     }

@@ -3,16 +3,26 @@ import { authOptions } from "@/lib/auth";
 import { redirect } from 'next/navigation';
 import dynamic from "next/dynamic";
 import { getTranslations } from 'next-intl/server';
+import { pathnames } from "@/navigation";
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
     const t = await getTranslations({ locale, namespace: 'metadata' });
+    const baseUrl = process.env.NEXT_BASE_URL!;
+
+    const routeVi = pathnames["/login"]['vi'];
+    const routeEn = '/en' + pathnames["/login"]['en'];
 
     return {
+        metadataBase: new URL(baseUrl),
+        alternates: {
+            canonical: locale === 'vi' ? routeVi : routeEn,
+            languages: {
+                'vi': routeVi,
+                'en': routeEn,
+            },
+        },
         title: t('login'),
-        description: t('login_description'),
-        icons: {
-            icon: '/assets/media/icon/head.ico',
-        }
+        description: t('login_description')
     };
 }
 

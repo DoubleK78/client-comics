@@ -4,4 +4,6 @@ export default interface ClientAuthenticateResponse {
     userName?: string;
     jwtToken?: string;
     roles?: Array<string> | null;
+    expriedRoleDate?: Date | null;
+    createdOnUtc?: Date | null;
 }

@@ -1,4 +1,4 @@
-import { ERoleType } from "../common/ERoleType";
+import { ERoleType } from "../enums/ERoleType";
 
 export default interface UserProfileResponse {
     id: number;

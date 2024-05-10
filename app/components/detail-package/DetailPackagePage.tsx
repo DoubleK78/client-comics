@@ -1,6 +1,9 @@
 "use client"
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
+import Premium from '@/public/assets/media/banner/premium.jpg';
+import SPremium from '@/public/assets/media/banner/s-premium.jpg';
+import Image from "next/image";
 
 export default function DetailPackagePage() {
     const t = useTranslations('upgrade');
@@ -16,7 +19,7 @@ export default function DetailPackagePage() {
                     (
                         <>
                             <div className="heading style-1">
-                                <h2 className="glitter-text package-heading">{t('upgrade_package')} Premium</h2>
+                                <h1 className="glitter-text package-heading">{t('upgrade_package')} Premium</h1>
                             </div>
                             <div className="another-package">
                                 <a
@@ -28,9 +31,9 @@ export default function DetailPackagePage() {
                             </div>
                             <div className="row">
                                 <div className="col-lg-4 col-md-6 col-sm-8 offset-lg-0 offset-md-0 offset-sm-2 col-12">
-                                    <a href="#" className="inner-box">
+                                    <a href="/payment?package=premium_1" className="inner-box">
                                         <div className="image-box">
-                                            <img src="/assets/media/banner/premium.jpg" alt="" className="attachment-full size-full" />
+                                            <Image src={Premium} alt="premium" className="attachment-full size-full" priority/>
                                         </div>
                                         <div className="author-box text-start">
                                             <div className="detail d-flex align-items-center justify-content-between">
@@ -42,9 +45,9 @@ export default function DetailPackagePage() {
                                     </a>
                                 </div>
                                 <div className="col-lg-4 col-md-6 col-sm-8 offset-lg-0 offset-md-0 offset-sm-2 col-12">
-                                    <a href="#" className="inner-box">
+                                    <a href="/payment?package=premium_2" className="inner-box">
                                         <div className="image-box">
-                                            <img src="/assets/media/banner/premium.jpg" alt="" className="attachment-full size-full" />
+                                            <Image src={Premium} alt="premium" className="attachment-full size-full" priority/>
                                         </div>
                                         <div className="author-box text-start">
                                             <div className="detail d-flex align-items-center justify-content-between">
@@ -56,9 +59,9 @@ export default function DetailPackagePage() {
                                     </a>
                                 </div>
                                 <div className="col-lg-4 col-md-6 col-sm-8 offset-lg-0 offset-md-0 offset-sm-2 col-12">
-                                    <a href="#" className="inner-box">
+                                    <a href="/payment?package=premium_3" className="inner-box">
                                         <div className="image-box">
-                                            <img src="/assets/media/banner/premium.jpg" alt="" className="attachment-full size-full" />
+                                            <Image src={Premium} alt="premium" className="attachment-full size-full" priority/>
                                         </div>
                                         <div className="author-box text-start">
                                             <div className="detail d-flex align-items-center justify-content-between">
@@ -73,7 +76,7 @@ export default function DetailPackagePage() {
                             <br></br>
                             <div className="comment-block">
                                 <div className="heading style-1 m-0">
-                                    <h2 className="glitter-text">{t('benefits')}</h2>
+                                    <h1 className="glitter-text">{t('benefits')}</h1>
                                 </div>
                                 <br></br>
                                 <p className="glitter-text">
@@ -92,18 +95,18 @@ export default function DetailPackagePage() {
                                     - {t('benefit_12')}
                                 </p>
                                 <br />
-                                <p className="glitter-text">
+                                {/* <p className="glitter-text">
                                     - {t('benefit_13')}
                                 </p>
-                                <br />
+                                <br /> */}
                                 <p className="glitter-text">
                                     - {t('benefit_14')}
                                 </p>
                                 <br />
-                                <p className="glitter-text">
+                                {/* <p className="glitter-text">
                                     - {t('benefit_15')}
                                 </p>
-                                <br />
+                                <br /> */}
                                 <p className="glitter-text">
                                     - {t('benefit_9')}
                                 </p>
@@ -112,7 +115,7 @@ export default function DetailPackagePage() {
                     ) : (
                         <>
                             <div className="heading style-1">
-                                <h2 className="s-glitter-text package-heading">{t('upgrade_package')} S-Premium</h2>
+                                <h1 className="s-glitter-text package-heading">{t('upgrade_package')} [S]Premium</h1>
                             </div>
                             <div className="another-package">
                                 <a
@@ -124,9 +127,9 @@ export default function DetailPackagePage() {
                             </div>
                             <div className="row">
                                 <div className="col-lg-4 col-md-6 col-sm-8 offset-lg-0 offset-md-0 offset-sm-2 col-12">
-                                    <a href="#" className="inner-box">
+                                    <a href="/payment?package=spremium_1" className="inner-box">
                                         <div className="image-box">
-                                            <img src="/assets/media/banner/s-premium.jpg" alt="" className="attachment-full size-full" />
+                                            <Image src={SPremium} alt="premium" className="attachment-full size-full" priority/>
                                         </div>
                                         <div className="author-box text-start">
                                             <div className="detail d-flex align-items-center justify-content-between">
@@ -138,9 +141,9 @@ export default function DetailPackagePage() {
                                     </a>
                                 </div>
                                 <div className="col-lg-4 col-md-6 col-sm-8 offset-lg-0 offset-md-0 offset-sm-2 col-12">
-                                    <a href="#" className="inner-box">
+                                    <a href="/payment?package=spremium_2" className="inner-box">
                                         <div className="image-box">
-                                            <img src="/assets/media/banner/s-premium.jpg" alt="" className="attachment-full size-full" />
+                                            <Image src={SPremium} alt="premium" className="attachment-full size-full" priority/>
                                         </div>
                                         <div className="author-box text-start">
                                             <div className="detail d-flex align-items-center justify-content-between">
@@ -152,9 +155,9 @@ export default function DetailPackagePage() {
                                     </a>
                                 </div>
                                 <div className="col-lg-4 col-md-6 col-sm-8 offset-lg-0 offset-md-0 offset-sm-2 col-12">
-                                    <a href="#" className="inner-box">
+                                    <a href="/payment?package=spremium_3" className="inner-box">
                                         <div className="image-box">
-                                            <img src="/assets/media/banner/s-premium.jpg" alt="" className="attachment-full size-full" />
+                                            <Image src={SPremium} alt="premium" className="attachment-full size-full" priority/>
                                         </div>
                                         <div className="author-box text-start">
                                             <div className="detail d-flex align-items-center justify-content-between">
@@ -169,7 +172,7 @@ export default function DetailPackagePage() {
                             <br></br>
                             <div className="comment-block">
                                 <div className="heading style-1 m-0">
-                                    <h2 className="s-glitter-text">{t('benefits')}</h2>
+                                    <h1 className="s-glitter-text">{t('benefits')}</h1>
                                 </div>
                                 <br></br>
                                 <p className="s-glitter-text">
@@ -192,18 +195,18 @@ export default function DetailPackagePage() {
                                     - {t('benefit_5')}
                                 </p>
                                 <br />
-                                <p className="s-glitter-text">
+                                {/* <p className="s-glitter-text">
                                     - {t('benefit_6')}
                                 </p>
-                                <br />
+                                <br /> */}
                                 <p className="s-glitter-text">
                                     - {t('benefit_7')}
                                 </p>
                                 <br />
-                                <p className="s-glitter-text">
+                                {/* <p className="s-glitter-text">
                                     - {t('benefit_8')}
                                 </p>
-                                <br />
+                                <br /> */}
                                 <p className="s-glitter-text">
                                     - {t('benefit_9')}
                                 </p>

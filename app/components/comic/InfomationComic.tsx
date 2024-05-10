@@ -2,14 +2,16 @@
 import ComicDetail, { EAlbumStatus } from "@/app/models/comics/ComicDetail";
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
-import { followAlbum, getStatusFollow, unFollow } from "@/app/utils/HelperFunctions";
+import { followAlbum, getLangByLocale, getStatusFollow, shortNumberViews, unFollow } from "@/app/utils/HelperFunctions";
 import FollowingRequestModel from "@/app/models/comics/FollowingRequestModel";
+import { ERegion } from "@/app/models/comics/ComicSitemap";
+import { pathnames } from "@/navigation";
 
-export default function InfomationComic({ comic, session }: { comic?: ComicDetail | null, session: any }) {
+export default function InfomationComic({ comic, roleUser, region, locale }: { comic?: ComicDetail | null, roleUser: any, region: any, locale: string }) {
     const t = useTranslations('comic_detail');
+    const routeChapter = locale === 'vi' ? pathnames['/comics/[comicid]/[contentid]'][getLangByLocale(locale)] : `/${getLangByLocale(locale)}${pathnames['/comics/[comicid]/[contentid]'][getLangByLocale(locale)]}`;
     const [loadingFollow, setLoadingFollow] = useState(true);
     const [statusFollow, setStatusFollow] = useState(null);
-    
     const dropdownRef = useRef<HTMLUListElement | null>(null);
 
     const handleDropdownToggle = async (albumId: any) => {
@@ -56,11 +58,11 @@ export default function InfomationComic({ comic, session }: { comic?: ComicDetai
     useEffect(() => {
         const storedHistory = sessionStorage.getItem("history");
         let listHistory = storedHistory ? JSON.parse(storedHistory) : [];
-        
+
         if (!listHistory.includes(comic))
             listHistory.push(comic);
-        
-        if (listHistory.length > 5) 
+
+        if (listHistory.length > 5)
             listHistory.shift();
 
         listHistory = filterDuplicates(listHistory, "id")
@@ -80,6 +82,11 @@ export default function InfomationComic({ comic, session }: { comic?: ComicDetai
             document.removeEventListener('click', handleClickOutside);
         };
     }, []);
+
+    const generateContentUrlByLocale = (template: string, comicId: string, contentId: string) => {
+        return template.replace('[comicid]', comicId).replace('[contentid]', contentId);
+    }
+
     return (
         <>
             {/*=====================================*/}
@@ -93,18 +100,19 @@ export default function InfomationComic({ comic, session }: { comic?: ComicDetai
                                 <div className="col-lg-6 col-md-7 col-12">
                                     <div className="trailer-box">
                                         <img
+                                            loading="lazy"
                                             src={comic?.thumbnailUrl ?? "/assets/media/manga/manga-img-1.png"}
-                                            alt=""
+                                            alt={comic?.title}
                                             className="image"
                                         />
                                     </div>
                                 </div>
                                 <div className="col-lg-6 col-md-5 col-12">
                                     <div className="trailer-content">
-                                        <h2>{comic?.title}</h2>
+                                        <h1>{comic?.title}</h1>
                                         <p className="light-text">{comic?.contents[0]?.title}</p>
                                         <div className="dropdown">
-                                            {session &&
+                                            {roleUser !== -1 &&
                                                 <>
                                                     <button
                                                         type="button"
@@ -188,16 +196,33 @@ export default function InfomationComic({ comic, session }: { comic?: ComicDetai
                                             {comic?.description}
                                         </p>
                                         <div className="d-flex pt-4">
-                                            <a
-                                                href={`/truyen-tranh/${comic?.friendlyName}/${comic?.contents[comic?.contents.length - 1]?.friendlyName}`}
-                                                className="anime-btn btn-dark border-change me-3"
-                                            >
-                                                {t('read_first_chapter')}
-                                            </a>
-                                            <a href={`/truyen-tranh/${comic?.friendlyName}/${comic?.contents[0]?.friendlyName}`}
-                                                className="anime-btn btn-dark">
-                                                {t('read_last_chapter')}
-                                            </a>
+                                            {comic && comic?.contents.length > 0 &&
+                                                <>
+                                                    <a
+                                                        href={`${generateContentUrlByLocale(routeChapter, comic?.friendlyName ?? '', comic?.contents[comic?.contents.length - 1]?.friendlyName ?? '')}`}
+                                                        className="anime-btn btn-dark border-change me-3"
+                                                    >
+                                                        {t('read_first_chapter')}
+                                                    </a>
+                                                    <a
+                                                        href={`${generateContentUrlByLocale(routeChapter, comic?.friendlyName ?? '', comic?.contents[0]?.friendlyName ?? '')}`}
+                                                        className="anime-btn btn-dark border-change me-3"
+                                                    >
+                                                        {t('read_last_chapter')}
+                                                    </a>
+                                                </>
+                                            }
+                                            {region === ERegion.vn ? (
+                                                <a href="#"
+                                                    className="anime-btn btn-dark">
+                                                    {t('en_version')}
+                                                </a>
+                                            ) : (
+                                                <a href="#"
+                                                    className="anime-btn btn-dark">
+                                                    {t('vi_version')}
+                                                </a>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -213,22 +238,19 @@ export default function InfomationComic({ comic, session }: { comic?: ComicDetai
                                     <span>{t('artist')}:</span> <b>{comic?.artitstNames}</b>
                                 </p>
                                 <p>
-                                    <span>{t('year')}: </span> {comic?.releaseYear}
+                                    <span>{t('year')}: </span> <b>{comic?.releaseYear}</b>
                                 </p>
                                 <p>
-                                    <span>{t('status')}:</span> <b>{comic?.albumStatus == EAlbumStatus.Ongoing ? 'Đang tiến hành' : 'Đã hoàn thành'}</b>
+                                    <span>{t('status')}:</span> <b>{comic?.albumStatus == EAlbumStatus.Ongoing ? t('on_going') : t('completed')}</b>
                                 </p>
                                 <p>
-                                    <span>{t('type')}:</span> {comic?.contentTypeNames}
+                                    <span>{t('type')}:</span> <b>{comic?.contentTypeNames}</b>
                                 </p>
                                 <p>
-                                    <span>{t('nation')}:</span>  {t(`country.${comic?.tags}`)}
+                                    <span>{t('nation')}:</span> <b>{t(`country.${comic?.tags}`)}</b>
                                 </p>
-                                {/* <p>
-                                    <span>Scores:</span> 2.53 by 4,405 reviews
-                                </p> */}
                                 <p>
-                                    <span>{t('views')}:</span> {comic?.views.toLocaleString()}
+                                    <span>{t('views')}:</span> <b>{shortNumberViews(comic?.views)}</b>
                                 </p>
                             </div>
                         </div>
