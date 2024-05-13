@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "pm2 startOrRestart pm2.config.js --env prod",
+    "build_deploy": "yarn run build && yarn run deploy"
   },
   "dependencies": {
     "@ctrl/react-adsense": "^1.7.0",

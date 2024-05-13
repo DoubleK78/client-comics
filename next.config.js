@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const withNextIntl = require('next-intl/plugin')('./lib/i18n/index.ts');
 const nextConfig = {
+    distDir: process.env.BUILD_DIR || '.next',
     env: {
         identityServer: process.env.IDENTITY_API_URL,
         portalServer: process.env.PORTAL_API_URL,
