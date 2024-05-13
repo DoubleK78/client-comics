@@ -2129,7 +2129,8 @@ ul.pagination li a.current {
   font-size: 12px;
   margin-bottom: 0;
   color: var(--color-medium-grey);
-  display: block;
+  display: inline;
+  margin-right: 5px;
 }
 .anime-blog .detail{
   display: flex;
