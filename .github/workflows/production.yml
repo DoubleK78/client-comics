@@ -64,7 +64,7 @@ jobs:
       run: |
         mkdir build
         cp -r .next build/.temp
-        cp .env build/
+        cp .env build/temp.env
         ls -lah build
         ls -lah build/.temp
 
@@ -98,10 +98,12 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H $HOST_IP >> ~/.ssh/known_hosts
         ls -lah # debug
-        scp -r -o StrictHostKeyChecking=no ./.env $HOST_USER@$HOST_IP:client-comics
+        scp -r -o StrictHostKeyChecking=no ./temp.env $HOST_USER@$HOST_IP:client-comics
         scp -r -o StrictHostKeyChecking=no ./.temp $HOST_USER@$HOST_IP:client-comics
         ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP '
           cd client-comics &&
+          rm -rf .env &&
+          mv temp.env .env &&
           rm -rf .next &&
           mv .temp .next &&
           pm2 reload pm2.config.js --env prod
