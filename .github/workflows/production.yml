@@ -96,6 +96,7 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H $HOST_IP >> ~/.ssh/known_hosts
         ls -lah # debug
-        scp -r -o StrictHostKeyChecking=no ./build/* $HOST_USER@$HOST_IP:/client-comics
+        scp -r -o StrictHostKeyChecking=no ./.env $HOST_USER@$HOST_IP:/client-comics
+        scp -r -o StrictHostKeyChecking=no ./.next $HOST_USER@$HOST_IP:/client-comics
         # ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP "/client-comics/nextjs-pm2-deploy.sh"
         ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP 'cd client-comics && pm2 reload pm2.config.js --env prod'
