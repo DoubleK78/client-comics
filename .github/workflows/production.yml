@@ -61,14 +61,10 @@ jobs:
     - name: Upload artifact .env
       uses: actions/upload-artifact@v3
       with:
-        name: env
-        path: .env
-
-    - name: Upload artifact .next
-      uses: actions/upload-artifact@v3
-      with:
         name: build
-        path: .next
+        path: |
+        .env
+        .next
 
   deploy:
     needs: build
@@ -98,7 +94,6 @@ jobs:
         echo "$SSH_KEY" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H $HOST_IP >> ~/.ssh/known_hosts
-        scp -r -o StrictHostKeyChecking=no .env $HOST_USER@$HOST_IP:/client-comics
-        scp -r -o StrictHostKeyChecking=no .next $HOST_USER@$HOST_IP:/client-comics
+        scp -r -o StrictHostKeyChecking=no build/* $HOST_USER@$HOST_IP:/client-comics
         # ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP "/client-comics/nextjs-pm2-deploy.sh"
         ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP 'cd client-comics && pm2 reload pm2.config.js --env prod'
