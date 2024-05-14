@@ -1,0 +1,104 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [production]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: yarn install
+
+    - name: Build environment file
+      env:
+        NODE_ENV: ${{ secrets.NODE_ENV }}
+        IDENTITY_API_URL: ${{ secrets.IDENTITY_API_URL }}
+        PORTAL_API_URL: ${{ secrets.PORTAL_API_URL }}
+        GOOGLE_ID: ${{ secrets.GOOGLE_ID }}
+        GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
+        NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+        PORTAL_PRE_API_URL: ${{ secrets.PORTAL_PRE_API_URL }}
+        NEXT_BASE_URL: ${{ secrets.NEXT_BASE_URL }}
+        LAZY_LOADING_IMAGE: ${{ secrets.LAZY_LOADING_IMAGE }}
+        STORAGE_S1: ${{ secrets.STORAGE_S1 }}
+        MOBILE_URL: ${{ secrets.MOBILE_URL }}
+        ACTIVE_BANNER: ${{ secrets.MOBILE_URL }}
+        MAINTENANCE_MODE: ${{ secrets.MAINTENANCE_MODE }}
+        MAINTENANCE_ESTIMATE_COMPLETED: ${{ secrets.MAINTENANCE_ESTIMATE_COMPLETED }}
+        # Add more environment variables here
+      run: |
+        echo "# Enviroment" > .env 
+        echo "NODE_ENV=$NODE_ENV" >> .env
+        echo "IDENTITY_API_URL=$IDENTITY_API_URL" >> .env
+        # Add more environment variables to .env file
+        echo "PORTAL_API_URL=$PORTAL_API_URL" >> .env
+        echo "GOOGLE_ID=$GOOGLE_ID" >> .env
+        echo "GOOGLE_SECRET=$GOOGLE_SECRET" >> .env
+        echo "NEXTAUTH_SECRET=$NEXTAUTH_SECRET" >> .env
+        echo "PORTAL_PRE_API_URL=$PORTAL_PRE_API_URL" >> .env
+        echo "NEXT_BASE_URL=$NEXT_BASE_URL" >> .env
+        echo "LAZY_LOADING_IMAGE=$LAZY_LOADING_IMAGE" >> .env
+        echo "STORAGE_S1=$STORAGE_S1" >> .env
+        echo "MOBILE_URL=$MOBILE_URL" >> .env
+        echo "ACTIVE_BANNER=$ACTIVE_BANNER" >> .env
+        echo "MAINTENANCE_MODE=$MAINTENANCE_MODE" >> .env
+        echo "MAINTENANCE_ESTIMATE_COMPLETED=$MAINTENANCE_ESTIMATE_COMPLETED" >> .env
+
+    - name: Build project
+      run: yarn run build
+
+    - name: Upload artifact .env
+      uses: actions/upload-artifact@v3
+      with:
+        name: env
+        path: .env
+
+    - name: Upload artifact .next
+      uses: actions/upload-artifact@v3
+      with:
+        name: build
+        path: .next
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Download artifact .env
+      uses: actions/download-artifact@v3
+      with:
+        name: env
+        
+    - name: Download artifact .next
+      uses: actions/download-artifact@v3
+      with:
+        name: build
+
+    - name: Deploy to DigitalOcean
+      env:
+        HOST_USER: ${{ secrets.HOST_USER }}
+        HOST_IP: ${{ secrets.HOST_IP }}
+        SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H $HOST_IP >> ~/.ssh/known_hosts
+        scp -r -o StrictHostKeyChecking=no .env $HOST_USER@$HOST_IP:/client-comics
+        scp -r -o StrictHostKeyChecking=no .next $HOST_USER@$HOST_IP:/client-comics
+        # ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP "/client-comics/nextjs-pm2-deploy.sh"
+        ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP 'cd client-comics && pm2 reload pm2.config.js --env prod'
