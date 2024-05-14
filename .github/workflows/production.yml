@@ -63,8 +63,8 @@ jobs:
       with:
         name: build
         path: |
-        .env
-        .next
+          .env
+          .next
 
   deploy:
     needs: build
