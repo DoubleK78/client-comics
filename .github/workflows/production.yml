@@ -15,7 +15,7 @@ jobs:
     - name: Install Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: '20'
 
     - name: Install dependencies
       run: yarn install
@@ -36,6 +36,7 @@ jobs:
         ACTIVE_BANNER: ${{ secrets.MOBILE_URL }}
         MAINTENANCE_MODE: ${{ secrets.MAINTENANCE_MODE }}
         MAINTENANCE_ESTIMATE_COMPLETED: ${{ secrets.MAINTENANCE_ESTIMATE_COMPLETED }}
+        SITEMAP_DISABLE_FETCH: ${{ secrets.SITEMAP_DISABLE_FETCH }}
         # Add more environment variables here
       run: |
         echo "# Enviroment" > .env 
@@ -54,6 +55,7 @@ jobs:
         echo "ACTIVE_BANNER=$ACTIVE_BANNER" >> .env
         echo "MAINTENANCE_MODE=$MAINTENANCE_MODE" >> .env
         echo "MAINTENANCE_ESTIMATE_COMPLETED=$MAINTENANCE_ESTIMATE_COMPLETED" >> .env
+        echo "SITEMAP_DISABLE_FETCH=$SITEMAP_DISABLE_FETCH" >> .env
 
     - name: Build project
       run: yarn run build
@@ -61,10 +63,10 @@ jobs:
     - name: Prepare build directory
       run: |
         mkdir build
-        cp -r .next build/
+        cp -r .next build/.temp
         cp .env build/
         ls -lah build
-        ls -lah build/.next
+        ls -lah build/.temp
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
@@ -97,6 +99,10 @@ jobs:
         ssh-keyscan -H $HOST_IP >> ~/.ssh/known_hosts
         ls -lah # debug
         scp -r -o StrictHostKeyChecking=no ./.env $HOST_USER@$HOST_IP:client-comics
-        scp -r -o StrictHostKeyChecking=no ./.next $HOST_USER@$HOST_IP:client-comics
-        # ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP "client-comics/nextjs-pm2-deploy.sh"
-        ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP 'cd client-comics && pm2 reload pm2.config.js --env prod'
+        scp -r -o StrictHostKeyChecking=no ./.temp $HOST_USER@$HOST_IP:client-comics
+        ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP '
+          cd client-comics &&
+          rm -rf .next &&
+          mv .temp .next &&
+          pm2 reload pm2.config.js --env prod
+        '
