@@ -57,14 +57,18 @@ jobs:
 
     - name: Build project
       run: yarn run build
+    
+    - name: Prepare build directory
+      run: |
+        mkdir build
+        cp -r .next build/
+        cp .env build/
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: build
-        path: |
-          .env
-          .next
+        path: build
 
   deploy:
     needs: build
