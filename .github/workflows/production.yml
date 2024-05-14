@@ -63,6 +63,7 @@ jobs:
         mkdir build
         cp -r .next build/
         cp .env build/
+        ls -lah build # Add this line to list the contents of the build directory
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
@@ -93,6 +94,6 @@ jobs:
         echo "$SSH_KEY" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H $HOST_IP >> ~/.ssh/known_hosts
-        scp -r -o StrictHostKeyChecking=no build/* $HOST_USER@$HOST_IP:/client-comics
+        scp -r -o StrictHostKeyChecking=no client-comics/build/* $HOST_USER@$HOST_IP:/client-comics
         # ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP "/client-comics/nextjs-pm2-deploy.sh"
         ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP 'cd client-comics && pm2 reload pm2.config.js --env prod'
