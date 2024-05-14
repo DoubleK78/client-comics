@@ -58,7 +58,7 @@ jobs:
     - name: Build project
       run: yarn run build
 
-    - name: Upload artifact .env
+    - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: build
@@ -74,12 +74,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Download artifact .env
-      uses: actions/download-artifact@v3
-      with:
-        name: env
-        
-    - name: Download artifact .next
+    - name: Download artifact
       uses: actions/download-artifact@v3
       with:
         name: build
