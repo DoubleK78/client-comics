@@ -37,6 +37,7 @@ jobs:
         MAINTENANCE_MODE: ${{ secrets.MAINTENANCE_MODE }}
         MAINTENANCE_ESTIMATE_COMPLETED: ${{ secrets.MAINTENANCE_ESTIMATE_COMPLETED }}
         SITEMAP_DISABLE_FETCH: ${{ secrets.SITEMAP_DISABLE_FETCH }}
+        NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
         # Add more environment variables here
       run: |
         echo "# Enviroment" > .env 
@@ -56,6 +57,7 @@ jobs:
         echo "MAINTENANCE_MODE=$MAINTENANCE_MODE" >> .env
         echo "MAINTENANCE_ESTIMATE_COMPLETED=$MAINTENANCE_ESTIMATE_COMPLETED" >> .env
         echo "SITEMAP_DISABLE_FETCH=$SITEMAP_DISABLE_FETCH" >> .env
+        echo "NEXTAUTH_URL=$NEXTAUTH_URL" >> .env
 
     - name: Build project
       run: yarn run build
