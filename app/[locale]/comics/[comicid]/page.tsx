@@ -12,6 +12,7 @@ import { getEnumValueFromString, getRegionByLocale } from "@/app/utils/HelperFun
 import { pathnames } from "@/navigation";
 import { isbot } from "isbot";
 import { headers } from "next/headers";
+import { unstable_cache } from "next/cache";
 
 type Props = {
     params: { comicid: string | null, locale: string }
@@ -90,7 +91,7 @@ const DynamicChapterComic = dynamic(() => import('@/app/components/comic/Chapter
     ssr: true
 })
 
-const getComic = async (comicid: string | null) => {
+const getComic = unstable_cache(async (comicid: string | null) => {
     try {
         const response = await (await getAxiosInstanceAsync()).get<ServerResponse<ComicDetail>>(`/api/client/ComicApp/${comicid}`);
         return response.data.data;
@@ -98,7 +99,7 @@ const getComic = async (comicid: string | null) => {
     catch (exception: any) {
         return null;
     }
-}
+}, [], { revalidate: 10 });
 
 export default async function Comic({ params }: { params: { comicid: string | null } }) {
     const comic = await getComic(params.comicid);
