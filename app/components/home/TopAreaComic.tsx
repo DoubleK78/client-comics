@@ -44,10 +44,17 @@ export default function TopAreaComic({ locale, roleUser, isBot }: { locale: any,
     };
 
     useEffect(() => {
-        filterTypes.forEach(async (type) => {
-            const filters = createFilters(type);
-            await fetchData(filters, type === 'day' ? setAlbumsDay : type === 'month' ? setAlbumsMonth : setAlbumsYear);
-        });
+        const getTopAreaComicData = async () => {
+            for (const type of filterTypes) {
+                const filters = createFilters(type);
+                await fetchData(filters, type === 'day' ? setAlbumsDay : type === 'month' ? setAlbumsMonth : setAlbumsYear);
+                
+                // Introduce a delay before the next API call
+                await new Promise((resolve) => setTimeout(resolve, 250)); // 250ms delay
+            }
+        }
+
+        getTopAreaComicData();
     }, []);
 
     return (
