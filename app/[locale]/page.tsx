@@ -10,12 +10,9 @@ import { getEnumValueFromString } from "../utils/HelperFunctions";
 import { getAxiosInstanceAsync } from "@/lib/axios";
 import PagingRequest from "../models/paging/PagingRequest";
 import ServerResponse from "../models/common/ServerResponse";
-import { cache } from 'react'
+import { unstable_cache } from 'next/cache'
 import { isbot } from "isbot";
 import { headers } from "next/headers";
-
-// Fast cache for 1 minutes
-export const revalidate = 1
 
 const ScrollButton = dynamic(() => import('@/app/components/common/ScrollButton'), {
   ssr: false
@@ -25,7 +22,7 @@ const ChatBoxButton = dynamic(() => import('@/app/components/common/ChatBoxButto
   ssr: false
 });
 
-const getAlbums = cache(async (params: PagingRequest, filter: any) => {
+const getAlbums = unstable_cache(async (params: PagingRequest, filter: any) => {
   try {
     const response = await (await getAxiosInstanceAsync()).get<ServerResponse<any>>('/api/client/comicapp/paging', {
       params: { ...params, ...filter },
@@ -34,7 +31,7 @@ const getAlbums = cache(async (params: PagingRequest, filter: any) => {
   } catch (error) {
     return null;
   }
-});
+}, [], { revalidate: 10 });
 
 export default async function Home() {
   const session = await getServerSession(authOptions);

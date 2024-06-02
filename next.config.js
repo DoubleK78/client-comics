@@ -13,6 +13,9 @@ const nextConfig = {
         mobileUrl: process.env.MOBILE_URL,
         googleAdsense: process.env.GOOGLE_ADSENSE,
         activeBanner: process.env.ACTIVE_BANNER
+    },
+    images: {
+        unoptimized: true
     }
 }
 
