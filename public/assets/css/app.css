@@ -666,7 +666,7 @@ p.text-box:hover{
   transition: all 0.3s;
 }
 .view-search{
-  width: 10vw;
+  width: 9vw;
   display: inline-block;
 }
 @media only screen and (max-width: 575px) {
@@ -5777,6 +5777,11 @@ p {
 @media only screen and (min-width: 1050px) and (max-width: 1300px) {
   .anime-blog .action-overlay {
     width: 99%;
+  }
+}
+@media only screen and (min-width: 1800px) {
+  .anime-blog .action-overlay {
+    width: 183px;
   }
 }
 @media only screen and (max-width: 1049px) {
