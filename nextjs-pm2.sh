@@ -20,7 +20,8 @@ rm -rf .env
 mv temp.env .env
           
 # Rename build folder
-rm -rf .next  
+rm -rf .next/cache
+rm -rf .next 
 mv .temp .next
 
 # Zero Downtime PM2
