@@ -104,6 +104,10 @@ export default async function Page() {
                                         <hr /> BLUE
                                         <hr /> UI
                                         <hr /> MUI
+                                        <hr /> SAMA
+                                        <hr /> WHIS
+                                        <hr /> DAIS
+                                        <hr /> ZENO
                                     </div>
                                 </a>
                             </div>
