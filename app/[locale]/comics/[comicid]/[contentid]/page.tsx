@@ -15,19 +15,25 @@ import { isbot } from "isbot";
 import { getEnumValueFromString, getRegionByLocale } from "@/app/utils/HelperFunctions";
 import { pathnames } from "@/navigation";
 import InitialContentComic from "@/app/components/contents/InitialContentComic";
+import { unstable_cache } from "next/cache";
+import axios from 'axios';
 
 type Props = {
     params: { comicid: string | null, contentid: string | null, locale: string }
     searchParams: { [key: string]: string | string[] | undefined }
 }
 
+const getContentMeta = unstable_cache(async (comicid: string | null, contentid: string | null) => {
+    const response = await axios.get<ContentMetadata | null | undefined>(process.env.PORTAL_API_URL + `/api/client/ContentApp/comics/${comicid}/contents/${contentid}/metadata`);
+    return response.data;
+}, [], { revalidate: 10 });
+
 export async function generateMetadata({ params: { comicid, contentid, locale } }: Props) {
     const t = await getTranslations({ locale, namespace: 'metadata' });
     const baseUrl = process.env.NEXT_BASE_URL!;
     const routeVi = pathnames["/comics"]['vi'] + `/${comicid}/${contentid}`;
     const routeEn = '/en' + pathnames["/comics"]['en'] + `/${comicid}/${contentid}`;
-    const contentMetadata: ContentMetadata | null | undefined = await fetch(process.env.PORTAL_API_URL + `/api/client/ContentApp/comics/${comicid}/contents/${contentid}/metadata`)
-        .then(res => res.json());
+    const contentMetadata: ContentMetadata | null | undefined = await getContentMeta(comicid, contentid);
 
     if (contentMetadata && contentMetadata.comicTitle && contentMetadata.contentTitle) {
         return {

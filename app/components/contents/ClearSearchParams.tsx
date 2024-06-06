@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
-import { addListener, launch, } from 'devtools-detector';
+// import { addListener, launch, } from 'devtools-detector';
 import dayjs from "@/lib/dayjs/dayjs-custom";
 
 export default function ClearSearchParams() {
@@ -20,16 +20,6 @@ export default function ClearSearchParams() {
                     ev.preventDefault();
                 });
             }
-
-            addListener(isOpen => {
-                if (isOpen) {
-                    const child = document.querySelector(".row.text-center.pt-4");
-                    if (child) {
-                        child.parentNode?.removeChild(child);
-                    }
-                }
-            });
-            launch();
         }
     }, []);
 
