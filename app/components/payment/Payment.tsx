@@ -8,6 +8,7 @@ import { createActivityLog } from "@/lib/services/client/activity-log/activityLo
 import ActivityLogRequestModel from "@/app/models/activity/ActivityLogRequestModel";
 import { EActivityType } from "@/app/models/enums/EActivityType";
 import { trackingIpV4 } from "@/app/utils/HelperFunctions";
+import dayjs from "@/lib/dayjs/dayjs-custom";
 
 export default function Payment({ userEmail }: { userEmail: any }) {
     const t = useTranslations('upgrade');
@@ -45,6 +46,9 @@ export default function Payment({ userEmail }: { userEmail: any }) {
                 
                 await createActivityLog(myActivityLog);
                 setMessage(<p className="success-submit">{t('success')}</p>);
+                
+                // Flag to check update new subscription
+                localStorage.setItem("waitingForUnlockingOnUtc", JSON.stringify(dayjs.utc().add(30, 'minutes').toDate()));
             } catch(error){
                 console.error('Error fetching types:', error);
                 setMessage(<p className="failure-submit">{t('failure')}</p>);

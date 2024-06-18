@@ -19,7 +19,8 @@ export default function Initial({ props }: { props: Session | null }) {
 
         const isCheckRoleChanges = parseJsonFromString<boolean | null>(sessionStorage.getItem("isCheckRoleChanges"));
         const checkRoleChangesOnUtc = parseJsonFromString<Date | null>(sessionStorage.getItem("checkRoleChangesOnUtc"));
-        if ((!isCheckRoleChanges || (checkRoleChangesOnUtc && dayjs.utc(checkRoleChangesOnUtc) < dayjs.utc())) && token) {
+        const waitingForUnlockingOnUtc = parseJsonFromString<Date | null>(localStorage.getItem("waitingForUnlockingOnUtc"));
+        if ((!isCheckRoleChanges || (checkRoleChangesOnUtc && dayjs.utc(checkRoleChangesOnUtc) < dayjs.utc()) || (waitingForUnlockingOnUtc && dayjs.utc() < dayjs.utc(waitingForUnlockingOnUtc))) && token) {
             checkRoleUpdate().then((model) => {
                 // Banned Account will be log out
                 if (model?.isBanned) {
@@ -35,6 +36,8 @@ export default function Initial({ props }: { props: Session | null }) {
                 // Update Account when subscription changes
                 const currentRoleType = getEnumValueFromString(props?.user?.token?.roles);
                 if (currentRoleType != model?.roleType) {
+                    // Remove Flag when user get new subscription
+                    localStorage.removeItem("waitingForUnlockingOnUtc");
                     update();
                 }
 
