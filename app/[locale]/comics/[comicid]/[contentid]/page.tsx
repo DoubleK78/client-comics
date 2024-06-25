@@ -92,7 +92,7 @@ const DynamicCommentComic = dynamic(() => import('@/app/components/comic/Comment
     ssr: false
 });
 
-const isCleanJobsTime = () => {
+const isCleanJobsTime = (targetHours: number) => {
     // Get the current time in UTC
     const now = new Date();
     const hours = now.getUTCHours();
@@ -100,11 +100,15 @@ const isCleanJobsTime = () => {
     const currentTime = hours * 60 + minutes; // Convert current time to minutes since midnight
 
     // Define the start and end of the range in minutes since midnight (UTC+7)
-    const startTime = 21 * 60 + 0;  // 21:00 UTC
-    const endTime = 21 * 60 + 35;  // 21:35 UTC
+    const startTime = targetHours * 60 + 0;  // 21:00 UTC or 7:00 UTC
+    const endTime = targetHours * 60 + 35;  // 21:35 UTC or 7:35 UTC
 
     // Check if the current time falls within the range
     return currentTime >= startTime && currentTime <= endTime;
+}
+
+const isCleanJobsTimeNow = (): boolean => {
+    return isCleanJobsTime(21) || isCleanJobsTime(7) || isCleanJobsTime(18);
 }
 
 const getContent = async (
@@ -123,7 +127,7 @@ const getContent = async (
                 },
                 params: {
                     previousCollectionId,
-                    isBot: isBot || isCleanJobsTime()
+                    isBot: isBot || isCleanJobsTimeNow()
                 }
             });
         return response.data.data;

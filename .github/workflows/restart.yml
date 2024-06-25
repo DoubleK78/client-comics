@@ -1,0 +1,24 @@
+name: Restart CD
+
+on:
+  workflow_dispatch:
+
+jobs:
+  restart:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Restart PM2 DigitalOcean
+      env:
+        HOST_USER: ${{ secrets.HOST_USER }}
+        HOST_IP: ${{ secrets.HOST_IP }}
+        SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H $HOST_IP >> ~/.ssh/known_hosts
+        ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP 'cd client-comics && pm2 reload pm2.config.js --env prod && sudo systemctl restart nginx'
