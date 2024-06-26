@@ -107,8 +107,22 @@ const isCleanJobsTime = (targetHours: number) => {
     return currentTime >= startTime && currentTime <= endTime;
 }
 
+const isHighWorkLoadTrafficTime = (): boolean => {
+    const now = new Date();
+    const hours = now.getUTCHours();
+    const minutes = now.getUTCMinutes();
+    const currentTime = hours * 60 + minutes; // Convert current time to minutes since midnight
+
+    // Define the start and end of the range in minutes since midnight (UTC+7)
+    const startTime = 15 * 60 + 30;  // 22:30
+    const endTime = 16 * 60 + 15;  // 23:15
+
+    // Check if the current time falls within the range
+    return currentTime >= startTime && currentTime <= endTime;
+}
+
 const isCleanJobsTimeNow = (): boolean => {
-    return isCleanJobsTime(21) || isCleanJobsTime(7) || isCleanJobsTime(18);
+    return isCleanJobsTime(21) || isCleanJobsTime(7) || isCleanJobsTime(18) || isHighWorkLoadTrafficTime();
 }
 
 const getContent = async (

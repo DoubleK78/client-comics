@@ -3,11 +3,13 @@ import { useTranslations } from "next-intl";
 import PagingRequest from "@/app/models/paging/PagingRequest";
 import axiosClientApiInstance from "@/lib/services/client/interceptor";
 import ServerResponse from "@/app/models/common/ServerResponse";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import FollowingRequestModel from "@/app/models/comics/FollowingRequestModel";
 import { getEnumValueFromString, getRoleBadge, getUserNameClass, handleRedirect, shortNumberViews, unFollow } from "@/app/utils/HelperFunctions";
 import Pagination from "../common/Pagination";
 import { v4 as uuidv4 } from 'uuid';
+import { parseJsonFromString } from "@/lib/json";
+import { DynamicObject } from "@/app/types/dynamic-object";
 
 const getFollowings = async (params: PagingRequest) => {
     try {
@@ -26,13 +28,18 @@ export default function Following({ session }: { session: any }) {
     const [loading, setLoading] = useState(true);
     const [toggleRemove, setToggleRemove] = useState(false);
     const [isHistoryPage, setIsHistoryPage] = useState(false);
-    const [pagingParams, setPagingParams] = useState<PagingRequest>({
-        PageNumber: 1,
-        PageSize: 6,
-        SearchTerm: '',
-        SortColumn: 'createdOnUtc',
-        SortDirection: 'desc'
-    });
+    const [pagingParams, setPagingParams] = useState<PagingRequest>(useMemo(() => {
+        const pagingStateObject = parseJsonFromString<DynamicObject<number>>(sessionStorage.getItem(`paging-state`));
+        const pageNumber = pagingStateObject?.['following'] ?? 1;
+
+        return {
+            PageNumber: pageNumber,
+            PageSize: 6,
+            SearchTerm: '',
+            SortColumn: 'createdOnUtc',
+            SortDirection: 'desc'
+        };
+    }, []));
     const [totalRecords, setTotalRecords] = useState(0);
     const [listHistory, setListHistory] = useState([]);
 
@@ -48,6 +55,17 @@ export default function Following({ session }: { session: any }) {
 
     useEffect(() => {
         getFollowings(pagingParams).then((response: any) => {
+            const pagingStateObject = parseJsonFromString<DynamicObject<number>>(sessionStorage.getItem(`paging-state`));
+
+            if (!pagingStateObject) {
+                sessionStorage.setItem(`paging-state`, JSON.stringify({
+                    ['following']: pagingParams.PageNumber
+                }));
+            } else {
+                pagingStateObject['following'] = pagingParams.PageNumber;
+                sessionStorage.setItem(`paging-state`, JSON.stringify(pagingStateObject));
+            }
+
             if (response && response.data) {
                 setFollowings(response.data);
                 setTotalRecords(response.rowNum);
