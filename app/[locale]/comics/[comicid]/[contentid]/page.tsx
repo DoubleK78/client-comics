@@ -101,7 +101,7 @@ const isCleanJobsTime = (targetHours: number) => {
 
     // Define the start and end of the range in minutes since midnight (UTC+7)
     const startTime = targetHours * 60 + 0;  // 21:00 UTC or 7:00 UTC
-    const endTime = targetHours * 60 + 35;  // 21:35 UTC or 7:35 UTC
+    const endTime = targetHours * 60 + 17;  // 21:17 UTC or 7:17 UTC
 
     // Check if the current time falls within the range
     return currentTime >= startTime && currentTime <= endTime;
