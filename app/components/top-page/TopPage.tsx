@@ -3,8 +3,10 @@ import ComicSearchResult from "@/app/components/search/ComicSearchResult";
 import PagingRequest from "@/app/models/paging/PagingRequest";
 import { getAlbums } from "@/lib/services/client/album/albumService";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ScrollButton from "../common/ScrollButton";
+import { parseJsonFromString } from "@/lib/json";
+import { DynamicObject } from "@/app/types/dynamic-object";
 
 export default function TopPage({ locale, roleUser }: { locale: any, roleUser: any }) {
     const typePage = typeof window !== 'undefined' ? new URLSearchParams(window.location.search)?.get('typePage') || "" : "";
@@ -38,7 +40,22 @@ export default function TopPage({ locale, roleUser }: { locale: any, roleUser: a
     };
 
     const [pagingParams, setPagingParams] = useState<PagingRequest>(
-        typePage !== null && types.includes(typePage) ? typesParams : initialParams
+        useMemo(() => {
+            const pagingStateObject = parseJsonFromString<DynamicObject<number>>(sessionStorage.getItem(`paging-state`));
+            const keyByTypePage = typePage !== null && types.includes(typePage) ? `typepage-${typePage}-page-number` : `ranking-${sortColumn}-${typePage}-page-number`;
+            const pageNumber = pagingStateObject?.[keyByTypePage] ?? 1;
+
+            if (typePage !== null && types.includes(typePage)) {
+                return {
+                    ...typesParams,
+                    PageNumber: pageNumber
+                }
+            }
+            return {
+                ...initialParams,
+                PageNumber: pageNumber
+            }
+        }, [])
     );
 
     const createFilters = (type: any): any => ({
@@ -54,6 +71,18 @@ export default function TopPage({ locale, roleUser }: { locale: any, roleUser: a
     });
 
     const fetchData = async (filters: any, setAlbums: (data: any) => void) => {
+        const pagingStateObject = parseJsonFromString<DynamicObject<number>>(sessionStorage.getItem(`paging-state`));
+        const keyByTypePage = typePage !== null && types.includes(typePage) ? `typepage-${typePage}-page-number` : `ranking-${sortColumn}-${typePage}-page-number`;
+
+        if (!pagingStateObject) {
+            sessionStorage.setItem(`paging-state`, JSON.stringify({
+                [keyByTypePage]: pagingParams.PageNumber
+            }));
+        } else {
+            pagingStateObject[keyByTypePage] = pagingParams.PageNumber;
+            sessionStorage.setItem(`paging-state`, JSON.stringify(pagingStateObject));
+        }
+
         const response = await getAlbums(pagingParams, filters);
         if (response && response.data) {
             setTotalRecords(response.rowNum);
