@@ -8,12 +8,11 @@ import LazyLoad from 'react-lazyload';
 const ContentComicImage = ({ initialSrc, imageUrl, onError, originHeight, setOriginHeight }: {
     initialSrc: string,
     imageUrl: string,
-    onError?: () => void,
+    onError: (event: React.SyntheticEvent<HTMLImageElement, Event>, imgRef?: React.RefObject<HTMLImageElement> | null) => void,
     originHeight?: number | null,
     setOriginHeight: (height: number) => void
 }) => {
     const imgRef = useRef<HTMLImageElement>(null);
-    const [src, setSrc] = useState(initialSrc);
 
     useEffect(() => {
         const imgElement = imgRef.current;
@@ -30,10 +29,10 @@ const ContentComicImage = ({ initialSrc, imageUrl, onError, originHeight, setOri
 
         const handleIntersection = (entries: any) => {
             entries.forEach((entry: any) => {
-                if (entry.isIntersecting) {
-                    setSrc(imageUrl);
-                } else {
-                    setSrc(initialSrc);
+                if (entry.isIntersecting && imgRef?.current) {
+                    imgRef.current.src = imageUrl;
+                } else if (imgRef?.current) {
+                    imgRef.current.src = initialSrc;
                 }
             });
         };
@@ -41,7 +40,7 @@ const ContentComicImage = ({ initialSrc, imageUrl, onError, originHeight, setOri
         const observer = new IntersectionObserver(handleIntersection, {
             root: null, // Use the viewport as the root
             rootMargin: `1600px 0px 1600px 0px`,
-            threshold: 0.1, // Trigger when 10% of the element is visible
+            threshold: 0, // Trigger when 0% of the element is visible
         });
 
         if (imgElement) {
@@ -64,13 +63,13 @@ const ContentComicImage = ({ initialSrc, imageUrl, onError, originHeight, setOri
     return (
         <img
             ref={imgRef}
-            src={src}
+            src={initialSrc}
             onLoad={e => {
                 if (!originHeight && !e.currentTarget.src.includes('1.1_abcda.jpg')) {
                     setOriginHeight(e.currentTarget.height);
                 }
             }}
-            onError={onError}
+            onError={(event) => onError(event, imgRef)}
             alt=""
             width={800}
         />
@@ -87,8 +86,11 @@ export function ContentComicItemV4({ imageUrl, storageType }: { imageUrl: string
         setOriginUrl(url);
     }, []);
 
-    const onError = () => {
-        setOriginUrl("/assets/media/404/1.1_abcda.jpg");
+    const onError = (event: React.SyntheticEvent<HTMLImageElement, Event>, imgRef?: React.RefObject<HTMLImageElement> | null) => {
+        if (imgRef && imgRef.current) {
+            imgRef.current.src = "/assets/media/404/1.1_abcda.jpg";
+            event.currentTarget.onerror = null;
+        }
     }
 
     return (
