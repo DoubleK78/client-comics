@@ -75,10 +75,10 @@ export default function RootLayout({
           </NextIntlClientProvider>
         </div>
       </body>
-      <Script src="/assets/js/vendor/jquery-3.6.0.min.js" strategy='lazyOnload' />
+      <Script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity='sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=' crossOrigin='anonymous' strategy='lazyOnload' />
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" />
       {/* <Script src="/assets/js/vendor/imagesloaded.pkgd.min.js" /> */}
-      <Script src="/assets/js/vendor/sal.js" strategy='lazyOnload' />
+      <Script src="https://cdn.jsdelivr.net/gh/mciastek/sal/dist/sal.js" strategy='lazyOnload' />
     </html>
   )
 }

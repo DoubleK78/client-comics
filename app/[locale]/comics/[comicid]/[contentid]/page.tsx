@@ -122,7 +122,7 @@ const isHighWorkLoadTrafficTime = (): boolean => {
 }
 
 const isCleanJobsTimeNow = (): boolean => {
-    return isCleanJobsTime(21) || isCleanJobsTime(7) || isCleanJobsTime(18) || isHighWorkLoadTrafficTime();
+    return isCleanJobsTime(21) || isCleanJobsTime(7) || isHighWorkLoadTrafficTime();
 }
 
 const getContent = async (
