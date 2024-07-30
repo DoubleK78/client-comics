@@ -36,7 +36,7 @@ export default function Following({ session }: { session: any }) {
             PageNumber: pageNumber,
             PageSize: 6,
             SearchTerm: '',
-            SortColumn: 'createdOnUtc',
+            SortColumn: 'updatedOnUtc',
             SortDirection: 'desc'
         };
     }, []));
