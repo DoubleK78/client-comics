@@ -80,7 +80,7 @@ jobs:
         name: build
         path: build
 
-  deploy:
+  deploy-primary:
     needs: build
     runs-on: ubuntu-latest
 
@@ -93,10 +93,10 @@ jobs:
       with:
         name: build
 
-    - name: Deploy to DigitalOcean
+    - name: Deploy to DigitalOcean Primary
       env:
         HOST_USER: ${{ secrets.HOST_USER }}
-        HOST_IP: ${{ secrets.HOST_IP }}
+        HOST_IP: ${{ secrets.HOST_IP_1 }}
         SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       run: |
         mkdir -p ~/.ssh
@@ -109,3 +109,34 @@ jobs:
         scp -r -o StrictHostKeyChecking=no ./.temp $HOST_USER@$HOST_IP:client-comics
         echo "Done to copy .temp to Remote Server"
         ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP 'cd client-comics && ./nextjs-pm2.sh'
+
+  deploy-secondary:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: build
+
+    - name: Deploy to DigitalOcean Secondary
+      env:
+        HOST_USER: ${{ secrets.HOST_USER }}
+        HOST_IP: ${{ secrets.HOST_IP_2 }}
+        SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H $HOST_IP >> ~/.ssh/known_hosts
+        ls -lah # debug
+        scp -r -o StrictHostKeyChecking=no ./temp.env $HOST_USER@$HOST_IP:client-comics
+        echo "Processing to copy  .temp to Remote Server"
+        scp -r -o StrictHostKeyChecking=no ./.temp $HOST_USER@$HOST_IP:client-comics
+        echo "Done to copy .temp to Remote Server"
+        ssh -o StrictHostKeyChecking=no $HOST_USER@$HOST_IP 'cd client-comics && ./nextjs-pm2.sh'
+
