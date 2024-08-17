@@ -1,0 +1,1 @@
+export const simpleToken = "p89o 9o ao54 pt o97r 1r4 s5i96g 0dp ptq5ro, i5yw135 9p d9p8 gtai tdr o53i5p, 9p 31r 25 1rg opi9r7";
