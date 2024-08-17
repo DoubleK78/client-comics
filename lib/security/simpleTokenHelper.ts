@@ -5,7 +5,7 @@ interface Payload {
     [key: string]: any;
 }
 
-var key = decryptUrl(simpleToken);
+const key = decryptUrl(simpleToken);
 
 function base64Encode(str: string): string {
     return btoa(
