@@ -7,6 +7,17 @@ import { signOut, useSession } from "next-auth/react";
 import { useEffect } from "react";
 import dayjs from '@/lib/dayjs/dayjs-custom';
 
+const disableReactDevTools = (): void => {
+    const noop = (): void => undefined;
+    const DEV_TOOLS = (window as any).__REACT_DEVTOOLS_GLOBAL_HOOK__;
+
+    if (typeof DEV_TOOLS === 'object') {
+        for (const [key, value] of Object.entries(DEV_TOOLS)) {
+            DEV_TOOLS[key] = typeof value === 'function' ? noop : null;
+        }
+    }
+};
+
 export default function Initial({ props }: { props: Session | null }) {
     const { update } = useSession();
 
@@ -45,6 +56,8 @@ export default function Initial({ props }: { props: Session | null }) {
                 sessionStorage.setItem("checkRoleChangesOnUtc", JSON.stringify(dayjs.utc().add(5, 'minutes').toDate()));
             }).catch(() => { });
         }
+
+        disableReactDevTools();
     }, [props]);
 
     return (

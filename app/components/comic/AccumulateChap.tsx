@@ -1,5 +1,5 @@
 "use client"
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import ScrollDetection from "../common/ScrollDetection";
 import axiosClientApiInstance from "@/lib/services/client/interceptor";
 import { generateSimpleToken } from "@/lib/security/simpleTokenHelper";
