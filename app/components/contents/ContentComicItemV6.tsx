@@ -1,17 +1,36 @@
 "use client"
 import { EStorageType } from '@/app/models/enums/EStorageType';
 import { generateImageUrlByStorageType } from '@/app/utils/HelperFunctions';
+import { parseJsonFromString } from '@/lib/json';
 import { encrypt } from '@/lib/security/securitXorHelper';
 import { decryptUrl } from '@/lib/security/securityHelper';
 import React, { useEffect, useRef, useState } from 'react';
 import LazyLoad from 'react-lazyload';
 
-const generateTokenByImage = (url: string) => {
+const getOffset = () => {
+    return parseJsonFromString<number | null>(decryptUrl(sessionStorage.getItem("symbol")));
+}
+
+const generateTokenByImage = async (url: string) => {
     const payload = {
         url
     };
 
-    const token = encrypt(payload, 15000);
+    // We keep wait for each 300 ms to get offset utc
+    let loopTimes = 0;
+    let offset
+    while (loopTimes < 10 && !offset) {
+        offset = getOffset();
+        if (offset) {
+            break;
+        }
+
+        await new Promise(r => setTimeout(r, 300));
+        loopTimes++;
+    }
+
+    const timestamp = Date.now() + (offset ?? 0);
+    const token = encrypt(payload, 16000, timestamp);
     return token;
 }
 
@@ -39,9 +58,12 @@ const ContentComicImage = ({ initialSrc, imageUrl, onError, originHeight, setOri
 
         const handleIntersection = (entries: any) => {
             entries.forEach((entry: any) => {
-                if (entry.isIntersecting && imgRef?.current) {
-                    const token = generateTokenByImage(imageUrl);
-                    imgRef.current.src = generateImageUrlByStorageType(EStorageType.S1, `images?token=${token}`);
+                if (entry.isIntersecting) {
+                    generateTokenByImage(imageUrl).then(token => {
+                        if (imgRef?.current) {
+                            imgRef.current.src = generateImageUrlByStorageType(EStorageType.S1, `images?token=${token}`);
+                        }
+                    });
                 } else if (imgRef?.current) {
                     imgRef.current.src = initialSrc;
                 }

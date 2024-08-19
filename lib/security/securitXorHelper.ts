@@ -19,8 +19,10 @@ function simpleHash(data: string, key: string): string {
     return hash.toString();
 }
 
-export function encrypt<T>(payload: DynamicObject<T>, expiresIn: number): string {
-    const timestamp = Date.now();
+export function encrypt<T>(payload: DynamicObject<T>, expiresIn: number, timestamp?: number | null): string {
+    // Define a timestamp if not provided
+    if (!timestamp) timestamp = Date.now();
+
     const expirationTime = timestamp + expiresIn;
 
     const dataToEncrypt = JSON.stringify({

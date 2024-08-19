@@ -19,6 +19,10 @@ const DynamicSearchHeader = dynamic(() => import('./SearchHeader'), {
     ssr: true
 });
 
+const DynamicOffsetTimeZoneGlobal = dynamic(() => import('../common/OffsetTimeZoneGlobal'), {
+    ssr: true
+})
+
 export default async function Header() {
     const session = await getServerSession(authOptions);
     const isLogined = !!session;
@@ -28,6 +32,7 @@ export default async function Header() {
     return (
         <header className="header style-1">
             <SessionProviderWrapper session={session} Component={<Initial props={session} />} />
+            <DynamicOffsetTimeZoneGlobal />
             <div className="container">
                 {/* Start Mainmanu Nav */}
                 <nav className="navbar navbar-expand-lg">
