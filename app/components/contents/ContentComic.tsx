@@ -187,11 +187,11 @@ export default async function ContentComic({ content, comic, session, locale, is
                                 {roleUser !== ERoleType.UserPremium && roleUser !== ERoleType.UserSuperPremium &&
                                     <h3>{t('will_publish')} {locale == 'vi' ? (
                                         <>
-                                            <span>{dayjs.utc(roundTimeTo30Minutes(content?.createdOnUtc)).add(19, 'hours').format('HH:mm A DD-MM-YYYY')}</span>
+                                            <span>{dayjs.utc(roundTimeTo30Minutes(content?.createdOnUtc)).add(21, 'hours').format('HH:mm A DD-MM-YYYY')}</span>
                                         </>
                                     ) : (
                                         <>
-                                            <span>{dayjs.utc(roundTimeTo30Minutes(content?.createdOnUtc)).add(12, 'hours').format('HH:mm A DD-MM-YYYY')}</span>
+                                            <span>{dayjs.utc(roundTimeTo30Minutes(content?.createdOnUtc)).add(14, 'hours').format('HH:mm A DD-MM-YYYY')}</span>
                                         </>
                                     )}</h3>
                                 }
@@ -226,9 +226,17 @@ export default async function ContentComic({ content, comic, session, locale, is
                                     <div className='chapter-list-content'>
                                         {comic?.contents?.map((content, index) => (
                                             <li key={index} className="grid-item">
-                                                <a className='page-link' href={`${generateContentUrlByLocale(routeChapter, content.albumFriendlyName ?? '', content.friendlyName ?? '')}`}>
-                                                    {content.title}
-                                                </a>
+                                                {isBot && (
+                                                    <a className='page-link' href={`${generateContentUrlByLocale(routeChapter, content.albumFriendlyName ?? '', content.friendlyName ?? '')}`}>
+                                                        {content.title}
+                                                    </a>
+                                                )}
+                                                {!isBot && <DynamiChooseChapButton
+                                                    targeLink={generateContentUrlByLocale(routeChapter, content.albumFriendlyName ?? '', content.friendlyName ?? '')}
+                                                    title={content.title}
+                                                    albumFriendlyName={content.albumFriendlyName}
+                                                    collectionfriendlyName={content.friendlyName}
+                                                    isActive={content.friendlyName === currentFriendlyName} />}
                                             </li>
                                         ))}
                                     </div>
