@@ -19,6 +19,10 @@ const DynamiChooseChapButton = dynamic(() => import('@/app/components/contents/C
     ssr: true
 });
 
+const DynamiChooseChapButtonBottom = dynamic(() => import('@/app/components/contents/ChooseChapButton'), {
+    ssr: false
+});
+
 const DynamicContentComicItemHoc = dynamic(() => import('./ContentComicItemHoc'), {
     ssr: true
 })
@@ -231,7 +235,7 @@ export default async function ContentComic({ content, comic, session, locale, is
                                                         {content.title}
                                                     </a>
                                                 )}
-                                                {!isBot && <DynamiChooseChapButton
+                                                {!isBot && <DynamiChooseChapButtonBottom
                                                     targeLink={generateContentUrlByLocale(routeChapter, content.albumFriendlyName ?? '', content.friendlyName ?? '')}
                                                     title={content.title}
                                                     albumFriendlyName={content.albumFriendlyName}
