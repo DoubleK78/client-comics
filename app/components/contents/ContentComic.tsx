@@ -19,10 +19,6 @@ const DynamiChooseChapButton = dynamic(() => import('@/app/components/contents/C
     ssr: true
 });
 
-const DynamiChooseChapButtonBottom = dynamic(() => import('@/app/components/contents/ChooseChapButton'), {
-    ssr: false
-});
-
 const DynamicContentComicItemHoc = dynamic(() => import('./ContentComicItemHoc'), {
     ssr: true
 })
@@ -230,17 +226,9 @@ export default async function ContentComic({ content, comic, session, locale, is
                                     <div className='chapter-list-content'>
                                         {comic?.contents?.map((content, index) => (
                                             <li key={index} className="grid-item">
-                                                {isBot && (
-                                                    <a className='page-link' href={`${generateContentUrlByLocale(routeChapter, content.albumFriendlyName ?? '', content.friendlyName ?? '')}`}>
-                                                        {content.title}
-                                                    </a>
-                                                )}
-                                                {!isBot && <DynamiChooseChapButtonBottom
-                                                    targeLink={generateContentUrlByLocale(routeChapter, content.albumFriendlyName ?? '', content.friendlyName ?? '')}
-                                                    title={content.title}
-                                                    albumFriendlyName={content.albumFriendlyName}
-                                                    collectionfriendlyName={content.friendlyName}
-                                                    isActive={content.friendlyName === currentFriendlyName} />}
+                                                <a className='page-link' href={`${generateContentUrlByLocale(routeChapter, content.albumFriendlyName ?? '', content.friendlyName ?? '')}`}>
+                                                    {content.title}
+                                                </a>
                                             </li>
                                         ))}
                                     </div>
