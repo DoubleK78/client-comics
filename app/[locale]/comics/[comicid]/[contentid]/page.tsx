@@ -92,6 +92,10 @@ const DynamicCommentComic = dynamic(() => import('@/app/components/comic/Comment
     ssr: false
 });
 
+const DynamicAccumulateChap = dynamic(() => import('@/app/components/comic/AccumulateChap'), {
+    ssr: false
+})
+
 const isCleanJobsTime = (targetHours: number) => {
     // Get the current time in UTC
     const now = new Date();
@@ -141,7 +145,7 @@ const getContent = async (
                 },
                 params: {
                     previousCollectionId,
-                    isBot: isBot || isCleanJobsTimeNow()
+                    isBot: isBot
                 }
             });
         return response.data.data;
@@ -180,6 +184,7 @@ export default async function Page({ params, searchParams }: {
             <InitialContentComic isValid={content !== null} />
             <Breadcrumb content={content} />
             <ClearSearchParams />
+            <DynamicAccumulateChap isBot={isBot} collectionId={content?.id} createdOnUtc={content?.createdOnUtc} previousCollectionId={searchParams?.previousCollectionId} />
             <ContentComic content={content} comic={comic} session={session} locale={locale} isBot={isBot} />
             <DynamicCommentComic comicId={content?.albumId} collectionId={content?.id} roleUser={roleUser} locale={locale} createdOnUtc={session?.user?.token?.createdOnUtc} />
         </>

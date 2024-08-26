@@ -1,10 +1,11 @@
 "use client";
 import { EStorageType } from "@/app/models/enums/EStorageType";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import ContentComicItemV3 from "./ContentComicItemV3";
-import ContentComicItemV4 from "./ContentComicItemV4";
+import ContentComicItemV6 from "./ContentComicItemV6";
 import { addListener, launch, isIphone, isAndroid, isIpad } from 'devtools-detector';
+import { parseJsonFromString } from "@/lib/json";
 
 type ContentComicItemHocProps = {
     imageUrls?: string[];
@@ -14,6 +15,7 @@ type ContentComicItemHocProps = {
 export default function ContentComicItemHoc({ imageUrls, storageType }: ContentComicItemHocProps) {
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const [isDevtoolsOpen, setIsDevtoolsOpen] = useState<boolean>(false);
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const checkMobileDevice = () => {
         let hasTouchScreen = false;
@@ -26,6 +28,13 @@ export default function ContentComicItemHoc({ imageUrls, storageType }: ContentC
                 && window.screen.width >= 720) {
                 hasTouchScreen = false;
             }
+
+            try {
+                if (hasTouchScreen && (navigator as any).platform?.toLowerCase().includes("win")) {
+                    hasTouchScreen = false;
+                }
+            }
+            catch { }
         } else if ("msMaxTouchPoints" in navigator) {
             hasTouchScreen = (navigator as any).msMaxTouchPoints > 0;
 
@@ -35,6 +44,13 @@ export default function ContentComicItemHoc({ imageUrls, storageType }: ContentC
                 && window.screen.width >= 720) {
                 hasTouchScreen = false;
             }
+
+            try {
+                if (hasTouchScreen && (navigator as any).platform?.toLowerCase().includes("win")) {
+                    hasTouchScreen = false;
+                }
+            }
+            catch { }
         } else {
             const mQ = matchMedia?.("(pointer:coarse)");
             if (mQ?.media === "(pointer:coarse)") {
@@ -53,13 +69,40 @@ export default function ContentComicItemHoc({ imageUrls, storageType }: ContentC
         return hasTouchScreen;
     }
 
+    const handleDevToolsChange = (isOpen: boolean) => {
+        if (isOpen) {
+            if (!timeoutRef.current) {
+                // If dev tools are open, start the timeout
+                timeoutRef.current = setTimeout(() => {
+                    const vmode = parseJsonFromString<string | null>(sessionStorage.getItem('vmode')) === '_4202_';
+                    if (isOpen && !vmode) {
+                        // Redirect to the home page
+                        window.location.href = '/';
+                    }
+                }, 10000); // 10 seconds
+            }
+        } else {
+            // If dev tools are closed, clear the timeout
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+                timeoutRef.current = null;
+            }
+        }
+    };
+
     useEffect(() => {
         setIsMobile(checkMobileDevice());
     }, []);
 
     useEffect(() => {
+        const isMobile = checkMobileDevice();
+
         addListener(isOpen => {
             setIsDevtoolsOpen(isOpen);
+
+            if (!isMobile) {
+                handleDevToolsChange(isOpen);
+            }
         });
 
         launch();
@@ -69,7 +112,7 @@ export default function ContentComicItemHoc({ imageUrls, storageType }: ContentC
         return (
             <>
                 {(isDevtoolsOpen || !isMobile) ? imageUrls?.map((item) => {
-                    return <ContentComicItemV4 key={uuidv4()} storageType={storageType} imageUrl={item} />
+                    return <ContentComicItemV6 key={uuidv4()} storageType={storageType} imageUrl={item} />
                 }) : imageUrls?.map((item) => {
                     return <ContentComicItemV3 key={uuidv4()} storageType={storageType} imageUrl={item} />
                 })}
