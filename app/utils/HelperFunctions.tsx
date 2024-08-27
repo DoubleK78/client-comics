@@ -147,8 +147,8 @@ export const countryFlags = {
     [TypeCountry.BandeDessinée]: 'flag-icon flag-icon-fr flag-icon-squared',
 };
 export const affiliateLinks = [
-    "https://s.lazada.vn/s.4Jebp?cc",
-    "https://s.lazada.vn/s.4JedJ?cc",
+    "https://shope.ee/9pHirAys6L",
+    "https://shope.ee/4pt2uf0fJq",
     "https://shope.ee/6pe7IJXSOO",
     "https://shope.ee/2AsHjmAYDF",
     "https://shope.ee/8UmLHVAopb",
