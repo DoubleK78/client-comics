@@ -45,7 +45,7 @@ const AccumulateChap: React.FC<Props> = ({ isBot, collectionId, createdOnUtc, pr
         }
     };
 
-    return <ScrollDetection threshold={1600} onDetect={handleDetection} />;
+    return <ScrollDetection threshold={5000} onDetect={handleDetection} />;
 }
 
 export default AccumulateChap;
