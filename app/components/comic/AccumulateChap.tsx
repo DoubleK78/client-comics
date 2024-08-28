@@ -1,5 +1,5 @@
 "use client"
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import ScrollDetection from "../common/ScrollDetection";
 import axiosClientApiInstance from "@/lib/services/client/interceptor";
 import { generateSimpleToken } from "@/lib/security/simpleTokenHelper";
@@ -24,28 +24,72 @@ const requestAccumulateChap = async (token: string) => {
 
 const AccumulateChap: React.FC<Props> = ({ isBot, collectionId, createdOnUtc, previousCollectionId }: Props) => {
     const requestedRef = useRef<boolean>(false);
+    const [isUserOnScreen, setIsUserOnScreen] = useState<boolean>(false);
+    const [observableActive, setObservableActive] = useState<boolean>(false);
+    const presenceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-    const handleDetection = () => {
+    const handleDetection = async () => {
         if (!requestedRef.current) {
-            setTimeout(async () => {
-                const payload = {
-                    isBot,
-                    collectionId,
-                    createdOnUtc,
-                    previousCollectionId: Number(previousCollectionId),
-                    timestamp: Date.now(),
-                    expiresIn: 60000
-                };
+            const payload = {
+                isBot,
+                collectionId,
+                createdOnUtc,
+                previousCollectionId: Number(previousCollectionId),
+                timestamp: Date.now(),
+                expiresIn: 60000
+            };
 
-                const token = await generateSimpleToken(payload);
+            const token = await generateSimpleToken(payload);
 
-                await requestAccumulateChap(token);
-                requestedRef.current = true;
-            }, 10000);
+            await requestAccumulateChap(token);
+            requestedRef.current = true;
         }
     };
 
-    return <ScrollDetection threshold={5000} onDetect={handleDetection} />;
-}
+    useEffect(() => {
+        if (isUserOnScreen && !requestedRef.current) {
+            if (!presenceTimerRef.current) {
+                // Start a 10-second timer when the user is on screen
+                presenceTimerRef.current = setTimeout(() => {
+                    handleDetection();
+                }, 10000);
+            }
+        } else if (presenceTimerRef.current) {
+            // Clear the timer if the user leaves the screen before 10 seconds
+            clearTimeout(presenceTimerRef.current);
+            presenceTimerRef.current = null;
+        }
+
+        // Clean up the timer when the component is unmounted or when isUserOnScreen changes
+        return () => {
+            if (presenceTimerRef.current) {
+                clearTimeout(presenceTimerRef.current);
+            }
+        };
+    }, [isUserOnScreen]);
+
+    const handleTriggerObservable = () => {
+        setObservableActive(true);
+    };
+
+    useEffect(() => {
+        if (observableActive) {     
+            const handleVisibilityChange = () => {
+                setIsUserOnScreen(document.visibilityState === 'visible');
+            };
+
+            document.addEventListener('visibilitychange', handleVisibilityChange);
+            
+            // Set the initial value of isUserOnScreen when active
+            setIsUserOnScreen(true);
+
+            return () => {
+                document.removeEventListener('visibilitychange', handleVisibilityChange);
+            };
+        }
+    }, [observableActive]);
+
+    return <ScrollDetection threshold={5000} onDetect={handleTriggerObservable} />;
+};
 
 export default AccumulateChap;
