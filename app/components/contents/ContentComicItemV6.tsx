@@ -30,7 +30,7 @@ const generateTokenByImage = async (url: string) => {
     }
 
     const timestamp = Date.now() + (offset ?? 0);
-    const token = encrypt(payload, 16000, timestamp);
+    const token = encrypt(payload, 4000, timestamp);
     return token;
 }
 

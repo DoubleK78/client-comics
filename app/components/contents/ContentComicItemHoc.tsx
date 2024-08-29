@@ -6,6 +6,7 @@ import ContentComicItemV3 from "./ContentComicItemV3";
 import ContentComicItemV6 from "./ContentComicItemV6";
 import { addListener, launch, isIphone, isAndroid, isIpad } from 'devtools-detector';
 import { parseJsonFromString } from "@/lib/json";
+import { decryptUrl } from "@/lib/security/securityHelper";
 
 type ContentComicItemHocProps = {
     imageUrls?: string[];
@@ -46,7 +47,12 @@ export default function ContentComicItemHoc({ imageUrls, storageType }: ContentC
             }
 
             try {
-                if (hasTouchScreen && (navigator as any).platform?.toLowerCase().includes("win")) {
+                const isWindows = (navigator as any).platform?.toLowerCase().includes("win");
+                if (hasTouchScreen && isWindows) {
+                    hasTouchScreen = false;
+                }
+
+                if (hasTouchScreen && !isWindows && !isIphone && !isIpad && !isAndroid) {
                     hasTouchScreen = false;
                 }
             }
@@ -74,12 +80,12 @@ export default function ContentComicItemHoc({ imageUrls, storageType }: ContentC
             if (!timeoutRef.current) {
                 // If dev tools are open, start the timeout
                 timeoutRef.current = setTimeout(() => {
-                    const vmode = parseJsonFromString<string | null>(sessionStorage.getItem('vmode')) === '_4202_';
+                    const vmode = parseJsonFromString<string | null>(sessionStorage.getItem('vmode')) === decryptUrl('i5yw135');
                     if (isOpen && !vmode) {
                         // Redirect to the home page
                         window.location.href = '/';
                     }
-                }, 10000); // 10 seconds
+                }, 5000); // 5 seconds
             }
         } else {
             // If dev tools are closed, clear the timeout
