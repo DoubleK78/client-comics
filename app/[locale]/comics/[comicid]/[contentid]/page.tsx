@@ -155,7 +155,7 @@ const getContent = async (
     }
 }
 
-const getComic = async (comicid: string | null) => {
+const getComic = unstable_cache(async (comicid: string | null) => {
     try {
         const response = await (await getAxiosInstanceAsync()).get<ServerResponse<ComicDetail>>(`/api/client/ComicApp/${comicid}`);
         return response.data.data;
@@ -163,7 +163,7 @@ const getComic = async (comicid: string | null) => {
     catch (exception: any) {
         return null;
     }
-}
+}, [], { revalidate: 15 });
 
 export default async function Page({ params, searchParams }: {
     params: { comicid: string | null, contentid: string | null },
