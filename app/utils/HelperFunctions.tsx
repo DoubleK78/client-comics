@@ -147,11 +147,11 @@ export const countryFlags = {
     [TypeCountry.BandeDessinée]: 'flag-icon flag-icon-fr flag-icon-squared',
 };
 export const affiliateLinks = [
-    "https://s.shopee.vn/8pSjbUQ5QA",
-    "https://s.shopee.vn/2AvpfI9ltF",
-    "https://s.shopee.vn/2qBWSYXARs",
-    "https://s.shopee.vn/3q43eQxUKe",
-    "https://shope.ee/8UmLHVAopb",
+    "https://s.shopee.vn/1VgBbSyG7L",
+    "https://s.shopee.vn/30UzOPEMko",
+    "https://s.shopee.vn/3q46O3HAJd",
+    "https://s.shopee.vn/9UiT96WdSW",
+    "https://s.shopee.vn/8pSmLoVuNA",
     "https://shope.ee/4KwmK192Rk",
     "https://shope.ee/9zb94dHg92",
     "https://shope.ee/2LBlVwsK1Z",
