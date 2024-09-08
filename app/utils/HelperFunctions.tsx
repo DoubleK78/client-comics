@@ -147,16 +147,16 @@ export const countryFlags = {
     [TypeCountry.BandeDessinée]: 'flag-icon flag-icon-fr flag-icon-squared',
 };
 export const affiliateLinks = [
-    "https://s.shopee.vn/1VgBbSyG7L",
-    "https://s.shopee.vn/30UzOPEMko",
-    "https://s.shopee.vn/3q46O3HAJd",
-    "https://s.shopee.vn/9UiT96WdSW",
-    "https://s.shopee.vn/8pSmLoVuNA",
-    "https://shope.ee/4KwmK192Rk",
-    "https://shope.ee/9zb94dHg92",
-    "https://shope.ee/2LBlVwsK1Z",
-    "https://shope.ee/50CWgZy2j4",
-    "https://shope.ee/3q0VjefLHy"
+    "https://s.shopee.vn/9UiWdwUjhS",
+    "https://s.shopee.vn/VnhweBUYk",
+    "https://s.shopee.vn/8KWZHIgE5h",
+    "https://s.shopee.vn/1qJ5XQpcBX",
+    "https://s.shopee.vn/1qJ5XUjjkW",
+    "https://s.shopee.vn/701Bh4237x",
+    "https://s.shopee.vn/608eVHm1UM",
+    "https://s.shopee.vn/1qJ5XhvbSa",
+    "https://s.shopee.vn/701BhDOoQT",
+    "https://s.shopee.vn/3q49vQHymw"
 ];
 
 export const percentAff = (role: any) => {
