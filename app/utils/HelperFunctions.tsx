@@ -150,7 +150,7 @@ export const affiliateLinks = [
     "https://s.shopee.vn/9UiWdwUjhS",
     "https://s.shopee.vn/VnhweBUYk",
     "https://s.shopee.vn/8KWZHIgE5h",
-    "https://s.shopee.vn/1qJ5XQpcBX",
+    "https://s.shopee.vn/rUJF1vNB",
     "https://s.shopee.vn/7Ke3HafI4j",
     "https://s.shopee.vn/701Bh4237x",
     "https://s.shopee.vn/608eVHm1UM",
