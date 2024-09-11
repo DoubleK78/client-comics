@@ -3,6 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import ScrollDetection from "../common/ScrollDetection";
 import axiosClientApiInstance from "@/lib/services/client/interceptor";
 import { generateSimpleToken } from "@/lib/security/simpleTokenHelper";
+import { parseJsonFromString } from "@/lib/json";
+import dayjs from "dayjs";
+import { decryptUrl, encryptUrl } from "@/lib/security/securityHelper";
 
 type Props = {
     isBot: boolean;
@@ -28,20 +31,37 @@ const AccumulateChap: React.FC<Props> = ({ isBot, collectionId, createdOnUtc, pr
     const [observableActive, setObservableActive] = useState<boolean>(false);
     const presenceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
+    useEffect(() => {
+        // Initial or Checking Lasted Accumulate Chap Request
+        const lastedAccumulateChapJson = localStorage.getItem('ltamc');
+        if (!lastedAccumulateChapJson) {
+            localStorage.setItem('ltamc', encryptUrl((JSON.stringify(dayjs.utc().add(-20, 'seconds').toDate()))));
+        }
+    }, []);
+
     const handleDetection = async () => {
         if (!requestedRef.current) {
-            const payload = {
-                isBot,
-                collectionId,
-                createdOnUtc,
-                previousCollectionId: Number(previousCollectionId),
-                timestamp: Date.now(),
-                expiresIn: 60000
-            };
+            const lastedAccumulateChap = parseJsonFromString<Date | null>(decryptUrl(localStorage.getItem('ltamc')));
 
-            const token = await generateSimpleToken(payload);
+            // Check if it's been 30 seconds since the last accumulate chap request
+            // If it has after 30 seconds, send a new accumulate chap request
+            if (lastedAccumulateChap && dayjs.utc().diff(dayjs.utc(lastedAccumulateChap), 'seconds') >= 30) {
+                const payload = {
+                    isBot,
+                    collectionId,
+                    createdOnUtc,
+                    previousCollectionId: Number(previousCollectionId),
+                    timestamp: Date.now(),
+                    expiresIn: 10000
+                };
 
-            await requestAccumulateChap(token);
+                const token = await generateSimpleToken(payload);
+
+                await requestAccumulateChap(token);
+
+                localStorage.setItem('ltamc', encryptUrl((JSON.stringify(dayjs.utc().toDate()))));
+            }
+
             requestedRef.current = true;
         }
     };
@@ -73,13 +93,13 @@ const AccumulateChap: React.FC<Props> = ({ isBot, collectionId, createdOnUtc, pr
     };
 
     useEffect(() => {
-        if (observableActive) {     
+        if (observableActive) {
             const handleVisibilityChange = () => {
                 setIsUserOnScreen(document.visibilityState === 'visible');
             };
 
             document.addEventListener('visibilitychange', handleVisibilityChange);
-            
+
             // Set the initial value of isUserOnScreen when active
             setIsUserOnScreen(true);
 
