@@ -14,16 +14,11 @@ export function ContentComicItemV3({ imageUrl, storageType }: { imageUrl: string
         setOriginUrl(url);
     }, []);
 
-    const onError = () => {
-        setOriginUrl("/assets/media/404/1.1_abcda.jpg");
-    }
-
     return (
         <div className="chapter-image col-lg-10 offset-lg-1 col-12 offset-0 img-chapter">
             <LazyLoad height={1000} once={false} offset={1600}>
                 <img
                     src={originUrl}
-                    onError={onError}
                     alt=""
                     width={800}
                 />
