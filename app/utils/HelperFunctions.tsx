@@ -148,7 +148,7 @@ export const countryFlags = {
 };
 export const affiliateLinks = [
     "https://s.shopee.vn/9UiWdwUjhS",
-    "https://s.shopee.vn/VnhweBUYk",
+    "https://s.shopee.vn/8UqQJs803K",
     "https://s.shopee.vn/9Uij4DRutQ",
     "https://s.shopee.vn/rUJF1vNB",
     "https://s.shopee.vn/7Ke3HafI4j",
