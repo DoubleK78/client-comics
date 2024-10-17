@@ -85,7 +85,7 @@ export default function ContentComicItemHoc({ imageUrls, storageType }: ContentC
                         // Redirect to the home page
                         window.location.href = '/';
                     }
-                }, 5000); // 5 seconds
+                }, 5000);
             }
         } else {
             // If dev tools are closed, clear the timeout
