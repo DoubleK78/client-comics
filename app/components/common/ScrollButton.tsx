@@ -1,7 +1,11 @@
 "use client"
 import { useState, useEffect } from 'react';
 
-const ScrollButton: React.FC = () => {
+type ScrollButtonProps = {
+  isContent?: boolean;
+}
+
+const ScrollButton: React.FC<ScrollButtonProps> = ({ isContent = false }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [marginRight, setMarginRight] = useState('20px');
 
@@ -19,9 +23,8 @@ const ScrollButton: React.FC = () => {
   useEffect(() => {
     const handleResize = () => {
       if (typeof window !== "undefined") {
-        const newMargin = `${(window.innerWidth * 0.2)*(window.innerWidth/1200)}px`;
-        if (window.innerWidth > 1000)
-        {
+        const newMargin = `${(window.innerWidth * 0.2) * (window.innerWidth / 1200)}px`;
+        if (window.innerWidth > 1000) {
           setMarginRight(newMargin);
         }
       }
@@ -45,7 +48,7 @@ const ScrollButton: React.FC = () => {
         display: isVisible ? 'block' : 'none',
         position: 'fixed',
         bottom: '20px',
-        right: marginRight,
+        right: isContent ? marginRight : '20px',
         background: 'var(--color-primary)',
         color: 'white',
         padding: '10px 15px',

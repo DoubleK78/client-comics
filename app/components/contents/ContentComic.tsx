@@ -72,7 +72,7 @@ export default async function ContentComic({ content, comic, session, locale, is
                         <h1>{content?.albumTitle} - {content?.title}</h1>
                     </div>
                     <SupportButton prevLink={isFirstChap ? prevChap : null} nextLink={isLastChap ? nextChap : null} />
-                    <ScrollButton />
+                    <ScrollButton isContent={true} />
                     <div className="d-flex justify-content-between mb-4">
                         <div className="left">
                             <a
