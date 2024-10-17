@@ -8,6 +8,7 @@ type ScrollButtonProps = {
 const ScrollButton: React.FC<ScrollButtonProps> = ({ isContent = false }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [marginRight, setMarginRight] = useState('20px');
+  const [isContentInView, setIsContentInView] = useState(isContent);
 
   const scrollToTop = () => {
     document.body.scrollTop = 0; // For Safari
@@ -17,8 +18,12 @@ const ScrollButton: React.FC<ScrollButtonProps> = ({ isContent = false }) => {
   const handleScroll = () => {
     const threshold = 20;
     setIsVisible(window.scrollY > threshold);
-  };
 
+    if (isContent) {
+      const distanceFromBottom = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
+      setIsContentInView(window.scrollY > threshold && distanceFromBottom > 2800);
+    }
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -48,7 +53,7 @@ const ScrollButton: React.FC<ScrollButtonProps> = ({ isContent = false }) => {
         display: isVisible ? 'block' : 'none',
         position: 'fixed',
         bottom: '20px',
-        right: isContent ? marginRight : '20px',
+        right: isContentInView ? marginRight : '20px',
         background: 'var(--color-primary)',
         color: 'white',
         padding: '10px 15px',
