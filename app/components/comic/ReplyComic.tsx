@@ -23,6 +23,7 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
     const locale = useLocale();
     const [replies, setReplies] = useState<any[]>([]);
     const [reply, setReply] = useState('');
+    const [error, setError] = useState('');
 
     const [isOpenToggle, setIsOpenToggle] = useState<boolean>(false);
     const [reloadTrigger, setReloadTrigger] = useState(false);
@@ -94,7 +95,14 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
             ParentCommentId: commentId
         };
 
-        await pushComment(commentData);
+        const response = await pushComment(commentData);
+        if (response === 'level') {
+            setError(`${t('please_level_up_reply')}`);
+            setReply('');
+            setReloadTrigger((prev) => !prev);
+
+            return;
+        }
         setReply('');
         setReloadTrigger((prev) => !prev);
 
@@ -143,6 +151,7 @@ export default function ReplyComic({ comment, comicId, commentId, replyCount, in
                         <div className="input-group form-group footer-email-box">
                             <ReactQuill style={editorStyle} theme="snow" value={reply} onChange={setReply} />
                         </div>
+                        {error && <p dangerouslySetInnerHTML={{ __html: error }} />}
                         <button className="input-group-text post-btn" type="submit">
                             {t('post')}
                         </button>
