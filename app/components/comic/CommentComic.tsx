@@ -173,7 +173,7 @@ export default function CommentComic({ comicId, collectionId, roleUser, locale, 
     }, [reloadTrigger, pagingParams]);
 
     useEffect(() => {
-        if (createdOnUtc && dayjs.utc().diff(dayjs.utc(createdOnUtc), 'days') < 7) {
+        if (createdOnUtc && dayjs.utc().diff(dayjs.utc(createdOnUtc), 'days') < 7 && roleUser !== ERoleType.UserSuperPremium) {
             setHideComment(true);
         }
     }, [createdOnUtc]);
