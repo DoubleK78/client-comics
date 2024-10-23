@@ -6,7 +6,6 @@ import React, { useState, useEffect, useRef } from 'react';
 const SupportButton: React.FC<SupportButtonProps> = ({ prevLink, nextLink }) => {
   const [showControls, setShowControls] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [marginLeft, setMarginLeft] = useState('20px'); // Khởi tạo margin
 
   const previousBtnRef = useRef<any>(null);
   const nextBtnRef = useRef<any>(null);
@@ -24,9 +23,11 @@ const SupportButton: React.FC<SupportButtonProps> = ({ prevLink, nextLink }) => 
   const handleKeyDown = (event: KeyboardEvent) => {
     switch (event.key) {
       case 'ArrowLeft':
+        // Handle logic for Arrow Left key press
         previousBtnRef.current?.click();
         break;
       case 'ArrowRight':
+        // Handle logic for Arrow Right key press
         nextBtnRef.current?.click();
         break;
       default:
@@ -35,31 +36,15 @@ const SupportButton: React.FC<SupportButtonProps> = ({ prevLink, nextLink }) => 
   }
 
   useEffect(() => {
-    const handleResize = () => {
-      if (typeof window !== "undefined") {
-        const newMargin = `${(window.innerWidth * 0.2)*(window.innerWidth/1200)}px`;
-        if (window.innerWidth > 1000)
-        {
-          setMarginLeft(newMargin);
-        }
-      }
+    window.addEventListener('scroll', handleScroll);
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('keydown', handleKeyDown);
     };
-
-    // Chỉ thêm event listener nếu window đã định nghĩa
-    if (typeof window !== "undefined") {
-      window.addEventListener('scroll', handleScroll);
-      document.addEventListener('keydown', handleKeyDown);
-      window.addEventListener('resize', handleResize);
-
-      handleResize(); // Để thiết lập giá trị ban đầu
-
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-        document.removeEventListener('keydown', handleKeyDown);
-        window.removeEventListener('resize', handleResize);
-      };
-    }
   }, []);
+
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
@@ -75,7 +60,7 @@ const SupportButton: React.FC<SupportButtonProps> = ({ prevLink, nextLink }) => 
   }, [showControls]);
 
   return (
-    <div style={{ position: 'fixed', bottom: '80px', left: marginLeft, zIndex: 999 }}>
+    <div style={{ position: 'fixed', bottom: '80px', left: '20px', zIndex: 999 }}>
       <div style={{ display: 'flex' }}>
         <button
           onClick={() => {
@@ -126,7 +111,7 @@ const SupportButton: React.FC<SupportButtonProps> = ({ prevLink, nextLink }) => 
           display: isVisible ? 'block' : 'none',
           position: 'fixed',
           bottom: '20px',
-          left: marginLeft,  // Sử dụng margin theo tỷ lệ pixel
+          left: '20px',  // Adjusted to move the button to the bottom-right corner
           background: 'var(--color-primary)',
           color: 'white',
           padding: '10px 15px',
