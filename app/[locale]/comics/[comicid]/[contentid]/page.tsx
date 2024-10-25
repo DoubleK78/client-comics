@@ -17,6 +17,7 @@ import { pathnames } from "@/navigation";
 import InitialContentComic from "@/app/components/contents/InitialContentComic";
 import { unstable_cache } from "next/cache";
 import axios from 'axios';
+import ContentCopyright from "@/app/components/contents/ContentCopyright";
 
 type Props = {
     params: { comicid: string | null, contentid: string | null, locale: string }
@@ -175,6 +176,10 @@ export default async function Page({ params, searchParams }: {
     const isBot = isbot(userAgent);
     const comic = await getComic(params.comicid);
     const locale = await getLocale();
+
+    if (!comic?.isPublic) {
+        return <ContentCopyright />
+    }
 
     const session = await getServerSession(authOptions);
     const roleUser = getEnumValueFromString(session?.user?.token?.roles);
