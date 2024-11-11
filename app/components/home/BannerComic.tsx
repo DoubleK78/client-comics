@@ -46,28 +46,28 @@ export default function BannerComic({ roleUser, isBot }: { roleUser: any, isBot:
                             </div>
                         </div>
                         {roleUser != ERoleType.UserSuperPremium && roleUser != ERoleType.UserPremium &&
-                            <div className=" banner-block-shopee bg-color-shopee banner-shopee">
-                                <div className="row">
-                                    <div className="col-lg-6 col-sm-6 col-12 d-flex align-items-center">
-                                        <div className="banner-content">
-                                            <div className="tag-box">
-                                                <h5 className="title">Đại hội sale 11/11</h5>
-                                                {!isBot && <a href="https://s.shopee.vn/8Uqmu0kzhT" className="text-box-shopee">
-                                                    Tham Gia Ngay
-                                                </a>}
-                                            </div>
+                        <div className=" banner-block-shopee bg-color-shopee banner-shopee">
+                            <div className="row">
+                                <div className="col-lg-6 col-sm-6 col-12 d-flex align-items-center">
+                                    <div className="banner-content">
+                                        <div className="tag-box">
+                                            <h5 className="title">Đại hội sale 11/11</h5>
+                                            {!isBot && <a href="https://s.shopee.vn/8Uqmu0kzhT" className="text-box-shopee">
+                                                Tham Gia Ngay
+                                            </a>}
                                         </div>
                                     </div>
-                                    <div className="col-lg-6 col-sm-6 col-12 ">
-                                        <Image
-                                            src={VouncherBanner}
-                                            className="dignole-img show-img"
-                                            alt="shopee-banner"
-                                            priority
-                                        />
-                                    </div>
+                                </div>
+                                <div className="col-lg-6 col-sm-6 col-12 ">
+                                    <Image
+                                        src={VouncherBanner}
+                                        className="dignole-img show-img"
+                                        alt="shopee-banner"
+                                        priority
+                                    />
                                 </div>
                             </div>
+                        </div>
                         }
                     </div>
                 </div>
