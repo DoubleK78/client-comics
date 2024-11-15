@@ -187,11 +187,11 @@ export default async function ContentComic({ content, comic, session, locale, is
                                 {roleUser !== ERoleType.UserPremium && roleUser !== ERoleType.UserSuperPremium &&
                                     <h3>{t('will_publish')} {locale == 'vi' ? (
                                         <>
-                                            <span>{dayjs.utc(roundTimeTo30Minutes(content?.createdOnUtc)).add(23, 'hours').format('HH:mm A DD-MM-YYYY')}</span>
+                                            <span>{dayjs.utc(roundTimeTo30Minutes(content?.createdOnUtc)).add(25, 'hours').format('HH:mm A DD-MM-YYYY')}</span>
                                         </>
                                     ) : (
                                         <>
-                                            <span>{dayjs.utc(roundTimeTo30Minutes(content?.createdOnUtc)).add(16, 'hours').format('HH:mm A DD-MM-YYYY')}</span>
+                                            <span>{dayjs.utc(roundTimeTo30Minutes(content?.createdOnUtc)).add(18, 'hours').format('HH:mm A DD-MM-YYYY')}</span>
                                         </>
                                     )}</h3>
                                 }
