@@ -30,7 +30,7 @@ export default function DetailPackagePage() {
                                 </a>
                             </div>
                             <div className="row">
-                                <div className="col-lg-4 col-md-6 col-sm-8 offset-lg-0 offset-md-0 offset-sm-2 col-12">
+                                <div className="col-lg-6 col-md-6 col-sm-8 offset-lg-0 offset-md-0 offset-sm-2 col-12">
                                     <a href="/payment?package=premium_1" className="inner-box">
                                         <div className="image-box">
                                             <Image src={Premium} alt="premium" className="attachment-full size-full" priority/>
@@ -44,7 +44,7 @@ export default function DetailPackagePage() {
                                         </div>
                                     </a>
                                 </div>
-                                <div className="col-lg-4 col-md-6 col-sm-8 offset-lg-0 offset-md-0 offset-sm-2 col-12">
+                                <div className="col-lg-6 col-md-6 col-sm-8 offset-lg-0 offset-md-0 offset-sm-2 col-12">
                                     <a href="/payment?package=premium_2" className="inner-box">
                                         <div className="image-box">
                                             <Image src={Premium} alt="premium" className="attachment-full size-full" priority/>
@@ -55,20 +55,6 @@ export default function DetailPackagePage() {
                                                 <p className="glitter-text">90 {t('days')}</p>
                                             </div>
                                             <h4 className="glitter-text">{t('premium')} 2</h4>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div className="col-lg-4 col-md-6 col-sm-8 offset-lg-0 offset-md-0 offset-sm-2 col-12">
-                                    <a href="/payment?package=premium_3" className="inner-box">
-                                        <div className="image-box">
-                                            <Image src={Premium} alt="premium" className="attachment-full size-full" priority/>
-                                        </div>
-                                        <div className="author-box text-start">
-                                            <div className="detail d-flex align-items-center justify-content-between">
-                                                <p className="glitter-text">199.000 {t('money')}</p>
-                                                <p className="glitter-text">365 {t('days')}</p>
-                                            </div>
-                                            <h4 className="glitter-text">{t('premium')} 3</h4>
                                         </div>
                                     </a>
                                 </div>
@@ -126,7 +112,7 @@ export default function DetailPackagePage() {
                                 </a>
                             </div>
                             <div className="row">
-                                <div className="col-lg-4 col-md-6 col-sm-8 offset-lg-0 offset-md-0 offset-sm-2 col-12">
+                                <div className="col-lg-6 col-md-6 col-sm-8 offset-lg-0 offset-md-0 offset-sm-2 col-12">
                                     <a href="/payment?package=spremium_1" className="inner-box">
                                         <div className="image-box">
                                             <Image src={SPremium} alt="premium" className="attachment-full size-full" priority/>
@@ -140,7 +126,7 @@ export default function DetailPackagePage() {
                                         </div>
                                     </a>
                                 </div>
-                                <div className="col-lg-4 col-md-6 col-sm-8 offset-lg-0 offset-md-0 offset-sm-2 col-12">
+                                <div className="col-lg-6 col-md-6 col-sm-8 offset-lg-0 offset-md-0 offset-sm-2 col-12">
                                     <a href="/payment?package=spremium_2" className="inner-box">
                                         <div className="image-box">
                                             <Image src={SPremium} alt="premium" className="attachment-full size-full" priority/>
@@ -151,20 +137,6 @@ export default function DetailPackagePage() {
                                                 <p className="s-glitter-text">90 {t('days')}</p>
                                             </div>
                                             <h4 className="s-glitter-text">{t('s-premium')} 2</h4>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div className="col-lg-4 col-md-6 col-sm-8 offset-lg-0 offset-md-0 offset-sm-2 col-12">
-                                    <a href="/payment?package=spremium_3" className="inner-box">
-                                        <div className="image-box">
-                                            <Image src={SPremium} alt="premium" className="attachment-full size-full" priority/>
-                                        </div>
-                                        <div className="author-box text-start">
-                                            <div className="detail d-flex align-items-center justify-content-between">
-                                                <p className="s-glitter-text">499.000 {t('money')}</p>
-                                                <p className="s-glitter-text">365 {t('days')}</p>
-                                            </div>
-                                            <h4 className="s-glitter-text">{t('s-premium')} 3</h4>
                                         </div>
                                     </a>
                                 </div>
