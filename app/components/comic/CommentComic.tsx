@@ -113,8 +113,12 @@ export default function CommentComic({ comicId, collectionId, roleUser, locale, 
 
         let activity = await createActivityLog(myActivityLog);
 
-        if (activity)
-            await pushComment(commentData);
+        if (activity) {
+            const response = await pushComment(commentData);
+            if (response === 'level') {
+                setError(`${t('please_level_up_comment')}`);
+            }
+        }
         else {
             switch (roleUser) {
                 case ERoleType.User:
@@ -169,7 +173,7 @@ export default function CommentComic({ comicId, collectionId, roleUser, locale, 
     }, [reloadTrigger, pagingParams]);
 
     useEffect(() => {
-        if (createdOnUtc && dayjs.utc().diff(dayjs.utc(createdOnUtc), 'days') < 7) {
+        if (createdOnUtc && dayjs.utc().diff(dayjs.utc(createdOnUtc), 'days') < 7 && roleUser !== ERoleType.UserSuperPremium) {
             setHideComment(true);
         }
     }, [createdOnUtc]);
